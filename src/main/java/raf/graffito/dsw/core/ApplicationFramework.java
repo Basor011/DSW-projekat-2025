@@ -9,7 +9,7 @@ public class ApplicationFramework {
     }
 
     public void initialize(){
-        MainFrame mainFrame = new MainFrame();
+        MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.setVisible(true);
     }
 }
