@@ -15,12 +15,13 @@ public class MyMenuBar extends JMenuBar {
         ExitAction exitAction = new ExitAction();
         fileMenu.add(exitAction);
 
-        JMenu aboutUsMenu= new JMenu("About us");
-        AboutUsAction aboutUsAction=new AboutUsAction();
-        //aboutUsMenu.add(aboutUsAction);
+        JMenuItem aboutUsItem = new JMenuItem(new AboutUsAction());
+        aboutUsItem.setText("About us");
+        fileMenu.add(aboutUsItem);
+
 
 
         add(fileMenu);
-        add(aboutUsMenu);
+
     }
 }

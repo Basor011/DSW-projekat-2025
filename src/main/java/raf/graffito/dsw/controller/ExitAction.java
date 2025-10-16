@@ -25,7 +25,7 @@ public class ExitAction extends AbstractAction {
         } else {
             System.err.println("File " + "images/exit.png" + " not found");
         }
-        return icon;
+        return  icon;
     }
 
     @Override
