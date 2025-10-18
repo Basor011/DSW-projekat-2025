@@ -15,8 +15,7 @@ public class ExitAction extends AbstractGraffAction {
     }
 
     // Metoda za učitavanje ikonice iz resursa
-
-    private Icon loadIcon(String path) {
+    /*private Icon loadIcon(String path) {
         Icon icon = null;
         URL ImageURL = getClass().getResource(path); // URL služi za pronalaženje resursa unutar JAR fajla ili klase
         if (ImageURL != null) {
@@ -27,15 +26,12 @@ public class ExitAction extends AbstractGraffAction {
             System.err.println("File " + "images/exit.png" + " not found");
         }
         return icon;
-    }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.exit(0);
     }
 
-    @Override
-    Icon loadIcon() {
-        return null;
-    }
+
 }
