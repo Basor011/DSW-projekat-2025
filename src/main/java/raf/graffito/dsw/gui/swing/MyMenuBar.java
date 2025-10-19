@@ -2,6 +2,7 @@ package raf.graffito.dsw.gui.swing;
 
 
 
+import raf.graffito.dsw.controller.AboutUsAction;
 import raf.graffito.dsw.controller.ExitAction;
 
 import javax.swing.*;
@@ -13,6 +14,14 @@ public class MyMenuBar extends JMenuBar {
         fileMenu.setMnemonic(KeyEvent.VK_F);
         ExitAction exitAction = new ExitAction();
         fileMenu.add(exitAction);
+
+        JMenuItem aboutUsItem = new JMenuItem(new AboutUsAction());
+        aboutUsItem.setText("About us");
+        fileMenu.add(aboutUsItem);
+
+
+
         add(fileMenu);
+
     }
 }

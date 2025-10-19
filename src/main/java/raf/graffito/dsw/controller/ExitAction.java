@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 
-public class ExitAction extends AbstractAction {
+public class ExitAction extends AbstractGraffAction {
     public ExitAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK)); // Ovo je prečica za izlaz
         putValue(SMALL_ICON, loadIcon("/images/exit.png")); // Postavljanje ikonice
@@ -15,7 +15,7 @@ public class ExitAction extends AbstractAction {
     }
 
     // Metoda za učitavanje ikonice iz resursa
-    private Icon loadIcon(String path) {
+    /*private Icon loadIcon(String path) {
         Icon icon = null;
         URL ImageURL = getClass().getResource(path); // URL služi za pronalaženje resursa unutar JAR fajla ili klase
         if (ImageURL != null) {
@@ -26,10 +26,12 @@ public class ExitAction extends AbstractAction {
             System.err.println("File " + "images/exit.png" + " not found");
         }
         return icon;
-    }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.exit(0);
     }
+
+
 }
