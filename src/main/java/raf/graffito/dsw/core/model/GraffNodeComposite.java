@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GraffNodeComposite extends GraffNode {
-    private List<GraffNode> children;
+    protected List<GraffNode> children = new ArrayList<>();
     public GraffNodeComposite(String name, GraffNode parent) {
         super(name, parent);
-        this.children = new ArrayList<GraffNode>();
     }
 
     @Override
@@ -18,9 +17,9 @@ public abstract class GraffNodeComposite extends GraffNode {
         }
         return null;
     }
-    public abstract void addChild(GraffNode part);
+    public abstract void addChild(GraffNode child);
 
-    public abstract void removeChild(GraffNode part);
+    public abstract void removeChild(GraffNode child);
 
 
     public List<GraffNode> getChildren() {
