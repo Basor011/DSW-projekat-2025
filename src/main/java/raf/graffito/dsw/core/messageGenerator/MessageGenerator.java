@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessagePublisher implements MessageGenerator {
-    private List<Subscriber> subscriberList=new ArrayList<>();
+public class MessageGenerator implements MessagePublisher {
+    private List<Subscriber> subscriberList =new ArrayList<>();
 
     @Override
     public void addSubscriber(Subscriber subscriber) {
