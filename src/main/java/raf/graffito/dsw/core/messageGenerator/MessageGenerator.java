@@ -7,6 +7,10 @@ import java.util.List;
 public class MessageGenerator implements MessagePublisher {
     private List<Subscriber> subscriberList =new ArrayList<>();
 
+    public MessageGenerator(List<Subscriber> subscriberList) {
+        this.subscriberList = subscriberList;
+    }
+
     @Override
     public void addSubscriber(Subscriber subscriber) {
         subscriberList.add(subscriber);
@@ -21,7 +25,7 @@ public class MessageGenerator implements MessagePublisher {
     public void notifyAll(Message message) {
          for(Subscriber s : subscriberList)
          {
-             s.update(message);
+             s.ispisiPoruku(message);
          }
     }
 
@@ -42,5 +46,9 @@ public class MessageGenerator implements MessagePublisher {
         LocalDateTime time = LocalDateTime.now();
         Message message=new Message(content,"OBAVESTENJE",time);
         notifyAll(message);
+    }
+
+    public List<Subscriber> getSubscriberList() {
+        return subscriberList;
     }
 }

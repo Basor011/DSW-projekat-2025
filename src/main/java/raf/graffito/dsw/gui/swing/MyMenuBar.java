@@ -24,4 +24,5 @@ public class MyMenuBar extends JMenuBar {
         add(fileMenu);
 
     }
+
 }

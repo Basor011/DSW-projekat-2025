@@ -1,9 +1,12 @@
 package raf.graffito.dsw.gui.swing;
 
+import raf.graffito.dsw.core.messageGenerator.Message;
+import raf.graffito.dsw.core.messageGenerator.Subscriber;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame  {
 
     // Buduća polja za sve komponente view-a na glavnom prozoru
 
@@ -35,5 +38,6 @@ public class MainFrame extends JFrame {
         MyToolBar toolBar = new MyToolBar(); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
     }
+
 
 }
