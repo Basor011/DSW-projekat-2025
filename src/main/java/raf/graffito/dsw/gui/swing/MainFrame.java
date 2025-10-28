@@ -1,18 +1,25 @@
 package raf.graffito.dsw.gui.swing;
 
 import raf.graffito.dsw.core.messageGenerator.Message;
+import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.core.messageGenerator.Subscriber;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainFrame extends JFrame  {
+public class MainFrame extends JFrame implements Subscriber  {
 
     // Buduća polja za sve komponente view-a na glavnom prozoru
 
     private static MainFrame instance;
+    private List<Subscriber> subs=new ArrayList<>();
     private MainFrame() {
         initialize();
+        subs.add(this);
+
+    MessageGenerator mg=new MessageGenerator(subs);
     }
 
     public static MainFrame getInstance() {
@@ -40,4 +47,8 @@ public class MainFrame extends JFrame  {
     }
 
 
+    @Override
+    public void ispisiPoruku(Message message) {
+
+    }
 }
