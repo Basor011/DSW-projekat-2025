@@ -14,6 +14,7 @@ public class Presentation extends GraffNodeComposite {
         if(child instanceof Slide){
             children.add((Slide)child);
         }
+        //else messageGenerator
     }
 
     @Override

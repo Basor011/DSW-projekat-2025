@@ -6,15 +6,18 @@ import raf.graffito.dsw.core.model.leaves.Slide;
 
 public class Project extends GraffNodeComposite {
     private String autor;
-
-    public Project(String name, GraffNode parent) {
+    private int number;
+    public Project(String name, GraffNode parent, String autor) {
         super(name, parent);
+        this.autor = autor;
+        this.number = 0;
     }
 
     @Override
     public void addChild(GraffNode child) {
         if(child instanceof Presentation || child instanceof Slide){
             children.add(child);
+            number++;
         }
         //else message generator
     }
@@ -22,5 +25,7 @@ public class Project extends GraffNodeComposite {
     @Override
     public void removeChild(GraffNode child) {
         children.remove(child);
+        number--;
+        //message generator error
     }
 }

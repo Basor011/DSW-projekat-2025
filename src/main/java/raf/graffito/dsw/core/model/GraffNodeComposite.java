@@ -5,6 +5,7 @@ import java.util.List;
 
 public abstract class GraffNodeComposite extends GraffNode {
     protected List<GraffNode> children = new ArrayList<>();
+
     public GraffNodeComposite(String name, GraffNode parent) {
         super(name, parent);
     }

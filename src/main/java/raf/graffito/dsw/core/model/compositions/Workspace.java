@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Workspace extends GraffNodeComposite {
-    //private List<Project> projects;
+
     public Workspace(String name, GraffNode parent) {
         super(name, parent);
     }
