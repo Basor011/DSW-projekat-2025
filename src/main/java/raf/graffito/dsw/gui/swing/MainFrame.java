@@ -1,24 +1,26 @@
 package raf.graffito.dsw.gui.swing;
 
+import raf.graffito.dsw.controller.ActionManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.Flow;
 
 public class MainFrame extends JFrame {
 
     // Buduća polja za sve komponente view-a na glavnom prozoru
-
+    private ActionManager actionManager;
     private static MainFrame instance;
+
     private MainFrame() {
+        actionManager = new ActionManager();
         initialize();
     }
-
-
-
     public static MainFrame getInstance() {
-        if(instance== null)  instance=new MainFrame();
+        if(instance== null) {
+            instance=new MainFrame();
+        }
         return instance;
-
-
     }
 
     private void initialize() {
@@ -34,8 +36,11 @@ public class MainFrame extends JFrame {
         MyMenuBar menu = new MyMenuBar(); // Kreiranje menija
         setJMenuBar(menu); // Postavljanje menija na prozor
 
-        MyToolBar toolBar = new MyToolBar(); // Kreiranje toolbar-a
+        MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
     }
 
+    public ActionManager getActionManager() {
+        return actionManager;
+    }
 }

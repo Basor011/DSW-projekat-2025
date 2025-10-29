@@ -19,8 +19,6 @@ public class MyMenuBar extends JMenuBar {
         aboutUsItem.setText("About us");
         fileMenu.add(aboutUsItem);
 
-
-
         add(fileMenu);
 
     }
