@@ -1,4 +1,4 @@
-package raf.graffito.dsw.core.model;
+package raf.graffito.dsw.core.composite;
 
 public class GraffNodeLeaf extends GraffNode {
     public GraffNodeLeaf(String name, GraffNode parent) {

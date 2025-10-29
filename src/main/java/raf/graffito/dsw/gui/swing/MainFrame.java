@@ -12,6 +12,8 @@ public class MainFrame extends JFrame {
         initialize();
     }
 
+
+
     public static MainFrame getInstance() {
         if(instance== null)  instance=new MainFrame();
         return instance;

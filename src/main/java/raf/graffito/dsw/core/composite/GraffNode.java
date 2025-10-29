@@ -1,6 +1,4 @@
-package raf.graffito.dsw.core.model;
-
-import java.util.ArrayList;
+package raf.graffito.dsw.core.composite;
 
 public abstract class GraffNode {
     private String name;
