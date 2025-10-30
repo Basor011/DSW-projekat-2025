@@ -1,16 +1,15 @@
 package raf.graffito.dsw.gui.swing;
 
+import com.sun.tools.javac.Main;
 import raf.graffito.dsw.controller.ExitAction;
 
 import javax.swing.*;
 
 public class MyToolBar extends JToolBar {
-    private MainFrame mainFrame;
-    public MyToolBar(MainFrame mainFrame) {
+    public MyToolBar() {
         super(HORIZONTAL);
-        this.mainFrame = mainFrame;
         setFloatable(false);
 
-        add(mainFrame.getActionManager().getExitAction());
+        add(MainFrame.getInstance().getActionManager().getExitAction());
     }
 }
