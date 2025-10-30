@@ -9,15 +9,14 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 public class MyMenuBar extends JMenuBar {
-    public MyMenuBar() {
+    private MainFrame mainFrame;
+    public MyMenuBar(MainFrame mainFrame) {
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
-        ExitAction exitAction = new ExitAction();
-        fileMenu.add(exitAction);
+        this.mainFrame = mainFrame;
 
-        JMenuItem aboutUsItem = new JMenuItem(new AboutUsAction());
-        aboutUsItem.setText("About us");
-        fileMenu.add(aboutUsItem);
+        fileMenu.add(mainFrame.getActionManager().getExitAction());
+        fileMenu.add(mainFrame.getActionManager().getAboutUsAction());
 
         add(fileMenu);
 
