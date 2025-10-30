@@ -13,12 +13,11 @@ public class AboutUsAction extends AbstractGraffAction {
 
     public AboutUsAction()
     {
-        //ImageIcon slika1=new ImageIcon(getClass().getResource("/images/kalinaimage.png"));
+        putValue(NAME, "About us");
         Icon slika1=loadIcon("/images/kalinaimage.png");
         JLabel label1=new JLabel("Kalina Stojanovic SI 8/2024",slika1, JLabel.CENTER);
         label1.setHorizontalTextPosition(JLabel.CENTER);
         label1.setVerticalTextPosition(JLabel.BOTTOM);
-        //ImageIcon slika2=new ImageIcon(getClass().getResource("/images/jugimage.png"));
         Icon slika2=loadIcon("/images/jugimage.png");
         JLabel label2=new JLabel("Jug Basorovic SI 5/2024",slika2, JLabel.CENTER);
 
@@ -52,4 +51,5 @@ public class AboutUsAction extends AbstractGraffAction {
         }
         return icon;
     }
+
 }

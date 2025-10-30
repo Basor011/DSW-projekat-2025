@@ -1,22 +1,30 @@
 package raf.graffito.dsw.gui.swing;
 
+import raf.graffito.dsw.controller.ActionManager;
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.core.messageGenerator.Message;
+import raf.graffito.dsw.core.messageGenerator.Subscriber;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.Flow;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Subscriber {
 
     // Buduća polja za sve komponente view-a na glavnom prozoru
-
-    private static MainFrame instance;
-    private MainFrame() {
-        initialize();
-    }
+    private ActionManager actionManager;
+    private static MainFrame instance = null;
 
     public static MainFrame getInstance() {
-        if(instance== null)  instance=new MainFrame();
+        if(instance == null) {
+            instance = new MainFrame();
+        }
         return instance;
-
-
+    }
+    private MainFrame() {
+        actionManager = new ActionManager();
+        instance = this;
+        initialize();
     }
 
     private void initialize() {
@@ -36,4 +44,15 @@ public class MainFrame extends JFrame {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
     }
 
+    public ActionManager getActionManager() {
+        return actionManager;
+    }
+
+    @Override
+    public void ispisiPoruku(Message message) {
+        if (message.getType().equals("GRESKA") || message.getType().equals("OBAVESTENJE")){
+            JOptionPane.showMessageDialog(null, message.toString() + " " + message.getType());
+        }
+        else return;
+    }
 }

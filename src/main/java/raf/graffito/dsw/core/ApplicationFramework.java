@@ -1,15 +1,43 @@
 package raf.graffito.dsw.core;
+import raf.graffito.dsw.core.logger.ConsoleLogger;
+import raf.graffito.dsw.core.logger.FileLogger;
+import raf.graffito.dsw.core.logger.LoggerFactory;
+import raf.graffito.dsw.core.messageGenerator.Message;
+import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
+import raf.graffito.dsw.core.messageGenerator.Subscriber;
 import raf.graffito.dsw.gui.swing.MainFrame;
 
-public class ApplicationFramework {
-    // Buduća polja za model celog projekta
+import java.util.ArrayList;
+import java.util.List;
 
-    public ApplicationFramework(){
+public class ApplicationFramework  {
+    // Buduća polja za model celog projekta
+    private static ApplicationFramework instance=null;
+    List<Subscriber> subscribers;
+    private ApplicationFramework(){
         initialize();
+    }
+    public static ApplicationFramework getInstance()
+    {
+        if(instance==null) instance=new ApplicationFramework();
+        return instance;
     }
 
     public void initialize(){
-        MainFrame mainFrame = MainFrame.getInstance();
+        subscribers =  new ArrayList<Subscriber>();
+        MessageGenerator messageGenerator = new MessageGenerator(subscribers);
+        LoggerFactory loggerFactory = new LoggerFactory();
+
+        MainFrame mainFrame = MainFrame.getInstance(); ///napravili mf
         mainFrame.setVisible(true);
+
+        messageGenerator.addSubscriber(mainFrame);
+        /// nisam sigurna
+        messageGenerator.addSubscriber(loggerFactory.createLogger("consoleLogger"));
+        messageGenerator.addSubscriber(loggerFactory.createLogger("fileLogger"));
+    }
+
+    public List<Subscriber> getSubscribers() {
+        return subscribers;
     }
 }

@@ -6,15 +6,14 @@ import java.net.URL;
 
 public abstract class AbstractGraffAction extends AbstractAction {
      protected Icon loadIcon(String path){
-         Icon icon = null;
          URL ImageURL = getClass().getResource(path); // URL služi za pronalaženje resursa unutar JAR fajla ili klase
          if (ImageURL != null) {
              Image img = new ImageIcon(ImageURL).getImage(); // Napravimo Image iz ImageIcon
              Image newImg = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
-             icon = new ImageIcon(newImg);
+             return new ImageIcon(newImg);
          } else {
-             System.err.println("File " + "images/exit.png" + " not found");
+             System.err.println("File " + path + " not found");
          }
-         return icon;
+         return null;
      }
 }
