@@ -17,7 +17,10 @@ public class Project extends GraffNodeComposite {
     public void addChild(GraffNode child) {
         if(child instanceof Presentation || child instanceof Slide){
             children.add(child);
-            number++;
+            child.setParent(this);
+            if(child instanceof Slide){
+                number++;
+            }
         }
         //else message generator
     }
@@ -25,7 +28,9 @@ public class Project extends GraffNodeComposite {
     @Override
     public void removeChild(GraffNode child) {
         children.remove(child);
-        number--;
-        //message generator error
+        if(child instanceof Slide){
+            number--;
+        }
+        child.setParent(null);
     }
 }

@@ -13,6 +13,7 @@ public class Presentation extends GraffNodeComposite {
     public void addChild(GraffNode child) {
         if(child instanceof Slide){
             children.add((Slide)child);
+            child.setParent(this);
         }
         //else messageGenerator
     }
@@ -20,5 +21,6 @@ public class Presentation extends GraffNodeComposite {
     @Override
     public void removeChild(GraffNode child) {
         children.remove(child);
+        child.setParent(null);
     }
 }

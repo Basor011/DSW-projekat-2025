@@ -1,6 +1,6 @@
 package raf.graffito.dsw.core.composite;
 
-public class GraffNodeLeaf extends GraffNode {
+public abstract class GraffNodeLeaf extends GraffNode {
     public GraffNodeLeaf(String name, GraffNode parent) {
         super(name, parent);
     }
