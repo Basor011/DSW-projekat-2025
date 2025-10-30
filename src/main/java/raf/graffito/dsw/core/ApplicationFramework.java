@@ -12,9 +12,15 @@ import java.util.List;
 
 public class ApplicationFramework  {
     // Buduća polja za model celog projekta
+    private static ApplicationFramework instance=null;
     List<Subscriber> subscribers;
-    public ApplicationFramework(){
+    private ApplicationFramework(){
         initialize();
+    }
+    public static ApplicationFramework getInstance()
+    {
+        if(instance==null) instance=new ApplicationFramework();
+        return instance;
     }
 
     public void initialize(){
