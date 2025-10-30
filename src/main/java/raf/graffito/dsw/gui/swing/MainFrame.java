@@ -13,19 +13,18 @@ public class MainFrame extends JFrame implements Subscriber {
 
     // Buduća polja za sve komponente view-a na glavnom prozoru
     private ActionManager actionManager;
-    private static MainFrame instance;
+    private static MainFrame instance = null;
 
+    public static MainFrame getInstance() {
+        if(instance == null) {
+            instance = new MainFrame();
+        }
+        return instance;
+    }
     private MainFrame() {
         actionManager = new ActionManager();
         instance = this;
         initialize();
-
-    }
-    public static MainFrame getInstance() {
-        if(instance== null) {
-            instance=new MainFrame();
-        }
-        return instance;
     }
 
     private void initialize() {

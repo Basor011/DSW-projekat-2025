@@ -22,7 +22,6 @@ public abstract class GraffNodeComposite extends GraffNode {
 
     public abstract void removeChild(GraffNode child);
 
-
     public List<GraffNode> getChildren() {
         return children;
     }

@@ -21,11 +21,14 @@ public class ApplicationFramework  {
         subscribers =  new ArrayList<Subscriber>();
         MessageGenerator messageGenerator = new MessageGenerator(subscribers);
         LoggerFactory loggerFactory = new LoggerFactory();
-        MainFrame mainFrame = MainFrame.getInstance();
+
+        MainFrame mainFrame = MainFrame.getInstance(); ///napravili mf
         mainFrame.setVisible(true);
+
         messageGenerator.addSubscriber(mainFrame);
-        messageGenerator.addSubscriber(loggerFactory.createLogger("ConsoleLogger"));
-        messageGenerator.addSubscriber(loggerFactory.createLogger("FileLogger"));
+        /// nisam sigurna
+        messageGenerator.addSubscriber(loggerFactory.createLogger("consoleLogger"));
+        messageGenerator.addSubscriber(loggerFactory.createLogger("fileLogger"));
     }
 
     public List<Subscriber> getSubscribers() {
