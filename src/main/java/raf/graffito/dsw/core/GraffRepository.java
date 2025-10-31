@@ -1,7 +1,7 @@
 package raf.graffito.dsw.core;
 
-import raf.graffito.dsw.core.composite.GraffNode;
-import raf.graffito.dsw.core.composite.compositions.Workspace;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 
 public interface GraffRepository {
     public Workspace getWorkspace();

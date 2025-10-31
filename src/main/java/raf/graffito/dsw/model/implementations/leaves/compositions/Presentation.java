@@ -1,8 +1,8 @@
-package raf.graffito.dsw.core.composite.compositions;
+package raf.graffito.dsw.model.implementations.leaves.compositions;
 
-import raf.graffito.dsw.core.composite.GraffNode;
-import raf.graffito.dsw.core.composite.GraffNodeComposite;
-import raf.graffito.dsw.core.composite.leaves.Slide;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
 
 public class Presentation extends GraffNodeComposite {
     public Presentation(String name, GraffNode parent) {
@@ -12,12 +12,12 @@ public class Presentation extends GraffNodeComposite {
     @Override
     public void addChild(GraffNode child) {
         if(child instanceof Slide){
-            children.add((Slide)child);
-            child.setParent(this);
+            if(!this.getChildren().contains(child)){
+                children.add((Slide)child);
+                child.setParent(this);
+            }
         }
-        //else messageGenerator
     }
-
     @Override
     public void removeChild(GraffNode child) {
         children.remove(child);

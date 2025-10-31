@@ -1,4 +1,4 @@
-package raf.graffito.dsw.core.composite;
+package raf.graffito.dsw.model.composite;
 
 import java.util.ArrayList;
 import java.util.List;

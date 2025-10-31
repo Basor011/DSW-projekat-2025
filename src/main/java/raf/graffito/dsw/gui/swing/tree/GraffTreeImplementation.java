@@ -1,11 +1,11 @@
 package raf.graffito.dsw.gui.swing.tree;
 
-import raf.graffito.dsw.core.composite.GraffNode;
-import raf.graffito.dsw.core.composite.GraffNodeComposite;
-import raf.graffito.dsw.core.composite.compositions.Presentation;
-import raf.graffito.dsw.core.composite.compositions.Project;
-import raf.graffito.dsw.core.composite.compositions.Workspace;
-import raf.graffito.dsw.core.composite.leaves.Slide;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 

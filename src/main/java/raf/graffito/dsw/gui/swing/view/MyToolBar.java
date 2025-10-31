@@ -1,4 +1,4 @@
-package raf.graffito.dsw.gui.swing;
+package raf.graffito.dsw.gui.swing.view;
 
 import javax.swing.*;
 

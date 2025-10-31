@@ -1,6 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.model;
 
-import raf.graffito.dsw.core.composite.GraffNode;
+import raf.graffito.dsw.model.composite.GraffNode;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
