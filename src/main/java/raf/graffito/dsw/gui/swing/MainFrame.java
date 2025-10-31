@@ -1,13 +1,11 @@
 package raf.graffito.dsw.gui.swing;
 
 import raf.graffito.dsw.controller.ActionManager;
-import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
-import raf.graffito.dsw.core.messageGenerator.Subscriber;
+import raf.graffito.dsw.core.observer.Subscriber;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.concurrent.Flow;
 
 public class MainFrame extends JFrame implements Subscriber {
 
