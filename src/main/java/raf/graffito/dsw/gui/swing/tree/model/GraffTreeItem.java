@@ -4,7 +4,7 @@ import raf.graffito.dsw.core.composite.GraffNode;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public class GraffTreeItem extends DefaultMutableTreeNode {
+public class    GraffTreeItem extends DefaultMutableTreeNode {
     /// instanca cvora
     private GraffNode graffNode;
 
