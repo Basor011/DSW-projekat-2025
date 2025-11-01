@@ -1,7 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree;
 
-import raf.graffito.dsw.core.logger.LoggerFactory;
-import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
+import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
@@ -27,6 +26,9 @@ public class GraffTreeImplementation implements GraffTree{
             return new Project("Project" + new Random().nextInt(100), parent, "autor");
         }else if(parent instanceof Project) {
             /// ide pop up window koji pita da li ce presentation ili slide
+            PresentationOrSlidePopUp pop = new PresentationOrSlidePopUp();
+            pop.setVisible(true);
+
             return new Presentation("Presentation" + new Random().nextInt(100), parent);
             //return new Slide("Project" + new Random().nextInt(100), parent);
         }else if(parent instanceof Presentation) {

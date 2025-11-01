@@ -1,9 +1,10 @@
-package raf.graffito.dsw.gui.swing.view;
+package raf.graffito.dsw.gui.swing.tree.view;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PresentationOrSlidePopUp extends JFrame {
+
     public PresentationOrSlidePopUp() {
         initialize();
     }
@@ -16,11 +17,11 @@ public class PresentationOrSlidePopUp extends JFrame {
         setLocationRelativeTo(null); // Centriranje prozora na ekranu
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Zatvaranje aplikacije pri zatvaranju prozora
 
-        TextField textField = new TextField("Do you want to add a new Presentation of a new Slide?");
-        add(textField, BorderLayout.NORTH);
-        Button buttonPresentation = new Button("Presentation");
+        Label label = new Label("Do you want to add a new Presentation or a new Slide?");
+        add(label, BorderLayout.NORTH);
+        JToggleButton buttonPresentation = new JRadioButton("Presentation");
         add(buttonPresentation, BorderLayout.WEST);
-        Button buttonSlide = new Button("Slide");
+        JToggleButton buttonSlide = new JRadioButton("Slide");
         add(buttonSlide, BorderLayout.EAST);
     }
 }
