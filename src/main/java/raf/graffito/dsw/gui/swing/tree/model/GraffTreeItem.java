@@ -4,12 +4,12 @@ import raf.graffito.dsw.model.composite.GraffNode;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public class    GraffTreeItem extends DefaultMutableTreeNode {
+public class GraffTreeItem extends DefaultMutableTreeNode {
     /// instanca cvora
     private GraffNode graffNode;
 
-    public GraffTreeItem(GraffNode graffNode) {
-        this.graffNode = graffNode;
+    public GraffTreeItem(GraffNode nodeModel) {
+        this.graffNode = nodeModel;
     }
 
     @Override
@@ -23,9 +23,5 @@ public class    GraffTreeItem extends DefaultMutableTreeNode {
 
     public GraffNode getGraffNode() {
         return graffNode;
-    }
-
-    public void setGraffNode(GraffNode graffNode) {
-        this.graffNode = graffNode;
     }
 }

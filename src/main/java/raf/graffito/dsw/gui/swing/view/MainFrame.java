@@ -1,8 +1,11 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.ActionManager;
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
+import raf.graffito.dsw.gui.swing.tree.GraffTree;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +15,7 @@ public class MainFrame extends JFrame implements Subscriber {
     // Buduća polja za sve komponente view-a na glavnom prozoru
     private ActionManager actionManager;
     private static MainFrame instance = null;
+    private GraffTree graffTree;
 
     public static MainFrame getInstance() {
         if(instance == null) {
@@ -21,6 +25,7 @@ public class MainFrame extends JFrame implements Subscriber {
     }
     private MainFrame() {
         actionManager = new ActionManager();
+        graffTree = new GraffTreeImplementation();
         instance = this;
         initialize();
     }
@@ -40,6 +45,18 @@ public class MainFrame extends JFrame implements Subscriber {
 
         MyToolBar toolBar = new MyToolBar(); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
+
+        JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance()
+                .getGr().getWorkspace());
+        JPanel panel = new JPanel();
+        JScrollPane scrollPane = new JScrollPane(workspace);
+
+        scrollPane.setMinimumSize(new Dimension(200,150));
+        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,panel);
+        getContentPane().add(split,BorderLayout.CENTER);
+        split.setDividerLocation(250);
+        split.setOneTouchExpandable(true);
+
     }
 
     public ActionManager getActionManager() {
@@ -52,5 +69,9 @@ public class MainFrame extends JFrame implements Subscriber {
             JOptionPane.showMessageDialog(null, message.toString() + " " + message.getType());
         }
         else return;
+    }
+
+    public GraffTree getGraffTree() {
+        return graffTree;
     }
 }

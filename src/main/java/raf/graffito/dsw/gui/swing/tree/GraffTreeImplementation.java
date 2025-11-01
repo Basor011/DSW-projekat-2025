@@ -25,10 +25,10 @@ public class GraffTreeImplementation implements GraffTree{
             return new Project("Project" + new Random().nextInt(100), parent, "autor");
         }else if(parent instanceof Project) {
             /// ide pop up window koji pita da li ce presentation ili slide
-            return new Presentation("Project" + new Random().nextInt(100), parent);
+            return new Presentation("Presentation" + new Random().nextInt(100), parent);
             //return new Slide("Project" + new Random().nextInt(100), parent);
         }else if(parent instanceof Presentation) {
-            return new Slide("Project" + new Random().nextInt(100), parent);
+            return new Slide("Slide" + new Random().nextInt(100), parent);
         }
         return null;
     }
