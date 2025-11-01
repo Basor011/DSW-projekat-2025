@@ -1,5 +1,7 @@
 package raf.graffito.dsw.gui.swing.tree;
 
+import raf.graffito.dsw.core.logger.LoggerFactory;
+import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
@@ -55,6 +57,8 @@ public class GraffTreeImplementation implements GraffTree{
    @Override
     public void removeNode(GraffTreeItem node) {
        if(node.getGraffNode() instanceof Workspace){
+           /// ovde treba da se ispise poruka od messageGeneratora da ne moze da se obrise
+           /// workspace
            return;
        }
        else {
