@@ -23,4 +23,9 @@ public class Workspace extends GraffNodeComposite {
         children.remove(child);
         child.setParent(null);
     }
+
+    @Override
+    public void removeNode(GraffNode node) {
+        return; ///workspace ne moze da se obrise
+    }
 }

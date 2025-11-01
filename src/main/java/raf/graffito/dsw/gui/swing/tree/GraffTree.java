@@ -7,6 +7,7 @@ import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 public interface GraffTree {
     public GraffTreeView generateTree(Workspace root);
     public void addChild(GraffTreeItem root);
+    public void removeNode(GraffTreeItem node);
     public GraffTreeItem getSelectedNode();
 }
 

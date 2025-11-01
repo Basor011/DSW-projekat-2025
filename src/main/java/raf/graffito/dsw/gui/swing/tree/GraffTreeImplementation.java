@@ -52,6 +52,16 @@ public class GraffTreeImplementation implements GraffTree{
         }
     }
 
+   @Override
+    public void removeNode(GraffTreeItem node) {
+       if(node.getGraffNode() instanceof Workspace){
+           return;
+       }
+       else {
+           treeModel.removeNodeFromParent(node);
+       }
+    }
+
     @Override
     public GraffTreeItem getSelectedNode() {
         return (GraffTreeItem) graffTreeView.getLastSelectedPathComponent();
