@@ -1,6 +1,9 @@
 package raf.graffito.dsw.gui.swing.tree;
 
+import raf.graffito.dsw.core.messageGenerator.Message;
+import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
@@ -20,24 +23,30 @@ public class GraffTreeImplementation implements GraffTree{
 
     private GraffNode createChild(GraffNode parent) {
         if(parent instanceof Workspace) {
-            /// popraviti autor. smisli nesto kako se upisuje ime autora,, eg. kada zeli
-            /// novoi projekat, izadje pop up koji trazi da se upise ime autora u textBox
-            /// iz tog textBoxa se kasnije vuce ime autora
-            return new Project("Project" + new Random().nextInt(100), parent, "autor");
+           PresentationOrSlidePopUp dialog = new PresentationOrSlidePopUp(MainFrame.getInstance());
+           dialog.setVisible(true);
+           Project project = new Project("Project" + new Random().nextInt(100), parent, "autor");
+           GraffNode child = null;
+
+           if(dialog.isPresentation()){
+               child = new Presentation("Presentation" + new Random().nextInt(100), project);
+           }else if(dialog.isSlide()){
+               child = new Slide("Slide" + new Random().nextInt(100), project);
+           }
+           project.addChild(child);
+
+           if(child == null) return null;
+
+           return project;
+
+
         }else if(parent instanceof Project) {
-            /// ide pop up window koji pita da li ce presentation ili slide
-            PresentationOrSlidePopUp pop = new PresentationOrSlidePopUp();
-            pop.setVisible(true);
-
-            /*if(presentationntAction || slideBtnAction){
-                return new Presentation("Presentation" + new Random().nextInt(100), parent);
-                //return new Slide("Project" + new Random().nextInt(100), parent);
-                //exit
-            }*/
-
-
-        }else if(parent instanceof Presentation) {
+            return new Presentation("Presentation" + new Random().nextInt(100), parent);
+        }if(parent instanceof Presentation) {
             return new Slide("Slide" + new Random().nextInt(100), parent);
+        }
+        else if(parent instanceof Slide) {
+            ///JOptionPane.showMessageDialog(new Message("You can't add child", "greska", ));
         }
         return null;
     }
@@ -54,8 +63,20 @@ public class GraffTreeImplementation implements GraffTree{
     public void addChild(GraffTreeItem root) {
         if(root.getGraffNode() instanceof GraffNodeComposite){
             GraffNode child = createChild(root.getGraffNode());
-            root.add(new GraffTreeItem(child));
+
+            if(child == null) return;
+
+            GraffTreeItem childItem = new GraffTreeItem(child);
+            root.add(childItem);
             ((GraffNodeComposite)root.getGraffNode()).addChild(child);
+
+            if(child instanceof Project){
+                Project project = (Project) child;
+                for(GraffNode childNode : project.getChildren()){
+                    childItem.add(new GraffTreeItem(childNode));
+                }
+            }
+
             graffTreeView.expandPath(graffTreeView.getSelectionPath());
             SwingUtilities.updateComponentTreeUI(graffTreeView);
         }
