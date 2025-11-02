@@ -15,6 +15,7 @@ import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Random;
 
@@ -78,6 +79,8 @@ public class GraffTreeImplementation implements GraffTree{
                     childItem.add(new GraffTreeItem(childNode));
                 }
             }
+            treeModel.reload(root);
+            expantNodes(graffTreeView);
 
             graffTreeView.expandPath(graffTreeView.getSelectionPath());
             SwingUtilities.updateComponentTreeUI(graffTreeView);
@@ -102,5 +105,13 @@ public class GraffTreeImplementation implements GraffTree{
     @Override
     public GraffTreeItem getSelectedNode() {
         return (GraffTreeItem) graffTreeView.getLastSelectedPathComponent();
+    }
+
+    private void expantNodes(JTree tree){
+        int row = 0;
+        while(row < tree.getRowCount()){
+            tree.expandRow(row);
+            row++;
+        }
     }
 }
