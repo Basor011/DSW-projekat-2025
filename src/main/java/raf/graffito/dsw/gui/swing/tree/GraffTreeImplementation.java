@@ -1,5 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree;
 
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
@@ -68,6 +69,7 @@ public class GraffTreeImplementation implements GraffTree{
 
             GraffTreeItem childItem = new GraffTreeItem(child);
             root.add(childItem);
+            SwingUtilities.updateComponentTreeUI(graffTreeView);
             ((GraffNodeComposite)root.getGraffNode()).addChild(child);
 
             if(child instanceof Project){
@@ -79,6 +81,8 @@ public class GraffTreeImplementation implements GraffTree{
 
             graffTreeView.expandPath(graffTreeView.getSelectionPath());
             SwingUtilities.updateComponentTreeUI(graffTreeView);
+        }else if(root.getGraffNode() instanceof Slide){
+            ApplicationFramework.getInstance().getMg().generateError("Ne moze se dodati dete slajdu");
         }
     }
 
@@ -87,6 +91,7 @@ public class GraffTreeImplementation implements GraffTree{
        if(node.getGraffNode() instanceof Workspace){
            /// ovde treba da se ispise poruka od messageGeneratora da ne moze da se obrise
            /// workspace
+           ApplicationFramework.getInstance().getMg().generateError("Ne moze se obrisati workspace");
            return;
        }
        else {

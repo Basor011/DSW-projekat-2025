@@ -14,6 +14,7 @@ public class ApplicationFramework  {
     List<Subscriber> subscribers;
     public Gui gui;
     protected GraffRepository gr;
+    private MessageGenerator mg;
 
     private ApplicationFramework(){};
     public static ApplicationFramework getInstance(){
@@ -27,16 +28,16 @@ public class ApplicationFramework  {
         this.gui = gui;
         this.gr =  gr;
         subscribers =  new ArrayList<Subscriber>();
-        MessageGenerator messageGenerator = new MessageGenerator(subscribers);
+        this.mg = new MessageGenerator(subscribers);
         LoggerFactory loggerFactory = new LoggerFactory();
 
         MainFrame mainFrame = MainFrame.getInstance(); ///napravili mf
         mainFrame.setVisible(true);
 
-        messageGenerator.addSubscriber(mainFrame);
+        mg.addSubscriber(mainFrame);
         /// nisam sigurna
-        messageGenerator.addSubscriber(loggerFactory.createLogger("consoleLogger"));
-        messageGenerator.addSubscriber(loggerFactory.createLogger("fileLogger"));
+        mg.addSubscriber(loggerFactory.createLogger("consoleLogger"));
+        mg.addSubscriber(loggerFactory.createLogger("fileLogger"));
     }
     public void run(){
         this.gui.start();
@@ -52,5 +53,9 @@ public class ApplicationFramework  {
 
     public GraffRepository getGr() {
         return gr;
+    }
+
+    public MessageGenerator getMg() {
+        return mg;
     }
 }
