@@ -15,7 +15,7 @@ public class MyMenuBar extends JMenuBar {
         editMenu.setMnemonic(KeyEvent.VK_E);
         editMenu.add(MainFrame.getInstance().getActionManager().getNewChildAction());
         editMenu.add(MainFrame.getInstance().getActionManager().getRemoveChildAction());
-        ///editMenu.add(MainFrame.getInstance().get)
+        editMenu.addSeparator();
 
         JMenu aboutUs = new JMenu("About");
         aboutUs.setMnemonic(KeyEvent.VK_A);

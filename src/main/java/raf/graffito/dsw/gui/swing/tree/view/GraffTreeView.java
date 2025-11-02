@@ -9,13 +9,20 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
 public class GraffTreeView extends JTree {
+    private GraffTreeCellEditor graffTreeCellEditor;
     public GraffTreeView(DefaultTreeModel newModel) {
         super(newModel); //setovali model
 
+
         GraffTreeCellRenderer renderer = new GraffTreeCellRenderer();
         addTreeSelectionListener(new GraffTreeSelectionListener());
-        setCellEditor(new GraffTreeCellEditor(this, renderer));
+        graffTreeCellEditor = new GraffTreeCellEditor(this, renderer);
+        setCellEditor(graffTreeCellEditor);
         setCellRenderer(renderer);
         setEditable(true);
+    }
+
+    public GraffTreeCellEditor getGraffTreeCellEditor() {
+        return graffTreeCellEditor;
     }
 }
