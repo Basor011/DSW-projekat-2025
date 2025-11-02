@@ -46,8 +46,7 @@ public class MainFrame extends JFrame implements Subscriber {
         MyToolBar toolBar = new MyToolBar(); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
-        JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance()
-                .getGr().getWorkspace());
+        JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
         JPanel panel = new JPanel();
         JScrollPane scrollPane = new JScrollPane(workspace);
 
