@@ -22,7 +22,7 @@ public class GraffTreeCellEditor  extends DefaultTreeCellEditor implements Actio
     @Override
     public Component getTreeCellEditorComponent(JTree tree, Object value, boolean isSelected, boolean expanded, boolean leaf, int row) {
         clicked = value;
-        textField = new JTextField();
+        textField = new JTextField(value.toString());
         textField.addActionListener(this);
         return textField;
     }

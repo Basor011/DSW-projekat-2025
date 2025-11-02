@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PresentationOrSlidePopUp extends JFrame {
+    private JToggleButton buttonPresentation;
+    private JToggleButton buttonSlide;
 
     public PresentationOrSlidePopUp() {
         initialize();
@@ -19,9 +21,17 @@ public class PresentationOrSlidePopUp extends JFrame {
 
         Label label = new Label("Do you want to add a new Presentation or a new Slide?");
         add(label, BorderLayout.NORTH);
-        JToggleButton buttonPresentation = new JRadioButton("Presentation");
+        this.buttonPresentation = new JRadioButton("Presentation");
         add(buttonPresentation, BorderLayout.WEST);
-        JToggleButton buttonSlide = new JRadioButton("Slide");
+        this.buttonSlide = new JRadioButton("Slide");
         add(buttonSlide, BorderLayout.EAST);
+    }
+
+    public JToggleButton getButtonSlide() {
+        return buttonSlide;
+    }
+
+    public JToggleButton getButtonPresentation() {
+        return buttonPresentation;
     }
 }

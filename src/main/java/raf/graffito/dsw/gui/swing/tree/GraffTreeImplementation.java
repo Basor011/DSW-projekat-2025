@@ -29,8 +29,13 @@ public class GraffTreeImplementation implements GraffTree{
             PresentationOrSlidePopUp pop = new PresentationOrSlidePopUp();
             pop.setVisible(true);
 
-            return new Presentation("Presentation" + new Random().nextInt(100), parent);
-            //return new Slide("Project" + new Random().nextInt(100), parent);
+            /*if(presentationntAction || slideBtnAction){
+                return new Presentation("Presentation" + new Random().nextInt(100), parent);
+                //return new Slide("Project" + new Random().nextInt(100), parent);
+                //exit
+            }*/
+
+
         }else if(parent instanceof Presentation) {
             return new Slide("Slide" + new Random().nextInt(100), parent);
         }
