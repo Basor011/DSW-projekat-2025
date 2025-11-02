@@ -6,8 +6,12 @@ import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
 import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements Subscriber {
@@ -16,6 +20,10 @@ public class MainFrame extends JFrame implements Subscriber {
     private ActionManager actionManager;
     private static MainFrame instance = null;
     private GraffTree graffTree;
+    JTabbedPane tabbedPane;
+    JSplitPane split;
+
+
 
     public static MainFrame getInstance() {
         if(instance == null) {
@@ -48,14 +56,30 @@ public class MainFrame extends JFrame implements Subscriber {
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance()
                 .getGr().getWorkspace());
+
         JPanel panel = new JPanel();
         JScrollPane scrollPane = new JScrollPane(workspace);
-
         scrollPane.setMinimumSize(new Dimension(200,150));
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,panel);
+        split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,panel);
         getContentPane().add(split,BorderLayout.CENTER);
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
+
+
+
+    }
+    public void showJTabbedpane(Project node)
+    {
+        tabbedPane= new JTabbedPane();
+        for(GraffNode node1: node.getChildren()) {
+            if (node1 instanceof Presentation) {
+                JPanel panel1 = new JPanel();
+
+                tabbedPane.addTab(node1.getName(), panel1);
+            }
+        }
+        split.setRightComponent(tabbedPane);
+
 
     }
 
