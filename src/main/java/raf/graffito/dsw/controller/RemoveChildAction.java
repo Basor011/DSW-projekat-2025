@@ -18,6 +18,8 @@ public class RemoveChildAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
-        MainFrame.getInstance().getGraffTree().removeNode(selected);
+        if(selected != null) {
+            MainFrame.getInstance().getGraffTree().removeNode(selected);
+        }
     }
 }

@@ -6,6 +6,7 @@ import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
 import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeMouseClickListener;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
@@ -54,8 +55,8 @@ public class MainFrame extends JFrame implements Subscriber {
         MyToolBar toolBar = new MyToolBar(); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
-        JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance()
-                .getGr().getWorkspace());
+        JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
+        workspace.addMouseListener(new GraffTreeMouseClickListener());
 
         JPanel panel = new JPanel();
         JScrollPane scrollPane = new JScrollPane(workspace);
@@ -65,8 +66,6 @@ public class MainFrame extends JFrame implements Subscriber {
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
 
-
-
     }
     public void showJTabbedpane(Project node)
     {
@@ -74,13 +73,12 @@ public class MainFrame extends JFrame implements Subscriber {
         for(GraffNode node1: node.getChildren()) {
             if (node1 instanceof Presentation) {
                 JPanel panel1 = new JPanel();
-
                 tabbedPane.addTab(node1.getName(), panel1);
+                ///panel1.setVisible(true);
             }
         }
         split.setRightComponent(tabbedPane);
-
-
+        ///tabbedPane.setVisible(true);
     }
 
     public ActionManager getActionManager() {

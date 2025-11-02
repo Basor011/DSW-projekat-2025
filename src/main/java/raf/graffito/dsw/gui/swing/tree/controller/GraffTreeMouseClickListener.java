@@ -17,6 +17,7 @@ public class GraffTreeMouseClickListener implements MouseListener {
             JTree tree = (JTree) e.getSource();
             TreePath path = tree.getSelectionPath();
             if (path == null) return;
+
             DefaultMutableTreeNode selectedNode=(DefaultMutableTreeNode)path.getLastPathComponent();  //vraca poslednji element path-a
 
             Object userObject=selectedNode.getUserObject(); // da li je project, slide, prez
@@ -24,9 +25,8 @@ public class GraffTreeMouseClickListener implements MouseListener {
             {
                 MainFrame.getInstance().showJTabbedpane((Project)userObject);
             }
-
-    }
         }
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
