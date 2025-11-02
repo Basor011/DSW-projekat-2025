@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class NewChildAction extends AbstractGraffAction {
     public NewChildAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,
+        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_M,
                 ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON, loadIcon("/images/plus.png"));
         putValue(NAME, "New Project");

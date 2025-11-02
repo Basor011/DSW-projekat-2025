@@ -1,0 +1,8 @@
+[GRESKA][02.11.2025. 19:09] Ne moze se obrisati workspace
+[GRESKA][02.11.2025. 19:10] Ne moze se dodati dete slajdu
+[GRESKA][02.11.2025. 19:15] Ne moze se dodati dete slajdu
+[GRESKA][02.11.2025. 19:15] Ne moze se obrisati workspace
+[GRESKA][02.11.2025. 19:26] Ne moze se obrisati workspace
+[GRESKA][02.11.2025. 19:27] Ne moze se dodati dete slajdu
+[GRESKA][02.11.2025. 19:27] Ne moze se obrisati workspace
+[GRESKA][02.11.2025. 21:28] Ne moze se dodati dete slajdu
