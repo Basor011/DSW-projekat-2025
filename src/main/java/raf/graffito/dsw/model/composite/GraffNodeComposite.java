@@ -1,4 +1,4 @@
-package raf.graffito.dsw.core.composite;
+package raf.graffito.dsw.model.composite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,4 +25,6 @@ public abstract class GraffNodeComposite extends GraffNode {
     public List<GraffNode> getChildren() {
         return children;
     }
+
+
 }

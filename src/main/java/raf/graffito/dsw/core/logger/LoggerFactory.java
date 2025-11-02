@@ -17,8 +17,6 @@ public class LoggerFactory {
           ///mg.generateError("Pogresan tip loggera");
           return null;
        }
-
-
    }
 
 }

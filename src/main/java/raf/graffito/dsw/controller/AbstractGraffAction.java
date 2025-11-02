@@ -5,7 +5,7 @@ import java.awt.*;
 import java.net.URL;
 
 public abstract class AbstractGraffAction extends AbstractAction {
-     protected Icon loadIcon(String path){
+     public Icon loadIcon(String path){
          URL ImageURL = getClass().getResource(path); // URL služi za pronalaženje resursa unutar JAR fajla ili klase
          if (ImageURL != null) {
              Image img = new ImageIcon(ImageURL).getImage(); // Napravimo Image iz ImageIcon
@@ -16,4 +16,5 @@ public abstract class AbstractGraffAction extends AbstractAction {
          }
          return null;
      }
+
 }

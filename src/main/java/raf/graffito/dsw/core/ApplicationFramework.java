@@ -1,29 +1,31 @@
 package raf.graffito.dsw.core;
-import raf.graffito.dsw.core.logger.ConsoleLogger;
-import raf.graffito.dsw.core.logger.FileLogger;
 import raf.graffito.dsw.core.logger.LoggerFactory;
-import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
-import raf.graffito.dsw.core.messageGenerator.Subscriber;
-import raf.graffito.dsw.gui.swing.MainFrame;
+import raf.graffito.dsw.core.observer.Subscriber;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApplicationFramework  {
     // Buduća polja za model celog projekta
-    private static ApplicationFramework instance=null;
+    private static ApplicationFramework instance;
+
     List<Subscriber> subscribers;
-    private ApplicationFramework(){
-        initialize();
-    }
-    public static ApplicationFramework getInstance()
-    {
-        if(instance==null) instance=new ApplicationFramework();
+    public Gui gui;
+    protected GraffRepository gr;
+
+    private ApplicationFramework(){};
+    public static ApplicationFramework getInstance(){
+        if(instance == null){
+            instance = new ApplicationFramework();
+        }
         return instance;
     }
 
-    public void initialize(){
+    public void initialize(Gui gui, GraffRepository gr){
+        this.gui = gui;
+        this.gr =  gr;
         subscribers =  new ArrayList<Subscriber>();
         MessageGenerator messageGenerator = new MessageGenerator(subscribers);
         LoggerFactory loggerFactory = new LoggerFactory();
@@ -36,8 +38,19 @@ public class ApplicationFramework  {
         messageGenerator.addSubscriber(loggerFactory.createLogger("consoleLogger"));
         messageGenerator.addSubscriber(loggerFactory.createLogger("fileLogger"));
     }
+    public void run(){
+        this.gui.start();
+    }
 
     public List<Subscriber> getSubscribers() {
         return subscribers;
+    }
+
+    public Gui getGui() {
+        return gui;
+    }
+
+    public GraffRepository getGr() {
+        return gr;
     }
 }

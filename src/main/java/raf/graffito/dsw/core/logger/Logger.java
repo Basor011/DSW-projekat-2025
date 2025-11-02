@@ -1,6 +1,6 @@
 package raf.graffito.dsw.core.logger;
 import raf.graffito.dsw.core.messageGenerator.Message;
-import raf.graffito.dsw.core.messageGenerator.Subscriber;
+import raf.graffito.dsw.core.observer.Subscriber;
 
 
 

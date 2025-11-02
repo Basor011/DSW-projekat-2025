@@ -1,4 +1,4 @@
-package raf.graffito.dsw.core.composite;
+package raf.graffito.dsw.model.composite;
 
 public abstract class GraffNode {
     private String name;
@@ -9,6 +9,8 @@ public abstract class GraffNode {
         this.parent = null;
     }
     public abstract GraffNode findByName(String name);
+
+    public abstract void removeNode(GraffNode node); ///za brisanje cvorova
 
     public String getName() {
         return name;
