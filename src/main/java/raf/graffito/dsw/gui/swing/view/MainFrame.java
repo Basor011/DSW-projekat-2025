@@ -56,8 +56,6 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
-        workspace.addMouseListener(new GraffTreeMouseClickListener());
-
         JPanel panel = new JPanel();
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
@@ -74,11 +72,11 @@ public class MainFrame extends JFrame implements Subscriber {
             if (node1 instanceof Presentation) {
                 JPanel panel1 = new JPanel();
                 tabbedPane.addTab(node1.getName(), panel1);
-                ///panel1.setVisible(true);
+                panel1.setVisible(true);
             }
         }
         split.setRightComponent(tabbedPane);
-        ///tabbedPane.setVisible(true);
+        tabbedPane.setVisible(true);
     }
 
     public ActionManager getActionManager() {
