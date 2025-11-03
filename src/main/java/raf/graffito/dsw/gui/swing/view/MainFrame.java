@@ -14,6 +14,7 @@ import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
+import java.util.HashMap;
 
 public class MainFrame extends JFrame implements Subscriber {
 
@@ -67,20 +68,22 @@ public class MainFrame extends JFrame implements Subscriber {
         split.setDividerLocation(250);
         split2.setDividerLocation(1000);
         split.setOneTouchExpandable(true);
-        tabbedPane= new MyTabbedPane();
+        tabbedPane= new MyTabbedPane(new HashMap<>());
         split.setRightComponent(tabbedPane);
 
     }
     public void fillJTabbedpane(DefaultMutableTreeNode node, Color colour,int index)
     {
                 tabbedPane.fillTabs(node, colour,index);
+
+
     }
 
 
     public ActionManager getActionManager() {
         return actionManager;
     }
-    public JTabbedPane getTabbedPane(){
+    public MyTabbedPane getTabbedPane(){
         return tabbedPane;
     }
 

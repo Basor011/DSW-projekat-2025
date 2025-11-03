@@ -12,25 +12,29 @@ import java.util.Map;
 public class MyTabbedPane extends JTabbedPane {
 
     private Map<Color, DefaultMutableTreeNode> projectColor=new HashMap<>();
-    public void fillTabs(DefaultMutableTreeNode node,Color colour, int index)
-    {
-        for(Color key : projectColor.keySet())
-        {
-            if(key.equals(colour))
-            {
-                ApplicationFramework.getInstance().getMg().generateError("Nedostupna boja");
-                return;
-            }
-        }
 
+    public MyTabbedPane(Map<Color, DefaultMutableTreeNode> projectColor) {
+        this.projectColor = projectColor;
+    }
+
+    public void fillTabs(DefaultMutableTreeNode node, Color colour, int index)
+    {
+        if (projectColor.containsKey(colour)) {
+            ApplicationFramework.getInstance().getMg().generateError("Nedostupna boja");
+            return;
+        }
         String title=node.toString();
         JPanel panel= new JPanel();
         //panel.setBackground(colour);
         this.addTab(title,panel);
         this.setBackgroundAt(index,colour);
-        projectColor.put(colour,node);
+        this.setForegroundAt(index,Color.BLACK);
+
 
 
     }
 
+    public Map<Color, DefaultMutableTreeNode> getProjectColor() {
+        return projectColor;
+    }
 }

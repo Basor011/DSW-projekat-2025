@@ -3,6 +3,7 @@ package raf.graffito.dsw.gui.swing.tree.controller;
 import com.sun.tools.javac.Main;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
@@ -24,14 +25,16 @@ public class GraffTreeMouseClickListener implements MouseListener {
             DefaultMutableTreeNode selectedNode=(DefaultMutableTreeNode)path.getLastPathComponent();  //vraca poslednji element na kraju path-a
 
            if(selectedNode.toString().contains("Project")) {
+
                MainFrame.getInstance().getTabbedPane().removeAll();
                Color colour=JColorChooser.showDialog(MainFrame.getInstance(),"Choose colour",Color.DARK_GRAY);
                if(colour==null) return;
                for (int i = 0; i < selectedNode.getChildCount(); i++) {
                    DefaultMutableTreeNode child = (DefaultMutableTreeNode) selectedNode.getChildAt(i);
-                   System.out.println(child.toString() + " Test"); // or whatever you stored
+                   System.out.println(child.toString() + " Test");
                    MainFrame.getInstance().fillJTabbedpane(child,colour,i);
                }
+               MainFrame.getInstance().getTabbedPane().getProjectColor().put(colour,selectedNode);
            }
 
         }
