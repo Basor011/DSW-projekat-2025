@@ -15,6 +15,7 @@ public class MyTabbedPane extends JTabbedPane {
 
     public MyTabbedPane(Map<Color, DefaultMutableTreeNode> projectColor) {
         this.projectColor = projectColor;
+
     }
 
     public void fillTabs(DefaultMutableTreeNode node, Color colour, int index)

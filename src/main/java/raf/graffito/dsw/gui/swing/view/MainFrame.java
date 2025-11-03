@@ -64,10 +64,12 @@ public class MainFrame extends JFrame implements Subscriber {
         scrollPane.setMinimumSize(new Dimension(200,150));
         split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
         split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
-        getContentPane().add(split2,BorderLayout.CENTER);
         split.setDividerLocation(250);
         split2.setDividerLocation(1000);
         split.setOneTouchExpandable(true);
+
+        getContentPane().add(split2,BorderLayout.CENTER);
+
         tabbedPane= new MyTabbedPane(new HashMap<>());
         split.setRightComponent(tabbedPane);
 
