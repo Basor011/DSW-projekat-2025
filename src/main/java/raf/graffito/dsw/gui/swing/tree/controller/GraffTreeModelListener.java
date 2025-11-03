@@ -16,8 +16,11 @@ public class GraffTreeModelListener implements TreeModelListener {
         TreePath path=e.getTreePath();
         DefaultMutableTreeNode node=(DefaultMutableTreeNode)path.getLastPathComponent();
         String text=node.toString();
+        if (path==null) return;
+        System.out.println("NGIG");
         if(text.contains("Project"))
         {
+
             MainFrame.getInstance().getRightPanel().setProjectNameLabel(new JLabel(text));
 
         }
