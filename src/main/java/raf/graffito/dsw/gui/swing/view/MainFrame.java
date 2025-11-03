@@ -21,8 +21,8 @@ public class MainFrame extends JFrame implements Subscriber {
     private ActionManager actionManager;
     private static MainFrame instance = null;
     private GraffTree graffTree;
-    JTabbedPane tabbedPane;
-    JSplitPane split;
+    private MyTabbedPane tabbedPane;
+    private JSplitPane split;
 
 
 
@@ -56,31 +56,28 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
-        JPanel panel = new JPanel();
+        //JPanel panel = new JPanel();
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
-        split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,panel);
+        split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
         getContentPane().add(split,BorderLayout.CENTER);
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
+        tabbedPane= new MyTabbedPane();
+        split.setRightComponent(tabbedPane);
 
     }
-    public void showJTabbedpane(Project node)
+    public void fillJTabbedpane(DefaultMutableTreeNode node)
     {
-        tabbedPane= new JTabbedPane();
-        for(GraffNode node1: node.getChildren()) {
-            if (node1 instanceof Presentation) {
-                JPanel panel1 = new JPanel();
-                tabbedPane.addTab(node1.getName(), panel1);
-                panel1.setVisible(true);
-            }
-        }
-        split.setRightComponent(tabbedPane);
-        tabbedPane.setVisible(true);
+                tabbedPane.fillTabs(node);
     }
+
 
     public ActionManager getActionManager() {
         return actionManager;
+    }
+    public JTabbedPane getTabbedPane(){
+        return tabbedPane;
     }
 
     @Override
@@ -94,4 +91,5 @@ public class MainFrame extends JFrame implements Subscriber {
     public GraffTree getGraffTree() {
         return graffTree;
     }
+
 }
