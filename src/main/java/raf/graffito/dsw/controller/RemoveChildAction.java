@@ -19,6 +19,10 @@ public class RemoveChildAction extends AbstractGraffAction {
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
         if(selected != null) {
+        if(selected.toString().contains("Project"))
+        {
+            MainFrame.getInstance().getTabbedPane().getProjectColor().entrySet().removeIf(entry->entry.getValue().equals(selected));
+        }
             MainFrame.getInstance().getGraffTree().removeNode(selected);
         }
     }

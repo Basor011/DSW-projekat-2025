@@ -31,7 +31,6 @@ public class MyTabbedPane extends JTabbedPane {
         this.setForegroundAt(index,Color.BLACK);
 
 
-
     }
 
     public Map<Color, DefaultMutableTreeNode> getProjectColor() {
