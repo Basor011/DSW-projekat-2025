@@ -3,6 +3,7 @@ package raf.graffito.dsw.gui.swing.tree;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
+import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
@@ -57,6 +58,7 @@ public class GraffTreeImplementation implements GraffTree{
         GraffTreeItem root = new GraffTreeItem(workspace);
         treeModel = new DefaultTreeModel(root);
         graffTreeView = new GraffTreeView(treeModel);
+        treeModel.addTreeModelListener(new GraffTreeModelListener());
         return graffTreeView;
     }
 

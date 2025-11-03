@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
 import com.sun.tools.javac.Main;
+import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
@@ -17,7 +18,7 @@ import java.awt.event.MouseListener;
 public class GraffTreeMouseClickListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2 ) {
+        if (SwingUtilities.isRightMouseButton(e) && e.getClickCount() == 2 ) {
             JTree tree = (JTree) e.getSource();
             TreePath path = tree.getSelectionPath();
             if (path == null) return;
@@ -31,6 +32,19 @@ public class GraffTreeMouseClickListener implements MouseListener {
            }
 
         }
+        /*
+        if(SwingUtilities.isRightMouseButton(e)&& e.getClickCount()==1)
+        {
+            JTree tree=(JTree)e.getSource();
+            TreePath path=tree.getSelectionPath();
+            if(path==null) return;
+            tree.setEditable(true);
+
+
+
+        }
+
+         */
 
 
     }

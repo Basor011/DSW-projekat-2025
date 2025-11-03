@@ -20,6 +20,7 @@ public class GraffTreeView extends JTree {
         setCellEditor(graffTreeCellEditor);
         setCellRenderer(renderer);
         addMouseListener(new GraffTreeMouseClickListener());
+
         setEditable(true);
 
 

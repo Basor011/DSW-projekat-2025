@@ -22,6 +22,12 @@ public class RemoveChildAction extends AbstractGraffAction {
         if(selected.toString().contains("Project"))
         {
             MainFrame.getInstance().getTabbedPane().getProjectColor().entrySet().removeIf(entry->entry.getValue().equals(selected));
+            if(selected.equals(MainFrame.getInstance().getTabbedPane().getLatestNode()))
+            {
+                System.out.println("NIGGA");
+                MainFrame.getInstance().getRightPanel().update("","");
+                MainFrame.getInstance().getTabbedPane().removeAll();
+            }
         }
             MainFrame.getInstance().getGraffTree().removeNode(selected);
         }

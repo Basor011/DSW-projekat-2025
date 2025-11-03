@@ -11,7 +11,7 @@ public class JTabbedPaneChangeListener implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
         JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
         int index = tabbedPane.getSelectedIndex();
-        if (index == -1) return;
+        if (index == -1) return; //ako ne postoje tabovi return
        index= MainFrame.getInstance().getTabbedPane().getSelectedIndex();
        String text=MainFrame.getInstance().getTabbedPane().getTitleAt(index);
        String text2=MainFrame.getInstance().getTabbedPane().getLatestNode().toString();

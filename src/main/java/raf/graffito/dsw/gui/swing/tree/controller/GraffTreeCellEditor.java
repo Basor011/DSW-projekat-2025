@@ -30,12 +30,14 @@ public class GraffTreeCellEditor  extends DefaultTreeCellEditor implements Actio
     @Override
     public boolean isCellEditable(EventObject event) {
         if(event instanceof MouseEvent){
+
             if(((MouseEvent)event).getClickCount() == 3){
                 return true;
             }
         }
         return false;
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -44,6 +46,8 @@ public class GraffTreeCellEditor  extends DefaultTreeCellEditor implements Actio
             item.setName(e.getActionCommand());
         }
     }
+
+
 
     public JTextField getTextField() {
         return textField;

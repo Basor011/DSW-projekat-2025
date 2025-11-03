@@ -27,10 +27,26 @@ public class ProjectPanel extends JPanel implements ProjectObserver {
 
     @Override
     public void update(String presentationName, String projectName) {
+
         this.projectNameLabel.setText(projectName);
         this.presentationNameLabel.setText(presentationName);
 
 
     }
 
+    public JLabel getProjectNameLabel() {
+        return projectNameLabel;
+    }
+
+    public void setProjectNameLabel(JLabel projectNameLabel) {
+        this.projectNameLabel = projectNameLabel;
+    }
+
+    public JLabel getPresentationNameLabel() {
+        return presentationNameLabel;
+    }
+
+    public void setPresentationNameLabel(JLabel presentationNameLabel) {
+        this.presentationNameLabel = presentationNameLabel;
+    }
 }
