@@ -1,7 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
+import raf.graffito.dsw.gui.swing.tree.controller.JTabbedPaneChangeListener;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -11,30 +11,42 @@ import java.util.Map;
 
 public class MyTabbedPane extends JTabbedPane {
 
-    private Map<Color, DefaultMutableTreeNode> projectColor=new HashMap<>();
+    private Map<Color, DefaultMutableTreeNode> projectColor = new HashMap<>();
+    DefaultMutableTreeNode latestNode;
 
     public MyTabbedPane(Map<Color, DefaultMutableTreeNode> projectColor) {
         this.projectColor = projectColor;
-
-    }
-
-    public void fillTabs(DefaultMutableTreeNode node, Color colour, int index)
-    {
-        if (projectColor.containsKey(colour)) {
-            ApplicationFramework.getInstance().getMg().generateError("Nedostupna boja");
-            return;
-        }
-        String title=node.toString();
-        JPanel panel= new JPanel();
-        //panel.setBackground(colour);
-        this.addTab(title,panel);
-        this.setBackgroundAt(index,colour);
-        this.setForegroundAt(index,Color.BLACK);
-
+        this.addChangeListener(new JTabbedPaneChangeListener());
 
     }
 
     public Map<Color, DefaultMutableTreeNode> getProjectColor() {
         return projectColor;
     }
+
+    public void fillTabs(DefaultMutableTreeNode node, Color colour) {
+
+        this.removeAll();
+        latestNode=node;
+        for (int i = 0; i < node.getChildCount(); i++) {
+            DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
+            System.out.println(child.toString() + " Test");
+            if (projectColor.containsKey(colour)) {
+                ApplicationFramework.getInstance().getMg().generateError("Nedostupna boja");
+                return;
+            }
+            String title = child.toString();
+            JPanel panel = new JPanel();
+            this.addTab(title, panel);
+            this.setBackgroundAt(i, colour);
+            this.setForegroundAt(i, Color.BLACK);
+
+        }
+        projectColor.put(colour,node);
+    }
+
+    public DefaultMutableTreeNode getLatestNode() {
+        return latestNode;
+    }
 }
+

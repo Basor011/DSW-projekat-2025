@@ -5,9 +5,8 @@ import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeMouseClickListener;
 import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeSelectionListener;
 
 import javax.swing.*;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
+
 
 public class GraffTreeView extends JTree {
     private GraffTreeCellEditor graffTreeCellEditor;
@@ -22,6 +21,8 @@ public class GraffTreeView extends JTree {
         setCellRenderer(renderer);
         addMouseListener(new GraffTreeMouseClickListener());
         setEditable(true);
+
+
     }
 
     public GraffTreeCellEditor getGraffTreeCellEditor() {

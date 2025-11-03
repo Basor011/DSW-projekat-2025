@@ -25,16 +25,9 @@ public class GraffTreeMouseClickListener implements MouseListener {
             DefaultMutableTreeNode selectedNode=(DefaultMutableTreeNode)path.getLastPathComponent();  //vraca poslednji element na kraju path-a
 
            if(selectedNode.toString().contains("Project")) {
-
-               MainFrame.getInstance().getTabbedPane().removeAll();
                Color colour=JColorChooser.showDialog(MainFrame.getInstance(),"Choose colour",Color.DARK_GRAY);
                if(colour==null) return;
-               for (int i = 0; i < selectedNode.getChildCount(); i++) {
-                   DefaultMutableTreeNode child = (DefaultMutableTreeNode) selectedNode.getChildAt(i);
-                   System.out.println(child.toString() + " Test");
-                   MainFrame.getInstance().fillJTabbedpane(child,colour,i);
-               }
-               MainFrame.getInstance().getTabbedPane().getProjectColor().put(colour,selectedNode);
+               MainFrame.getInstance().getTabbedPane().fillTabs(selectedNode,colour);
            }
 
         }

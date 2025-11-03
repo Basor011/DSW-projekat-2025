@@ -2,6 +2,7 @@ package raf.graffito.dsw.gui.swing.tree.controller;
 
 import com.sun.source.tree.Tree;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -23,5 +24,7 @@ public class GraffTreeSelectionListener implements TreeSelectionListener {
         GraffTreeItem selectedItem = (GraffTreeItem) path.getLastPathComponent();
         System.out.println(selectedItem.getGraffNode().getName());
         System.out.println(e.getPath());
+
     }
+
 }

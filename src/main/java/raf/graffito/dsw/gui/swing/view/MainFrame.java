@@ -6,10 +6,6 @@ import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
 import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeMouseClickListener;
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -25,6 +21,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private MyTabbedPane tabbedPane;
     private JSplitPane split;
     private JSplitPane split2;
+    ProjectPanel rightPanel;
 
 
 
@@ -59,7 +56,8 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
-        JPanel rightPanel = new JPanel();
+        rightPanel = new ProjectPanel(new JLabel("jug"),new JLabel("jug2"));
+       // JLabel jp=new JLabel("jug");
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
         split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
@@ -74,19 +72,15 @@ public class MainFrame extends JFrame implements Subscriber {
         split.setRightComponent(tabbedPane);
 
     }
-    public void fillJTabbedpane(DefaultMutableTreeNode node, Color colour,int index)
-    {
-                tabbedPane.fillTabs(node, colour,index);
-
-
-    }
-
 
     public ActionManager getActionManager() {
         return actionManager;
     }
     public MyTabbedPane getTabbedPane(){
         return tabbedPane;
+    }
+    public ProjectPanel getRightPanel() {
+        return rightPanel;
     }
 
     @Override
