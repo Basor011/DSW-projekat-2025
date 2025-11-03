@@ -20,6 +20,7 @@ public class GraffTreeModelListener implements TreeModelListener {
         System.out.println("NGIG");
         if(text.contains("Project"))
         {
+            System.out.println("Projekat je bre");
 
             MainFrame.getInstance().getRightPanel().setProjectNameLabel(new JLabel(text));
 
