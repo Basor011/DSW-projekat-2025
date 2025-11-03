@@ -23,6 +23,8 @@ public class MainFrame extends JFrame implements Subscriber {
     private GraffTree graffTree;
     private MyTabbedPane tabbedPane;
     private JSplitPane split;
+    private JSplitPane split2;
+
 
 
 
@@ -56,20 +58,22 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
-        //JPanel panel = new JPanel();
+        JPanel rightPanel = new JPanel();
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
         split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
-        getContentPane().add(split,BorderLayout.CENTER);
+        split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
+        getContentPane().add(split2,BorderLayout.CENTER);
         split.setDividerLocation(250);
+        split2.setDividerLocation(1000);
         split.setOneTouchExpandable(true);
         tabbedPane= new MyTabbedPane();
         split.setRightComponent(tabbedPane);
 
     }
-    public void fillJTabbedpane(DefaultMutableTreeNode node)
+    public void fillJTabbedpane(DefaultMutableTreeNode node, Color colour,int index)
     {
-                tabbedPane.fillTabs(node);
+                tabbedPane.fillTabs(node, colour,index);
     }
 
 

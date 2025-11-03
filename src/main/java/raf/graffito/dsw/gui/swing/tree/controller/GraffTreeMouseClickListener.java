@@ -9,25 +9,28 @@ import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class GraffTreeMouseClickListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
+        if (e.getClickCount() == 2 ) {
             JTree tree = (JTree) e.getSource();
             TreePath path = tree.getSelectionPath();
             if (path == null) return;
 
             DefaultMutableTreeNode selectedNode=(DefaultMutableTreeNode)path.getLastPathComponent();  //vraca poslednji element na kraju path-a
 
-           if(selectedNode.toString().contains("Presentation")) {
+           if(selectedNode.toString().contains("Project")) {
                MainFrame.getInstance().getTabbedPane().removeAll();
+               Color colour=JColorChooser.showDialog(MainFrame.getInstance(),"Choose colour",Color.DARK_GRAY);
+               if(colour==null) return;
                for (int i = 0; i < selectedNode.getChildCount(); i++) {
                    DefaultMutableTreeNode child = (DefaultMutableTreeNode) selectedNode.getChildAt(i);
                    System.out.println(child.toString() + " Test"); // or whatever you stored
-                   MainFrame.getInstance().fillJTabbedpane(child);
+                   MainFrame.getInstance().fillJTabbedpane(child,colour,i);
                }
            }
 

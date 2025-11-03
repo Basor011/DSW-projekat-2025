@@ -6,3 +6,11 @@
 [GRESKA][02.11.2025. 19:27] Ne moze se dodati dete slajdu
 [GRESKA][02.11.2025. 19:27] Ne moze se obrisati workspace
 [GRESKA][02.11.2025. 21:28] Ne moze se dodati dete slajdu
+[GRESKA][03.11.2025. 10:00] Nedostupna boja
+[GRESKA][03.11.2025. 10:01] Nedostupna boja
+[GRESKA][03.11.2025. 10:03] Nedostupna boja
+[GRESKA][03.11.2025. 10:03] Nedostupna boja
+[GRESKA][03.11.2025. 10:03] Nedostupna boja
+[GRESKA][03.11.2025. 10:03] Nedostupna boja
+[GRESKA][03.11.2025. 10:05] Nedostupna boja
+[GRESKA][03.11.2025. 10:11] Nedostupna boja
