@@ -79,7 +79,6 @@ public class GraffTreeModelListener implements TreeModelListener {
     @Override
     public void treeNodesInserted(TreeModelEvent e) {
 
-
     }
 
     @Override
