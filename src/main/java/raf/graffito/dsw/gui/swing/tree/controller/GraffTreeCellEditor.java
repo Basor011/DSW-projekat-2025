@@ -45,6 +45,7 @@ public class GraffTreeCellEditor  extends DefaultTreeCellEditor implements Actio
         if(clicked instanceof GraffTreeItem){
             GraffTreeItem item = (GraffTreeItem)clicked;
             item.setName(e.getActionCommand());
+
             DefaultTreeModel model=(DefaultTreeModel) tree.getModel();
             model.nodeChanged(item);
         }

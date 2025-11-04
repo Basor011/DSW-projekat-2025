@@ -1,16 +1,16 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.gui.swing.view.observer.ProjectObserver;
+import raf.graffito.dsw.gui.swing.observer.TBSubscriber;
 import javax.swing.*;
 import java.awt.*;
 
 
-public class ProjectPanel extends JPanel implements ProjectObserver {
+public class ProjectTB extends JPanel implements TBSubscriber {
     private JLabel projectNameLabel;
     private JLabel presentationNameLabel;
 
 
-    public ProjectPanel(JLabel projectNameLabel, JLabel presentationNameLabel) {
+    public ProjectTB(JLabel projectNameLabel, JLabel presentationNameLabel) {
         this.projectNameLabel=projectNameLabel;
         this.presentationNameLabel=presentationNameLabel;
 

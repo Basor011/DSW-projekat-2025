@@ -11,12 +11,13 @@ import java.util.Map;
 
 public class MyTabbedPane extends JTabbedPane {
 
-    private Map<Color, DefaultMutableTreeNode> projectColor = new HashMap<>();
-    DefaultMutableTreeNode latestNode;
+    private Map<Color, DefaultMutableTreeNode> projectColor;
+    private DefaultMutableTreeNode latestNode;
 
     public MyTabbedPane(Map<Color, DefaultMutableTreeNode> projectColor) {
         this.projectColor = projectColor;
         this.addChangeListener(new JTabbedPaneChangeListener());
+        this.projectColor = new HashMap<>();
 
     }
 

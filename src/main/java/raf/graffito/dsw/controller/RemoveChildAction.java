@@ -2,6 +2,7 @@ package raf.graffito.dsw.controller;
 
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +20,7 @@ public class RemoveChildAction extends AbstractGraffAction {
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
         if(selected != null) {
-        if(selected.toString().contains("Project"))
+        if(selected.getGraffNode() instanceof Project)
         {
             MainFrame.getInstance().getTabbedPane().getProjectColor().entrySet().removeIf(entry->entry.getValue().equals(selected));
             if(selected.equals(MainFrame.getInstance().getTabbedPane().getLatestNode()))

@@ -23,29 +23,15 @@ public class GraffTreeMouseClickListener implements MouseListener {
             TreePath path = tree.getSelectionPath();
             if (path == null) return;
 
-            DefaultMutableTreeNode selectedNode=(DefaultMutableTreeNode)path.getLastPathComponent();  //vraca poslednji element na kraju path-a
+            GraffTreeItem selectedNode=(GraffTreeItem)path.getLastPathComponent();  //vraca poslednji element na kraju path-a
 
-           if(selectedNode.toString().contains("Project")) {
-               Color colour=JColorChooser.showDialog(MainFrame.getInstance(),"Choose colour",Color.DARK_GRAY);
+           if(selectedNode.getGraffNode() instanceof Project) {
+               Color colour=JColorChooser.showDialog(MainFrame.getInstance(),"Choose colour",Color.PINK);
                if(colour==null) return;
                MainFrame.getInstance().getTabbedPane().fillTabs(selectedNode,colour);
            }
 
         }
-        /*
-        if(SwingUtilities.isRightMouseButton(e)&& e.getClickCount()==1)
-        {
-            JTree tree=(JTree)e.getSource();
-            TreePath path=tree.getSelectionPath();
-            if(path==null) return;
-            tree.setEditable(true);
-
-
-
-        }
-
-         */
-
 
     }
 

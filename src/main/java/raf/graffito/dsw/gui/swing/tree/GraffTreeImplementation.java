@@ -44,21 +44,19 @@ public class GraffTreeImplementation implements GraffTree{
 
         }else if(parent instanceof Project) {
             return new Presentation("Presentation" + new Random().nextInt(100), parent);
-        }if(parent instanceof Presentation) {
+        }else if(parent instanceof Presentation) {
             return new Slide("Slide" + new Random().nextInt(100), parent);
         }
-        else if(parent instanceof Slide) {
-            ///JOptionPane.showMessageDialog(new Message("You can't add child", "greska", ));
-        }
+
         return null;
     }
 
     @Override
     public GraffTreeView generateTree(Workspace workspace) {
         GraffTreeItem root = new GraffTreeItem(workspace);
-        treeModel = new DefaultTreeModel(root);
-        graffTreeView = new GraffTreeView(treeModel);
-        treeModel.addTreeModelListener(new GraffTreeModelListener());
+        this.treeModel = new DefaultTreeModel(root);
+        this.graffTreeView = new GraffTreeView(treeModel);
+        //treeModel.addTreeModelListener(new GraffTreeModelListener());
         return graffTreeView;
     }
 

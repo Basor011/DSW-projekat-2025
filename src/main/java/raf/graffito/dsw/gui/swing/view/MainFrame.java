@@ -8,7 +8,6 @@ import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -21,7 +20,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private MyTabbedPane tabbedPane;
     private JSplitPane split;
     private JSplitPane split2;
-    ProjectPanel rightPanel;
+    ProjectTB rightPanel;
 
 
 
@@ -56,7 +55,7 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
-        rightPanel = new ProjectPanel(new JLabel("jug"),new JLabel("jug2"));
+        rightPanel = new ProjectTB(new JLabel("jug"),new JLabel("jug2"));
        // JLabel jp=new JLabel("jug");
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
@@ -79,7 +78,7 @@ public class MainFrame extends JFrame implements Subscriber {
     public MyTabbedPane getTabbedPane(){
         return tabbedPane;
     }
-    public ProjectPanel getRightPanel() {
+    public ProjectTB getRightPanel() {
         return rightPanel;
     }
 
