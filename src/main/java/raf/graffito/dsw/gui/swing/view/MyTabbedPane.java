@@ -1,10 +1,12 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.controller.JTabbedPaneChangeListener;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,7 @@ public class MyTabbedPane extends JTabbedPane {
         this.projectColor = projectColor;
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.projectColor = new HashMap<>();
+
 
     }
 
@@ -44,6 +47,10 @@ public class MyTabbedPane extends JTabbedPane {
 
         }
         projectColor.put(colour,node);
+    }
+    public void addTabs(DefaultMutableTreeNode node)
+    {
+
     }
 
     public DefaultMutableTreeNode getLatestNode() {

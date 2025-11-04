@@ -1,4 +1,4 @@
-package raf.graffito.dsw.gui.swing.observer;
+package raf.graffito.dsw.gui.swing.tree.observer;
 
 public interface TBSubscriber
 {

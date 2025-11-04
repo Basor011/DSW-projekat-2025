@@ -1,6 +1,6 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.gui.swing.observer.TBSubscriber;
+import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,6 +8,8 @@ import java.awt.*;
 public class ProjectTB extends JPanel implements TBSubscriber {
     private JLabel projectNameLabel;
     private JLabel presentationNameLabel;
+
+
 
 
     public ProjectTB(JLabel projectNameLabel, JLabel presentationNameLabel) {
@@ -22,14 +24,22 @@ public class ProjectTB extends JPanel implements TBSubscriber {
         topPanel.add(projectNameLabel);
         topPanel.add(presentationNameLabel);
 
+
         add(topPanel, BorderLayout.NORTH);
     }
 
     @Override
     public void update(String presentationName, String projectName) {
 
-        this.projectNameLabel.setText(projectName);
-        this.presentationNameLabel.setText(presentationName);
+        if(presentationName == null) this.projectNameLabel.setText(projectName);
+        else if(projectName == null) this.presentationNameLabel.setText(presentationName);
+
+
+       else {
+            this.projectNameLabel.setText(projectName);
+            this.presentationNameLabel.setText(presentationName);
+        }
+
 
 
     }

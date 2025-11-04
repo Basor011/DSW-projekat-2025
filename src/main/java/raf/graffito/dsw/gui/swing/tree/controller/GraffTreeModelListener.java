@@ -10,14 +10,48 @@ import javax.swing.*;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 public class GraffTreeModelListener implements TreeModelListener {
 
 
     @Override
-    public void treeNodesChanged(TreeModelEvent e) {
+    public void treeNodesChanged(TreeModelEvent e)
+    {
         TreePath path=e.getTreePath();
+        if(path==null) return;
+        GraffTreeItem parent = (GraffTreeItem) path.getLastPathComponent();
+        System.out.println(parent.getGraffNode().getName());
+        int[] indices = e.getChildIndices();
+
+        if (indices != null && indices.length > 0)
+        {
+            for (int index : indices) {
+                GraffTreeItem child = (GraffTreeItem) parent.getChildAt(index);
+                if(child.getGraffNode() instanceof Project) {
+                    String newName = child.getGraffNode().getName();
+                    MainFrame.getInstance().getRightPanel().update(null, newName);
+                }
+                else if(child.getGraffNode() instanceof Presentation)
+                {
+                    String newName = child.getGraffNode().getName();
+                    MainFrame.getInstance().getRightPanel().update(newName,null);
+                }
+
+
+            }
+        }
+        else
+        { //ako je workspace
+            MainFrame.getInstance().getRightPanel().update("","");
+        }
+
+
+        /*
+        JTree tree=(JTree)e.getSource();
+        TreePath path=e.getTreePath();
+
         if (path==null) return;
         GraffTreeItem node= (GraffTreeItem) path.getLastPathComponent();
         String text = node.getGraffNode().getName();
@@ -38,10 +72,13 @@ public class GraffTreeModelListener implements TreeModelListener {
             MainFrame.getInstance().getRightPanel().setPresentationNameLabel(new JLabel(text));
         }
 
+         */
+
     }
 
     @Override
     public void treeNodesInserted(TreeModelEvent e) {
+
 
     }
 

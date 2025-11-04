@@ -1,9 +1,8 @@
 package raf.graffito.dsw.gui.swing.tree;
 
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.core.messageGenerator.Message;
-import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
+import raf.graffito.dsw.gui.swing.tree.observer.TBPublisher;
+import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
@@ -17,11 +16,15 @@ import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class GraffTreeImplementation implements GraffTree{
+public class GraffTreeImplementation implements GraffTree, TBPublisher
+{
     private GraffTreeView graffTreeView;
     private DefaultTreeModel treeModel;
+    private List<TBSubscriber> tbSubscriberList;
 
     private GraffNode createChild(GraffNode parent) {
         if(parent instanceof Workspace) {
@@ -56,7 +59,7 @@ public class GraffTreeImplementation implements GraffTree{
         GraffTreeItem root = new GraffTreeItem(workspace);
         this.treeModel = new DefaultTreeModel(root);
         this.graffTreeView = new GraffTreeView(treeModel);
-        //treeModel.addTreeModelListener(new GraffTreeModelListener());
+        tbSubscriberList=new ArrayList<>();
         return graffTreeView;
     }
 
@@ -103,4 +106,34 @@ public class GraffTreeImplementation implements GraffTree{
     public GraffTreeItem getSelectedNode() {
         return (GraffTreeItem) graffTreeView.getLastSelectedPathComponent();
     }
+
+
+    @Override
+    public void addSubscriber(TBSubscriber subscriber) {
+        tbSubscriberList.add(subscriber);
+    }
+
+    @Override
+    public void removeSubscriber(TBSubscriber subscriber) {
+        tbSubscriberList.remove(subscriber);
+
+    }
+
+    @Override
+    public void sendToAll() {
+
+    }
+
+    public List<TBSubscriber> getTbSubscriberList() {
+        return tbSubscriberList;
+    }
+
+    public GraffTreeView getGraffTreeView() {
+        return graffTreeView;
+    }
+
+    public DefaultTreeModel getTreeModel() {
+        return treeModel;
+    }
 }
+
