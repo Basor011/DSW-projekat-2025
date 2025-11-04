@@ -3,6 +3,7 @@ package raf.graffito.dsw.gui.swing.tree;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
+import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
@@ -43,20 +44,19 @@ public class GraffTreeImplementation implements GraffTree{
 
         }else if(parent instanceof Project) {
             return new Presentation("Presentation" + new Random().nextInt(100), parent);
-        }if(parent instanceof Presentation) {
+        }else if(parent instanceof Presentation) {
             return new Slide("Slide" + new Random().nextInt(100), parent);
         }
-        else if(parent instanceof Slide) {
-            ///JOptionPane.showMessageDialog(new Message("You can't add child", "greska", ));
-        }
+
         return null;
     }
 
     @Override
     public GraffTreeView generateTree(Workspace workspace) {
         GraffTreeItem root = new GraffTreeItem(workspace);
-        treeModel = new DefaultTreeModel(root);
-        graffTreeView = new GraffTreeView(treeModel);
+        this.treeModel = new DefaultTreeModel(root);
+        this.graffTreeView = new GraffTreeView(treeModel);
+        //treeModel.addTreeModelListener(new GraffTreeModelListener());
         return graffTreeView;
     }
 

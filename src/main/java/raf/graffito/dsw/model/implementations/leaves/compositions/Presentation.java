@@ -5,6 +5,7 @@ import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.Slide;
 
 public class Presentation extends GraffNodeComposite {
+
     public Presentation(String name, GraffNode parent) {
         super(name, parent);
     }

@@ -5,6 +5,7 @@ import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +31,7 @@ public class GraffTreeCellEditor  extends DefaultTreeCellEditor implements Actio
     @Override
     public boolean isCellEditable(EventObject event) {
         if(event instanceof MouseEvent){
+
             if(((MouseEvent)event).getClickCount() == 3){
                 return true;
             }
@@ -37,13 +39,19 @@ public class GraffTreeCellEditor  extends DefaultTreeCellEditor implements Actio
         return false;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(clicked instanceof GraffTreeItem){
             GraffTreeItem item = (GraffTreeItem)clicked;
             item.setName(e.getActionCommand());
+
+            DefaultTreeModel model=(DefaultTreeModel) tree.getModel();
+            model.nodeChanged(item);
         }
     }
+
+
 
     public JTextField getTextField() {
         return textField;

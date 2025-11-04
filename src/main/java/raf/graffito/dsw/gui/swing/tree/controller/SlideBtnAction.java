@@ -6,7 +6,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SlideBtnAction implements ActionListener {
+public class
+SlideBtnAction implements ActionListener {
     private PresentationOrSlidePopUp pop;
     public SlideBtnAction(PresentationOrSlidePopUp pop) {
         this.pop = pop;

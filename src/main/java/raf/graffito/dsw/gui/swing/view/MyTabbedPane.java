@@ -1,0 +1,53 @@
+package raf.graffito.dsw.gui.swing.view;
+
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.tree.controller.JTabbedPaneChangeListener;
+
+import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MyTabbedPane extends JTabbedPane {
+
+    private Map<Color, DefaultMutableTreeNode> projectColor;
+    private DefaultMutableTreeNode latestNode;
+
+    public MyTabbedPane(Map<Color, DefaultMutableTreeNode> projectColor) {
+        this.projectColor = projectColor;
+        this.addChangeListener(new JTabbedPaneChangeListener());
+        this.projectColor = new HashMap<>();
+
+    }
+
+    public Map<Color, DefaultMutableTreeNode> getProjectColor() {
+        return projectColor;
+    }
+
+    public void fillTabs(DefaultMutableTreeNode node, Color colour) {
+
+        this.removeAll();
+        latestNode=node;
+        for (int i = 0; i < node.getChildCount(); i++) {
+            DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
+            System.out.println(child.toString() + " Test");
+            if (projectColor.containsKey(colour)) {
+                ApplicationFramework.getInstance().getMg().generateError("Nedostupna boja");
+                return;
+            }
+            String title = child.toString();
+            JPanel panel = new JPanel();
+            this.addTab(title, panel);
+            this.setBackgroundAt(i, colour);
+            this.setForegroundAt(i, Color.BLACK);
+
+        }
+        projectColor.put(colour,node);
+    }
+
+    public DefaultMutableTreeNode getLatestNode() {
+        return latestNode;
+    }
+}
+

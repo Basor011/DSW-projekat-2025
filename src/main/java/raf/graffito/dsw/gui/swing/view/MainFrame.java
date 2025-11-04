@@ -9,6 +9,7 @@ import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class MainFrame extends JFrame implements Subscriber {
 
@@ -16,6 +17,13 @@ public class MainFrame extends JFrame implements Subscriber {
     private ActionManager actionManager;
     private static MainFrame instance = null;
     private GraffTree graffTree;
+    private MyTabbedPane tabbedPane;
+    private JSplitPane split;
+    private JSplitPane split2;
+    ProjectTB rightPanel;
+
+
+
 
     public static MainFrame getInstance() {
         if(instance == null) {
@@ -47,19 +55,31 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
-        JPanel panel = new JPanel();
+        rightPanel = new ProjectTB(new JLabel("jug"),new JLabel("jug2"));
+       // JLabel jp=new JLabel("jug");
         JScrollPane scrollPane = new JScrollPane(workspace);
-
         scrollPane.setMinimumSize(new Dimension(200,150));
-        JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,panel);
-        getContentPane().add(split,BorderLayout.CENTER);
+        split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
+        split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
         split.setDividerLocation(250);
+        split2.setDividerLocation(1000);
         split.setOneTouchExpandable(true);
+
+        getContentPane().add(split2,BorderLayout.CENTER);
+
+        tabbedPane= new MyTabbedPane(new HashMap<>());
+        split.setRightComponent(tabbedPane);
 
     }
 
     public ActionManager getActionManager() {
         return actionManager;
+    }
+    public MyTabbedPane getTabbedPane(){
+        return tabbedPane;
+    }
+    public ProjectTB getRightPanel() {
+        return rightPanel;
     }
 
     @Override
@@ -73,4 +93,5 @@ public class MainFrame extends JFrame implements Subscriber {
     public GraffTree getGraffTree() {
         return graffTree;
     }
+
 }

@@ -15,7 +15,7 @@ public class PresentationOrSlidePopUp extends JDialog {
         super(parent, "Dodati prezentaciju ili slajd?", true);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
-        setSize(200,200);
+        setSize(300,100);
 
         JPanel panel = new JPanel();
         this.buttonPresentation = new JToggleButton("Presentation");
