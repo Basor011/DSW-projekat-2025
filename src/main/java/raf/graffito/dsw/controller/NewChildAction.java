@@ -13,7 +13,7 @@ public class NewChildAction extends AbstractGraffAction {
                 ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON, loadIcon("/images/plus.png"));
         putValue(NAME, "New Project");
-        putValue(SHORT_DESCRIPTION, "Create a new project");
+        putValue(SHORT_DESCRIPTION, "Create a new child?");
     }
 
     @Override

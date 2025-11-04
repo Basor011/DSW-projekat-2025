@@ -12,9 +12,9 @@ public class RemoveChildAction extends AbstractGraffAction {
     public RemoveChildAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,
                 ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("/images/remove.png"));
+        putValue(SMALL_ICON, loadIcon("/images/minus.png"));
         putValue(NAME, "Remove Child");
-        putValue(SHORT_DESCRIPTION, "Remove the selected project");
+        putValue(SHORT_DESCRIPTION, "Remove the selected child?");
     }
     @Override
     public void actionPerformed(ActionEvent e) {

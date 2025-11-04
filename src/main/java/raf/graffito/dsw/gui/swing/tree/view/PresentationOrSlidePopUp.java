@@ -12,14 +12,16 @@ public class PresentationOrSlidePopUp extends JDialog {
     private JToggleButton buttonSlide;
 
     public PresentationOrSlidePopUp(JFrame parent) {
-        super(parent, "Dodati prezentaciju ili slajd?", true);
+        super(parent, "Add presentation or slide?", true);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
-        setSize(300,100);
+        setSize(300,80);
 
         JPanel panel = new JPanel();
         this.buttonPresentation = new JToggleButton("Presentation");
+        this.buttonPresentation.setBackground(Color.WHITE);
         this.buttonSlide = new JToggleButton("Slide");
+        this.buttonSlide.setBackground(Color.WHITE);
         add(panel, BorderLayout.CENTER);
         panel.add(buttonPresentation);
         panel.add(buttonSlide);
