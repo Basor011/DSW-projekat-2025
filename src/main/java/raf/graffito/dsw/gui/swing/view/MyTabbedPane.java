@@ -18,7 +18,6 @@ public class MyTabbedPane extends JTabbedPane {
         this.projectColor = projectColor;
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.projectColor = new HashMap<>();
-
     }
 
     public Map<Color, DefaultMutableTreeNode> getProjectColor() {

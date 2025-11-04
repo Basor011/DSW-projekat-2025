@@ -19,32 +19,32 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Random;
 
-public class GraffTreeImplementation implements GraffTree{
+public class GraffTreeImplementation implements GraffTree {
     private GraffTreeView graffTreeView;
     private DefaultTreeModel treeModel;
 
     private GraffNode createChild(GraffNode parent) {
-        if(parent instanceof Workspace) {
-           PresentationOrSlidePopUp dialog = new PresentationOrSlidePopUp(MainFrame.getInstance());
-           dialog.setVisible(true);
-           Project project = new Project("Project" + new Random().nextInt(100), parent, "autor");
-           GraffNode child = null;
+        if (parent instanceof Workspace) {
+            PresentationOrSlidePopUp dialog = new PresentationOrSlidePopUp(MainFrame.getInstance());
+            dialog.setVisible(true);
+            Project project = new Project("Project" + new Random().nextInt(100), parent, "autor");
+            GraffNode child = null;
 
-           if(dialog.isPresentation()){
-               child = new Presentation("Presentation" + new Random().nextInt(100), project);
-           }else if(dialog.isSlide()){
-               child = new Slide("Slide" + new Random().nextInt(100), project);
-           }
-           project.addChild(child);
+            if (dialog.isPresentation()) {
+                child = new Presentation("Presentation" + new Random().nextInt(100), project);
+            } else if (dialog.isSlide()) {
+                child = new Slide("Slide" + new Random().nextInt(100), project);
+            }
+            project.addChild(child);
 
-           if(child == null) return null;
+            if (child == null) return null;
 
-           return project;
+            return project;
 
 
-        }else if(parent instanceof Project) {
+        } else if (parent instanceof Project) {
             return new Presentation("Presentation" + new Random().nextInt(100), parent);
-        }else if(parent instanceof Presentation) {
+        } else if (parent instanceof Presentation) {
             return new Slide("Slide" + new Random().nextInt(100), parent);
         }
 
@@ -62,41 +62,41 @@ public class GraffTreeImplementation implements GraffTree{
 
     @Override
     public void addChild(GraffTreeItem root) {
-        if(root.getGraffNode() instanceof GraffNodeComposite){
+        if (root.getGraffNode() instanceof GraffNodeComposite) {
             GraffNode child = createChild(root.getGraffNode());
 
-            if(child == null) return;
+            if (child == null) return;
 
             GraffTreeItem childItem = new GraffTreeItem(child);
             root.add(childItem);
             SwingUtilities.updateComponentTreeUI(graffTreeView);
-            ((GraffNodeComposite)root.getGraffNode()).addChild(child);
+            ((GraffNodeComposite) root.getGraffNode()).addChild(child);
 
-            if(child instanceof Project){
+            if (child instanceof Project) {
                 Project project = (Project) child;
-                for(GraffNode childNode : project.getChildren()){
+                for (GraffNode childNode : project.getChildren()) {
                     childItem.add(new GraffTreeItem(childNode));
                 }
             }
 
             graffTreeView.expandPath(graffTreeView.getSelectionPath());
             SwingUtilities.updateComponentTreeUI(graffTreeView);
-        }else if(root.getGraffNode() instanceof Slide){
+        } else if (root.getGraffNode() instanceof Slide) {
             ApplicationFramework.getInstance().getMg().generateError("Ne moze se dodati dete slajdu");
         }
     }
 
-   @Override
+    @Override
     public void removeNode(GraffTreeItem node) {
-       if(node.getGraffNode() instanceof Workspace){
-           /// ovde treba da se ispise poruka od messageGeneratora da ne moze da se obrise
-           /// workspace
-           ApplicationFramework.getInstance().getMg().generateError("Ne moze se obrisati workspace");
-           return;
-       }
-       else {
-           treeModel.removeNodeFromParent(node);
-       }
+        if (node.getGraffNode() instanceof Workspace) {
+            /// ovde treba da se ispise poruka od messageGeneratora da ne moze da se obrise
+            /// workspace
+            ApplicationFramework.getInstance().getMg().generateError("Ne moze se obrisati workspace");
+            return;
+        } else {
+            treeModel.removeNodeFromParent(node);
+            SwingUtilities.updateComponentTreeUI(graffTreeView);
+        }
     }
 
     @Override

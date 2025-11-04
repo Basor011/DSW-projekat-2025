@@ -1,6 +1,6 @@
 package raf.graffito.dsw.model.composite;
 
-public abstract class GraffNode {
+public abstract class GraffNode{
     private String name;
     private GraffNode parent;
 
