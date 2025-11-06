@@ -1,12 +1,12 @@
 package raf.graffito.dsw.gui.swing.tree;
 
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.core.GraffRepository;
+import raf.graffito.dsw.core.messageGenerator.Message;
+import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
-import raf.graffito.dsw.gui.swing.model.factory.GraffNodeFactory;
-import raf.graffito.dsw.gui.swing.model.factory.factories.PresentationFactory;
-import raf.graffito.dsw.gui.swing.model.factory.factories.ProjectFactory;
-import raf.graffito.dsw.gui.swing.model.factory.factories.WorkspaceFactory;
+import raf.graffito.dsw.gui.swing.observer.TBPublisher;
+import raf.graffito.dsw.gui.swing.observer.TBSubscriber;
+import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
@@ -20,11 +20,15 @@ import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class GraffTreeImplementation implements GraffTree {
+public class GraffTreeImplementation implements GraffTree, TBPublisher
+{
     private GraffTreeView graffTreeView;
     private DefaultTreeModel treeModel;
+    private List<TBSubscriber> tbSubscriberList;
 
 
     @Override
@@ -32,7 +36,7 @@ public class GraffTreeImplementation implements GraffTree {
         GraffTreeItem root = new GraffTreeItem(workspace);
         this.treeModel = new DefaultTreeModel(root);
         this.graffTreeView = new GraffTreeView(treeModel);
-        //treeModel.addTreeModelListener(new GraffTreeModelListener());
+        tbSubscriberList=new ArrayList<>();
         return graffTreeView;
     }
 
@@ -86,4 +90,39 @@ public class GraffTreeImplementation implements GraffTree {
             row++;
         }
     }
+
+
+
+    @Override
+    public void addSubscriber(TBSubscriber subscriber) {
+        tbSubscriberList.add(subscriber);
+    }
+
+    @Override
+    public void removeSubscriber(TBSubscriber subscriber) {
+        tbSubscriberList.remove(subscriber);
+
+    }
+
+    @Override
+    public void sendToAll(String presentationName, String projectName) {
+        for(TBSubscriber s : tbSubscriberList)
+        {
+            s.update(presentationName, projectName);
+        }
+
+    }
+
+    public List<TBSubscriber> getTbSubscriberList() {
+        return tbSubscriberList;
+    }
+
+    public GraffTreeView getGraffTreeView() {
+        return graffTreeView;
+    }
+
+    public DefaultTreeModel getTreeModel() {
+        return treeModel;
+    }
 }
+

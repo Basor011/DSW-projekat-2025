@@ -1,5 +1,6 @@
 package raf.graffito.dsw.core.logger;
 
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 
@@ -13,8 +14,7 @@ public class LoggerFactory {
        else if(loggertype.equals("consoleLogger")) return new ConsoleLogger();
        else
        {
-           ///MessageGenerator mg=new MessageGenerator();
-          ///mg.generateError("Pogresan tip loggera");
+           ApplicationFramework.getInstance().getMg().generateError("Pogresan logger kako??");
           return null;
        }
    }

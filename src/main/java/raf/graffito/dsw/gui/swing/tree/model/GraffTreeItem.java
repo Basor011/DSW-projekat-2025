@@ -12,6 +12,7 @@ public class GraffTreeItem extends DefaultMutableTreeNode {
         this.graffNode = nodeModel;
 
     }
+
     @Override
     public String toString() {
         return graffNode.getName();

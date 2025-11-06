@@ -8,6 +8,7 @@ import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Proj
 import javax.swing.*;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 public class GraffTreeModelListener implements TreeModelListener {

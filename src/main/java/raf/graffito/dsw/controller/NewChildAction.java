@@ -1,5 +1,6 @@
 package raf.graffito.dsw.controller;
 
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 
@@ -19,6 +20,11 @@ public class NewChildAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
+        if(selected==null)
+        {
+            ApplicationFramework.getInstance().getMg().generateInfo("Molim vas izaberite cvor");
+            return;
+        }
         MainFrame.getInstance().getGraffTree().addChild(selected);
     }
 }
