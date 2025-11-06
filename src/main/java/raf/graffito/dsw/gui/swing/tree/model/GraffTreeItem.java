@@ -1,6 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.model;
 
-import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -12,7 +12,6 @@ public class GraffTreeItem extends DefaultMutableTreeNode {
         this.graffNode = nodeModel;
 
     }
-
     @Override
     public String toString() {
         return graffNode.getName();

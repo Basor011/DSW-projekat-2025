@@ -2,14 +2,12 @@ package raf.graffito.dsw.gui.swing.tree.controller;
 
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 public class GraffTreeModelListener implements TreeModelListener {

@@ -1,8 +1,8 @@
-package raf.graffito.dsw.model.implementations.leaves.compositions;
+package raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions;
 
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
+import raf.graffito.dsw.gui.swing.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.Slide;
 
 public class Project extends GraffNodeComposite {
     private String autor;

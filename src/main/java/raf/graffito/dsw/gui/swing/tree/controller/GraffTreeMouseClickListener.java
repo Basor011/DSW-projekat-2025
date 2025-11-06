@@ -1,15 +1,10 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
-import com.sun.tools.javac.Main;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.MouseEvent;

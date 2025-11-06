@@ -2,7 +2,6 @@ package raf.graffito.dsw.gui.swing.tree.view;
 
 import raf.graffito.dsw.gui.swing.tree.controller.PresentationBtnAction;
 import raf.graffito.dsw.gui.swing.tree.controller.SlideBtnAction;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
 
 import javax.swing.*;
 import java.awt.*;

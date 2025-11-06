@@ -23,8 +23,6 @@ public class MainFrame extends JFrame implements Subscriber {
     ProjectTB rightPanel;
 
 
-
-
     public static MainFrame getInstance() {
         if(instance == null) {
             instance = new MainFrame();

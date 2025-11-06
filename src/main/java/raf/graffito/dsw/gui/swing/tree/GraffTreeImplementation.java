@@ -1,22 +1,24 @@
 package raf.graffito.dsw.gui.swing.tree;
 
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.core.messageGenerator.Message;
-import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
+import raf.graffito.dsw.core.GraffRepository;
+import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
+import raf.graffito.dsw.gui.swing.model.factory.GraffNodeFactory;
+import raf.graffito.dsw.gui.swing.model.factory.factories.PresentationFactory;
+import raf.graffito.dsw.gui.swing.model.factory.factories.ProjectFactory;
+import raf.graffito.dsw.gui.swing.model.factory.factories.WorkspaceFactory;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
+import raf.graffito.dsw.gui.swing.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Workspace;
+import raf.graffito.dsw.gui.swing.model.implementations.leaves.Slide;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Random;
 
@@ -24,33 +26,6 @@ public class GraffTreeImplementation implements GraffTree {
     private GraffTreeView graffTreeView;
     private DefaultTreeModel treeModel;
 
-    private GraffNode createChild(GraffNode parent) {
-        if (parent instanceof Workspace) {
-            PresentationOrSlidePopUp dialog = new PresentationOrSlidePopUp(MainFrame.getInstance());
-            dialog.setVisible(true);
-            Project project = new Project("Project" + new Random().nextInt(100), parent, "autor");
-            GraffNode child = null;
-
-            if (dialog.isPresentation()) {
-                child = new Presentation("Presentation" + new Random().nextInt(100), project);
-            } else if (dialog.isSlide()) {
-                child = new Slide("Slide" + new Random().nextInt(100), project);
-            }
-            project.addChild(child);
-
-            if (child == null) return null;
-
-            return project;
-
-
-        } else if (parent instanceof Project) {
-            return new Presentation("Presentation" + new Random().nextInt(100), parent);
-        } else if (parent instanceof Presentation) {
-            return new Slide("Slide" + new Random().nextInt(100), parent);
-        }
-
-        return null;
-    }
 
     @Override
     public GraffTreeView generateTree(Workspace workspace) {
@@ -63,7 +38,30 @@ public class GraffTreeImplementation implements GraffTree {
 
     @Override
     public void addChild(GraffTreeItem root) {
-        if (root.getGraffNode() instanceof GraffNodeComposite) {
+
+        GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr(); //repo pravi dete pomocu factory
+        GraffNode parentN = root.getGraffNode();
+        GraffNode child = repo.createChild(parentN);
+
+        if(child == null) return;
+
+        repo.addChild(parentN, child);
+        GraffTreeItem childItem = new GraffTreeItem(child);
+        root.add(childItem);
+
+        if(child instanceof GraffNodeComposite composite){
+            for(GraffNode c : composite.getChildren()){
+                childItem.add(new GraffTreeItem(c));
+            }
+        }
+
+        treeModel.reload(root);
+        expantNodes(graffTreeView);
+
+       /* graffTreeView.expandPath(graffTreeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(graffTreeView);*/
+
+        /*if (root.getGraffNode() instanceof GraffNodeComposite) {
             GraffNode child = createChild(root.getGraffNode());
 
             if (child == null) return;
@@ -86,7 +84,7 @@ public class GraffTreeImplementation implements GraffTree {
             SwingUtilities.updateComponentTreeUI(graffTreeView);
         } else if (root.getGraffNode() instanceof Slide) {
             ApplicationFramework.getInstance().getMg().generateError("Ne moze se dodati dete slajdu");
-        }
+        }*/
     }
 
     @Override
