@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
 import com.sun.tools.javac.Main;
+import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
@@ -32,11 +33,8 @@ public class GraffTreeMouseClickListener implements MouseListener {
                        MainFrame.getInstance().getTabbedPane().recoverTabs(selectedNode);
                        return;
                    }
-                       //Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Choose colour", Color.PINK);
-                       // if (colour == null) return;
-
                }
-                       MainFrame.getInstance().getTabbedPane().fillTabs(selectedNode);
+               MainFrame.getInstance().getTabbedPane().fillTabs(selectedNode);
            }
 
         }

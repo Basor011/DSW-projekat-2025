@@ -67,7 +67,6 @@ public class MainFrame extends JFrame implements Subscriber {
 
         tabbedPane= new MyTabbedPane();
         split.setRightComponent(tabbedPane);
-
     }
 
     public ActionManager getActionManager() {

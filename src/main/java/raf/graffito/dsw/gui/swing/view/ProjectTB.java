@@ -9,9 +9,6 @@ public class ProjectTB extends JPanel implements TBSubscriber {
     private JLabel projectNameLabel;
     private JLabel presentationNameLabel;
 
-
-
-
     public ProjectTB(JLabel projectNameLabel, JLabel presentationNameLabel) {
         this.projectNameLabel=projectNameLabel;
         this.presentationNameLabel=presentationNameLabel;
@@ -20,10 +17,9 @@ public class ProjectTB extends JPanel implements TBSubscriber {
 
         JPanel topPanel = new JPanel();
 
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS)); // stack vertically
+        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
         topPanel.add(projectNameLabel);
         topPanel.add(presentationNameLabel);
-
 
         add(topPanel, BorderLayout.NORTH);
     }
@@ -31,16 +27,13 @@ public class ProjectTB extends JPanel implements TBSubscriber {
     @Override
     public void update(String presentationName, String projectName) {
 
-        if(presentationName == null) this.projectNameLabel.setText(projectName);
-        else if(projectName == null) this.presentationNameLabel.setText(presentationName);
-
+       if(presentationName == null) this.projectNameLabel.setText(projectName);
+       else if(projectName == null) this.presentationNameLabel.setText(presentationName);
 
        else {
             this.projectNameLabel.setText(projectName);
             this.presentationNameLabel.setText(presentationName);
-        }
-
-
+       }
 
     }
 

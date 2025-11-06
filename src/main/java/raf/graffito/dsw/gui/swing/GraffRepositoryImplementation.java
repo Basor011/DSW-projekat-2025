@@ -37,7 +37,7 @@ public class GraffRepositoryImplementation implements GraffRepository {
         }
     }
 
-    public GraffNode createChild(GraffNode parent){
+    public GraffNode createChild(GraffNode parent){ //parent = grafftreeitem.getGraffNode
         GraffNodeFactory factory = getGraffNodeFactory(parent);
         return factory.createNode(parent);
     }

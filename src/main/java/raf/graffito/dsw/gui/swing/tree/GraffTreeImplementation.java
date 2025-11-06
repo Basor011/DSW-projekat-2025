@@ -4,8 +4,8 @@ import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
-import raf.graffito.dsw.gui.swing.observer.TBPublisher;
-import raf.graffito.dsw.gui.swing.observer.TBSubscriber;
+import raf.graffito.dsw.gui.swing.tree.observer.TBPublisher;
+import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
@@ -28,15 +28,14 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
 {
     private GraffTreeView graffTreeView;
     private DefaultTreeModel treeModel;
-    private List<TBSubscriber> tbSubscriberList;
-
+    private List<TBSubscriber> tbSubscriberList; //publisher
 
     @Override
     public GraffTreeView generateTree(Workspace workspace) {
         GraffTreeItem root = new GraffTreeItem(workspace);
         this.treeModel = new DefaultTreeModel(root);
         this.graffTreeView = new GraffTreeView(treeModel);
-        tbSubscriberList=new ArrayList<>();
+        tbSubscriberList=new ArrayList<>(); //publisher
         return graffTreeView;
     }
 
@@ -61,15 +60,11 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
 
         treeModel.reload(root);
         expantNodes(graffTreeView);
-
-
     }
 
     @Override
     public void removeNode(GraffTreeItem node) {
         if (node.getGraffNode() instanceof Workspace) {
-            /// ovde treba da se ispise poruka od messageGeneratora da ne moze da se obrise
-            /// workspace
             ApplicationFramework.getInstance().getMg().generateError("Ne moze se obrisati workspace");
             return;
         } else {
@@ -91,29 +86,25 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
         }
     }
 
-
-
-    @Override
+    @Override //publisher
     public void addSubscriber(TBSubscriber subscriber) {
         tbSubscriberList.add(subscriber);
     }
 
-    @Override
+    @Override //publisher
     public void removeSubscriber(TBSubscriber subscriber) {
         tbSubscriberList.remove(subscriber);
-
     }
 
-    @Override
+    @Override //publisher
     public void sendToAll(String presentationName, String projectName) {
         for(TBSubscriber s : tbSubscriberList)
         {
             s.update(presentationName, projectName);
         }
-
     }
 
-    public List<TBSubscriber> getTbSubscriberList() {
+    public List<TBSubscriber> getTbSubscriberList() { //publisher
         return tbSubscriberList;
     }
 
