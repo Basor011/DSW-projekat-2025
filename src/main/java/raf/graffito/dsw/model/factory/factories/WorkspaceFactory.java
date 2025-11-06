@@ -1,10 +1,10 @@
-package raf.graffito.dsw.gui.swing.model.factory.factories;
+package raf.graffito.dsw.model.factory.factories;
 
-import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
-import raf.graffito.dsw.gui.swing.model.factory.GraffNodeFactory;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.Slide;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.factory.GraffNodeFactory;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 

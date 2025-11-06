@@ -1,9 +1,9 @@
 package raf.graffito.dsw.gui.swing.tree.view;
 
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Workspace;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 
 import javax.swing.*;
