@@ -51,3 +51,4 @@
 [GRESKA][06.11.2025. 13:00] Ne moze se obrisati workspace
 [OBAVESTENJE][06.11.2025. 13:00] Molim vas izaberite cvor
 [OBAVESTENJE][06.11.2025. 13:01] Molim vas izaberite cvor za brisanje
+[GRESKA][06.11.2025. 16:26] Nedostupna boja
