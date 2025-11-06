@@ -56,7 +56,7 @@ public class MainFrame extends JFrame implements Subscriber {
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
         rightPanel = new ProjectTB(new JLabel("jug"),new JLabel("jug2"));
-       // JLabel jp=new JLabel("jug");
+        ((GraffTreeImplementation)graffTree).addSubscriber(rightPanel);
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
         split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);

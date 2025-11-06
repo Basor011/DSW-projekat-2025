@@ -38,3 +38,7 @@
 [GRESKA][04.11.2025. 10:29] Nedostupna boja
 [GRESKA][04.11.2025. 11:28] Nedostupna boja
 [GRESKA][04.11.2025. 12:54] Ne moze se obrisati workspace
+[GRESKA][06.11.2025. 12:23] Nedostupna boja
+[GRESKA][06.11.2025. 12:24] Nedostupna boja
+[GRESKA][06.11.2025. 12:30] Nedostupna boja
+[GRESKA][06.11.2025. 12:30] Nedostupna boja

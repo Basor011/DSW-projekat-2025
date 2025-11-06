@@ -1,5 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
@@ -31,12 +32,15 @@ public class GraffTreeModelListener implements TreeModelListener {
                 GraffTreeItem child = (GraffTreeItem) parent.getChildAt(index);
                 if(child.getGraffNode() instanceof Project) {
                     String newName = child.getGraffNode().getName();
-                    MainFrame.getInstance().getRightPanel().update(null, newName);
+                   // MainFrame.getInstance().getRightPanel().update(null, newName);
+                    ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll(null, newName);
                 }
                 else if(child.getGraffNode() instanceof Presentation)
                 {
                     String newName = child.getGraffNode().getName();
-                    MainFrame.getInstance().getRightPanel().update(newName,null);
+                    //MainFrame.getInstance().getRightPanel().update(newName,null);
+                    ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll(newName, null);
+
                 }
 
 

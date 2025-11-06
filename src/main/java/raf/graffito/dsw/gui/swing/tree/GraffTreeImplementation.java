@@ -120,7 +120,11 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
     }
 
     @Override
-    public void sendToAll() {
+    public void sendToAll(String presentationName, String projectName) {
+        for(TBSubscriber s : tbSubscriberList)
+        {
+            s.update(presentationName, projectName);
+        }
 
     }
 

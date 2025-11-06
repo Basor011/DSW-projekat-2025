@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
 import com.sun.tools.javac.Main;
+import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
@@ -26,15 +27,17 @@ public class GraffTreeMouseClickListener implements MouseListener {
             GraffTreeItem selectedNode=(GraffTreeItem)path.getLastPathComponent();  //vraca poslednji element na kraju path-a
 
            if(selectedNode.getGraffNode() instanceof Project) {
-               if(MainFrame.getInstance().getTabbedPane().getProjectColor().containsValue(selectedNode)){
+               for(ColourDecorator cd : MainFrame.getInstance().getTabbedPane().getDecoratedProjects()) {
+                   if (cd.getGraffTreeItem().equals(selectedNode)) {
 
-                  MainFrame.getInstance().getTabbedPane().recoverTabs(selectedNode);
+                       MainFrame.getInstance().getTabbedPane().recoverTabs(selectedNode);
+                       return;
+                   }
+                       //Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Choose colour", Color.PINK);
+                       // if (colour == null) return;
+
                }
-               else {
-                   Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Choose colour", Color.PINK);
-                   if (colour == null) return;
-                   MainFrame.getInstance().getTabbedPane().fillTabs(selectedNode, colour);
-               }
+                       MainFrame.getInstance().getTabbedPane().fillTabs(selectedNode);
            }
 
         }
