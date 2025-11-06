@@ -5,11 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class ProjectTB extends JPanel implements TBSubscriber {
+public class RightPane extends JPanel implements TBSubscriber {
     private JLabel projectNameLabel;
     private JLabel presentationNameLabel;
 
-    public ProjectTB(JLabel projectNameLabel, JLabel presentationNameLabel) {
+    public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
         this.projectNameLabel=projectNameLabel;
         this.presentationNameLabel=presentationNameLabel;
 
@@ -30,10 +30,12 @@ public class ProjectTB extends JPanel implements TBSubscriber {
        if(presentationName == null) this.projectNameLabel.setText(projectName);
        else if(projectName == null) this.presentationNameLabel.setText(presentationName);
 
-       else {
+       else{
             this.projectNameLabel.setText(projectName);
             this.presentationNameLabel.setText(presentationName);
        }
+
+
 
     }
 
