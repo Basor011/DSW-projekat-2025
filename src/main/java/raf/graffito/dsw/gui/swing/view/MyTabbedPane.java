@@ -4,6 +4,7 @@ import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.controller.JTabbedPaneChangeListener;
 import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -13,36 +14,24 @@ import java.util.List;
 
 public class MyTabbedPane extends JTabbedPane {
 
-   // private Map<Color, DefaultMutableTreeNode> projectColor;
     private DefaultMutableTreeNode latestNode;
     private List<ColourDecorator>  decoratedProjects;
 
 
     public MyTabbedPane() {
-     //   this.projectColor = projectColor;
-       // this.projectColor = new HashMap<>();
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.decoratedProjects=new ArrayList<>();
 
-
-
     }
-/*
-    public Map<Color, DefaultMutableTreeNode> getProjectColor() { ///izbrisi
-        return projectColor;
-    }
-
- */
 
     public List<ColourDecorator> getDecoratedProjects() {
         return decoratedProjects;
     }
-
     public void fillTabs(DefaultMutableTreeNode node) {
         Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Choose colour", Color.PINK);
         if (colour == null) return;
 
-        //System.out.println(child.toString() + " Test");
+
         for (ColourDecorator cd : decoratedProjects) {
             if (cd.getColour().equals(colour)) {
                 ApplicationFramework.getInstance().getMg().generateError("Nedostupna boja");
@@ -60,27 +49,17 @@ public class MyTabbedPane extends JTabbedPane {
             this.addTab(title, panel);
             this.setBackgroundAt(i, colour);
             this.setForegroundAt(i, Color.BLACK);
-
         }
-       // projectColor.put(decoratedProject.getColour(),node); ///izbrisi
+
         decoratedProjects.add(decoratedProject);
     }
 
     public void recoverTabs(DefaultMutableTreeNode node)
     {
         this.removeAll();
-        Color color=Color.GREEN;
+        Color color=Color.PINK;
         latestNode=node;
-        /*
-        for(Map.Entry<Color,DefaultMutableTreeNode> entry : projectColor.entrySet())
-        {
-            if(entry.getValue().equals(node))
-            {
-                 color=entry.getKey();
-            }
-        }
 
-         */
         for(ColourDecorator dp :decoratedProjects)
         {
             if( (dp.getGraffTreeItem()).equals((GraffTreeItem)node) )
@@ -90,12 +69,13 @@ public class MyTabbedPane extends JTabbedPane {
         }
         for(int i=0;i<node.getChildCount();i++)
         {
-            DefaultMutableTreeNode child=(DefaultMutableTreeNode) node.getChildAt(i);
-            String title=child.toString();
-            JPanel panel=new JPanel();
-            this.addTab(title,panel);
-            this.setBackgroundAt(i,color);
-            this.setForegroundAt(i,Color.BLACK);
+            DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
+            String title = child.toString();
+            JPanel panel = new JPanel();
+            this.addTab(title, panel);
+            this.setBackgroundAt(i, color);
+            this.setForegroundAt(i, Color.BLACK);
+
         }
     }
 

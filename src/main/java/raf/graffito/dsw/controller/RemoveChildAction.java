@@ -2,10 +2,9 @@ package raf.graffito.dsw.controller;
 
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
-import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

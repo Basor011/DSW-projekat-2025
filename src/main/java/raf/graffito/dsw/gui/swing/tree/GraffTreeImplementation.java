@@ -1,20 +1,12 @@
 package raf.graffito.dsw.gui.swing.tree;
 
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.core.messageGenerator.Message;
-import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
 import raf.graffito.dsw.gui.swing.tree.observer.TBPublisher;
 import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
-import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
-import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
-import raf.graffito.dsw.gui.swing.model.composite.GraffNodeComposite;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Workspace;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 
@@ -22,7 +14,6 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GraffTreeImplementation implements GraffTree, TBPublisher
 {

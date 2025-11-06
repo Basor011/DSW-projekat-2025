@@ -1,4 +1,4 @@
-package raf.graffito.dsw.gui.swing.model.composite;
+package raf.graffito.dsw.model.composite;
 
 public abstract class GraffNodeLeaf extends GraffNode {
     public GraffNodeLeaf(String name, GraffNode parent) {

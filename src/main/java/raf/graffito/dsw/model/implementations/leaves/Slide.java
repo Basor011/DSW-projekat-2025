@@ -1,7 +1,7 @@
-package raf.graffito.dsw.gui.swing.model.implementations.leaves;
+package raf.graffito.dsw.model.implementations.leaves;
 
-import raf.graffito.dsw.gui.swing.model.composite.GraffNodeLeaf;
-import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.GraffNodeLeaf;
+import raf.graffito.dsw.model.composite.GraffNode;
 
 public class Slide extends GraffNodeLeaf {
     public Slide(String name, GraffNode parent) {

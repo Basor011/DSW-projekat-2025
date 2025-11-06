@@ -1,15 +1,15 @@
 package raf.graffito.dsw.gui.swing;
 
 import raf.graffito.dsw.core.GraffRepository;
-import raf.graffito.dsw.gui.swing.model.composite.GraffNode;
-import raf.graffito.dsw.gui.swing.model.composite.GraffNodeComposite;
-import raf.graffito.dsw.gui.swing.model.factory.GraffNodeFactory;
-import raf.graffito.dsw.gui.swing.model.factory.factories.PresentationFactory;
-import raf.graffito.dsw.gui.swing.model.factory.factories.ProjectFactory;
-import raf.graffito.dsw.gui.swing.model.factory.factories.WorkspaceFactory;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.gui.swing.model.implementations.leaves.compositions.Workspace;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.factory.GraffNodeFactory;
+import raf.graffito.dsw.model.factory.factories.PresentationFactory;
+import raf.graffito.dsw.model.factory.factories.ProjectFactory;
+import raf.graffito.dsw.model.factory.factories.WorkspaceFactory;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 
 public class GraffRepositoryImplementation implements GraffRepository {
     private Workspace workspace;
