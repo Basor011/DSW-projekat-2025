@@ -63,3 +63,6 @@
 [OBAVESTENJE][06.11.2025. 16:57] Molim vas izaberite cvor za brisanje
 [GRESKA][06.11.2025. 16:58] Nedostupna boja
 [OBAVESTENJE][06.11.2025. 17:03] Molim vas izaberite cvor
+[GRESKA][06.11.2025. 20:28] Ne mogu biti dva istoimena cvora
+[OBAVESTENJE][06.11.2025. 20:29] Molim vas izaberite cvor
+[GRESKA][06.11.2025. 20:29] Ne mogu biti dva istoimena cvora
