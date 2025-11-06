@@ -42,3 +42,12 @@
 [GRESKA][06.11.2025. 12:24] Nedostupna boja
 [GRESKA][06.11.2025. 12:30] Nedostupna boja
 [GRESKA][06.11.2025. 12:30] Nedostupna boja
+[OBAVESTENJE][06.11.2025. 12:36] Molim vas izaberite cvor
+[OBAVESTENJE][06.11.2025. 12:37] Molim vas izaberite cvor
+[OBAVESTENJE][06.11.2025. 12:37] Molim vas izaberite cvor
+[OBAVESTENJE][06.11.2025. 12:38] Molim vas izaberite cvor za brisanje
+[OBAVESTENJE][06.11.2025. 13:00] Molim vas izaberite cvor
+[GRESKA][06.11.2025. 13:00] Ne moze se dodati dete slajdu
+[GRESKA][06.11.2025. 13:00] Ne moze se obrisati workspace
+[OBAVESTENJE][06.11.2025. 13:00] Molim vas izaberite cvor
+[OBAVESTENJE][06.11.2025. 13:01] Molim vas izaberite cvor za brisanje

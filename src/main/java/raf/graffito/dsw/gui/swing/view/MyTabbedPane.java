@@ -1,19 +1,15 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.controller.JTabbedPaneChangeListener;
 import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MyTabbedPane extends JTabbedPane {
 
@@ -22,10 +18,10 @@ public class MyTabbedPane extends JTabbedPane {
     private List<ColourDecorator>  decoratedProjects;
 
 
-    public MyTabbedPane(Map<Color, DefaultMutableTreeNode> projectColor) {
+    public MyTabbedPane() {
      //   this.projectColor = projectColor;
-        this.addChangeListener(new JTabbedPaneChangeListener());
        // this.projectColor = new HashMap<>();
+        this.addChangeListener(new JTabbedPaneChangeListener());
         this.decoratedProjects=new ArrayList<>();
 
 

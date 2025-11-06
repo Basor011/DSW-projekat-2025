@@ -1,5 +1,6 @@
 package raf.graffito.dsw.core.logger;
 
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 
 
@@ -16,8 +17,8 @@ public class FileLogger implements Logger{
             bw.newLine();
             bw.close();
         } catch (IOException e) {
-           /// MessageGenerator mg= new MessageGenerator();
-           /// mg.generateError("Greska pri radu sa fajlom");
+
+            ApplicationFramework.getInstance().getMg().generateError("Greska sa fajlom bro");
         }
 
     }

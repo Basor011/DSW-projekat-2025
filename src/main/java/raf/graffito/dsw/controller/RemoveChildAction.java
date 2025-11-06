@@ -1,5 +1,6 @@
 package raf.graffito.dsw.controller;
 
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
@@ -21,7 +22,10 @@ public class RemoveChildAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
-        if(selected != null) {
+        if(selected == null) {
+            ApplicationFramework.getInstance().getMg().generateInfo("Molim vas izaberite cvor za brisanje");
+                    return;
+        }
         if(selected.getGraffNode() instanceof Project)
         {
             //MainFrame.getInstance().getTabbedPane().getProjectColor().entrySet().removeIf(entry->entry.getValue().equals(selected));
@@ -36,6 +40,6 @@ public class RemoveChildAction extends AbstractGraffAction {
             }
         }
             MainFrame.getInstance().getGraffTree().removeNode(selected);
-        }
+
     }
 }

@@ -1,5 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.view;
 
+import raf.graffito.dsw.controller.AbstractGraffAction;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
@@ -9,9 +10,10 @@ import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.net.URL;
 
-public class GraffTreeCellRenderer extends DefaultTreeCellRenderer{
+public class GraffTreeCellRenderer extends DefaultTreeCellRenderer  {
 
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,

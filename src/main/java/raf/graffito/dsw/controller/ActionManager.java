@@ -16,6 +16,7 @@ public class ActionManager {
         removeChildAction = new RemoveChildAction();
     }
 
+
     public ExitAction getExitAction() {
         return exitAction;
     }
