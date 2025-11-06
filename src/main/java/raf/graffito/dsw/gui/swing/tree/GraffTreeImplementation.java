@@ -58,33 +58,7 @@ public class GraffTreeImplementation implements GraffTree {
         treeModel.reload(root);
         expantNodes(graffTreeView);
 
-       /* graffTreeView.expandPath(graffTreeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(graffTreeView);*/
 
-        /*if (root.getGraffNode() instanceof GraffNodeComposite) {
-            GraffNode child = createChild(root.getGraffNode());
-
-            if (child == null) return;
-
-            GraffTreeItem childItem = new GraffTreeItem(child);
-            root.add(childItem);
-            SwingUtilities.updateComponentTreeUI(graffTreeView);
-            ((GraffNodeComposite) root.getGraffNode()).addChild(child);
-
-            if (child instanceof Project) {
-                Project project = (Project) child;
-                for (GraffNode childNode : project.getChildren()) {
-                    childItem.add(new GraffTreeItem(childNode));
-                }
-            }
-            treeModel.reload(root);
-            expantNodes(graffTreeView);
-
-            graffTreeView.expandPath(graffTreeView.getSelectionPath());
-            SwingUtilities.updateComponentTreeUI(graffTreeView);
-        } else if (root.getGraffNode() instanceof Slide) {
-            ApplicationFramework.getInstance().getMg().generateError("Ne moze se dodati dete slajdu");
-        }*/
     }
 
     @Override
