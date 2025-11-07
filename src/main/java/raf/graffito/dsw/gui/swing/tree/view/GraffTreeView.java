@@ -1,9 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.view;
 
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeCellEditor;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeMouseClickListener;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeSelectionListener;
+import raf.graffito.dsw.gui.swing.tree.controller.*;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
@@ -24,6 +21,9 @@ public class GraffTreeView extends JTree {
         newModel.addTreeModelListener(new GraffTreeModelListener());
 
         setEditable(true);
+        setDragEnabled(true);
+        //setDropMode(DropMode.INSERT); //uredjivanje redosleda cvorova u JTree
+        //setTransferHandler(new GraffTreeTransferHandler()); //setujemo tansfer handler za stablo
     }
 
     public GraffTreeCellEditor getGraffTreeCellEditor() {

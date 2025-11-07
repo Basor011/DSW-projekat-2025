@@ -26,6 +26,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
         GraffTreeItem root = new GraffTreeItem(workspace);
         this.treeModel = new DefaultTreeModel(root);
         this.graffTreeView = new GraffTreeView(treeModel);
+        graffTreeView.setToggleClickCount(0);
         tbSubscriberList=new ArrayList<>(); //publisher
         return graffTreeView;
     }

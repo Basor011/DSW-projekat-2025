@@ -6,6 +6,7 @@ import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
 import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeTransferHandler;
 
 import javax.swing.*;
 import java.awt.*;
