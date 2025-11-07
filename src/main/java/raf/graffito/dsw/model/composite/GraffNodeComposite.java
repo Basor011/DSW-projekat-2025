@@ -25,6 +25,4 @@ public abstract class GraffNodeComposite extends GraffNode {
     public List<GraffNode> getChildren() {
         return children;
     }
-
-
 }

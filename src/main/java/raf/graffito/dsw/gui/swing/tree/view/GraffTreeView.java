@@ -22,8 +22,8 @@ public class GraffTreeView extends JTree {
 
         setEditable(true);
         setDragEnabled(true);
-        //setDropMode(DropMode.INSERT); //uredjivanje redosleda cvorova u JTree
-        //setTransferHandler(new GraffTreeTransferHandler()); //setujemo tansfer handler za stablo
+        setDropMode(DropMode.INSERT); //uredjivanje redosleda cvorova u JTree
+        setTransferHandler(new GraffTreeTransferHandler()); //setujemo tansfer handler za stablo
     }
 
     public GraffTreeCellEditor getGraffTreeCellEditor() {
