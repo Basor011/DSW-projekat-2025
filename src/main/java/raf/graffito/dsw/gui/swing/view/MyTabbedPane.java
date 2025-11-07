@@ -17,7 +17,6 @@ public class MyTabbedPane extends JTabbedPane {
     private DefaultMutableTreeNode latestNode;
     private List<ColourDecorator>  decoratedProjects;
 
-
     public MyTabbedPane() {
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.decoratedProjects=new ArrayList<>();
@@ -30,7 +29,6 @@ public class MyTabbedPane extends JTabbedPane {
     public void fillTabs(DefaultMutableTreeNode node) {
         Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Choose colour", Color.PINK);
         if (colour == null) return;
-
 
         for (ColourDecorator cd : decoratedProjects) {
             if (cd.getColour().equals(colour)) {

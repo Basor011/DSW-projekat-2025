@@ -12,8 +12,7 @@ import java.awt.event.KeyEvent;
 
 public class RemoveChildAction extends AbstractGraffAction {
     public RemoveChildAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,
-                ActionEvent.CTRL_MASK));
+        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         putValue(SMALL_ICON, loadIcon("/images/minus.png"));
         putValue(NAME, "Remove Child");
         putValue(SHORT_DESCRIPTION, "Remove the selected child?");
@@ -27,18 +26,14 @@ public class RemoveChildAction extends AbstractGraffAction {
         }
         if(selected.getGraffNode() instanceof Project)
         {
-            //MainFrame.getInstance().getTabbedPane().getProjectColor().entrySet().removeIf(entry->entry.getValue().equals(selected));
            MainFrame.getInstance().getTabbedPane().getDecoratedProjects().removeIf(cd -> cd.getGraffTreeItem().equals(selected));
 
-
-            if(selected.equals(MainFrame.getInstance().getTabbedPane().getLatestNode()))
-            {
+           if(selected.equals(MainFrame.getInstance().getTabbedPane().getLatestNode()))
+           {
                 ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll("","");
-                //MainFrame.getInstance().getRightPanel().update("","");
                 MainFrame.getInstance().getTabbedPane().removeAll();
-            }
+           }
         }
-            MainFrame.getInstance().getGraffTree().removeNode(selected);
-
+        MainFrame.getInstance().getGraffTree().removeNode(selected);
     }
 }

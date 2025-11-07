@@ -53,19 +53,23 @@ public class MainFrame extends JFrame implements Subscriber {
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
         rightPanel = new RightPane(new JLabel("Among"),new JLabel("us"));
+
         ((GraffTreeImplementation)graffTree).addSubscriber(rightPanel);
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
         split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
         split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
+        ///JSplitPane split3 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, split2, null);
         split.setDividerLocation(250);
         split2.setDividerLocation(1000);
+        ///split3.setDividerLocation();
         split.setOneTouchExpandable(true);
 
         getContentPane().add(split2,BorderLayout.CENTER);
 
         tabbedPane= new MyTabbedPane();
         split.setRightComponent(tabbedPane);
+        tabbedPane.setMinimumSize(new Dimension(700,150));
     }
 
     public ActionManager getActionManager() {

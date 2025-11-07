@@ -10,10 +10,10 @@ import javax.swing.tree.DefaultTreeModel;
 
 
 public class GraffTreeView extends JTree {
+
     private GraffTreeCellEditor graffTreeCellEditor;
     public GraffTreeView(DefaultTreeModel newModel) {
         super(newModel); //setovali model
-
 
         GraffTreeCellRenderer renderer = new GraffTreeCellRenderer();
         addTreeSelectionListener(new GraffTreeSelectionListener());
@@ -24,8 +24,6 @@ public class GraffTreeView extends JTree {
         newModel.addTreeModelListener(new GraffTreeModelListener());
 
         setEditable(true);
-
-
     }
 
     public GraffTreeCellEditor getGraffTreeCellEditor() {

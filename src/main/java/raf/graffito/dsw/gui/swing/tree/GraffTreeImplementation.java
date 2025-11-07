@@ -40,6 +40,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
         if(child == null) return;
 
         repo.addChild(parentN, child);
+
         GraffTreeItem childItem = new GraffTreeItem(child);
         root.add(childItem);
 

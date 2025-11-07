@@ -31,28 +31,19 @@ public class GraffTreeModelListener implements TreeModelListener {
                 GraffTreeItem child = (GraffTreeItem) parent.getChildAt(index);
                 if(child.getGraffNode() instanceof Project) {
                     String newName = child.getGraffNode().getName();
-
                     ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll(null, newName);
                 }
                 else if(child.getGraffNode() instanceof Presentation)
                 {
                     String newName = child.getGraffNode().getName();
-
                     ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll(newName, null);
-
                 }
-
-
             }
         }
         else
         { //ako je workspace
             MainFrame.getInstance().getRightPanel().update("","");
         }
-
-
-
-
     }
 
     @Override

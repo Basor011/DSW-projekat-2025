@@ -14,7 +14,6 @@ public class RightPane extends JPanel implements TBSubscriber {
         this.presentationNameLabel=presentationNameLabel;
 
         setLayout(new BorderLayout());
-
         JPanel topPanel = new JPanel();
 
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
@@ -34,9 +33,6 @@ public class RightPane extends JPanel implements TBSubscriber {
             this.projectNameLabel.setText(projectName);
             this.presentationNameLabel.setText(presentationName);
        }
-
-
-
     }
 
     public JLabel getProjectNameLabel() {
