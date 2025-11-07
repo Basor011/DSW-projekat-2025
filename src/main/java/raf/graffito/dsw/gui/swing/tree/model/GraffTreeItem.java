@@ -1,5 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.model;
 
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.model.composite.GraffNode;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -25,4 +26,23 @@ public class GraffTreeItem extends DefaultMutableTreeNode {
     public GraffNode getGraffNode() {
         return graffNode;
     }
+    public boolean hasSameSiblings(GraffTreeItem item, DefaultMutableTreeNode parent, String newName)
+    {
+        if (parent != null) {
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                DefaultMutableTreeNode sibling = (DefaultMutableTreeNode) parent.getChildAt(i);
+                if (sibling == item) continue;
+                if (sibling.toString().equalsIgnoreCase(newName)) {
+                    ApplicationFramework.getInstance().getMg().generateError("Ne mogu biti dva istoimena cvora");
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public void SortRenamedNodes(int[] indices, GraffTreeItem parent)
+    {
+
+    }
+
 }

@@ -29,10 +29,9 @@ public class RemoveChildAction extends AbstractGraffAction {
                     return;
         }
 
-
         if(selected.getGraffNode() instanceof Project)
         {
-            System.out.println("brisem projecc");
+
             ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PROJECT_DELETED,selected);
         }
         else if (selected.getGraffNode() instanceof  Presentation)
@@ -40,7 +39,7 @@ public class RemoveChildAction extends AbstractGraffAction {
             ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PRESENTATION_DELETED,selected);
         }
         else {
-            MainFrame.getInstance().getGraffTree().removeNode(selected);
+            ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_DELETED,selected);
         }
 
     }

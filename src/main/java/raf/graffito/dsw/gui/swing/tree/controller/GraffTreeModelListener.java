@@ -21,6 +21,8 @@ public class GraffTreeModelListener implements TreeModelListener {
         GraffTreeItem parent = (GraffTreeItem) path.getLastPathComponent();
         System.out.println(parent.getGraffNode().getName());
         int[] indices = e.getChildIndices();
+        //parent.SortRenamedNodes(indices,parent);
+
 
         if (indices != null && indices.length > 0)
         {
@@ -40,6 +42,8 @@ public class GraffTreeModelListener implements TreeModelListener {
         {
             ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll("", "");
         }
+
+
     }
 
     @Override
@@ -58,7 +62,6 @@ public class GraffTreeModelListener implements TreeModelListener {
                 if(child.getGraffNode() instanceof Presentation) ///  PRESENTATION INSERTED
                 {
                     ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PRESENTATION_INSERTED,child);
-
                 }
             }
         }

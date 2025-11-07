@@ -7,6 +7,8 @@ import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -108,6 +110,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     {
         if(notification==Notification.PRESENTATION_RENAMED)
         {
+            if(getSelectedComponent()==null) return;
             GraffTreeItem test=((PresentationView) this.getSelectedComponent()).getPresentation();
 
             if(test.equals(node)) // ako je renamed prez tr otvorena
@@ -115,7 +118,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 String newName = ((GraffTreeItem) node).getGraffNode().getName();
                 int index=this.getSelectedIndex();
                 this.setTitleAt(index,newName);
-                //((PresentationView)this.getSelectedComponent()).setName(newName);
                 ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendToAll(newName, null);
             }
             else
@@ -132,6 +134,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if (notification == Notification.PROJECT_RENAMED)
         {
+            if(latestNode==null) return;
             if(latestNode.equals(node))
             {
                 String newName = ((GraffTreeItem)node).getGraffNode().getName();
@@ -169,6 +172,12 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem)node);
                 recoverTabs(latestNode);
             }
+        }
+        else if (notification == Notification.SLIDE_DELETED)
+        {
+            if(((GraffTreeItem) node).getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+            MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem)node);
+
         }
     }
 }

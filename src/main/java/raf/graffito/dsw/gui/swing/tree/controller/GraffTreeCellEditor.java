@@ -1,7 +1,10 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
 import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.observer.Notification;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -50,23 +53,12 @@ public class GraffTreeCellEditor  extends DefaultTreeCellEditor implements Actio
             if(newName.isEmpty()) return;
 
             DefaultMutableTreeNode parent = (DefaultMutableTreeNode) item.getParent();
-            if (parent != null)
+            if(item.hasSameSiblings(item,parent,newName))
             {
-                for (int i = 0; i < parent.getChildCount(); i++)
-                {
-                    DefaultMutableTreeNode sibling = (DefaultMutableTreeNode) parent.getChildAt(i);
-                    if (sibling == item) continue;
-                    if (sibling.toString().equalsIgnoreCase(newName)) {
-                        ApplicationFramework.getInstance().getMg().generateError("Ne mogu biti dva istoimena cvora");
-                        return;
-                    }
-                }
+                item.setName(newName);
+                DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+                model.nodeChanged(item);
             }
-
-            item.setName(newName);
-
-            DefaultTreeModel model=(DefaultTreeModel) tree.getModel();
-            model.nodeChanged(item);
         }
     }
 
