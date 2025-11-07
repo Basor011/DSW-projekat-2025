@@ -2,8 +2,7 @@ package raf.graffito.dsw.gui.swing.tree;
 
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
-import raf.graffito.dsw.gui.swing.tree.observer.TBPublisher;
-import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
+import raf.graffito.dsw.gui.swing.tree.observer.*;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
@@ -15,11 +14,12 @@ import javax.swing.tree.DefaultTreeModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GraffTreeImplementation implements GraffTree, TBPublisher
+public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublisher
 {
     private GraffTreeView graffTreeView;
     private DefaultTreeModel treeModel;
     private List<TBSubscriber> tbSubscriberList; //publisher
+    private List<PSubscriber> pSubscribers;
 
     @Override
     public GraffTreeView generateTree(Workspace workspace) {
@@ -27,6 +27,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
         this.treeModel = new DefaultTreeModel(root);
         this.graffTreeView = new GraffTreeView(treeModel);
         tbSubscriberList=new ArrayList<>(); //publisher
+        pSubscribers=new ArrayList<>();
         return graffTreeView;
     }
 
@@ -41,7 +42,8 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
 
         repo.addChild(parentN, child);
         GraffTreeItem childItem = new GraffTreeItem(child);
-        root.add(childItem);
+        //root.add(childItem);
+        ((DefaultTreeModel) treeModel).insertNodeInto(childItem, root, root.getChildCount());
 
         if(child instanceof GraffNodeComposite composite){
             for(GraffNode c : composite.getChildren()){
@@ -49,7 +51,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
             }
         }
 
-        treeModel.reload(root);
+       // treeModel.reload(root);
         expantNodes(graffTreeView);
     }
 
@@ -105,6 +107,27 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher
 
     public DefaultTreeModel getTreeModel() {
         return treeModel;
+    }
+
+    @Override
+    public void addSubscriber(PSubscriber subscriber) {
+        pSubscribers.add(subscriber);
+
+    }
+
+    @Override
+    public void removeSubscriber(PSubscriber subscriber) {
+        pSubscribers.remove(subscriber);
+
+    }
+
+    @Override
+    public void sendingToAll(Notification notification, Object node) {
+        for(PSubscriber s : pSubscribers)
+        {
+            s.update(notification, node);
+        }
+
     }
 }
 

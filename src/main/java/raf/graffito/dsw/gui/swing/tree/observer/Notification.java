@@ -1,4 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.observer;
 
 public enum Notification {
+    PRESENTATION_RENAMED,PRESENTATION_DELETED,PRESENTATION_INSERTED,PROJECT_DELETED,PROJECT_RENAMED,PROJECT_INSERTED
+
 }

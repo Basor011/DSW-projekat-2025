@@ -8,6 +8,7 @@ import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements Subscriber {
@@ -61,11 +62,12 @@ public class MainFrame extends JFrame implements Subscriber {
         split.setDividerLocation(250);
         split2.setDividerLocation(1000);
         split.setOneTouchExpandable(true);
+        tabbedPane= new MyTabbedPane();
+        ((GraffTreeImplementation)graffTree).addSubscriber(tabbedPane);
+        split.setRightComponent(tabbedPane);
 
         getContentPane().add(split2,BorderLayout.CENTER);
 
-        tabbedPane= new MyTabbedPane();
-        split.setRightComponent(tabbedPane);
     }
 
     public ActionManager getActionManager() {
@@ -85,6 +87,7 @@ public class MainFrame extends JFrame implements Subscriber {
         }
         else return;
     }
+
 
     public GraffTree getGraffTree() {
         return graffTree;

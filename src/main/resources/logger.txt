@@ -66,3 +66,5 @@
 [GRESKA][06.11.2025. 20:28] Ne mogu biti dva istoimena cvora
 [OBAVESTENJE][06.11.2025. 20:29] Molim vas izaberite cvor
 [GRESKA][06.11.2025. 20:29] Ne mogu biti dva istoimena cvora
+[OBAVESTENJE][07.11.2025. 19:30] Projekat mora imati barem jedno dete
+[OBAVESTENJE][07.11.2025. 19:55] Molim vas izaberite cvor

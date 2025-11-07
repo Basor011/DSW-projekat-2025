@@ -1,10 +1,12 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.controller.JTabbedPaneChangeListener;
 import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.gui.swing.tree.observer.Notification;
+import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -12,21 +14,22 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyTabbedPane extends JTabbedPane {
+public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
     private DefaultMutableTreeNode latestNode;
-    private List<ColourDecorator>  decoratedProjects;
+    private List<ColourDecorator> decoratedProjects;
 
 
     public MyTabbedPane() {
         this.addChangeListener(new JTabbedPaneChangeListener());
-        this.decoratedProjects=new ArrayList<>();
+        this.decoratedProjects = new ArrayList<>();
 
     }
 
     public List<ColourDecorator> getDecoratedProjects() {
         return decoratedProjects;
     }
+
     public void fillTabs(DefaultMutableTreeNode node) {
         Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Choose colour", Color.PINK);
         if (colour == null) return;
@@ -40,13 +43,24 @@ public class MyTabbedPane extends JTabbedPane {
         }
         this.removeAll();
         latestNode = node;
-        ColourDecorator decoratedProject= new ColourDecorator((GraffTreeItem) node,colour);
-        for (int i=0; i < node.getChildCount(); i++)
-        {
+        ColourDecorator decoratedProject = new ColourDecorator((GraffTreeItem) node, colour);
+        for (int i = 0; i < node.getChildCount(); i++) {
+            /*
             DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
             String title = child.toString();
             JPanel panel = new JPanel();
             this.addTab(title, panel);
+            this.setBackgroundAt(i, colour);
+            this.setForegroundAt(i, Color.BLACK);
+
+             */
+
+            DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
+            String title = child.toString();
+            PresentationView presentationView = new PresentationView(title, (GraffTreeItem) child);
+            //System.out.println(presentationView.toString());
+            this.addTab(presentationView.getTitle(), presentationView);
+
             this.setBackgroundAt(i, colour);
             this.setForegroundAt(i, Color.BLACK);
         }
@@ -54,25 +68,22 @@ public class MyTabbedPane extends JTabbedPane {
         decoratedProjects.add(decoratedProject);
     }
 
-    public void recoverTabs(DefaultMutableTreeNode node)
-    {
+    public void recoverTabs(DefaultMutableTreeNode node) {
         this.removeAll();
-        Color color=Color.PINK;
-        latestNode=node;
+        Color color = Color.PINK;
+        latestNode = node;
 
-        for(ColourDecorator dp :decoratedProjects)
-        {
-            if( (dp.getGraffTreeItem()).equals((GraffTreeItem)node) )
-            {
-                color=dp.getColour();
+        for (ColourDecorator dp : decoratedProjects) {
+            if ((dp.getGraffTreeItem()).equals((GraffTreeItem) node)) {
+                color = dp.getColour();
             }
         }
-        for(int i=0;i<node.getChildCount();i++)
-        {
+        for (int i = 0; i < node.getChildCount(); i++) {
             DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
             String title = child.toString();
-            JPanel panel = new JPanel();
-            this.addTab(title, panel);
+            PresentationView presentationView = new PresentationView(title, (GraffTreeItem) child);
+            this.addTab(presentationView.getTitle(), presentationView);
+
             this.setBackgroundAt(i, color);
             this.setForegroundAt(i, Color.BLACK);
 
@@ -83,6 +94,34 @@ public class MyTabbedPane extends JTabbedPane {
         return latestNode;
     }
 
+    public boolean hasChild(GraffTreeItem child) {
+        for (int i = 0; i < latestNode.getChildCount(); i++) {
+            GraffTreeItem kid = (GraffTreeItem) latestNode.getChildAt(i);
+            if (kid.equals(child)) return true;
+        }
+        return false;
+    }
 
+
+    @Override
+    public void update(Notification notification, Object node) {
+        if(notification==Notification.PRESENTATION_RENAMED)
+        {
+            GraffTreeItem test=((PresentationView) this.getSelectedComponent()).getPresentation();
+
+            if(test.equals(node)) // ako je renamed prez tr otvorena
+            {
+                String newName = ((GraffTreeItem) node).getGraffNode().getName();
+                int index=this.getSelectedIndex();
+                this.setTitleAt(index,newName);
+                //((PresentationView)this.getSelectedComponent()).setName(newName);
+                ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendToAll(newName, null);
+            }
+            else
+            {
+               recoverTabs(latestNode);
+            }
+        }
+    }
 }
 
