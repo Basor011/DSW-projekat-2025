@@ -179,6 +179,19 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem)node);
 
         }
+        else if (notification== Notification.OPENING_TABS)
+        {
+            if(((GraffTreeItem) node).getGraffNode() instanceof Project) {
+                for(ColourDecorator cd : getDecoratedProjects()) {
+                    if (cd.getGraffTreeItem().equals(node)) {
+
+                       recoverTabs((GraffTreeItem) node);
+                        return;
+                    }
+                }
+                fillTabs((GraffTreeItem) node);
+            }
+        }
     }
 }
 

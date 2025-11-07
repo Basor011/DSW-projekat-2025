@@ -1,7 +1,9 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 
@@ -19,18 +21,7 @@ public class GraffTreeMouseClickListener implements MouseListener {
             if (path == null) return;
 
             GraffTreeItem selectedNode=(GraffTreeItem)path.getLastPathComponent();  //vraca poslednji element na kraju path-a
-
-           if(selectedNode.getGraffNode() instanceof Project) {
-               for(ColourDecorator cd : MainFrame.getInstance().getTabbedPane().getDecoratedProjects()) {
-                   if (cd.getGraffTreeItem().equals(selectedNode)) {
-
-                       MainFrame.getInstance().getTabbedPane().recoverTabs(selectedNode);
-                       return;
-                   }
-               }
-               MainFrame.getInstance().getTabbedPane().fillTabs(selectedNode);
-           }
-
+            ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.OPENING_TABS,selectedNode);
         }
 
     }

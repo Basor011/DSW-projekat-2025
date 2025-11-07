@@ -82,3 +82,8 @@
 [OBAVESTENJE][07.11.2025. 21:49] Projekat mora imati barem jedno dete
 [OBAVESTENJE][07.11.2025. 21:49] Projekat mora imati barem jedno dete
 [OBAVESTENJE][07.11.2025. 21:50] Projekat mora imati barem jedno dete
+[OBAVESTENJE][07.11.2025. 21:52] Molim vas izaberite cvor
+[OBAVESTENJE][07.11.2025. 21:56] Projekat mora imati barem jedno dete
+[GRESKA][07.11.2025. 21:56] Ne mogu biti dva istoimena cvora
+[GRESKA][07.11.2025. 21:57] Ne mogu biti dva istoimena cvora
+[OBAVESTENJE][07.11.2025. 22:05] Projekat mora imati barem jedno dete

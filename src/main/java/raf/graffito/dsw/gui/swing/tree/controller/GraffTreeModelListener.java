@@ -21,52 +21,19 @@ public class GraffTreeModelListener implements TreeModelListener {
         GraffTreeItem parent = (GraffTreeItem) path.getLastPathComponent();
         System.out.println(parent.getGraffNode().getName());
         int[] indices = e.getChildIndices();
-        //parent.SortRenamedNodes(indices,parent);
-
-
-        if (indices != null && indices.length > 0)
-        {
-            for (int index : indices) {
-                GraffTreeItem child = (GraffTreeItem) parent.getChildAt(index);
-                if(child.getGraffNode() instanceof Project)
-                {
-                    ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PROJECT_RENAMED,child);
-                }
-                else if(child.getGraffNode() instanceof Presentation)   /// PRESENTATION RENAMED
-                {
-                    ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PRESENTATION_RENAMED,child);
-                }
-            }
-        }
-        else ///  WORKSPACE
-        {
-            ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll("", "");
-        }
-
-
+        parent.SortRenamedNodes(indices,parent);
     }
 
     @Override
-    public void treeNodesInserted(TreeModelEvent e)
-    {
-        TreePath path=e.getTreePath();
-        if(path==null) return;
+    public void treeNodesInserted(TreeModelEvent e) {
+        TreePath path = e.getTreePath();
+        if (path == null) return;
         GraffTreeItem parent = (GraffTreeItem) path.getLastPathComponent();
         System.out.println(parent.getGraffNode().getName());
         int[] indices = e.getChildIndices();
+        parent.sortInsertedNodes(indices, parent);
 
-        if (indices != null && indices.length > 0)
-        {
-            for (int index : indices) {
-                GraffTreeItem child = (GraffTreeItem) parent.getChildAt(index);
-                if(child.getGraffNode() instanceof Presentation) ///  PRESENTATION INSERTED
-                {
-                    ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PRESENTATION_INSERTED,child);
-                }
-            }
-        }
     }
-
     @Override
     public void treeNodesRemoved(TreeModelEvent e) {
 
