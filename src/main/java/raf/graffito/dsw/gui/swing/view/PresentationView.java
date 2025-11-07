@@ -1,9 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
-import raf.graffito.dsw.gui.swing.tree.observer.Notification;
-import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
+
 
 
 import javax.swing.*;
