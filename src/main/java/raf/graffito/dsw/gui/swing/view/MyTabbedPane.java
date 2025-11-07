@@ -104,7 +104,8 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
 
     @Override
-    public void update(Notification notification, Object node) {
+    public void update(Notification notification, Object node)
+    {
         if(notification==Notification.PRESENTATION_RENAMED)
         {
             GraffTreeItem test=((PresentationView) this.getSelectedComponent()).getPresentation();
@@ -120,6 +121,53 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             else
             {
                recoverTabs(latestNode);
+            }
+        }
+        else if (notification == Notification.PRESENTATION_INSERTED)
+        {
+            if( ((DefaultMutableTreeNode)node).getParent().equals(latestNode) )
+            {
+                recoverTabs( (DefaultMutableTreeNode) ((DefaultMutableTreeNode) node).getParent() );
+            }
+        }
+        else if (notification == Notification.PROJECT_RENAMED)
+        {
+            if(latestNode.equals(node))
+            {
+                String newName = ((GraffTreeItem)node).getGraffNode().getName();
+                ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll(null, newName);
+            }
+        }
+        else if (notification == Notification.TAB_CHANGED)
+        {
+
+            int index=getSelectedIndex();
+            if (index == -1) return; //ako ne postoje tabovi return
+            String text=getTitleAt(index);
+            String text2=latestNode.toString();
+
+            MainFrame.getInstance().getRightPanel().update(text,text2);
+
+        }
+        else if(notification == Notification.PROJECT_DELETED)
+        {
+         getDecoratedProjects().removeIf(cd -> cd.getGraffTreeItem().equals(node));
+
+            if(node.equals(latestNode))
+            {
+                ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll("","");
+                removeAll();
+            }
+            MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem) node);
+        }
+        else if (notification == Notification.PRESENTATION_DELETED)
+        {
+            if(((GraffTreeItem) node).getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+            if(hasChild((GraffTreeItem) node))
+            {
+
+                MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem)node);
+                recoverTabs(latestNode);
             }
         }
     }

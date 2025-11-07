@@ -68,3 +68,8 @@
 [GRESKA][06.11.2025. 20:29] Ne mogu biti dva istoimena cvora
 [OBAVESTENJE][07.11.2025. 19:30] Projekat mora imati barem jedno dete
 [OBAVESTENJE][07.11.2025. 19:55] Molim vas izaberite cvor
+[OBAVESTENJE][07.11.2025. 20:43] Projekat mora imati barem jedno dete
+[OBAVESTENJE][07.11.2025. 20:44] Projekat mora imati barem jedno dete
+[OBAVESTENJE][07.11.2025. 20:50] Projekat mora imati barem jedno dete
+[GRESKA][07.11.2025. 20:54] Ne moze se obrisati workspace
+[OBAVESTENJE][07.11.2025. 20:55] Projekat mora imati barem jedno dete
