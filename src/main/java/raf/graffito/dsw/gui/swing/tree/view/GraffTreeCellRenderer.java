@@ -16,9 +16,12 @@ public class GraffTreeCellRenderer extends DefaultTreeCellRenderer{
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,
             boolean expanded, boolean leaf, int row, boolean hasFocus) {
+
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+
         URL img_URL = null;
         Icon icon = null;
+
         if(((GraffTreeItem)value).getGraffNode() instanceof Workspace){
             img_URL = getClass().getResource("/images/workspace.png");
         }else if(((GraffTreeItem)value).getGraffNode() instanceof Project){

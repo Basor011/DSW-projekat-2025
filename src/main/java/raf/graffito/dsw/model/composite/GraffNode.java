@@ -6,7 +6,7 @@ public abstract class GraffNode{
 
     public GraffNode(String name, GraffNode parent) {
         this.name = name;
-        this.parent = null;
+        this.parent = null; //videcemo
     }
     public abstract GraffNode findByName(String name);
 

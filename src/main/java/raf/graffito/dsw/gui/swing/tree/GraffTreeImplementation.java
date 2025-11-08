@@ -7,7 +7,7 @@ import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
-import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
+import raf.graffito.dsw.gui.swing.tree.view.    GraffTreeView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
@@ -26,6 +26,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         GraffTreeItem root = new GraffTreeItem(workspace);
         this.treeModel = new DefaultTreeModel(root);
         this.graffTreeView = new GraffTreeView(treeModel);
+        graffTreeView.setToggleClickCount(0);
         tbSubscriberList=new ArrayList<>(); //publisher
         pSubscribers=new ArrayList<>();
         return graffTreeView;
@@ -41,6 +42,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         if(child == null) return;
 
         repo.addChild(parentN, child);
+
         GraffTreeItem childItem = new GraffTreeItem(child);
         //root.add(childItem);
         ((DefaultTreeModel) treeModel).insertNodeInto(childItem, root, root.getChildCount());
