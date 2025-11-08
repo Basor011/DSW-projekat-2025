@@ -1,0 +1,32 @@
+package raf.graffito.dsw.gui.swing.tree.view;
+
+import raf.graffito.dsw.gui.swing.tree.controller.*;
+
+import javax.swing.*;
+import javax.swing.tree.DefaultTreeModel;
+
+
+public class GraffTreeView extends JTree {
+
+    private GraffTreeCellEditor graffTreeCellEditor;
+    public GraffTreeView(DefaultTreeModel newModel) {
+        super(newModel); //setovali model
+
+        GraffTreeCellRenderer renderer = new GraffTreeCellRenderer();
+        addTreeSelectionListener(new GraffTreeSelectionListener());
+        graffTreeCellEditor = new GraffTreeCellEditor(this, renderer);
+        setCellEditor(graffTreeCellEditor);
+        setCellRenderer(renderer);
+        addMouseListener(new GraffTreeMouseClickListener());
+        newModel.addTreeModelListener(new GraffTreeModelListener());
+
+        setEditable(true);
+        setDragEnabled(true);
+        setDropMode(DropMode.INSERT); //uredjivanje redosleda cvorova u JTree
+        setTransferHandler(new GraffTreeTransferHandler()); //setujemo tansfer handler za stablo
+    }
+
+    public GraffTreeCellEditor getGraffTreeCellEditor() {
+        return graffTreeCellEditor;
+    }
+}

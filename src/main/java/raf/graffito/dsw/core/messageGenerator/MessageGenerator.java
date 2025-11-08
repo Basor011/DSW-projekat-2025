@@ -1,5 +1,8 @@
 package raf.graffito.dsw.core.messageGenerator;
 
+import raf.graffito.dsw.core.observer.MessagePublisher;
+import raf.graffito.dsw.core.observer.Subscriber;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
