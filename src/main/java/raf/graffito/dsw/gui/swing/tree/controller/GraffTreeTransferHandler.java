@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
 import com.sun.source.tree.Tree;
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.implementations.leaves.Slide;
@@ -54,6 +55,9 @@ public class GraffTreeTransferHandler extends TransferHandler {
 
     @Override
     public boolean importData(TransferSupport support) {
+
+
+        /*
         if(!canImport(support)) { return false; }
 
         // Extract transfer data.
@@ -82,17 +86,52 @@ public class GraffTreeTransferHandler extends TransferHandler {
         for(int i = 0; i < nodes.length; i++) model.insertNodeInto(nodes[i], parentNode, i++);
         model.reload();
         return true;
+
+         */
+        if(!canImport(support)) { return false; }
+
+
+        GraffTreeItem transferredItem = null;
+        try {
+            Transferable t = support.getTransferable();
+            transferredItem = (GraffTreeItem) t.getTransferData(nodeFlavor);
+        } catch(UnsupportedFlavorException ufe) {
+            ApplicationFramework.getInstance().getMg().generateError("Greska pri dnd");
+            return false;
+        } catch(java.io.IOException ioe) {
+            ApplicationFramework.getInstance().getMg().generateError("Greska");
+            return false;
+        }
+
+
+        JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
+        int childIndex = dl.getChildIndex();
+
+        TreePath destination = dl.getPath();
+        GraffTreeItem parentNode = (GraffTreeItem) destination.getLastPathComponent();
+        JTree tree = (JTree) support.getComponent();
+        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+
+
+        int index = childIndex;
+        if(childIndex == -1) index = parentNode.getChildCount();
+
+
+        model.insertNodeInto(transferredItem, parentNode, index);
+
+        return true;
     }
 
-    private class NodesTransferable implements Transferable{
+    private class NodesTransferable implements Transferable {
         private final GraffTreeItem item;
+
         public NodesTransferable(GraffTreeItem item) {
             this.item = item;
         }
 
         @Override
         public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[] {nodeFlavor};
+            return new DataFlavor[]{nodeFlavor};
         }
 
         @Override
@@ -104,6 +143,7 @@ public class GraffTreeTransferHandler extends TransferHandler {
         public Object getTransferData(DataFlavor flavor) {
             return item;
         }
+
     }
 
 }

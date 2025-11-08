@@ -5,6 +5,7 @@ import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
 import raf.graffito.dsw.gui.swing.tree.observer.*;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.view.    GraffTreeView;

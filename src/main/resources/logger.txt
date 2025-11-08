@@ -107,3 +107,4 @@
 [OBAVESTENJE][08.11.2025. 13:23] Projekat mora imati barem jedno dete
 [OBAVESTENJE][08.11.2025. 13:27] Projekat mora imati barem jedno dete
 [OBAVESTENJE][08.11.2025. 13:27] Projekat mora imati barem jedno dete
+[GRESKA][08.11.2025. 13:55] Ne moze se izbrisati workspace
