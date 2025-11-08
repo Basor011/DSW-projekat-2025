@@ -10,7 +10,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Presentation extends GraffNodeComposite implements PPublisher {
+public class Presentation extends GraffNodeComposite  {
 
     private List<PSubscriber> psubs = new ArrayList<>();
 
@@ -38,21 +38,5 @@ public class Presentation extends GraffNodeComposite implements PPublisher {
         }
         this.setParent(null);
     }
-
-    @Override
-    public void addSub(PSubscriber subscriber) {
-        psubs.add(subscriber);
-    }
-
-    @Override
-    public void removeSub(PSubscriber subscriber) {
-        psubs.remove(subscriber);
-    }
-
-    @Override
-    public void notify(DefaultMutableTreeNode node) {
-        for(PSubscriber psubscriber : psubs){
-            psubscriber.update(node);
-        }
-    }
+    
 }
