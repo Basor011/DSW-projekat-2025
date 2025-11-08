@@ -18,7 +18,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class GraffTreeTransferHandler extends TransferHandler {
-    private final DataFlavor nodeFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + GraffTreeItem.class.getName(), "GraffTreeItem");
+    private static DataFlavor nodeFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + GraffTreeItem.class.getName(), "GraffTreeItem");
+
+
 
     @Override
     protected Transferable createTransferable(JComponent c) {
@@ -45,7 +47,7 @@ public class GraffTreeTransferHandler extends TransferHandler {
         TreePath dpath = dl.getPath();
         if(dpath == null) { return false; }
 
-        GraffTreeItem dropTarget = (GraffTreeItem) dpath.getLastPathComponent();
+        GraffTreeItem dropTarget = (GraffTreeItem) dpath.getLastPathComponent(); //item na koji smo bacili
         GraffNode targetNode = dropTarget.getGraffNode();
 
         if(!(targetNode instanceof Presentation)) return false;
@@ -56,69 +58,48 @@ public class GraffTreeTransferHandler extends TransferHandler {
     @Override
     public boolean importData(TransferSupport support) {
 
-
-        /*
         if(!canImport(support)) { return false; }
 
-        // Extract transfer data.
-        DefaultMutableTreeNode[] nodes = null;
-        try {
-            Transferable t = support.getTransferable();
-            nodes = (DefaultMutableTreeNode[])t.getTransferData(nodeFlavor);
-        } catch(UnsupportedFlavorException ufe) {
-            System.out.println("UnsupportedFlavor: " + ufe.getMessage());
-        } catch(java.io.IOException ioe) {
-            System.out.println("I/O error: " + ioe.getMessage());
-        }
-
-        //droplocation info
-        JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
-        int childIndex = dl.getChildIndex();
-
-        TreePath destination = dl.getPath();
-        DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) destination.getLastPathComponent();
-        JTree tree = (JTree) support.getComponent();
-        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
-        //konfiguracija za dropnode
-        int index = childIndex;
-        if(childIndex == -1) index = parentNode.getChildCount();
-        //dodajemo podatke u model
-        for(int i = 0; i < nodes.length; i++) model.insertNodeInto(nodes[i], parentNode, i++);
-        model.reload();
-        return true;
-
-         */
-        if(!canImport(support)) { return false; }
-
-
-        GraffTreeItem transferredItem = null;
+        GraffTreeItem transferredItem;
         try {
             Transferable t = support.getTransferable();
             transferredItem = (GraffTreeItem) t.getTransferData(nodeFlavor);
-        } catch(UnsupportedFlavorException ufe) {
-            ApplicationFramework.getInstance().getMg().generateError("Greska pri dnd");
-            return false;
-        } catch(java.io.IOException ioe) {
-            ApplicationFramework.getInstance().getMg().generateError("Greska");
+        } catch(UnsupportedFlavorException | IOException ufe) {
+            ApplicationFramework.getInstance().getMg().generateError("Greska pri premestanju slajdova");
             return false;
         }
 
-
-        JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
+        JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();//gde bacamo slide
         int childIndex = dl.getChildIndex();
-
         TreePath destination = dl.getPath();
-        GraffTreeItem parentNode = (GraffTreeItem) destination.getLastPathComponent();
+        GraffTreeItem targetParent = (GraffTreeItem) destination.getLastPathComponent();
+
+        //if(transferredItem == parentNode || transferredItem.isNodeDescendant(parentNode)) return false;
+
+        GraffNode srcparentNode = ((GraffNode) transferredItem.getGraffNode()).getParent();
+        GraffNode dstparentNode = targetParent.getGraffNode();
+
+        if(!(srcparentNode instanceof Presentation) || !(dstparentNode instanceof Presentation)) return false; //ne mozemo van prez
+        if(srcparentNode != dstparentNode) return false; //ve mozemo van svoje prezentacije
+
+
         JTree tree = (JTree) support.getComponent();
         DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 
 
         int index = childIndex;
-        if(childIndex == -1) index = parentNode.getChildCount();
+        if(childIndex == -1) index = targetParent.getChildCount();
 
+        GraffTreeItem oldParent = (GraffTreeItem) transferredItem.getParent();
+        int oldIndex = oldParent.getIndex(transferredItem);
+        model.removeNodeFromParent(transferredItem);
 
-        model.insertNodeInto(transferredItem, parentNode, index);
+        if (oldParent == targetParent && oldIndex < index) {
+            index--;
+        }
 
+        model.insertNodeInto(transferredItem, targetParent, index);
+        tree.scrollPathToVisible(new TreePath(transferredItem.getPath()));
         return true;
     }
 

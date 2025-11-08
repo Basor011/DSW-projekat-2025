@@ -17,8 +17,6 @@ public class PresentationView extends JPanel  {
         this.presentation = presentation;
     }
 
-
-
     public String getTitle() {
         return this.getName();
     }

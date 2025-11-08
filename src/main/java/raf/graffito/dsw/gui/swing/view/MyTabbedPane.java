@@ -21,42 +21,31 @@ import java.util.List;
 public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
     private DefaultMutableTreeNode latestNode;
-    private List<ColourDecorator> decoratedProjects;
+    private List<ColourDecorator> decoratedProjects;//vec otvoreni projekti
 
     public MyTabbedPane() {
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.decoratedProjects = new ArrayList<>();
-
     }
 
     public List<ColourDecorator> getDecoratedProjects() {
         return decoratedProjects;
     }
 
-    public void fillTabs(DefaultMutableTreeNode node) {
-        Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Choose colour", Color.PINK);
+    public void fillTabs(DefaultMutableTreeNode node) {//za svaku prezentaciju otvara tab
+        Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Izaberite boju", Color.PINK);
         if (colour == null) return;
 
         for (ColourDecorator cd : decoratedProjects) {
             if (cd.getColour().equals(colour)) {
-                ApplicationFramework.getInstance().getMg().generateError("Nedostupna boja");
+                ApplicationFramework.getInstance().getMg().generateError("Vec odabrana boja");
                 return;
             }
         }
-        this.removeAll();
+        this.removeAll(); //sklanaja prethodno otvorene tabove
         latestNode = node;
         ColourDecorator decoratedProject = new ColourDecorator((GraffTreeItem) node, colour);
         for (int i = 0; i < node.getChildCount(); i++) {
-            /*
-            DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
-            String title = child.toString();
-            JPanel panel = new JPanel();
-            this.addTab(title, panel);
-            this.setBackgroundAt(i, colour);
-            this.setForegroundAt(i, Color.BLACK);
-
-             */
-
             DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
             String title = child.toString();
             PresentationView presentationView = new PresentationView(title, (GraffTreeItem) child);
@@ -66,7 +55,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             this.setBackgroundAt(i, colour);
             this.setForegroundAt(i, Color.BLACK);
         }
-
         decoratedProjects.add(decoratedProject);
     }
 
@@ -80,7 +68,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 color = dp.getColour();
             }
         }
-        for (int i = 0; i < node.getChildCount(); i++) {
+        for (int i = 0; i < node.getChildCount(); i++) {///pravi nove presentationview tabove koji imaju istu boju kao ranije
             DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
             String title = child.toString();
             PresentationView presentationView = new PresentationView(title, (GraffTreeItem) child);
@@ -88,7 +76,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
             this.setBackgroundAt(i, color);
             this.setForegroundAt(i, Color.BLACK);
-
         }
     }
 

@@ -7,6 +7,7 @@ import raf.graffito.dsw.model.factory.GraffNodeFactory;
 import raf.graffito.dsw.model.factory.factories.PresentationFactory;
 import raf.graffito.dsw.model.factory.factories.ProjectFactory;
 import raf.graffito.dsw.model.factory.factories.WorkspaceFactory;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
@@ -38,6 +39,7 @@ public class GraffRepositoryImplementation implements GraffRepository {
     }
 
     public GraffNode createChild(GraffNode parent){ //parent = grafftreeitem.getGraffNode
+        if(parent instanceof Slide) return null;
         GraffNodeFactory factory = getGraffNodeFactory(parent);
         return factory.createNode(parent);
     }
