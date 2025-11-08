@@ -7,8 +7,10 @@ import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -190,6 +192,34 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                     }
                 }
                 fillTabs((GraffTreeItem) node);
+            }
+        }
+        else if (notification == Notification.NODE_DELETED)
+        {
+            if(node == null)
+            {
+                ApplicationFramework.getInstance().getMg().generateInfo("Molim vas izaberite cvor za brisanje");
+                return;
+            }
+
+            if(((GraffTreeItem) node).getGraffNode() instanceof Project)
+            {
+                update(Notification.PROJECT_DELETED,node);
+               // ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PROJECT_DELETED,node);
+            }
+            else if (((GraffTreeItem) node).getGraffNode() instanceof  Presentation)
+            {
+                update(Notification.PRESENTATION_DELETED,node);
+               // ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PRESENTATION_DELETED,node);
+            }
+            else if (((GraffTreeItem) node).getGraffNode() instanceof Slide)
+            {
+                update(Notification.SLIDE_DELETED,node);
+                //((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_DELETED,node);
+            }
+            else if (((GraffTreeItem) node).getGraffNode()instanceof Workspace)
+            {
+                ApplicationFramework.getInstance().getMg().generateError("Ne moze se izbrisati workspace");
             }
         }
     }

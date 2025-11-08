@@ -5,8 +5,10 @@ import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,24 +25,6 @@ public class RemoveChildAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
-        if(selected == null)
-        {
-            ApplicationFramework.getInstance().getMg().generateInfo("Molim vas izaberite cvor za brisanje");
-                    return;
-        }
-
-        if(selected.getGraffNode() instanceof Project)
-        {
-
-            ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PROJECT_DELETED,selected);
-        }
-        else if (selected.getGraffNode() instanceof  Presentation)
-        {
-            ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PRESENTATION_DELETED,selected);
-        }
-        else {
-            ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_DELETED,selected);
-        }
-
+        ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.NODE_DELETED,selected);
     }
 }
