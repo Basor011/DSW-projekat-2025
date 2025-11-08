@@ -18,8 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class GraffTreeTransferHandler extends TransferHandler {
-    private static DataFlavor nodeFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + GraffTreeItem.class.getName(), "GraffTreeItem");
-
+    private final DataFlavor nodeFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + GraffTreeItem.class.getName(), "GraffTreeItem");
 
 
     @Override
@@ -50,9 +49,7 @@ public class GraffTreeTransferHandler extends TransferHandler {
         GraffTreeItem dropTarget = (GraffTreeItem) dpath.getLastPathComponent(); //item na koji smo bacili
         GraffNode targetNode = dropTarget.getGraffNode();
 
-        if(!(targetNode instanceof Presentation)) return false;
-
-        return true;
+        return targetNode instanceof Presentation;
     }
 
     @Override
@@ -74,14 +71,12 @@ public class GraffTreeTransferHandler extends TransferHandler {
         TreePath destination = dl.getPath();
         GraffTreeItem targetParent = (GraffTreeItem) destination.getLastPathComponent();
 
-        //if(transferredItem == parentNode || transferredItem.isNodeDescendant(parentNode)) return false;
 
-        GraffNode srcparentNode = ((GraffNode) transferredItem.getGraffNode()).getParent();
-        GraffNode dstparentNode = targetParent.getGraffNode();
+        GraffNode srcparentNode = transferredItem.getGraffNode().getParent(); //pocetni parent
+        GraffNode dstparentNode = targetParent.getGraffNode(); //zavrsni parent
 
         if(!(srcparentNode instanceof Presentation) || !(dstparentNode instanceof Presentation)) return false; //ne mozemo van prez
         if(srcparentNode != dstparentNode) return false; //ve mozemo van svoje prezentacije
-
 
         JTree tree = (JTree) support.getComponent();
         DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
