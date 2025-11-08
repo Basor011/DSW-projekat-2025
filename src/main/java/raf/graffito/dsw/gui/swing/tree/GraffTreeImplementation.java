@@ -8,7 +8,7 @@ import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
-import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
+import raf.graffito.dsw.gui.swing.tree.view.    GraffTreeView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;

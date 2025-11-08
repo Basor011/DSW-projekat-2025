@@ -1,9 +1,8 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
+import com.sun.source.tree.Tree;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
-import raf.graffito.dsw.gui.swing.tree.view.GraffTreeView;
 import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.Slide;
 import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
 
@@ -15,9 +14,10 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.util.List;
 
 public class GraffTreeTransferHandler extends TransferHandler {
-    private final DataFlavor nodeFlavor = new DataFlavor(GraffTreeItem.class, "GraffTreeItem");
+    private final DataFlavor nodeFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + GraffTreeItem.class.getName(), "GraffTreeItem");
 
     @Override
     protected Transferable createTransferable(JComponent c) {
@@ -40,7 +40,7 @@ public class GraffTreeTransferHandler extends TransferHandler {
         if(!support.isDataFlavorSupported(nodeFlavor)) { return false; }
         if(!support.isDrop()) { return false; }
 
-        JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
+        JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation(); //dobavljamo drop location
         TreePath dpath = dl.getPath();
         if(dpath == null) { return false; }
 
@@ -56,8 +56,32 @@ public class GraffTreeTransferHandler extends TransferHandler {
     public boolean importData(TransferSupport support) {
         if(!canImport(support)) { return false; }
 
+        // Extract transfer data.
+        DefaultMutableTreeNode[] nodes = null;
+        try {
+            Transferable t = support.getTransferable();
+            nodes = (DefaultMutableTreeNode[])t.getTransferData(nodeFlavor);
+        } catch(UnsupportedFlavorException ufe) {
+            System.out.println("UnsupportedFlavor: " + ufe.getMessage());
+        } catch(java.io.IOException ioe) {
+            System.out.println("I/O error: " + ioe.getMessage());
+        }
 
-        return false;
+        //droplocation info
+        JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
+        int childIndex = dl.getChildIndex();
+
+        TreePath destination = dl.getPath();
+        DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) destination.getLastPathComponent();
+        JTree tree = (JTree) support.getComponent();
+        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+        //konfiguracija za dropnode
+        int index = childIndex;
+        if(childIndex == -1) index = parentNode.getChildCount();
+        //dodajemo podatke u model
+        for(int i = 0; i < nodes.length; i++) model.insertNodeInto(nodes[i], parentNode, i++);
+        model.reload();
+        return true;
     }
 
     private class NodesTransferable implements Transferable{
@@ -73,7 +97,7 @@ public class GraffTreeTransferHandler extends TransferHandler {
 
         @Override
         public boolean isDataFlavorSupported(DataFlavor flavor) {
-            return flavor.equals(nodeFlavor);
+            return nodeFlavor.equals(flavor);
         }
 
         @Override
