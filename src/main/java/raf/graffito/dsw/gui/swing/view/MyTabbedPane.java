@@ -180,7 +180,8 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if (notification == Notification.SLIDE_DELETED)
         {
-            if(((GraffTreeItem) node).getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+            GraffTreeItem parent=(GraffTreeItem)(((GraffTreeItem)node).getParent());
+            if(((GraffTreeItem) node).getParent().getChildCount() == 1 && parent.getGraffNode() instanceof Project){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
             MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem)node);
 
         }
