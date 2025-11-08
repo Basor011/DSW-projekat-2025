@@ -99,6 +99,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     }
 
     public boolean hasChild(GraffTreeItem child) {
+
         for (int i = 0; i < latestNode.getChildCount(); i++) {
             GraffTreeItem kid = (GraffTreeItem) latestNode.getChildAt(i);
             if (kid.equals(child)) return true;
@@ -168,12 +169,16 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         else if (notification == Notification.PRESENTATION_DELETED)
         {
             if(((GraffTreeItem) node).getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
-            if(hasChild((GraffTreeItem) node))
+            if(latestNode!=null && hasChild((GraffTreeItem) node))
             {
 
                 MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem)node);
                 recoverTabs(latestNode);
             }
+            else {
+                MainFrame.getInstance().getGraffTree().removeNode((GraffTreeItem)node);
+            }
+
         }
         else if (notification == Notification.SLIDE_DELETED)
         {
