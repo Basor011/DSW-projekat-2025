@@ -12,6 +12,6 @@ public class AppCore {
         Gui gui = new SwingGui();
         GraffRepository gr = new GraffRepositoryImplementation();
         appCore.initialize(gui, gr);
-        appCore.run();
+        appCore.run(); //appfw get instance(
     }
 }

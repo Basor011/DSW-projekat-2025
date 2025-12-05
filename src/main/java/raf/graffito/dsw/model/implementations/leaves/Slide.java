@@ -12,4 +12,5 @@ public class Slide extends GraffNodeLeaf {
     public void removeNode(GraffNode node) {
         this.setParent(null);
     }
+
 }

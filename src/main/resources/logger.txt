@@ -110,3 +110,9 @@
 [GRESKA][08.11.2025. 13:55] Ne moze se izbrisati workspace
 [GRESKA][08.11.2025. 21:09] Slide ne moze sadrzati novi tip cvora
 [OBAVESTENJE][08.11.2025. 21:09] Projekat mora imati barem jedno dete
+[GRESKA][04.12.2025. 17:26] Slide ne moze sadrzati novi tip cvora
+[GRESKA][05.12.2025. 13:45] Slide ne moze sadrzati novi tip cvora
+[GRESKA][05.12.2025. 13:45] Slide ne moze sadrzati novi tip cvora
+[OBAVESTENJE][05.12.2025. 14:38] Molim vas izaberite cvor
+[OBAVESTENJE][05.12.2025. 14:39] Molim vas izaberite cvor
+[OBAVESTENJE][05.12.2025. 14:57] Projekat mora imati barem jedno dete
