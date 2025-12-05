@@ -2,7 +2,7 @@ package raf.graffito.dsw.model.factory.factories;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.factory.GraffNodeFactory;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import java.util.Random;
 

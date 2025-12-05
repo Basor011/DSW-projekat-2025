@@ -1,4 +1,4 @@
-package raf.graffito.dsw.model.implementations.leaves.compositions;
+package raf.graffito.dsw.model.composite.compositions;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;

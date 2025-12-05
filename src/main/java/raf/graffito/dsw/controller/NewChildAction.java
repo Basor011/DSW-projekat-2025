@@ -3,7 +3,7 @@ package raf.graffito.dsw.controller;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

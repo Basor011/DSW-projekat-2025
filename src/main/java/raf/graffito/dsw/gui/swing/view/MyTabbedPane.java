@@ -7,10 +7,10 @@ import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
+import raf.graffito.dsw.model.composite.compositions.Slide;
+import raf.graffito.dsw.model.composite.compositions.Presentation;
+import raf.graffito.dsw.model.composite.compositions.Project;
+import raf.graffito.dsw.model.composite.compositions.Workspace;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

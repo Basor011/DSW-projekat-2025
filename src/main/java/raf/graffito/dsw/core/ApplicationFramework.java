@@ -34,6 +34,7 @@ public class ApplicationFramework  {
         MainFrame mainFrame = MainFrame.getInstance(); ///napravili mf
         mainFrame.setVisible(true);
 
+
         mg.addSubscriber(mainFrame);
         /// nisam sigurna
         mg.addSubscriber(loggerFactory.createLogger("consoleLogger"));

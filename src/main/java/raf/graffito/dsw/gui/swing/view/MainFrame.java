@@ -22,7 +22,6 @@ public class MainFrame extends JFrame implements Subscriber {
     private JSplitPane split2;
     private RightPane rightPanel;
 
-
     public static MainFrame getInstance() {
         if(instance == null) {
             instance = new MainFrame();
@@ -35,7 +34,6 @@ public class MainFrame extends JFrame implements Subscriber {
         instance = this;
         initialize();
     }
-
     private void initialize() {
         Toolkit kit = Toolkit.getDefaultToolkit(); // Toolkit omogućava interakciju sa platformom
         Dimension screenSize = kit.getScreenSize(); // Veličina ekrana
@@ -67,7 +65,6 @@ public class MainFrame extends JFrame implements Subscriber {
         split.setRightComponent(tabbedPane);
 
         getContentPane().add(split2,BorderLayout.CENTER);
-
     }
 
     public ActionManager getActionManager() {
