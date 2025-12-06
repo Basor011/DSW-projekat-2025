@@ -16,7 +16,7 @@ public class TextFieldElement extends Element {
 
     @Override
     public Element copy() {
-        TextFieldElement e = new TextFieldElement(getName()+"KOPIRANO", getParent(), getX()+4, getY()+4,getWidth(),getHeight(),getRotation(),text,fontSize);
+        TextFieldElement e = new TextFieldElement(getName()+"KOPIRANO", null, getX()+4, getY()+4,getWidth(),getHeight(),getRotation(),text,fontSize);
         return e;
     }
 

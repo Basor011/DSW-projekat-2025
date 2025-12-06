@@ -11,7 +11,7 @@ public class ImageElement extends Element{
     }
     @Override
     public Element copy() {
-        ImageElement e = new ImageElement(getName() + "KOPIRANO", getParent(), getX() + 4, getY() + 4, getWidth(), getHeight(), getRotation(), imagePath);
+        ImageElement e = new ImageElement(getName() + "KOPIRANO", null, getX() + 4, getY() + 4, getWidth(), getHeight(), getRotation(), imagePath);
         return e;
     }
 
