@@ -44,13 +44,5 @@ public class Project extends GraffNodeComposite  {
         child.setParent(null);
     }
 
-    @Override
-    public void removeNode(GraffNode node) {
-        for(GraffNode child : children){
-            removeChild(child);
-        }
-        this.setParent(null);
-    }
-
 
 }

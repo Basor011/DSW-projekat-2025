@@ -6,18 +6,18 @@ import java.awt.*;
 import java.util.List;
 
 public class TextFieldElement extends Element {
-    private List<Point> points;
-    public TextFieldElement(String name, GraffNode parent) {
-        super(name, parent);
+    private String text;
+    private int fontSize;
+    public TextFieldElement(String name, GraffNode parent, int x, int y, int width, int height, double rotation, String text, int fontSize) {
+        super(name, parent, x, y, width, height, rotation);
+        this.text = text;
+        this.fontSize = fontSize;
     }
 
     @Override
     public Element copy() {
-        return null;
+        TextFieldElement e = new TextFieldElement(getName()+"KOPIRANO", getParent(), getX()+4, getY()+4,getWidth(),getHeight(),getRotation(),text,fontSize);
+        return e;
     }
 
-    @Override
-    public void removeNode(GraffNode node) {
-
-    }
 }

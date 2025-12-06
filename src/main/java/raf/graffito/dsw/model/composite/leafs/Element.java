@@ -13,8 +13,13 @@ abstract public class Element extends GraffNodeLeaf {
     //za ugao rotacije
     private double rotation;
 
-    public Element(String name, GraffNode parent) {
+    public Element(String name, GraffNode parent, int x, int y, int width, int height, double rotation) {
         super(name, parent);
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.rotation = rotation;
     }
 
     public abstract Element copy();

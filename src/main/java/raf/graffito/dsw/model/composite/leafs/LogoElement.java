@@ -2,19 +2,30 @@ package raf.graffito.dsw.model.composite.leafs;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 
-public class LogoElement extends Element{
+import java.awt.*; ///point bi mogao biti ne preko biblioteke vec preko posebne klase
+import java.util.ArrayList;
+import java.util.List;
 
-    public LogoElement(String name, GraffNode parent) {
-        super(name, parent);
+public class LogoElement extends Element{
+    private List<Point> points;
+
+    public LogoElement(String name, GraffNode parent, int x, int y, int width, int height, double rotation, List<Point> points) {
+        super(name, parent, x, y, width, height, rotation);
+        this.points = points;
     }
 
     @Override
     public Element copy() {
-        return null;
+        LogoElement e = new LogoElement(getName() + "KOPIRANO", getParent(), getX()+4, getY()+4, getWidth(), getHeight(), getRotation(), new ArrayList<>(points));
+        return e;
     }
 
-    @Override
-    public void removeNode(GraffNode node) {
 
+    public List<Point> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<Point> points) {
+        this.points = points;
     }
 }

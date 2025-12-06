@@ -25,8 +25,4 @@ public class Slide extends GraffNodeComposite {
         child.setParent(null);
     }
 
-    @Override
-    public void removeNode(GraffNode node) {
-        this.setParent(null);
-    }
 }

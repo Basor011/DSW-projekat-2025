@@ -27,13 +27,5 @@ public class Presentation extends GraffNodeComposite  {
     public void removeChild(GraffNode child) {
         child.setParent(null);
     }
-    @Override
-    public void removeNode(GraffNode node) {
-        for(GraffNode child : children){
-            removeChild(child);
-            children.remove(child);
-        }
-        this.setParent(null);
-    }
     
 }
