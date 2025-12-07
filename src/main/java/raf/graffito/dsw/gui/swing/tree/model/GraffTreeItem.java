@@ -5,6 +5,9 @@ import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Presentation;
 import raf.graffito.dsw.model.composite.compositions.Project;
 
@@ -73,6 +76,10 @@ public class GraffTreeItem extends DefaultMutableTreeNode {
                 if(child.getGraffNode() instanceof Presentation) ///  PRESENTATION INSERTED
                 {
                     ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.PRESENTATION_INSERTED,child);
+                }
+                else if(child.getGraffNode() instanceof Slide)
+                {
+                    ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_INSERTED,child);
                 }
             }
         }

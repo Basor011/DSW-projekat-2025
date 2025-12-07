@@ -20,6 +20,7 @@ public class Presentation extends GraffNodeComposite  {
         if(child instanceof Slide){
             if(!this.getChildren().contains(child)){
                 child.setParent(this);
+                children.add(child);
             }
         }
     }
