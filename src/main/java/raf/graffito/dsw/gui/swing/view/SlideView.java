@@ -1,7 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.model.composite.GraffNodeLeaf;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import javax.swing.*;
 import java.awt.*;

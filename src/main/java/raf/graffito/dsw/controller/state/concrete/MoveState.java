@@ -16,14 +16,8 @@ public class MoveState implements ElementState {
     }
     @Override
     public void mouseDragged(MouseEvent e, Element element) {
-        int dx = e.getX() - x;
-        int dy = e.getY() - y;
-        element.setX(element.getX() + dx);
-        element.setY(element.getY() + dy);
-        x = e.getX();
-        y = e.getY();
+
     }
-    /// nepotrebni
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}

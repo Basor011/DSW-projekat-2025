@@ -1,6 +1,10 @@
 package raf.graffito.dsw.controller.state;
 
 import raf.graffito.dsw.controller.state.concrete.*;
+import raf.graffito.dsw.gui.swing.view.SlideView;
+import raf.graffito.dsw.model.composite.GraffNodeComposite;
+
+import java.awt.image.BufferedImage;
 
 public class StateManager {
     private ElementState elementState;
@@ -15,20 +19,13 @@ public class StateManager {
     private ScaleState scaleState;
     private SelectState selectState;
 
-    public StateManager() {
-        initStates();
+    public StateManager(SlideView slidePanel, GraffNodeComposite slideNode, String imagepath, BufferedImage logoimage) {
+
     }
-    private void initStates() {
-        addImageState = new AddImageState();
-        addTextState = new AddTextState();
-        addLogoState = new AddLogoState();
-        changeElementState = new ChangeElementState();
-        copyState = new CopyState();
-        deleteState = new DeleteState();
-        moveState = new MoveState();
-        rotationState = new RotationState();
-        scaleState = new ScaleState();
-        selectState = new SelectState();
+    private void init(SlideView slidePanel, GraffNodeComposite slideNode, String imagepath, BufferedImage logoimage) {
+        addImageState = new AddImageState(slidePanel, slideNode, imagepath);
+        addTextState = new AddTextState(slidePanel, slideNode);
+        addLogoState = new AddLogoState(slideNode, slidePanel, logoimage);
     }
 
     public ElementState getState() {

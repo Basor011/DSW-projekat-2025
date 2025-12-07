@@ -10,10 +10,10 @@ import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.GraffNodeLeaf;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
+import raf.graffito.dsw.model.composite.compositions.Slide;
+import raf.graffito.dsw.model.composite.compositions.Presentation;
+import raf.graffito.dsw.model.composite.compositions.Project;
+import raf.graffito.dsw.model.composite.compositions.Workspace;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.compositions.Presentation;
 import raf.graffito.dsw.model.composite.compositions.Project;
@@ -82,20 +82,13 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         for (int i = 0; i < node.getChildCount(); i++) {///pravi nove presentationview tabove koji imaju istu boju kao ranije
             GraffTreeItem child = (GraffTreeItem) node.getChildAt(i); /// prolazim kroz decu od projecta
-         for(PresentationView pw :presentationViewList)
-         {
-             if(pw.getPresentation().equals(child.getGraffNode()))
-             {
-                 this.addTab(pw.getTitle(),pw);
-             }
-         }
-        /*
-            String title = child.toString();
-            PresentationView presentationView = new PresentationView(title,(GraffNodeComposite) child.getGraffNode());
-            this.addTab(presentationView.getTitle(), presentationView);
-
-         */
-
+            for(PresentationView pw :presentationViewList)
+            {
+                 if(pw.getPresentation().equals(child.getGraffNode()))
+                 {
+                     this.addTab(pw.getTitle(),pw);
+                 }
+            }
             this.setBackgroundAt(i, color);
             this.setForegroundAt(i, Color.BLACK);
         }
@@ -110,14 +103,12 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     }
 
     public boolean hasChild(GraffTreeItem child) {
-
         for (int i = 0; i < latestNode.getChildCount(); i++) {
             GraffTreeItem kid = (GraffTreeItem) latestNode.getChildAt(i);
             if (kid.equals(child)) return true;
         }
         return false;
     }
-
 
     @Override
     public void update(Notification notification, GraffTreeItem node)
@@ -179,21 +170,16 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             }
             MainFrame.getInstance().getGraffTree().removeNode(node);
         }
-        else if (notification == Notification.PRESENTATION_DELETED)
-        {
+        else if (notification == Notification.PRESENTATION_DELETED){
             if(((GraffTreeItem) node).getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
-            if(latestNode!=null && hasChild(node))
-            {
-
+            if(latestNode!=null && hasChild(node)) {
                 MainFrame.getInstance().getGraffTree().removeNode(node);
                 recoverTabs(latestNode);
             }
-            else {
+            else{
                 MainFrame.getInstance().getGraffTree().removeNode(node);
             }
-
         }
-
         else if(notification == Notification.SLIDE_INSERTED) // prosledjen node je slajd
         {
             GraffTreeItem parent=(GraffTreeItem)node.getParent(); // presentation grafftreeitem
@@ -202,32 +188,32 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
             Slide newSlide = (Slide) node.getGraffNode();
             SlideView newSlideView= new SlideView(newSlide);
-            //System.out.println(parent.toString()+ "test");
-        for(PresentationView prez : presentationViewList)
-        {
-            if(prez.getPresentation().equals(parentNode))
+             /*
+                SlideController sc = new SlideController();
+                slideView.addMouseListener...
+                ---npr klikom na dugme--provera za buttons ce morati ovde
+                sc.setState(new AddImageState(slideView,newSlide, "image.path"));
+            * */
+
+            for(PresentationView prez : presentationViewList)
             {
-                prez.getSlajdovi().add(newSlideView); // Dodajem  slideview presentationview-u
-                if(parent.getParent().equals(latestNode)) {
-                    // Update the display to show the new slide
-                    prez.removeAll();
-                    if(!prez.getSlajdovi().isEmpty()) {
-                        prez.add(prez.getSlajdovi().getLast(), BorderLayout.CENTER);
+                if(prez.getPresentation().equals(parentNode))
+                {
+                    prez.getSlajdovi().add(newSlideView); // Dodajem  slideview presentationview-u
+                    if(parent.getParent().equals(latestNode)) {
+                        // Update the display to show the new slide
+                        prez.removeAll();
+                        if(!prez.getSlajdovi().isEmpty()) {
+                            prez.add(prez.getSlajdovi().getLast(), BorderLayout.CENTER);
+                        }
+                        prez.revalidate();
+                        prez.repaint();
+                        int idx = this.indexOfComponent(prez);
+                        this.setComponentAt(idx, prez); // forces JTabbedPane to redraw the selected tab
                     }
-                    prez.revalidate();
-                    prez.repaint();
-                    int idx = this.indexOfComponent(prez);
-                    this.setComponentAt(idx, prez); // forces JTabbedPane to redraw the selected tab
-
                 }
-
             }
-
         }
-
-        }
-
-
         else if (notification == Notification.SLIDE_DELETED)
         {
             GraffTreeItem parent= (GraffTreeItem) node.getParent();

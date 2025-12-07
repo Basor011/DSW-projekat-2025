@@ -5,7 +5,7 @@ import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 
 
 import javax.swing.*;
