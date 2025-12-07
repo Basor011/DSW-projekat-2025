@@ -3,30 +3,24 @@ package raf.graffito.dsw.model.composite.leaves;
 import raf.graffito.dsw.model.composite.GraffNode;
 
 import java.awt.*; ///point bi mogao biti ne preko biblioteke vec preko posebne klase
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LogoElement extends Element{
-    private List<Point> points;
+    private BufferedImage logo;
 
-    public LogoElement(String name, GraffNode parent, int x, int y, int width, int height, double rotation, List<Point> points) {
-        super(name, parent, x, y, width, height, rotation);
-        this.points = Collections.unmodifiableList(points); //da budemo sigurni da se nece menjati logo
+    public LogoElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija,double rotation, BufferedImage logo) {
+        super(name, parent, lokacija, dimenzija, rotation);
+        this.logo = logo;
     }
 
     @Override
     public Element copy() {
-        LogoElement e = new LogoElement(getName() + "KOPIRANO", null, getX()+4, getY(), getWidth(), getHeight(), getRotation(), new ArrayList<>(points));
+        LogoElement e = new LogoElement(getName() + "KOPIRANO", null, new Point(getLokacija().x + 10, getLokacija().y + 10), getDimenzija(), getRotation(), logo);
         return e;
     }
-
-
-    public List<Point> getPoints() {
-        return points;
-    }
-
-    public void setPoints(List<Point> points) {
-        this.points = points;
-    }
+    public BufferedImage getLogo() {return logo;}
+    public void setLogo(BufferedImage logo) {this.logo = logo;}
 }

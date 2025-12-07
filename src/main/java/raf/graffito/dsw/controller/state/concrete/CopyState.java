@@ -9,29 +9,14 @@ import java.awt.event.MouseWheelEvent;
 
 public class CopyState implements ElementState {
     @Override
-    public void mousePressed(MouseEvent e, Element element) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e, Element element) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e, Element element) {
-
-    }
-
-    @Override
     public void mouseClicked(MouseEvent e, Element element) {
         Element copy = element.copy();
         GraffNodeComposite parent = (GraffNodeComposite) copy.getParent();
         parent.addChild(copy);
     }
-
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e, Element element) {
-
-    }
+    /// nepotrebni
+    @Override public void mousePressed(MouseEvent e, Element element) {}
+    @Override public void mouseDragged(MouseEvent e, Element element) {}
+    @Override public void mouseReleased(MouseEvent e, Element element) {}
+    @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
 }

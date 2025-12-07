@@ -2,16 +2,18 @@ package raf.graffito.dsw.model.composite.leaves;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 
+import java.awt.*;
+
 public class ImageElement extends Element{
     private String imagePath;
 
-    public ImageElement(String name, GraffNode parent, int x, int y, int width, int height, double rotation, String imagePath) {
-        super(name, parent, x, y, width, height, rotation);
+    public ImageElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, double rotation, String imagePath) {
+        super(name, parent,lokacija, dimenzija, rotation);
         this.imagePath = imagePath;
     }
     @Override
     public Element copy() {
-        ImageElement e = new ImageElement(getName() + "KOPIRANO", null, getX() + 4, getY(), getWidth(), getHeight(), getRotation(), imagePath);
+        ImageElement e = new ImageElement(getName() + "KOPIRANO", null, new Point(getLokacija().x + 10, getLokacija().y + 10), getDimenzija(), getRotation(), imagePath);
         return e;
     }
 

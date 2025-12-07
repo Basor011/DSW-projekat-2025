@@ -21,8 +21,7 @@ public class NewChildAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
-        if(selected==null)
-        {
+        if(selected==null) {
             ApplicationFramework.getInstance().getMg().generateInfo("Molim vas izaberite cvor");
             return;
         }else if(selected.getGraffNode() instanceof Slide) {

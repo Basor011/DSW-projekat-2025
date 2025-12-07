@@ -8,12 +8,12 @@ import java.awt.event.MouseWheelEvent;
 
 public class MoveState implements ElementState {
     private int x, y;
+
     @Override
     public void mousePressed(MouseEvent e, Element element) {
         x = e.getX();
         y = e.getY();
     }
-
     @Override
     public void mouseDragged(MouseEvent e, Element element) {
         int dx = e.getX() - x;
@@ -23,19 +23,8 @@ public class MoveState implements ElementState {
         x = e.getX();
         y = e.getY();
     }
-
-    @Override
-    public void mouseReleased(MouseEvent e, Element element) {
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e, Element element) {
-
-    }
-
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e, Element element) {
-
-    }
+    /// nepotrebni
+    @Override public void mouseReleased(MouseEvent e, Element element) {}
+    @Override public void mouseClicked(MouseEvent e, Element element) {}
+    @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
 }
