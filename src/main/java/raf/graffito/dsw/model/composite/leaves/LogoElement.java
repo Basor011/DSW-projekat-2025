@@ -1,4 +1,4 @@
-package raf.graffito.dsw.model.composite.leafs;
+package raf.graffito.dsw.model.composite.leaves;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 
@@ -17,7 +17,7 @@ public class LogoElement extends Element{
 
     @Override
     public Element copy() {
-        LogoElement e = new LogoElement(getName() + "KOPIRANO", null, getX()+4, getY()+4, getWidth(), getHeight(), getRotation(), new ArrayList<>(points));
+        LogoElement e = new LogoElement(getName() + "KOPIRANO", null, getX()+4, getY(), getWidth(), getHeight(), getRotation(), new ArrayList<>(points));
         return e;
     }
 

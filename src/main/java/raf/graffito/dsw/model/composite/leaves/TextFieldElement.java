@@ -1,9 +1,6 @@
-package raf.graffito.dsw.model.composite.leafs;
+package raf.graffito.dsw.model.composite.leaves;
 
 import raf.graffito.dsw.model.composite.GraffNode;
-
-import java.awt.*;
-import java.util.List;
 
 public class TextFieldElement extends Element {
     private String text;
@@ -16,7 +13,7 @@ public class TextFieldElement extends Element {
 
     @Override
     public Element copy() {
-        TextFieldElement e = new TextFieldElement(getName()+"KOPIRANO", null, getX()+4, getY()+4,getWidth(),getHeight(),getRotation(),text,fontSize);
+        TextFieldElement e = new TextFieldElement(getName()+"KOPIRANO", null, getX()+4, getY(),getWidth(),getHeight(),getRotation(),text,fontSize);
         return e;
     }
 

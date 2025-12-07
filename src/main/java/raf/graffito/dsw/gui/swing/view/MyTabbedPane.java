@@ -49,7 +49,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             DefaultMutableTreeNode child = (DefaultMutableTreeNode) node.getChildAt(i);
             String title = child.toString();
             PresentationView presentationView = new PresentationView(title, (GraffTreeItem) child);
-            //System.out.println(presentationView.toString());
             this.addTab(presentationView.getTitle(), presentationView);
 
             this.setBackgroundAt(i, colour);

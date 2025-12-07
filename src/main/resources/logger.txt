@@ -112,3 +112,4 @@
 [OBAVESTENJE][08.11.2025. 21:09] Projekat mora imati barem jedno dete
 [GRESKA][05.12.2025. 13:31] Slide ne moze sadrzati novi tip cvora
 [OBAVESTENJE][06.12.2025. 12:10] Projekat mora imati barem jedno dete
+[GRESKA][07.12.2025. 14:24] Slide ne moze sadrzati novi tip cvora

@@ -1,4 +1,4 @@
-package raf.graffito.dsw.gui.swing.view.painter;
+package raf.graffito.dsw.gui.swing.tree.view.painter;
 
 import java.awt.*;
 

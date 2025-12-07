@@ -1,4 +1,4 @@
-package raf.graffito.dsw.model.composite.leafs;
+package raf.graffito.dsw.model.composite.leaves;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 
@@ -11,7 +11,7 @@ public class ImageElement extends Element{
     }
     @Override
     public Element copy() {
-        ImageElement e = new ImageElement(getName() + "KOPIRANO", null, getX() + 4, getY() + 4, getWidth(), getHeight(), getRotation(), imagePath);
+        ImageElement e = new ImageElement(getName() + "KOPIRANO", null, getX() + 4, getY(), getWidth(), getHeight(), getRotation(), imagePath);
         return e;
     }
 
