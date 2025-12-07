@@ -25,11 +25,12 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
     private GraffTreeItem latestNode;
     private List<ColourDecorator> decoratedProjects;//vec otvoreni projekti
-    private GraffNode Presentation;
+    private List<PresentationView> presentationViewList;
 
     public MyTabbedPane() {
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.decoratedProjects = new ArrayList<>();
+        this.presentationViewList=new ArrayList<>();
     }
 
     public List<ColourDecorator> getDecoratedProjects() {
@@ -60,12 +61,12 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             this.addTab(presentationView.getTitle(), presentationView);
             this.setBackgroundAt(i, colour);
             this.setForegroundAt(i, Color.BLACK);
-
+            presentationViewList.add(presentationView);
         }
         decoratedProjects.add(decoratedProject);
     }
 
-    public void recoverTabs(GraffTreeItem node) {
+    public void recoverTabs(GraffTreeItem node) { //project
         this.removeAll();
         Color color = Color.PINK;
         latestNode = node;
@@ -76,10 +77,20 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             }
         }
         for (int i = 0; i < node.getChildCount(); i++) {///pravi nove presentationview tabove koji imaju istu boju kao ranije
-            GraffTreeItem child = (GraffTreeItem) node.getChildAt(i);
+            GraffTreeItem child = (GraffTreeItem) node.getChildAt(i); /// prolazim kroz decu od projecta
+         for(PresentationView pw :presentationViewList)
+         {
+             if(pw.getPresentation().equals(child.getGraffNode()))
+             {
+                 this.addTab(pw.getTitle(),pw);
+             }
+         }
+        /*
             String title = child.toString();
             PresentationView presentationView = new PresentationView(title,(GraffNodeComposite) child.getGraffNode());
             this.addTab(presentationView.getTitle(), presentationView);
+
+         */
 
             this.setBackgroundAt(i, color);
             this.setForegroundAt(i, Color.BLACK);
@@ -88,6 +99,10 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
     public DefaultMutableTreeNode getLatestNode() {
         return latestNode;
+    }
+
+    public List<PresentationView> getPresentationViewList() {
+        return presentationViewList;
     }
 
     public boolean hasChild(GraffTreeItem child) {
@@ -122,8 +137,10 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if (notification == Notification.PRESENTATION_INSERTED)
         {
-            if( ((DefaultMutableTreeNode)node).getParent().equals(latestNode) )
+            if( node.getParent().equals(latestNode))
             {
+                PresentationView presentationView= new PresentationView(node.getGraffNode().getName(), (GraffNodeComposite) node.getGraffNode());
+                presentationViewList.add(presentationView);
                 recoverTabs( (GraffTreeItem)node.getParent());
             }
         }
@@ -173,33 +190,36 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
         }
 
-        else if(notification == Notification.SLIDE_INSERTED)
+        else if(notification == Notification.SLIDE_INSERTED) // prosledjen node je slajd
         {
-            GraffTreeItem parent=(GraffTreeItem)node.getParent();
-            GraffNodeComposite parentNode=(GraffNodeComposite) parent.getGraffNode();
-            if(!(parent.getGraffNode() instanceof Presentation)) return;
-            //treba da se doda u listu slajdova, parent.getgraffnode= Presentation,
+            GraffTreeItem parent=(GraffTreeItem)node.getParent(); // presentation grafftreeitem
+            GraffNodeComposite parentNode=(GraffNodeComposite) parent.getGraffNode(); // presentation graffnode
+            if(!(parent.getGraffNode() instanceof Presentation)) return; //treba da se doda u listu slajdova, parent.getgraffnode= Presentation,
+
             Slide newSlide = (Slide) node.getGraffNode();
             SlideView newSlideView= new SlideView(newSlide);
             //System.out.println(parent.toString()+ "test");
-            for (int i = 0; i < this.getTabCount(); i++) {
-                Component tabComponent = this.getComponentAt(i);
-                if (tabComponent instanceof PresentationView) {
-                    PresentationView pView = (PresentationView) tabComponent;
-
-
-                    if (pView.getPresentation().equals(parentNode)) {
-
-
-                        pView.getSlajdovi().add(newSlideView);
-
-                        System.out.println("Added slide to existing tab: " + pView.getTitle());
-                        return;
+        for(PresentationView prez : presentationViewList)
+        {
+            if(prez.getPresentation().equals(parentNode))
+            {
+                prez.getSlajdovi().add(newSlideView); // Dodajem  slideview presentationview-u
+                if(parent.getParent().equals(latestNode)) {
+                    // Update the display to show the new slide
+                    prez.removeAll();
+                    if(!prez.getSlajdovi().isEmpty()) {
+                        prez.add(prez.getSlajdovi().getLast(), BorderLayout.CENTER);
                     }
+                    prez.revalidate();
+                    prez.repaint();
+                    int idx = this.indexOfComponent(prez);
+                    this.setComponentAt(idx, prez); // forces JTabbedPane to redraw the selected tab
+
                 }
 
-
             }
+
+        }
 
         }
 

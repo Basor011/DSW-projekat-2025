@@ -21,4 +21,12 @@ public abstract class GraffNode{
     public GraffNode getParent() {return parent;}
 
     public void setParent(GraffNode parent) {this.parent = parent;}
+
+    @Override
+    public String toString() {
+        return "GraffNode{" +
+                "name='" + name + '\'' +
+                ", parent=" + parent +
+                '}';
+    }
 }

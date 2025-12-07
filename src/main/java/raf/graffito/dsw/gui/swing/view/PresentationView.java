@@ -24,13 +24,20 @@ public class PresentationView extends JPanel  {
         this.setName(title);
         this.presentation = presentation;
         slajdovi=new ArrayList<>();
-        test=new SlideView(new Slide("TEST",presentation));
+       // test=new SlideView(new Slide("TEST",presentation));
         setLayout(new BorderLayout());
-        add(test, BorderLayout.CENTER);
         System.out.println(presentation.getChildren().size());
         for(GraffNode child : presentation.getChildren())
         {
-            System.out.println(child.toString() + " OVDE");
+            if(child instanceof Slide)
+            {
+               // System.out.println("Slajd je slajd");
+                SlideView toAdd = new SlideView((Slide) child);
+                slajdovi.add(toAdd);
+            }
+        }
+        if(!slajdovi.isEmpty()) {
+            add(slajdovi.getFirst(), BorderLayout.CENTER);
         }
     }
 
@@ -45,6 +52,11 @@ public class PresentationView extends JPanel  {
 
     public List<SlideView> getSlajdovi() {
         return slajdovi;
+    }
+    public void refresh() {
+        System.out.println("Refreshing " + presentation.getName());
+        revalidate();
+        repaint();
     }
 
 

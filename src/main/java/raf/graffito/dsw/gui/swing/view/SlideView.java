@@ -23,7 +23,6 @@ private Slide slideModel;
         mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         add(mainLabel, BorderLayout.CENTER);
 
-
         JPanel thumbnailsPanel = new JPanel();
         thumbnailsPanel.setLayout(new BoxLayout(thumbnailsPanel, BoxLayout.Y_AXIS));
 
@@ -45,7 +44,6 @@ private Slide slideModel;
 
             thumbnailsPanel.add(thumbLabel);
         }
-
         add(thumbnailsPanel, BorderLayout.EAST);
     }
 
