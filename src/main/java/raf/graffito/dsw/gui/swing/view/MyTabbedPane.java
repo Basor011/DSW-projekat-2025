@@ -56,25 +56,10 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             String title = childNode.getName();
             System.out.println(node.getGraffNode().getName()+" ja sam veliki carobnjak feniks");
 
-
-                PresentationView presentationView = new PresentationView(title, (GraffNodeComposite) childNode);
-                this.addTab(presentationView.getTitle(), presentationView);
-                this.setBackgroundAt(i, colour);
-                this.setForegroundAt(i, Color.BLACK);
-
-
-/*
-            int childcount=childNode.getChildren().size();
-            System.out.println(childcount);
-            for(GraffNode slide : childNode.getChildren())
-            {
-                 System.out.println("mucak");
-
-                if(slide instanceof Slide) {
-                    System.out.println("test");
-                }
-            }
-*/
+            PresentationView presentationView = new PresentationView(title, (GraffNodeComposite) childNode);
+            this.addTab(presentationView.getTitle(), presentationView);
+            this.setBackgroundAt(i, colour);
+            this.setForegroundAt(i, Color.BLACK);
 
         }
         decoratedProjects.add(decoratedProject);
