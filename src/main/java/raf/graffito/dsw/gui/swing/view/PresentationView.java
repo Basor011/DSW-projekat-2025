@@ -1,6 +1,10 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.observer.Notification;
+import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
+import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.implementations.leaves.Slide;
 
 
@@ -11,34 +15,37 @@ import java.util.List;
 
 public class PresentationView extends JPanel  {
 
-    private GraffTreeItem presentation;
+    private GraffNodeComposite presentation;
     private List<SlideView> slajdovi;
-    private JTabbedPane tabbedPane;
     private SlideView test;
 
-    public PresentationView(String title, GraffTreeItem presentation)
+    public PresentationView(String title, GraffNodeComposite presentation)
     {
         this.setName(title);
         this.presentation = presentation;
         slajdovi=new ArrayList<>();
-        test=new SlideView(new Slide("TEST",presentation.getGraffNode()));
+        test=new SlideView(new Slide("TEST",presentation));
         setLayout(new BorderLayout());
         add(test, BorderLayout.CENTER);
+        System.out.println(presentation.getChildren().size());
+        for(GraffNode child : presentation.getChildren())
+        {
+            System.out.println(child.toString() + " OVDE");
+        }
     }
+
 
     public String getTitle() {
         return this.getName();
     }
 
-    public GraffTreeItem getPresentation() {
+    public GraffNodeComposite getPresentation() {
         return presentation;
-    }
-
-    public JTabbedPane getTabbedPane() {
-        return tabbedPane;
     }
 
     public List<SlideView> getSlajdovi() {
         return slajdovi;
     }
+
+
 }

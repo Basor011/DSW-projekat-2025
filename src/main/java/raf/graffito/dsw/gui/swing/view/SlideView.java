@@ -18,7 +18,7 @@ private Slide slideModel;
     private void init(){
         setLayout(new BorderLayout());
 
-
+        this.setPreferredSize(new Dimension(800, 600));
         JLabel mainLabel = new JLabel("Empty Slide", SwingConstants.CENTER);
         mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
         add(mainLabel, BorderLayout.CENTER);
@@ -26,7 +26,6 @@ private Slide slideModel;
 
         JPanel thumbnailsPanel = new JPanel();
         thumbnailsPanel.setLayout(new BoxLayout(thumbnailsPanel, BoxLayout.Y_AXIS));
-
 
         String[] imagePaths = {
                 "/images/amogus.png",
@@ -50,6 +49,8 @@ private Slide slideModel;
         add(thumbnailsPanel, BorderLayout.EAST);
     }
 
-
+    public Slide getSlideModel() {
+        return slideModel;
+    }
 }
 

@@ -116,3 +116,11 @@
 [OBAVESTENJE][05.12.2025. 14:38] Molim vas izaberite cvor
 [OBAVESTENJE][05.12.2025. 14:39] Molim vas izaberite cvor
 [OBAVESTENJE][05.12.2025. 14:57] Projekat mora imati barem jedno dete
+[GRESKA][06.12.2025. 10:46] Ne mogu biti dva istoimena cvora
+[GRESKA][06.12.2025. 10:47] Ne moze se izbrisati workspace
+[GRESKA][06.12.2025. 10:47] Vec odabrana boja
+[OBAVESTENJE][06.12.2025. 12:27] Molim vas izaberite cvor za brisanje
+[GRESKA][06.12.2025. 12:49] Ne moze se izbrisati workspace
+[OBAVESTENJE][06.12.2025. 13:34] Molim vas izaberite cvor
+[OBAVESTENJE][06.12.2025. 13:34] Molim vas izaberite cvor
+[OBAVESTENJE][06.12.2025. 21:14] Molim vas izaberite cvor
