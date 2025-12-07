@@ -126,3 +126,4 @@
 [OBAVESTENJE][06.12.2025. 21:14] Molim vas izaberite cvor
 [GRESKA][07.12.2025. 14:32] Vec odabrana boja
 [OBAVESTENJE][07.12.2025. 15:29] Molim vas izaberite cvor
+[GRESKA][07.12.2025. 18:55] Ne moze se izbrisati workspace

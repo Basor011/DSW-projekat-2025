@@ -12,7 +12,7 @@ public class ApplicationFramework  {
     private static ApplicationFramework instance;
 
     List<Subscriber> subscribers;
-    public Gui gui;
+
     protected GraffRepository gr;
     private MessageGenerator mg;
 
@@ -24,8 +24,8 @@ public class ApplicationFramework  {
         return instance;
     }
 
-    public void initialize(Gui gui, GraffRepository gr){
-        this.gui = gui;
+    public void initialize( GraffRepository gr){
+
         this.gr =  gr;
         subscribers =  new ArrayList<Subscriber>();
         this.mg = new MessageGenerator(subscribers);
@@ -35,20 +35,13 @@ public class ApplicationFramework  {
         mainFrame.setVisible(true);
 
         mg.addSubscriber(mainFrame);
-        /// nisam sigurna
         mg.addSubscriber(loggerFactory.createLogger("consoleLogger"));
         mg.addSubscriber(loggerFactory.createLogger("fileLogger"));
     }
-    public void run(){
-        this.gui.start();
-    }
+
 
     public List<Subscriber> getSubscribers() {
         return subscribers;
-    }
-
-    public Gui getGui() {
-        return gui;
     }
 
     public GraffRepository getGr() {
