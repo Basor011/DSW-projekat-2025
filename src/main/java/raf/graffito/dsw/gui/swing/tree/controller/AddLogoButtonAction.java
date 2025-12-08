@@ -1,4 +1,17 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
-public class AddLogoButtonAction {
+import raf.graffito.dsw.controller.state.StateManager;
+
+public class AddLogoButtonAction implements AddElementButtonAction{
+    private StateManager stateManager;
+
+    public AddLogoButtonAction(StateManager stateManager) {
+        this.stateManager = stateManager;
+    }
+
+    @Override
+    public void activate() {
+        stateManager.setAddLogoState();
+        System.out.println("aktiviran gumb za dodavanje loga");
+    }
 }

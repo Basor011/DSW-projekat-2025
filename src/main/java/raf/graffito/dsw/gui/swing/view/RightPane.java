@@ -1,5 +1,9 @@
 package raf.graffito.dsw.gui.swing.view;
 
+import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.gui.swing.tree.controller.AddImageButtonAction;
+import raf.graffito.dsw.gui.swing.tree.controller.AddLogoButtonAction;
+import raf.graffito.dsw.gui.swing.tree.controller.AddTextFieldButtonAction;
 import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import javax.swing.*;
 import java.awt.*;
@@ -8,9 +12,12 @@ import java.awt.*;
 public class RightPane extends JPanel implements TBSubscriber {
     private JLabel projectNameLabel;
     private JLabel presentationNameLabel;
+
     private JButton addTextFieldButton;
     private JButton addLogoButton;
     private JButton addImageButton;
+
+    private StateManager stateManager;
 
     public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
         this.projectNameLabel = projectNameLabel;
@@ -31,6 +38,17 @@ public class RightPane extends JPanel implements TBSubscriber {
 
         add(topPanel, BorderLayout.NORTH);
     }
+    public void initButtonActions() {
+        addImageButton.addActionListener(e -> {
+            new AddImageButtonAction(stateManager).activate();
+        });
+        addTextFieldButton.addActionListener(e -> {
+            new AddTextFieldButtonAction(stateManager).activate();
+        });
+        addLogoButton.addActionListener(e -> {
+            new AddLogoButtonAction(stateManager).activate();
+        });
+    }
 
     @Override
     public void update(String presentationName, String projectName) {
@@ -47,15 +65,12 @@ public class RightPane extends JPanel implements TBSubscriber {
     public JLabel getProjectNameLabel() {
         return projectNameLabel;
     }
-
     public void setProjectNameLabel(JLabel projectNameLabel) {
         this.projectNameLabel = projectNameLabel;
     }
-
     public JLabel getPresentationNameLabel() {
         return presentationNameLabel;
     }
-
     public void setPresentationNameLabel(JLabel presentationNameLabel) {
         this.presentationNameLabel = presentationNameLabel;
     }

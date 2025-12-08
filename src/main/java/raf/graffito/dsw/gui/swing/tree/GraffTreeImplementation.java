@@ -110,7 +110,6 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
     @Override
     public void addSubscriber(PSubscriber subscriber) {
         pSubscribers.add(subscriber);
-
     }
 
     @Override

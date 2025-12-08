@@ -23,14 +23,24 @@ public class SlideView extends JPanel {
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
     private StateManager stateManager;
+    private JLabel lbl;
 
     public SlideView(Slide slideModel) {
         this.slideModel = slideModel;
-        elementViewMap = new HashMap<>();
+        this.elementViewMap = new HashMap<>();
         setLayout(null);
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(new Dimension(800, 600));
 
+        lbl = new JLabel(slideModel.getName());
+        lbl.setFont(new Font("SansSerif", Font.BOLD, 20));
+        lbl.setBounds(20, 10, 400, 30);
+        add(lbl);
+    }
+    public void setSlide(Slide slide){
+        this.slideModel = slide;
+        lbl.setText(slideModel.getName());
+        repaint();
     }
     private void initElementViews() {
         for(GraffNode e: slideModel.getChildren()){

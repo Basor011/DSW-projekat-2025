@@ -16,8 +16,6 @@ import java.io.IOException;
 
 public class GraffTreeTransferHandler extends TransferHandler {
     private final DataFlavor nodeFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + GraffTreeItem.class.getName(), "GraffTreeItem");
-
-
     @Override
     protected Transferable createTransferable(JComponent c) {
         JTree tree = (JTree) c;

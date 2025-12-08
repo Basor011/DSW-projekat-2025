@@ -61,6 +61,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             this.setBackgroundAt(i, colour);
             this.setForegroundAt(i, Color.BLACK);
             presentationViewList.add(presentationView);
+
         }
         decoratedProjects.add(decoratedProject);
     }
@@ -88,7 +89,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             this.setForegroundAt(i, Color.BLACK);
         }
     }
-
     public DefaultMutableTreeNode getLatestNode() {
         return latestNode;
     }
@@ -145,7 +145,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if (notification == Notification.TAB_CHANGED)
         {
-
             int index=getSelectedIndex();
             if (index == -1) return; //ako ne postoje tabovi return
             String text=getTitleAt(index);
