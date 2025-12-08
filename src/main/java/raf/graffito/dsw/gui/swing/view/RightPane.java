@@ -1,6 +1,9 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.controller.state.concrete.AddImageState;
+import raf.graffito.dsw.controller.state.concrete.AddLogoState;
+import raf.graffito.dsw.controller.state.concrete.AddTextFieldState;
 import raf.graffito.dsw.gui.swing.tree.controller.AddImageButtonAction;
 import raf.graffito.dsw.gui.swing.tree.controller.AddLogoButtonAction;
 import raf.graffito.dsw.gui.swing.tree.controller.AddTextFieldButtonAction;
@@ -18,6 +21,7 @@ public class RightPane extends JPanel implements TBSubscriber {
     private JButton addImageButton;
 
     private StateManager stateManager;
+    private SlideView slideView;
 
     public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
         this.projectNameLabel = projectNameLabel;
@@ -37,22 +41,23 @@ public class RightPane extends JPanel implements TBSubscriber {
         topPanel.add(addImageButton);
 
         add(topPanel, BorderLayout.NORTH);
+
+        initButtonActions();
     }
     public void initButtonActions() {
         addImageButton.addActionListener(e -> {
-            new AddImageButtonAction(stateManager).activate();
+            stateManager.setCurrentState(new AddImageState());
         });
         addTextFieldButton.addActionListener(e -> {
-            new AddTextFieldButtonAction(stateManager).activate();
+            stateManager.setCurrentState(new AddTextFieldState());
         });
         addLogoButton.addActionListener(e -> {
-            new AddLogoButtonAction(stateManager).activate();
+            stateManager.setCurrentState(new AddLogoState());
         });
     }
 
     @Override
     public void update(String presentationName, String projectName) {
-
        if(presentationName == null) this.projectNameLabel.setText(projectName);
        else if(projectName == null) this.presentationNameLabel.setText(presentationName);
 

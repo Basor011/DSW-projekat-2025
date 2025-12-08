@@ -22,8 +22,6 @@ public class SlideView extends JPanel {
 
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
-    private StateManager stateManager;
-    private JLabel lbl;
 
     public SlideView(Slide slideModel) {
         this.slideModel = slideModel;
@@ -31,16 +29,7 @@ public class SlideView extends JPanel {
         setLayout(null);
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(new Dimension(800, 600));
-
-        lbl = new JLabel(slideModel.getName());
-        lbl.setFont(new Font("SansSerif", Font.BOLD, 20));
-        lbl.setBounds(20, 10, 400, 30);
-        add(lbl);
-    }
-    public void setSlide(Slide slide){
-        this.slideModel = slide;
-        lbl.setText(slideModel.getName());
-        repaint();
+        initElementViews();
     }
     private void initElementViews() {
         for(GraffNode e: slideModel.getChildren()){
@@ -52,6 +41,11 @@ public class SlideView extends JPanel {
         if(element instanceof TextFieldElement) return new TextFieldVIew((TextFieldElement) element);
         if (element instanceof ImageElement) return new ImageView((ImageElement) element);
         return null;
+    }
+    public void addElement(Element element) {
+        slideModel.addChild(element);
+        elementViewMap.put(element, elementFactory((Element) element));
+        repaint();
     }
 
     @Override

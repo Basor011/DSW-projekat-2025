@@ -12,18 +12,10 @@ import java.awt.event.MouseWheelEvent;
 import java.util.Random;
 
 public class AddImageState implements ElementState {
-    private SlideView slidePanel;
-    private GraffNodeComposite slideNode;
-
-    public AddImageState(SlideView slidePanel, GraffNodeComposite slideNode) {
-        this.slidePanel = slidePanel;
-        this.slideNode = (GraffNodeComposite) slideNode;
-    }
     @Override
-    public void mousePressed(MouseEvent e, Element element) {
-        ImageElement image = new ImageElement("Image"+new Random().nextInt(200),slideNode,e.getPoint(),new Dimension(150,100),"images/amogus.png");
-        slideNode.addChild(image);
-        slidePanel.repaint();
+    public void mousePressed(MouseEvent e, SlideView slideView) {
+        ImageElement image = new ImageElement("Image"+new Random().nextInt(200),slideView.getSlideModel(),e.getPoint(),new Dimension(150,100),"images/amogus.png");
+        slideView.addElement(image);
     }
     @Override public void mouseDragged(MouseEvent e, Element element) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}

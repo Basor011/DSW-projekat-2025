@@ -9,7 +9,6 @@ public class TextFieldVIew extends ElementView{
     public TextFieldVIew(Element element) {
         super(element);
     }
-
     @Override
     public void paint(Graphics2D g) {
         TextFieldElement e = (TextFieldElement) element;

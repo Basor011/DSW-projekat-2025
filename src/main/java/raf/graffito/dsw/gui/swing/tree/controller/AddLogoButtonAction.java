@@ -11,7 +11,6 @@ public class AddLogoButtonAction implements AddElementButtonAction{
 
     @Override
     public void activate() {
-        stateManager.setAddLogoState();
-        System.out.println("aktiviran gumb za dodavanje loga");
+
     }
 }

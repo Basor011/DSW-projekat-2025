@@ -12,19 +12,10 @@ import java.awt.event.MouseWheelEvent;
 import java.util.Random;
 
 public class AddTextFieldState implements ElementState {
-    private SlideView slideView;
-    private GraffNodeComposite slideNode;
-
-    public AddTextFieldState(SlideView slideView, GraffNodeComposite slideNode) {
-        this.slideView = slideView;
-        this.slideNode = slideNode;
-    }
-
     @Override
-    public void mousePressed(MouseEvent e, Element element) {
-        TextFieldElement tfe = new TextFieldElement("TextField"+ new Random().nextInt(200),slideNode, e.getPoint(), new Dimension(200,40));
-        slideNode.addChild(tfe);
-        slideView.repaint();
+    public void mousePressed(MouseEvent e, SlideView slideView) {
+        TextFieldElement tfe = new TextFieldElement("TextField"+ new Random().nextInt(200),slideView.getSlideModel(), e.getPoint(), new Dimension(200,40));
+        slideView.addElement(tfe);
     }
 
     @Override public void mouseDragged(MouseEvent e, Element element) {}

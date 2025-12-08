@@ -11,7 +11,6 @@ public class AddTextFieldButtonAction implements AddElementButtonAction{
 
     @Override
     public void activate() {
-        stateManager.setAddTextFieldState();
-        System.out.println("aktiviran gumb za dodavanje tesktfielda");
+
     }
 }
