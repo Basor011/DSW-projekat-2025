@@ -2,7 +2,7 @@ package raf.graffito.dsw.model.composite.leaves;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 
-import java.awt.*; ///point bi mogao biti ne preko biblioteke vec preko posebne klase
+import java.awt.*;
 
 public class LogoElement extends Element{
     public LogoElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija) {
