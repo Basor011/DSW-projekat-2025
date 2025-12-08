@@ -1,9 +1,17 @@
 package raf.graffito.dsw.gui.swing.view;
 
+import raf.graffito.dsw.controller.state.StateManager;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
+import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
+import raf.graffito.dsw.gui.swing.view.slide_elements.LogoView;
+import raf.graffito.dsw.gui.swing.view.slide_elements.TextFieldVIew;
+import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.leaves.Element;
+import raf.graffito.dsw.model.composite.leaves.ImageElement;
+import raf.graffito.dsw.model.composite.leaves.LogoElement;
+import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +22,7 @@ public class SlideView extends JPanel {
 
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
+    private StateManager stateManager;
 
     public SlideView(Slide slideModel) {
         this.slideModel = slideModel;
@@ -23,8 +32,36 @@ public class SlideView extends JPanel {
         setPreferredSize(new Dimension(800, 600));
 
     }
+    private void initElementViews() {
+        for(GraffNode e: slideModel.getChildren()){
+            elementViewMap.put((Element) e, elementFactory((Element) e));
+        }
+    }
+    private ElementView elementFactory(Element element) {
+        if(element instanceof LogoElement) return new LogoView((LogoElement) element);
+        if(element instanceof TextFieldElement) return new TextFieldVIew((TextFieldElement) element);
+        if (element instanceof ImageElement) return new ImageView((ImageElement) element);
+        return null;
+    }
 
-    private void init(){
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        for(GraffNode e: slideModel.getChildren()){
+            ElementView elementView = elementViewMap.get(e);
+            if(elementView == null) elementView = elementFactory((Element) e);
+            else elementView.paint(g2d);
+        }
+        g2d.dispose();
+    }
+
+    public Slide getSlideModel() {
+        return slideModel;
+    }
+}
+/// dummy model slideview
+/* private void init(){
         setLayout(new BorderLayout());
 
         this.setPreferredSize(new Dimension(800, 600));
@@ -55,9 +92,5 @@ public class SlideView extends JPanel {
         }
         add(thumbnailsPanel, BorderLayout.EAST);
     }
-
-    public Slide getSlideModel() {
-        return slideModel;
-    }
-}
+*/
 

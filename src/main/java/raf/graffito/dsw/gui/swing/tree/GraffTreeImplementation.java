@@ -33,17 +33,12 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
 
     @Override
     public void addChild(GraffTreeItem root) {
-
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr(); //repo pravi dete pomocu factory
         GraffNode parentN = root.getGraffNode();
         GraffNode child = repo.createChild(parentN);
-
         if(child == null) return;
-
         repo.addChild(parentN, child);
-
         GraffTreeItem childItem = new GraffTreeItem(child);
-        //root.add(childItem);
         ((DefaultTreeModel) treeModel).insertNodeInto(childItem, root, root.getChildCount());
 
         if(child instanceof GraffNodeComposite composite){
@@ -51,8 +46,6 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
                 childItem.add(new GraffTreeItem(c));
             }
         }
-
-       // treeModel.reload(root);
         expantNodes(graffTreeView);
     }
 
@@ -65,6 +58,10 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
             treeModel.removeNodeFromParent(node);
             SwingUtilities.updateComponentTreeUI(graffTreeView);
         }
+    }
+    @Override
+    public void addElement(GraffTreeItem element) {
+
     }
 
     @Override

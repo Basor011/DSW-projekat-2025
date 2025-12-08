@@ -5,6 +5,9 @@ import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Workspace;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
+import raf.graffito.dsw.model.composite.leaves.ImageElement;
+import raf.graffito.dsw.model.composite.leaves.LogoElement;
+import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -28,8 +31,14 @@ public class GraffTreeCellRenderer extends DefaultTreeCellRenderer{
             img_URL = getClass().getResource("/images/project.png");
         }else if(((GraffTreeItem)value).getGraffNode() instanceof Presentation){
             img_URL = getClass().getResource("/images/presentation.png");
-        }else if(((GraffTreeItem)value).getGraffNode() instanceof Slide){
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof Slide) {
             img_URL = getClass().getResource("/images/slide.png");
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof LogoElement){
+
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof ImageElement){
+            img_URL = getClass().getResource("images/imageelement.png");
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof TextFieldElement){
+            img_URL = getClass().getResource("images/textfieldelement.png");
         }
         if(img_URL != null){
             icon = new ImageIcon(img_URL);

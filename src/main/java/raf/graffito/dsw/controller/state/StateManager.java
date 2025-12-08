@@ -7,56 +7,26 @@ import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import java.awt.image.BufferedImage;
 
 public class StateManager {
-    private ElementState elementState;
-    private AddState addImageState;
-    private ChangeElementState changeElementState;
-    private CopyState copyState;
-    private DeleteState deleteState;
-    private MoveState moveState;
-    private RotationState rotationState;
-    private ScaleState scaleState;
-    private SelectState selectState;
+    private ElementState currentState;
+    private AddImageState addImageState;
+    private AddLogoState addLogoState;
+    private AddTextFieldState addTextFieldState;
 
-    public StateManager(SlideView slidePanel, GraffNodeComposite slideNode, String imagepath, BufferedImage logoimage) {
-
-    }
-    private void init(SlideView slidePanel, GraffNodeComposite slideNode, String imagepath, BufferedImage logoimage) {
-        addImageState = new AddState(slidePanel, slideNode, imagepath);
+    public StateManager(SlideView slidePanel, GraffNodeComposite slideNode) {
+        init(slidePanel, slideNode);
+        currentState = null;
     }
 
-    public ElementState getState() {
-        return elementState;
+    private void init(SlideView slidePanel, GraffNodeComposite slideNode) {
+        addImageState = new AddImageState(slidePanel, slideNode);
+        addLogoState = new AddLogoState(slidePanel, slideNode);
+        addTextFieldState = new AddTextFieldState(slidePanel, slideNode);
     }
 
-    public void setAddImageState(AddState addImageState) {
-        this.addImageState = addImageState;
-    }
+    public void setAddImageState()   { currentState = addImageState; }
+    public void setAddLogoState()    { currentState = addLogoState; }
+    public void setAddTextFieldState() { currentState = addTextFieldState; }
 
-    public void setChangeElementState(ChangeElementState changeElementState) {
-        this.changeElementState = changeElementState;
-    }
-
-    public void setCopyState(CopyState copyState) {
-        this.copyState = copyState;
-    }
-
-    public void setDeleteState(DeleteState deleteState) {
-        this.deleteState = deleteState;
-    }
-
-    public void setMoveState(MoveState moveState) {
-        this.moveState = moveState;
-    }
-
-    public void setRotationState(RotationState rotationState) {
-        this.rotationState = rotationState;
-    }
-
-    public void setScaleState(ScaleState scaleState) {
-        this.scaleState = scaleState;
-    }
-
-    public void setSelectState(SelectState selectState) {
-        this.selectState = selectState;
-    }
+    public ElementState getCurrentState() { return currentState; }
 }
+

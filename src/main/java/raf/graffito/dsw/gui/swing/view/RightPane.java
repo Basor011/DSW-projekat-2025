@@ -8,10 +8,16 @@ import java.awt.*;
 public class RightPane extends JPanel implements TBSubscriber {
     private JLabel projectNameLabel;
     private JLabel presentationNameLabel;
+    private JButton addTextFieldButton;
+    private JButton addLogoButton;
+    private JButton addImageButton;
 
     public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
-        this.projectNameLabel=projectNameLabel;
-        this.presentationNameLabel=presentationNameLabel;
+        this.projectNameLabel = projectNameLabel;
+        this.presentationNameLabel = presentationNameLabel;
+        this.addTextFieldButton = new JButton("TEXT FIELD");
+        this.addLogoButton = new JButton("LOGO");
+        this.addImageButton = new JButton("IMAGE");
 
         setLayout(new BorderLayout());
         JPanel topPanel = new JPanel();
@@ -19,6 +25,9 @@ public class RightPane extends JPanel implements TBSubscriber {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
         topPanel.add(projectNameLabel);
         topPanel.add(presentationNameLabel);
+        topPanel.add(addTextFieldButton);
+        topPanel.add(addLogoButton);
+        topPanel.add(addImageButton);
 
         add(topPanel, BorderLayout.NORTH);
     }
