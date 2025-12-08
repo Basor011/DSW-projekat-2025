@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class StateManager {
     private ElementState elementState;
-    private AddImageState addImageState;
+    private AddState addImageState;
     private AddTextState addTextState;
     private AddLogoState addLogoState;
     private ChangeElementState changeElementState;
@@ -23,7 +23,7 @@ public class StateManager {
 
     }
     private void init(SlideView slidePanel, GraffNodeComposite slideNode, String imagepath, BufferedImage logoimage) {
-        addImageState = new AddImageState(slidePanel, slideNode, imagepath);
+        addImageState = new AddState(slidePanel, slideNode, imagepath);
         addTextState = new AddTextState(slidePanel, slideNode);
         addLogoState = new AddLogoState(slideNode, slidePanel, logoimage);
     }
@@ -32,7 +32,7 @@ public class StateManager {
         return elementState;
     }
 
-    public void setAddImageState(AddImageState addImageState) {
+    public void setAddImageState(AddState addImageState) {
         this.addImageState = addImageState;
     }
 

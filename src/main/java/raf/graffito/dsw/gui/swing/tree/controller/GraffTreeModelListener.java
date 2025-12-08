@@ -1,6 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;

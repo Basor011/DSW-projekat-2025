@@ -1,10 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
-import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
-import raf.graffito.dsw.gui.swing.tree.observer.Notification;
-import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

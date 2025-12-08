@@ -1,7 +1,7 @@
 package raf.graffito.dsw.controller;
 
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 

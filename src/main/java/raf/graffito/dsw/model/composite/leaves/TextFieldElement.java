@@ -16,7 +16,7 @@ public class TextFieldElement extends Element {
 
     @Override
     public Prototype clone() {
-        return new TextFieldElement(getName()+"_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension(),text,fontSize);
+        return new TextFieldElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension(),text,fontSize);
     }
 
     public String getText() {return text;}

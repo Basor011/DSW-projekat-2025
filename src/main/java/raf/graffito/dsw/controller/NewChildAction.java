@@ -1,7 +1,7 @@
 package raf.graffito.dsw.controller;
 
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 
