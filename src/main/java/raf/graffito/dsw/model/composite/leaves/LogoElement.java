@@ -10,7 +10,6 @@ import java.util.List;
 
 public class LogoElement extends Element{
     private BufferedImage logo;
-
     public LogoElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija,double rotation, BufferedImage logo) {
         super(name, parent, lokacija, dimenzija, rotation);
         this.logo = logo;
@@ -21,6 +20,8 @@ public class LogoElement extends Element{
         LogoElement e = new LogoElement(getName() + "KOPIRANO", null, new Point(getLokacija().x + 10, getLokacija().y + 10), getDimenzija(), getRotation(), logo);
         return e;
     }
-    public BufferedImage getLogo() {return logo;}
-    public void setLogo(BufferedImage logo) {this.logo = logo;}
+
+    public BufferedImage getLogo() {
+        return logo;
+    }
 }

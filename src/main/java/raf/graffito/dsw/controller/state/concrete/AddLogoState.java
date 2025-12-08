@@ -25,7 +25,7 @@ public class AddLogoState implements ElementState {
         this.logoImage = logoImage;
     }
     @Override public void mousePressed(MouseEvent e, Element element) {
-        LogoElement le = new LogoElement("Logo"+new Random().nextInt(100), slideNode, e.getPoint(),new Dimension(50,50),0,logoImage);
+        LogoElement le = new LogoElement("Logo"+new Random().nextInt(100), slideNode, e.getPoint(),new Dimension(50,50),0, logoImage);
         slideNode.addChild(le);
         slidePanel.repaint();
     }
