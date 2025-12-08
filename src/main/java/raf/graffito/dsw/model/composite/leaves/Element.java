@@ -5,7 +5,7 @@ import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 
 import java.awt.*;
 
-abstract public class Element extends GraffNodeLeaf implements Prototype {
+abstract public class Element extends GraffNodeLeaf {
     private Point location;
     private Dimension dimension;
     private double rotationAngle = 0;
@@ -18,7 +18,7 @@ abstract public class Element extends GraffNodeLeaf implements Prototype {
         this.dimension = dimension;
         this.type = type;
     }
-
+    public abstract Element clone();
     public void setDimensions(int x, int y) {
         this.getDimension().width = Math.max(10, this.getDimension().width + x);
         this.getDimension().height = Math.max(10, this.getDimension().height + y);

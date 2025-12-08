@@ -1,18 +1,27 @@
 package raf.graffito.dsw.gui.swing.view;
 
+import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 import raf.graffito.dsw.model.composite.compositions.Slide;
+import raf.graffito.dsw.model.composite.leaves.Element;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SlideView extends JPanel {
 
-private Slide slideModel;
+    private Slide slideModel;
+    private Map<Element, ElementView> elementViewMap;
 
     public SlideView(Slide slideModel) {
         this.slideModel = slideModel;
-        init();
+        elementViewMap = new HashMap<>();
+        setLayout(null);
+        setBackground(Color.LIGHT_GRAY);
+        setPreferredSize(new Dimension(800, 600));
+
     }
 
     private void init(){

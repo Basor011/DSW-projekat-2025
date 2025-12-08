@@ -13,7 +13,7 @@ public class ImageElement extends Element{
     }
 
     @Override
-    public Prototype clone() {
+    public Element clone() {
         return new ImageElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension(), imagePath);
     }
     public String getImagePath() {return imagePath;}

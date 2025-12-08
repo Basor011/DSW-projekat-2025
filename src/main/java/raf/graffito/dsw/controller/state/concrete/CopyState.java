@@ -10,7 +10,7 @@ import java.awt.event.MouseWheelEvent;
 public class CopyState implements ElementState {
     @Override
     public void mouseClicked(MouseEvent e, Element element) {
-        Element copy = element.copy();
+        Element copy = element.clone();
         GraffNodeComposite parent = (GraffNodeComposite) copy.getParent();
         parent.addChild(copy);
     }

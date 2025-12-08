@@ -9,7 +9,7 @@ public class LogoElement extends Element{
         super(name, parent, lokacija, dimenzija, "LOGO");
     }
     @Override
-    public Prototype clone() {
+    public Element clone() {
         return new LogoElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension());
     }
 }
