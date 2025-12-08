@@ -24,5 +24,4 @@ public class Slide extends GraffNodeComposite {
         children.remove(child);
         child.setParent(null);
     }
-
 }

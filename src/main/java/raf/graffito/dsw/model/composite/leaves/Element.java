@@ -5,24 +5,45 @@ import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 
 import java.awt.*;
 
-abstract public class Element extends GraffNodeLeaf {
-    private Point lokacija;
-    private Dimension dimenzija;
-    //za ugao rotacije
-    private double rotation;
+abstract public class Element extends GraffNodeLeaf implements Prototype {
+    private Point location;
+    private Dimension dimension;
+    private double rotationAngle = 0;
+    private boolean isSelected = false;
+    private String type;
 
-    public Element(String name, GraffNode parent, Point lokacija, Dimension dimenzija, double rotation) {
+    public Element(String name, GraffNode parent, Point location, Dimension dimension, String type) {
         super(name, parent);
-        this.lokacija = lokacija;
-        this.dimenzija = dimenzija;
-        this.rotation = rotation;
+        this.location = location;
+        this.dimension = dimension;
+        this.type = type;
     }
 
-    public abstract Element copy();
-    public Point getLokacija() {return lokacija;}
-    public void setLokacija(Point lokacija) {this.lokacija = lokacija;}
-    public Dimension getDimenzija() {return dimenzija;}
-    public void setDimenzija(Dimension dimenzija) {this.dimenzija = dimenzija;}
-    public double getRotation() {return rotation;}
-    public void setRotation(double rotation) {this.rotation = rotation;}
+    public void setDimensions(int x, int y) {
+        this.getDimension().width = Math.max(10, this.getDimension().width + x);
+        this.getDimension().height = Math.max(10, this.getDimension().height + y);
+    }
+    public void move(int dx, int dy){
+        this.location.x += dx;
+        this.location.y += dy;
+        notifyAll();
+    }
+    public void resize(int width, int height){
+        this.dimension.width += width;
+        this.dimension.height += height;
+        notifyAll();
+    }
+    public void rotate90(boolean clockwise){
+        rotationAngle += Math.toRadians(clockwise ? -90 : 90);
+        notifyAll();
+    }
+    public void setSelected(boolean selected){
+        this.isSelected = selected;
+        notifyAll();
+    }
+    public Point getLocation() {return location;}
+    public Dimension getDimension() {return dimension;}
+    public double getRotationAngle() {return rotationAngle;}
+    public boolean isSelected() {return isSelected;}
+    public String getType() {return type;}
 }

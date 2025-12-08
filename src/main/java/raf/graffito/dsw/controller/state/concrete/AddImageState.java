@@ -25,9 +25,9 @@ public class AddImageState implements ElementState {
     }
     @Override
     public void mousePressed(MouseEvent e, Element element) {
-        ImageElement img = new ImageElement("Image"+new Random().nextInt(100),slideNode,e.getPoint(),new Dimension(100,100), 0, imagePath);
-        slideNode.addChild(img);
-        slidePanel.repaint();
+        //ImageElement img = new ImageElement("Image"+new Random().nextInt(100),slideNode,e.getPoint(),new Dimension(100,100), "Image", imagePath);
+        //slideNode.addChild(img);
+        //slidePanel.repaint();
     }
     @Override public void mouseDragged(MouseEvent e, Element element) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}

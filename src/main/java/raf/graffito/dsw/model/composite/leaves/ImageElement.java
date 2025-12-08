@@ -7,14 +7,15 @@ import java.awt.*;
 public class ImageElement extends Element{
     private String imagePath;
 
-    public ImageElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, double rotation, String imagePath) {
-        super(name, parent,lokacija, dimenzija, rotation);
+    public ImageElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, String imagePath) {
+        super(name, parent,lokacija, dimenzija, "IMAGE");
         this.imagePath = imagePath;
     }
+
     @Override
-    public Element copy() {
-        ImageElement e = new ImageElement(getName() + "KOPIRANO", null, new Point(getLokacija().x + 10, getLokacija().y + 10), getDimenzija(), getRotation(), imagePath);
+    public Prototype clone() {
+        ImageElement e = new ImageElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension(), imagePath);
         return e;
     }
-
+    public String getImagePath() {return imagePath;}
 }
