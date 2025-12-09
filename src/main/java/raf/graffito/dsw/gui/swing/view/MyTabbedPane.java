@@ -181,7 +181,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             if(!(parent.getGraffNode() instanceof Presentation)) return; //treba da se doda u listu slajdova, parent.getgraffnode= Presentation,
 
             Slide newSlide = (Slide) node.getGraffNode();
-            SlideView newSlideView= new SlideView(newSlide);
+            SlideView newSlideView= new SlideView(newSlide, MainFrame.getInstance().getStateManager());
              /*
                 SlideController sc = new SlideController();
                 slideView.addMouseListener...

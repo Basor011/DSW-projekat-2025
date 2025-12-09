@@ -37,7 +37,7 @@ public class AddImageState implements ElementState {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(MouseEvent e, SlideView slideView) {
 
     }
 

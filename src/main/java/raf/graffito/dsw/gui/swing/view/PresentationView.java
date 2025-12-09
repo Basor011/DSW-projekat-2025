@@ -31,7 +31,7 @@ public class PresentationView extends JPanel {
         System.out.println(presentation.getChildren().size());
         for(GraffNode child : presentation.getChildren()) {
             if(child instanceof Slide) {
-                SlideView toAdd = new SlideView((Slide) child);
+                SlideView toAdd = new SlideView((Slide) child, MainFrame.getInstance().getStateManager());
                 slajdovi.add(toAdd);
             }
         }

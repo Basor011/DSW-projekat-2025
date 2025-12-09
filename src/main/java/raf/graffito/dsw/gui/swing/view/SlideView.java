@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.gui.swing.tree.controller.state_actions.StateActionManager;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.LogoView;
@@ -15,6 +16,9 @@ import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,14 +28,32 @@ public class SlideView extends JPanel {
     private Map<Element, ElementView> elementViewMap;
     private StateManager stateManager;
 
-    public SlideView(Slide slideModel) {
+    public SlideView(Slide slideModel, StateManager stateManager) {
         this.slideModel = slideModel;
         this.elementViewMap = new HashMap<>();
+        this.stateManager = stateManager;
         setLayout(null);
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(new Dimension(800, 600));
         initElementViews();
+        initMouseListener();
     }
+    private void initMouseListener() {
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                stateManager.getCurrentState().mousePressed(e, SlideView.this);
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                stateManager.getCurrentState().mouseDragged(e, SlideView.this);
+            }
+        });
+    }
+
     private void initElementViews() {
         for(GraffNode e: slideModel.getChildren()){
             elementViewMap.put((Element) e, elementFactory((Element) e));

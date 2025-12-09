@@ -25,7 +25,7 @@ public class AddLogoState implements ElementState {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(MouseEvent e, SlideView slideView) {
 
     }
 

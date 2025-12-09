@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.ActionManager;
+import raf.graffito.dsw.controller.state.StateManager;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
@@ -23,7 +24,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private JSplitPane split2;
 
     private RightPane rightPanel;
-    private StateActionManager stateActionManager;
+    private StateManager stateManager;
 
     public static MainFrame getInstance() {
         if(instance == null) {
@@ -33,7 +34,7 @@ public class MainFrame extends JFrame implements Subscriber {
     }
     private MainFrame() {
         actionManager = new ActionManager();
-        stateActionManager = new StateActionManager();
+        stateManager = new StateManager();
         graffTree = new GraffTreeImplementation();
         instance = this;
         initialize();
@@ -82,8 +83,8 @@ public class MainFrame extends JFrame implements Subscriber {
         return rightPanel;
     }
 
-    public StateActionManager getStateActionManager() {
-        return stateActionManager;
+    public StateManager getStateManager() {
+        return stateManager;
     }
 
     @Override
