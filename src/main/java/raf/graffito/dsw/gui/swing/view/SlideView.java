@@ -71,6 +71,7 @@ public class SlideView extends JPanel {
     public void startMoveState(){
         this.stateManager.setMoveState();
     }
+
     public ElementView getElementAt(Point p) {
         for (Element e : elementViewMap.keySet()) {
             ElementView view = elementViewMap.get(e);

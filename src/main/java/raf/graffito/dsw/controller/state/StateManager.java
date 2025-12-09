@@ -13,18 +13,27 @@ public class StateManager {
     private AddImageState addImageState;
     private AddLogoState addLogoState;
     private AddTextFieldState addTextFieldState;
+    private SelectState selectState;
 
-    public StateManager() {initstates();}
-    private void initstates(){
+    public StateManager() {
+        initstates();
+    }
+
+    private void initstates() {
         moveState = new MoveState();
         addLogoState = new AddLogoState();
         addTextFieldState = new AddTextFieldState();
-        addImageState = new AddImageState(null );
-        currentState = moveState;
+        addImageState = new AddImageState(null);
+        selectState = new SelectState();
+        currentState = selectState;
     }
 
     public ElementState getCurrentState() {
         return currentState;
+    }
+
+    public void setSelectState() {
+        currentState = selectState;
     }
 
     public void setMoveState() {
@@ -43,5 +52,5 @@ public class StateManager {
     public void setAddTextFieldState() {
         currentState = addTextFieldState;
     }
-}
 
+}

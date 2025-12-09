@@ -1,9 +1,6 @@
 package raf.graffito.dsw.controller;
 
-import raf.graffito.dsw.controller.state_actions.AddImageAction;
-import raf.graffito.dsw.controller.state_actions.AddLogoAction;
-import raf.graffito.dsw.controller.state_actions.AddTextFieldAction;
-import raf.graffito.dsw.controller.state_actions.MoveElementAction;
+import raf.graffito.dsw.controller.state_actions.*;
 
 import java.awt.*;
 
@@ -17,6 +14,7 @@ public class ActionManager {
     private AddImageAction addImageButton;
     private AddLogoAction addLogoButton;
     private AddTextFieldAction addTextFieldButton;
+    private SelectElementAction selectElementAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -24,6 +22,7 @@ public class ActionManager {
         newChildAction = new NewChildAction();
         removeChildAction = new RemoveChildAction();
 
+        selectElementAction = new SelectElementAction();
         moveAction = new MoveElementAction();
         addImageButton = new AddImageAction();
         addLogoButton = new AddLogoAction();
@@ -40,6 +39,7 @@ public class ActionManager {
         return removeChildAction;
     }
 
+    public SelectElementAction getSelectElementAction() {return selectElementAction;}
     public MoveElementAction getMoveAction() {return moveAction;}
     public AddImageAction getAddImageButton() {return addImageButton;}
     public AddLogoAction getAddLogoButton() {return addLogoButton;}

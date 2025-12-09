@@ -15,6 +15,7 @@
         private JButton buttonAddTextField;
         private JButton buttonAddLogo;
         private JButton buttonMoveElement;
+        private JButton buttonSelectElement;
 
         public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
             this.projectNameLabel = projectNameLabel;
@@ -33,22 +34,37 @@
             this.buttonAddImage = createIconButton(MainFrame.getInstance().getActionManager().getAddImageButton());
             this.buttonAddTextField = createIconButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton());
             this.buttonAddLogo = createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
+            this.buttonSelectElement = createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction());
             this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
+            buttonPanel.add(buttonSelectElement);
             buttonPanel.add(buttonMoveElement);
 
             add(buttonPanel, BorderLayout.CENTER);
         }
         private JButton createIconButton(Action action) {
             JButton button = new JButton(action);
-            button.setContentAreaFilled(false);
-            button.setOpaque(false);
+            button.setContentAreaFilled(true);
+            button.setOpaque(true);
+            button.setBackground(new Color(240, 240, 240));
             button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             button.setFocusPainted(false);
             button.setHorizontalAlignment(SwingConstants.CENTER);
             button.setVerticalAlignment(SwingConstants.CENTER);
+
+            button.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent e) {
+                    button.setBackground(new Color(220, 220, 220)); // tamnije
+                }
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent e) {
+                    if (!button.getModel().isPressed() && !button.getModel().isSelected())
+                        button.setBackground(new Color(240, 240, 240));
+                }
+            });
 
             Icon icon = button.getIcon();
             if (icon != null) {
@@ -57,7 +73,7 @@
 
             return button;
         }
-
+        public void startSelectState() {stateManager.setSelectState();}
         public void startMoveState() {stateManager.setMoveState();}
         public void startAddImageState() {stateManager.setAddImageState("images/bananaleclerc.jpg");}
         public void startAddLogoState() {stateManager.setAddLogoState();}
