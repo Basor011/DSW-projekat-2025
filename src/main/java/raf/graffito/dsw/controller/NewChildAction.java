@@ -13,7 +13,7 @@ public class NewChildAction extends AbstractGraffAction {
     public NewChildAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_M,
                 ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("/images/plus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/icons for buttons/plus.png"));
         putValue(NAME, "New Project");
         putValue(SHORT_DESCRIPTION, "Create a new child?");
     }

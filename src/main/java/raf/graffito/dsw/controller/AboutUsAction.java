@@ -13,11 +13,11 @@ public class AboutUsAction extends AbstractGraffAction {
     public AboutUsAction()
     {
         putValue(NAME, "About us");
-        Icon slika1=loadIcon("/images/kalinaimage.png");
+        Icon slika1=loadIcon("/images/icons for AboutUs/kalinaimage.png");
         JLabel label1=new JLabel("Kalina Stojanovic SI 8/2024",slika1, JLabel.CENTER);
         label1.setHorizontalTextPosition(JLabel.CENTER);
         label1.setVerticalTextPosition(JLabel.BOTTOM);
-        Icon slika2=loadIcon("/images/jugimage.png");
+        Icon slika2=loadIcon("/images/icons for AboutUs/jugimage.png");
         JLabel label2=new JLabel("Jug Basorovic SI 5/2024",slika2, JLabel.CENTER);
 
         label2.setHorizontalTextPosition(JLabel.CENTER);
@@ -45,7 +45,7 @@ public class AboutUsAction extends AbstractGraffAction {
             Image newImg = img.getScaledInstance(240, 240, Image.SCALE_DEFAULT);
             icon = new ImageIcon(newImg);
         } else {
-            System.err.println("File " + "images/exit.png" + " not found");
+            System.err.println("File " + "images/icons for buttons/exit.png" + " not found");
         }
         return icon;
     }

@@ -30,10 +30,10 @@
 
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-            this.buttonAddImage = new JButton(MainFrame.getInstance().getActionManager().getAddImageButton());
-            this.buttonAddTextField = new JButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton());
-            this.buttonAddLogo = new JButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
-            this.buttonMoveElement = new JButton(MainFrame.getInstance().getActionManager().getMoveAction());
+            this.buttonAddImage = createIconButton(MainFrame.getInstance().getActionManager().getAddImageButton());
+            this.buttonAddTextField = createIconButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton());
+            this.buttonAddLogo = createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
+            this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
@@ -41,6 +41,23 @@
 
             add(buttonPanel, BorderLayout.CENTER);
         }
+        private JButton createIconButton(Action action) {
+            JButton button = new JButton(action);
+            button.setContentAreaFilled(false);
+            button.setOpaque(false);
+            button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            button.setFocusPainted(false);
+            button.setHorizontalAlignment(SwingConstants.CENTER);
+            button.setVerticalAlignment(SwingConstants.CENTER);
+
+            Icon icon = button.getIcon();
+            if (icon != null) {
+                button.setPreferredSize(new Dimension(icon.getIconWidth() + 10, icon.getIconHeight() + 10));
+            }
+
+            return button;
+        }
+
         public void startMoveState() {stateManager.setMoveState();}
         public void startAddImageState() {stateManager.setAddImageState("images/bananaleclerc.jpg");}
         public void startAddLogoState() {stateManager.setAddLogoState();}

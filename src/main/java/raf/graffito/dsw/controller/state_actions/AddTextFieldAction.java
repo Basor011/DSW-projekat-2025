@@ -10,7 +10,8 @@ import java.awt.event.KeyEvent;
 public class AddTextFieldAction extends AbstractGraffAction {
     public AddTextFieldAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK)); // Ovo je prečica za izlaz
-        putValue(SMALL_ICON, loadIcon("/images/ttuturumaxverstappen.png")); // Postavljanje ikonice
+        putValue(SMALL_ICON, loadIcon("/images/textfieldelement - Copy.png")); // Postavljanje ikonice
+        putValue(SHORT_DESCRIPTION, "Insert a new Text Field?");
     }
     @Override
     public void actionPerformed(ActionEvent e) {
