@@ -18,7 +18,7 @@ public class AddTextFieldState implements ElementState {
         slideView.addElement(tfe);
     }
 
-    @Override public void mouseDragged(MouseEvent e, Element element) {}
+    @Override public void mouseDragged(MouseEvent et) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}

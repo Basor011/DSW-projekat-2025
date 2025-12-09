@@ -19,5 +19,6 @@ public class LogoView extends ElementView {
         polygon.addPoint(le.getLocation().x+le.getDimension().width, le.getLocation().y);
         polygon.addPoint(le.getLocation().x+le.getDimension().width/2,le.getLocation().y+le.getDimension().height);
         g.fillPolygon(polygon);
+        paintSelection(g);
     }
 }

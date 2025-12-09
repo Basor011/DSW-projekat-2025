@@ -26,5 +26,6 @@ public class ImageView extends ElementView{
         if(image != null){
             g.drawImage(image, e.getLocation().x, e.getLocation().y, e.getDimension().width, e.getDimension().height, null);
         }
+        paintSelection(g);
     }
 }

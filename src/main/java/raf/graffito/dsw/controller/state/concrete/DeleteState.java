@@ -23,7 +23,7 @@ public class DeleteState implements ElementState {
 
     }
 
-    @Override public void mouseDragged(MouseEvent e, Element element) {}
+    @Override public void mouseDragged(MouseEvent e) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
 }

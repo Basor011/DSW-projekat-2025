@@ -54,7 +54,10 @@ public class SlideView extends JPanel {
         Graphics2D g2d = (Graphics2D) g.create();
         for(GraffNode e: slideModel.getChildren()){
             ElementView elementView = elementViewMap.get(e);
-            if(elementView == null) elementView = elementFactory((Element) e);
+            if(elementView == null) {
+                elementView = elementFactory((Element) e);
+                elementViewMap.put((Element) e, elementView);
+            }
             else elementView.paint(g2d);
         }
         g2d.dispose();

@@ -17,7 +17,7 @@ public class AddLogoState implements ElementState {
         LogoElement logo = new LogoElement("Logo"+new Random().nextInt(200),slideView.getSlideModel(), e.getPoint(),new Dimension(120,120));
         slideView.addElement(logo);
     }
-    @Override public void mouseDragged(MouseEvent e, Element element) {}
+    @Override public void mouseDragged(MouseEvent e) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}

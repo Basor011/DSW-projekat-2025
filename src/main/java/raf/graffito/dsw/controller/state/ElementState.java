@@ -8,7 +8,7 @@ import java.awt.event.MouseWheelEvent;
 
 public interface ElementState {
     void mousePressed(MouseEvent e, SlideView slideView);
-    void mouseDragged(MouseEvent e, Element element);
+    void mouseDragged(MouseEvent e);
     void mouseReleased(MouseEvent e, Element element);
     void mouseClicked(MouseEvent e, Element element);
     void mouseWheelMoved(MouseWheelEvent e, Element element);

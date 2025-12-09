@@ -15,5 +15,6 @@ public class TextFieldVIew extends ElementView{
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.PLAIN, 12));
         g.drawString(e.getText(),e.getLocation().x,e.getLocation().y + e.getFontSize());
+        paintSelection(g);
     }
 }

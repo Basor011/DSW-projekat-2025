@@ -17,7 +17,7 @@ public class AddImageState implements ElementState {
         ImageElement image = new ImageElement("Image"+new Random().nextInt(200),slideView.getSlideModel(),e.getPoint(),new Dimension(150,100),"images/amogus.png");
         slideView.addElement(image);
     }
-    @Override public void mouseDragged(MouseEvent e, Element element) {}
+    @Override public void mouseDragged(MouseEvent e) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
