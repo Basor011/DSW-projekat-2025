@@ -1,9 +1,11 @@
 package raf.graffito.dsw.controller;
 
-import raf.graffito.dsw.controller.state.ElementState;
-import raf.graffito.dsw.controller.state.concrete.MoveState;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeCellEditor;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeSelectionListener;
+import raf.graffito.dsw.controller.state_actions.AddImageAction;
+import raf.graffito.dsw.controller.state_actions.AddLogoAction;
+import raf.graffito.dsw.controller.state_actions.AddTextFieldAction;
+import raf.graffito.dsw.controller.state_actions.MoveElementAction;
+
+import java.awt.*;
 
 public class ActionManager {
     private ExitAction exitAction;
@@ -11,18 +13,23 @@ public class ActionManager {
     private NewChildAction newChildAction;
     private RemoveChildAction removeChildAction;
 
+    private MoveElementAction moveAction;
+    private AddImageAction addImageButton;
+    private AddLogoAction addLogoButton;
+    private AddTextFieldAction addTextFieldButton;
 
     public ActionManager() {
         exitAction = new ExitAction();
         aboutUsAction = new AboutUsAction();
         newChildAction = new NewChildAction();
         removeChildAction = new RemoveChildAction();
-    }
 
-
-    public ExitAction getExitAction() {
-        return exitAction;
+        moveAction = new MoveElementAction();
+        addImageButton = new AddImageAction();
+        addLogoButton = new AddLogoAction();
+        addTextFieldButton = new AddTextFieldAction();
     }
+    public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
         return aboutUsAction;
     }
@@ -32,4 +39,9 @@ public class ActionManager {
     public RemoveChildAction getRemoveChildAction() {
         return removeChildAction;
     }
+
+    public MoveElementAction getMoveAction() {return moveAction;}
+    public AddImageAction getAddImageButton() {return addImageButton;}
+    public AddLogoAction getAddLogoButton() {return addLogoButton;}
+    public AddTextFieldAction getAddTextFieldButton() {return addTextFieldButton;}
 }

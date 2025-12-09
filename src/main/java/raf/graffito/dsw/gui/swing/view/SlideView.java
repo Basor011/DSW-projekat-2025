@@ -1,13 +1,11 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
-import raf.graffito.dsw.gui.swing.tree.controller.state_actions.StateActionManager;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.LogoView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.TextFieldVIew;
 import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.composite.leaves.ImageElement;

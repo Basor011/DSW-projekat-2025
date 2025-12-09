@@ -10,7 +10,6 @@ public class AboutUsAction extends AbstractGraffAction {
 
     Box hbox=Box.createHorizontalBox();
 
-
     public AboutUsAction()
     {
         putValue(NAME, "About us");
@@ -28,7 +27,6 @@ public class AboutUsAction extends AbstractGraffAction {
         hbox.add(hbox.createHorizontalStrut(30));
         hbox.add(label2);
         jf.add(hbox);
-
 
     }
 
