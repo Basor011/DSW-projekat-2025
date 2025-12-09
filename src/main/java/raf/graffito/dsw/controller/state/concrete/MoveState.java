@@ -21,11 +21,6 @@ public class MoveState implements ElementState {
 
     private SlideView panel;
 
-    public MoveState(ElementView element, SlideView panel) {
-        this.element = element;
-        this.panel = panel;
-    }
-
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
         if(element.contains(e.getPoint())) {

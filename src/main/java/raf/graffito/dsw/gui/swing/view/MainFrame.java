@@ -6,6 +6,7 @@ import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
 import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.gui.swing.tree.controller.state_actions.StateActionManager;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -20,7 +21,9 @@ public class MainFrame extends JFrame implements Subscriber {
     private MyTabbedPane tabbedPane;
     private JSplitPane split;
     private JSplitPane split2;
+
     private RightPane rightPanel;
+    private StateActionManager stateActionManager;
 
     public static MainFrame getInstance() {
         if(instance == null) {
@@ -30,6 +33,7 @@ public class MainFrame extends JFrame implements Subscriber {
     }
     private MainFrame() {
         actionManager = new ActionManager();
+        stateActionManager = new StateActionManager();
         graffTree = new GraffTreeImplementation();
         instance = this;
         initialize();
@@ -78,6 +82,10 @@ public class MainFrame extends JFrame implements Subscriber {
         return rightPanel;
     }
 
+    public StateActionManager getStateActionManager() {
+        return stateActionManager;
+    }
+
     @Override
     public void ispisiPoruku(Message message) {
         if (message.getType().equals("GRESKA") || message.getType().equals("OBAVESTENJE")){
@@ -90,5 +98,6 @@ public class MainFrame extends JFrame implements Subscriber {
     public GraffTree getGraffTree() {
         return graffTree;
     }
+
 
 }

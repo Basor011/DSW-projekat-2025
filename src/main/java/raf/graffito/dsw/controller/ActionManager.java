@@ -1,5 +1,7 @@
 package raf.graffito.dsw.controller;
 
+import raf.graffito.dsw.controller.state.ElementState;
+import raf.graffito.dsw.controller.state.concrete.MoveState;
 import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeCellEditor;
 import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeSelectionListener;
 
@@ -8,6 +10,7 @@ public class ActionManager {
     private AboutUsAction aboutUsAction;
     private NewChildAction newChildAction;
     private RemoveChildAction removeChildAction;
+
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -23,11 +26,9 @@ public class ActionManager {
     public AboutUsAction getAboutUsAction() {
         return aboutUsAction;
     }
-
     public NewChildAction getNewChildAction() {
         return newChildAction;
     }
-
     public RemoveChildAction getRemoveChildAction() {
         return removeChildAction;
     }

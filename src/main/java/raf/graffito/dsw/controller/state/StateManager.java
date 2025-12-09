@@ -9,21 +9,20 @@ import java.awt.image.BufferedImage;
 
 public class StateManager {
     private ElementState currentState;
+    private MoveState moveState;
 
-    public StateManager(ElementState currentState) {
-        this.currentState = currentState;
+    public StateManager() {}
+    private void initstates(){
+        moveState = new MoveState();
+        currentState = moveState;
     }
 
-    public void mousePressed(MouseEvent e, SlideView slideView) {
-        if(currentState != null) {
-            currentState.mousePressed(e, slideView);
-        }
+    public ElementState getCurrentState() {
+        return currentState;
     }
 
-    public void setCurrentState(ElementState currentState) {
-        this.currentState = currentState;
+    public void setMoveState() {
+        currentState = moveState;
     }
-
-    public ElementState getCurrentState() { return currentState; }
 }
 

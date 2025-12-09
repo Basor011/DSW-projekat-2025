@@ -4,9 +4,6 @@ import raf.graffito.dsw.controller.state.StateManager;
 import raf.graffito.dsw.controller.state.concrete.AddImageState;
 import raf.graffito.dsw.controller.state.concrete.AddLogoState;
 import raf.graffito.dsw.controller.state.concrete.AddTextFieldState;
-import raf.graffito.dsw.gui.swing.tree.controller.AddImageButtonAction;
-import raf.graffito.dsw.gui.swing.tree.controller.AddLogoButtonAction;
-import raf.graffito.dsw.gui.swing.tree.controller.AddTextFieldButtonAction;
 import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +26,7 @@ public class RightPane extends JPanel implements TBSubscriber {
         this.addTextFieldButton = new JButton("TEXT FIELD");
         this.addLogoButton = new JButton("LOGO");
         this.addImageButton = new JButton("IMAGE");
+        stateManager = new StateManager();
 
         setLayout(new BorderLayout());
         JPanel topPanel = new JPanel();
@@ -36,24 +34,16 @@ public class RightPane extends JPanel implements TBSubscriber {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
         topPanel.add(projectNameLabel);
         topPanel.add(presentationNameLabel);
+        topPanel.add(new JButton(MainFrame.getInstance().getStateActionManager().getMoveAction()));
         topPanel.add(addTextFieldButton);
         topPanel.add(addLogoButton);
         topPanel.add(addImageButton);
 
         add(topPanel, BorderLayout.NORTH);
 
-        initButtonActions();
     }
-    public void initButtonActions() {
-        addImageButton.addActionListener(e -> {
-            stateManager.setCurrentState(new AddImageState());
-        });
-        addTextFieldButton.addActionListener(e -> {
-            stateManager.setCurrentState(new AddTextFieldState());
-        });
-        addLogoButton.addActionListener(e -> {
-            stateManager.setCurrentState(new AddLogoState());
-        });
+    public void startMoveState() {
+        this.stateManager.setMoveState();
     }
 
     @Override

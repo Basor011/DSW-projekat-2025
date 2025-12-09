@@ -22,6 +22,7 @@ public class SlideView extends JPanel {
 
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
+    private StateManager stateManager;
 
     public SlideView(Slide slideModel) {
         this.slideModel = slideModel;
@@ -47,7 +48,18 @@ public class SlideView extends JPanel {
         elementViewMap.put(element, elementFactory((Element) element));
         repaint();
     }
-
+    public void startMoveState(){
+        this.stateManager.setMoveState();
+    }
+    public ElementView getElementAt(Point p) {
+        for (Element e : elementViewMap.keySet()) {
+            ElementView view = elementViewMap.get(e);
+            if (view.contains(p)) {
+                return view;
+            }
+        }
+        return null;
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
