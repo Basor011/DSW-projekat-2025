@@ -1,9 +1,6 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
-import raf.graffito.dsw.controller.state.concrete.AddImageState;
-import raf.graffito.dsw.controller.state.concrete.AddLogoState;
-import raf.graffito.dsw.controller.state.concrete.AddTextFieldState;
 import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import javax.swing.*;
 import java.awt.*;
@@ -35,15 +32,24 @@ public class RightPane extends JPanel implements TBSubscriber {
         topPanel.add(projectNameLabel);
         topPanel.add(presentationNameLabel);
         topPanel.add(new JButton(MainFrame.getInstance().getStateActionManager().getMoveAction()));
-        topPanel.add(addTextFieldButton);
-        topPanel.add(addLogoButton);
-        topPanel.add(addImageButton);
+        topPanel.add(new JButton(MainFrame.getInstance().getStateActionManager().getAddImageButton()));
+        topPanel.add(new JButton(MainFrame.getInstance().getStateActionManager().getAddTextFieldButton()));
+        topPanel.add(new JButton(MainFrame.getInstance().getStateActionManager().getAddLogoButton()));
 
         add(topPanel, BorderLayout.NORTH);
 
     }
     public void startMoveState() {
         this.stateManager.setMoveState();
+    }
+    public void startAddImageState() {
+        this.stateManager.setAddImageState("images/bananaleclerc.jpg");
+    }
+    public void startAddLogoState() {
+        this.stateManager.setAddLogoState();
+    }
+    public void startAddTextFieldState(){
+        this.stateManager.setAddTextFieldState();
     }
 
     @Override

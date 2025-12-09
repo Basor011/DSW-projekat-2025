@@ -12,10 +12,9 @@ public class TextFieldElement extends Element {
         super(name, parent, lokacija, dimenzija, "TEXTFIELD");
     }
 
-    public TextFieldElement(String name, GraffNode parent, Point location, Dimension dimension, String type, String text, int fontSize) {
-        super(name, parent, location, dimension, type);
+    public TextFieldElement(String name, GraffNode parent, Point location, Dimension dimension, String text) {
+        super(name, parent, location, dimension, "TEXTFIELD");
         this.text = text;
-        this.fontSize = fontSize;
     }
 
     @Override

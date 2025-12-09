@@ -2,24 +2,51 @@ package raf.graffito.dsw.controller.state.concrete;
 
 import raf.graffito.dsw.controller.state.ElementState;
 import raf.graffito.dsw.gui.swing.view.SlideView;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.util.Random;
 
 public class AddTextFieldState implements ElementState {
+    private String defaultText = "New Text";
+
+    public void setDefaultText(String text) {
+        this.defaultText = text;
+    }
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-        TextFieldElement tfe = new TextFieldElement("TextField"+ new Random().nextInt(200),slideView.getSlideModel(), e.getPoint(), new Dimension(200,40));
-        slideView.addElement(tfe);
+        Point p = e.getPoint();
+
+        Element txt = new TextFieldElement(
+                "Text",
+                slideView.getSlideModel(),
+                new Point(p.x, p.y),
+                new Dimension(150, 30),defaultText
+        );
+
+        slideView.addElement(txt);
+        slideView.repaint();
     }
 
-    @Override public void mouseDragged(MouseEvent et) {}
-    @Override public void mouseReleased(MouseEvent e, Element element) {}
-    @Override public void mouseClicked(MouseEvent e, Element element) {}
-    @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e, Element element) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e, Element element) {
+
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e, Element element) {
+
+    }
 }
