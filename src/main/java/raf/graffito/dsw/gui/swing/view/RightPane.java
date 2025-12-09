@@ -11,10 +11,10 @@
         private JLabel presentationNameLabel;
 
         private StateManager stateManager;
-        private JToggleButton buttonAddImage;
-        private JToggleButton buttonAddTextField;
-        private JToggleButton buttonAddLogo;
-        private JToggleButton buttonMoveElement;
+        private JButton buttonAddImage;
+        private JButton buttonAddTextField;
+        private JButton buttonAddLogo;
+        private JButton buttonMoveElement;
 
         public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
             this.projectNameLabel = projectNameLabel;
@@ -30,10 +30,10 @@
 
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-            this.buttonAddImage = new JToggleButton(MainFrame.getInstance().getActionManager().getAddImageButton());
-            this.buttonAddTextField = new JToggleButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton());
-            this.buttonAddLogo = new JToggleButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
-            this.buttonMoveElement = new JToggleButton(MainFrame.getInstance().getActionManager().getMoveAction());
+            this.buttonAddImage = new JButton(MainFrame.getInstance().getActionManager().getAddImageButton());
+            this.buttonAddTextField = new JButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton());
+            this.buttonAddLogo = new JButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
+            this.buttonMoveElement = new JButton(MainFrame.getInstance().getActionManager().getMoveAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
