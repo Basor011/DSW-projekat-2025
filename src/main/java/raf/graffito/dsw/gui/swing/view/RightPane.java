@@ -4,6 +4,7 @@
     import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
     import javax.swing.*;
     import java.awt.*;
+    import java.io.File;
 
 
     public class RightPane extends JPanel implements TBSubscriber {
@@ -70,12 +71,21 @@
             if (icon != null) {
                 button.setPreferredSize(new Dimension(icon.getIconWidth() + 10, icon.getIconHeight() + 10));
             }
-
             return button;
         }
         public void startSelectState() {stateManager.setSelectState();}
         public void startMoveState() {stateManager.setMoveState();}
-        public void startAddImageState() {stateManager.setAddImageState("images/bananaleclerc.jpg");}
+        public void startAddImageState() {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("Choose an image");
+
+            int result = chooser.showOpenDialog(this);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = chooser.getSelectedFile();
+                stateManager.setAddImageState(selectedFile.getAbsolutePath());
+            }
+        }
         public void startAddLogoState() {stateManager.setAddLogoState();}
         public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
 

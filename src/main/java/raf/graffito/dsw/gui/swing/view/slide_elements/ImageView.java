@@ -1,5 +1,7 @@
 package raf.graffito.dsw.gui.swing.view.slide_elements;
 
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.composite.leaves.ImageElement;
 
@@ -17,6 +19,7 @@ public class ImageView extends ElementView{
         }
         catch (Exception e){
             image = null;
+            ApplicationFramework.getInstance().getMg().generateError("Slika nije pronadjena");
         }
     }
 

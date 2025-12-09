@@ -15,6 +15,6 @@ public class SelectElementAction extends AbstractGraffAction {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().getRightPanel().startAddImageState();
+        MainFrame.getInstance().getRightPanel().startSelectState();
     }
 }
