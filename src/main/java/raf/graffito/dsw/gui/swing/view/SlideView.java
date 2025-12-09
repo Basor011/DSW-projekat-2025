@@ -72,7 +72,7 @@ public class SlideView extends JPanel {
         this.stateManager.setMoveState();
     }
 
-    public ElementView getElementAt(Point p) {
+    public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
         for (Element e : elementViewMap.keySet()) {
             ElementView view = elementViewMap.get(e);
             if (view.contains(p)) {

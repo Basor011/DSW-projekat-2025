@@ -26,20 +26,16 @@ abstract public class Element extends GraffNodeLeaf {
     public void move(int dx, int dy){
         this.location.x += dx;
         this.location.y += dy;
-        notifyAll();
     }
     public void resize(int width, int height){
         this.dimension.width += width;
         this.dimension.height += height;
-        notifyAll();
     }
     public void rotate90(boolean clockwise){
         rotationAngle += Math.toRadians(clockwise ? -90 : 90);
-        notifyAll();
     }
     public void setSelected(boolean selected){
         this.isSelected = selected;
-        notifyAll();
     }
     public Point getLocation() {return location;}
     public Dimension getDimension() {return dimension;}

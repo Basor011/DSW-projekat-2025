@@ -33,14 +33,7 @@ public abstract class ElementView implements Painter {
         g.setStroke(new BasicStroke(2));
         g.drawRect(x, y, w, h);
 
-        // Opcioni resize handle-ovi
-        int size = 6;
-        g.fillRect(x - size / 2, y - size / 2, size, size);
-        g.fillRect(x + w - size / 2, y - size / 2, size, size);
-        g.fillRect(x - size / 2, y + h - size / 2, size, size);
-        g.fillRect(x + w - size / 2, y + h - size / 2, size, size);
     }
-
 
     public Element getElement() {
         return element;

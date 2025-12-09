@@ -62,11 +62,9 @@
                 }
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent e) {
-                    if (!button.getModel().isPressed() && !button.getModel().isSelected())
-                        button.setBackground(new Color(240, 240, 240));
+                    if (!button.getModel().isPressed() && !button.getModel().isSelected()) button.setBackground(new Color(240, 240, 240));
                 }
             });
-
             Icon icon = button.getIcon();
             if (icon != null) {
                 button.setPreferredSize(new Dimension(icon.getIconWidth() + 10, icon.getIconHeight() + 10));
