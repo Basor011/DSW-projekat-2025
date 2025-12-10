@@ -176,6 +176,10 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 recoverTabs(latestNode);
             }
             else{
+                for(PresentationView pv :presentationViewList)
+                {
+                    if(pv.getPresentation().equals(node.getGraffNode())) presentationViewList.remove(pv);
+                }
                 MainFrame.getInstance().getGraffTree().removeNode(node);
             }
         }
@@ -265,6 +269,18 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 ApplicationFramework.getInstance().getMg().generateError("Ne moze se izbrisati workspace");
             }
         }
+        else if( notification == Notification.SWITCH_TABS)
+        {
+            Presentation presentation = (Presentation) node.getGraffNode().getParent();
+            for(PresentationView prv : presentationViewList)
+            {
+                if(presentation.equals(prv.getPresentation()))
+                {
+                    setSelectedComponent(prv);
+                }
+            }
+        }
+
     }
 }
 

@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import com.sun.tools.javac.Main;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
 import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeMouseClickListener;
@@ -70,24 +71,23 @@ public class PresentationView extends JPanel implements  PSubscriber {
     @Override
     public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
     {
-        if(notification== Notification.SLIDE_SELECTED) {
-            GraffNode openProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
-            if (node.getGraffNode().getParent().getParent().equals(openProject))
-            {
-            for(SlideView slajd : slajdovi)
-            {
-                if(slajd.getSlideModel().equals(node.getGraffNode()))
-                {
+        if (!(notification == Notification.SLIDE_SELECTED)) return;
+
+        GraffNode openProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
+        if (node.getGraffNode().getParent().getParent().equals(openProject)) {
+            for (SlideView slajd : slajdovi) {
+                if (slajd.getSlideModel().equals(node.getGraffNode())) {
+                    ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
 
                     removeAll();
 
-                    add(slajd,BorderLayout.CENTER);
+                    add(slajd, BorderLayout.CENTER);
                     revalidate();
                     repaint();
                 }
             }
 
-            }
+
         }
     }
 }
