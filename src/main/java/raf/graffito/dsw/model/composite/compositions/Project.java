@@ -1,12 +1,9 @@
-package raf.graffito.dsw.model.implementations.leaves.compositions;
+package raf.graffito.dsw.model.composite.compositions;
 
-import raf.graffito.dsw.gui.swing.tree.observer.PPublisher;
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
 
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,14 +42,6 @@ public class Project extends GraffNodeComposite  {
         }
         children.remove(child);
         child.setParent(null);
-    }
-
-    @Override
-    public void removeNode(GraffNode node) {
-        for(GraffNode child : children){
-            removeChild(child);
-        }
-        this.setParent(null);
     }
 
 

@@ -1,6 +1,6 @@
 package raf.graffito.dsw.gui.swing.tree.decorator;
 
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.model.composite.GraffNode;
 
 import java.awt.*;

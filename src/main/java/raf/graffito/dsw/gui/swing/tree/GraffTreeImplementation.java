@@ -5,9 +5,7 @@ import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
 import raf.graffito.dsw.gui.swing.tree.observer.*;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.model.composite.compositions.Workspace;
 import raf.graffito.dsw.gui.swing.tree.view.    GraffTreeView;
 
 import javax.swing.*;
@@ -35,17 +33,12 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
 
     @Override
     public void addChild(GraffTreeItem root) {
-
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr(); //repo pravi dete pomocu factory
         GraffNode parentN = root.getGraffNode();
         GraffNode child = repo.createChild(parentN);
-
         if(child == null) return;
-
         repo.addChild(parentN, child);
-
         GraffTreeItem childItem = new GraffTreeItem(child);
-        //root.add(childItem);
         ((DefaultTreeModel) treeModel).insertNodeInto(childItem, root, root.getChildCount());
 
         if(child instanceof GraffNodeComposite composite){
@@ -53,8 +46,6 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
                 childItem.add(new GraffTreeItem(c));
             }
         }
-
-       // treeModel.reload(root);
         expantNodes(graffTreeView);
     }
 
@@ -67,6 +58,10 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
             treeModel.removeNodeFromParent(node);
             SwingUtilities.updateComponentTreeUI(graffTreeView);
         }
+    }
+    @Override
+    public void addElement(GraffTreeItem element) {
+
     }
 
     @Override
@@ -115,7 +110,6 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
     @Override
     public void addSubscriber(PSubscriber subscriber) {
         pSubscribers.add(subscriber);
-
     }
 
     @Override

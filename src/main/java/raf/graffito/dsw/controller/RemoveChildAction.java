@@ -1,14 +1,9 @@
 package raf.graffito.dsw.controller;
 
-import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +13,7 @@ public class RemoveChildAction extends AbstractGraffAction {
     public RemoveChildAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,
                 ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("/images/minus.png"));
+        putValue(SMALL_ICON, loadIcon("/images/icons for buttons/minus.png"));
         putValue(NAME, "Remove Child");
         putValue(SHORT_DESCRIPTION, "Remove the selected child?");
     }

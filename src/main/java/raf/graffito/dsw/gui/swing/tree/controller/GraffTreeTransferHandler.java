@@ -1,26 +1,21 @@
 package raf.graffito.dsw.gui.swing.tree.controller;
 
-import com.sun.source.tree.Tree;
 import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
+import raf.graffito.dsw.model.composite.compositions.Slide;
+import raf.graffito.dsw.model.composite.compositions.Presentation;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import java.util.List;
 
 public class GraffTreeTransferHandler extends TransferHandler {
     private final DataFlavor nodeFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=" + GraffTreeItem.class.getName(), "GraffTreeItem");
-
-
     @Override
     protected Transferable createTransferable(JComponent c) {
         JTree tree = (JTree) c;
@@ -94,7 +89,7 @@ public class GraffTreeTransferHandler extends TransferHandler {
         }
 
         model.insertNodeInto(transferredItem, targetParent, index);
-        tree.scrollPathToVisible(new TreePath(transferredItem.getPath()));
+        //tree.scrollPathToVisible(new TreePath(transferredItem.getPath()));
         return true;
     }
 

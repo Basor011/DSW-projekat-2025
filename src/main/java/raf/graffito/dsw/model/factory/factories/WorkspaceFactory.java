@@ -2,9 +2,9 @@ package raf.graffito.dsw.model.factory.factories;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.factory.GraffNodeFactory;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
+import raf.graffito.dsw.model.composite.compositions.Slide;
+import raf.graffito.dsw.model.composite.compositions.Presentation;
+import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.gui.swing.tree.view.PresentationOrSlidePopUp;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 

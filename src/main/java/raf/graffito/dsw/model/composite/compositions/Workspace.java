@@ -1,4 +1,4 @@
-package raf.graffito.dsw.model.implementations.leaves.compositions;
+package raf.graffito.dsw.model.composite.compositions;
 
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
@@ -24,8 +24,4 @@ public class Workspace extends GraffNodeComposite {
         child.setParent(null);
     }
 
-    @Override
-    public void removeNode(GraffNode node) {
-        return; ///workspace ne moze da se obrise
-    }
 }

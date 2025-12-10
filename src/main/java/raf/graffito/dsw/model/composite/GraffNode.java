@@ -10,8 +10,6 @@ public abstract class GraffNode{
     }
     public abstract GraffNode findByName(String name);
 
-    public abstract void removeNode(GraffNode node); ///za brisanje cvorova
-
     public String getName() {
         return name;
     }

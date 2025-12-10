@@ -1,10 +1,13 @@
 package raf.graffito.dsw.gui.swing.tree.view;
 
-import raf.graffito.dsw.model.implementations.leaves.compositions.Presentation;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Project;
-import raf.graffito.dsw.model.implementations.leaves.compositions.Workspace;
-import raf.graffito.dsw.model.implementations.leaves.Slide;
-import raf.graffito.dsw.gui.swing.tree.model.GraffTreeItem;
+import raf.graffito.dsw.model.composite.compositions.Presentation;
+import raf.graffito.dsw.model.composite.compositions.Project;
+import raf.graffito.dsw.model.composite.compositions.Workspace;
+import raf.graffito.dsw.model.composite.compositions.Slide;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
+import raf.graffito.dsw.model.composite.leaves.ImageElement;
+import raf.graffito.dsw.model.composite.leaves.LogoElement;
+import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -23,13 +26,19 @@ public class GraffTreeCellRenderer extends DefaultTreeCellRenderer{
         Icon icon = null;
 
         if(((GraffTreeItem)value).getGraffNode() instanceof Workspace){
-            img_URL = getClass().getResource("/images/workspace.png");
+            img_URL = getClass().getResource("/images/icons for JTree/workspace.png");
         }else if(((GraffTreeItem)value).getGraffNode() instanceof Project){
-            img_URL = getClass().getResource("/images/project.png");
+            img_URL = getClass().getResource("/images/icons for JTree/project.png");
         }else if(((GraffTreeItem)value).getGraffNode() instanceof Presentation){
-            img_URL = getClass().getResource("/images/presentation.png");
-        }else if(((GraffTreeItem)value).getGraffNode() instanceof Slide){
-            img_URL = getClass().getResource("/images/slide.png");
+            img_URL = getClass().getResource("/images/icons for JTree/presentation.png");
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof Slide) {
+            img_URL = getClass().getResource("/images/icons for JTree/slide.png");
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof LogoElement){
+
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof ImageElement){
+            img_URL = getClass().getResource("images/icons for JTree/imageelement.png");
+        }else if(((GraffTreeItem)value).getGraffNode() instanceof TextFieldElement){
+            img_URL = getClass().getResource("images/icons for JTree/textfieldelement.png");
         }
         if(img_URL != null){
             icon = new ImageIcon(img_URL);

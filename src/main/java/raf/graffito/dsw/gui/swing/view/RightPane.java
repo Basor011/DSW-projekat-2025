@@ -1,53 +1,112 @@
-package raf.graffito.dsw.gui.swing.view;
+    package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
-import javax.swing.*;
-import java.awt.*;
+    import raf.graffito.dsw.controller.state.StateManager;
+    import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
+    import javax.swing.*;
+    import java.awt.*;
+    import java.io.File;
 
 
-public class RightPane extends JPanel implements TBSubscriber {
-    private JLabel projectNameLabel;
-    private JLabel presentationNameLabel;
+    public class RightPane extends JPanel implements TBSubscriber {
+        private JLabel projectNameLabel;
+        private JLabel presentationNameLabel;
 
-    public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
-        this.projectNameLabel=projectNameLabel;
-        this.presentationNameLabel=presentationNameLabel;
+        private StateManager stateManager;
+        private JButton buttonAddImage;
+        private JButton buttonAddTextField;
+        private JButton buttonAddLogo;
+        private JButton buttonMoveElement;
+        private JButton buttonSelectElement;
 
-        setLayout(new BorderLayout());
-        JPanel topPanel = new JPanel();
+        public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
+            this.projectNameLabel = projectNameLabel;
+            this.presentationNameLabel = presentationNameLabel;
+            stateManager = MainFrame.getInstance().getStateManager();
+            setLayout(new BorderLayout());
 
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
-        topPanel.add(projectNameLabel);
-        topPanel.add(presentationNameLabel);
+            JPanel topPanel = new JPanel();
+            topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+            topPanel.add(projectNameLabel);
+            topPanel.add(presentationNameLabel);
+            add(topPanel, BorderLayout.NORTH);
 
-        add(topPanel, BorderLayout.NORTH);
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+            this.buttonAddImage = createIconButton(MainFrame.getInstance().getActionManager().getAddImageButton());
+            this.buttonAddTextField = createIconButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton());
+            this.buttonAddLogo = createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
+            this.buttonSelectElement = createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction());
+            this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
+            buttonPanel.add(buttonAddImage);
+            buttonPanel.add(buttonAddTextField);
+            buttonPanel.add(buttonAddLogo);
+            buttonPanel.add(buttonSelectElement);
+            buttonPanel.add(buttonMoveElement);
+
+            add(buttonPanel, BorderLayout.CENTER);
+        }
+        private JButton createIconButton(Action action) {
+            JButton button = new JButton(action);
+            button.setContentAreaFilled(true);
+            button.setOpaque(true);
+            button.setBackground(new Color(240, 240, 240));
+            button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            button.setFocusPainted(false);
+            button.setHorizontalAlignment(SwingConstants.CENTER);
+            button.setVerticalAlignment(SwingConstants.CENTER);
+
+            button.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent e) {
+                    button.setBackground(new Color(220, 220, 220)); // tamnije
+                }
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent e) {
+                    if (!button.getModel().isPressed() && !button.getModel().isSelected()) button.setBackground(new Color(240, 240, 240));
+                }
+            });
+            Icon icon = button.getIcon();
+            if (icon != null) {
+                button.setPreferredSize(new Dimension(icon.getIconWidth() + 10, icon.getIconHeight() + 10));
+            }
+            return button;
+        }
+        public void startSelectState() {stateManager.setSelectState();}
+        public void startMoveState() {stateManager.setMoveState();}
+        public void startAddImageState() {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setDialogTitle("Choose an image");
+
+            int result = chooser.showOpenDialog(this);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = chooser.getSelectedFile();
+                stateManager.setAddImageState(selectedFile.getAbsolutePath());
+            }
+        }
+        public void startAddLogoState() {stateManager.setAddLogoState();}
+        public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
+
+        @Override
+        public void update(String presentationName, String projectName) {
+           if(presentationName == null) this.projectNameLabel.setText(projectName);
+           else if(projectName == null) this.presentationNameLabel.setText(presentationName);
+           else{
+                this.projectNameLabel.setText(projectName);
+                this.presentationNameLabel.setText(presentationName);
+           }
+        }
+
+        public JLabel getProjectNameLabel() {
+            return projectNameLabel;
+        }
+        public void setProjectNameLabel(JLabel projectNameLabel) {
+            this.projectNameLabel = projectNameLabel;
+        }
+        public JLabel getPresentationNameLabel() {
+            return presentationNameLabel;
+        }
+        public void setPresentationNameLabel(JLabel presentationNameLabel) {
+            this.presentationNameLabel = presentationNameLabel;
+        }
     }
-
-    @Override
-    public void update(String presentationName, String projectName) {
-
-       if(presentationName == null) this.projectNameLabel.setText(projectName);
-       else if(projectName == null) this.presentationNameLabel.setText(presentationName);
-
-       else{
-            this.projectNameLabel.setText(projectName);
-            this.presentationNameLabel.setText(presentationName);
-       }
-    }
-
-    public JLabel getProjectNameLabel() {
-        return projectNameLabel;
-    }
-
-    public void setProjectNameLabel(JLabel projectNameLabel) {
-        this.projectNameLabel = projectNameLabel;
-    }
-
-    public JLabel getPresentationNameLabel() {
-        return presentationNameLabel;
-    }
-
-    public void setPresentationNameLabel(JLabel presentationNameLabel) {
-        this.presentationNameLabel = presentationNameLabel;
-    }
-}

@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.ActionManager;
+import raf.graffito.dsw.controller.state.StateManager;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
@@ -8,7 +9,6 @@ import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements Subscriber {
@@ -20,8 +20,9 @@ public class MainFrame extends JFrame implements Subscriber {
     private MyTabbedPane tabbedPane;
     private JSplitPane split;
     private JSplitPane split2;
-    private RightPane rightPanel;
 
+    private RightPane rightPanel;
+    private StateManager stateManager;
 
     public static MainFrame getInstance() {
         if(instance == null) {
@@ -31,11 +32,11 @@ public class MainFrame extends JFrame implements Subscriber {
     }
     private MainFrame() {
         actionManager = new ActionManager();
+        stateManager = new StateManager();
         graffTree = new GraffTreeImplementation();
         instance = this;
         initialize();
     }
-
     private void initialize() {
         Toolkit kit = Toolkit.getDefaultToolkit(); // Toolkit omogućava interakciju sa platformom
         Dimension screenSize = kit.getScreenSize(); // Veličina ekrana
@@ -64,20 +65,25 @@ public class MainFrame extends JFrame implements Subscriber {
         split.setOneTouchExpandable(true);
         tabbedPane= new MyTabbedPane();
         ((GraffTreeImplementation)graffTree).addSubscriber(tabbedPane);
+
         split.setRightComponent(tabbedPane);
 
         getContentPane().add(split2,BorderLayout.CENTER);
-
     }
 
     public ActionManager getActionManager() {
         return actionManager;
     }
+
     public MyTabbedPane getTabbedPane(){
         return tabbedPane;
     }
     public RightPane getRightPanel() {
         return rightPanel;
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
     }
 
     @Override
@@ -92,5 +98,6 @@ public class MainFrame extends JFrame implements Subscriber {
     public GraffTree getGraffTree() {
         return graffTree;
     }
+
 
 }
