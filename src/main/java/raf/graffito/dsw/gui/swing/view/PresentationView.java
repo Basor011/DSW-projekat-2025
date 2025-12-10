@@ -16,11 +16,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PresentationView extends JPanel {
+public class PresentationView extends JPanel implements  PSubscriber {
 
     private GraffNodeComposite presentation;
     private List<SlideView> slajdovi;
-    private SlideView test;
 
     public PresentationView(String title, GraffNodeComposite presentation)
     {
@@ -50,11 +49,7 @@ public class PresentationView extends JPanel {
         return slajdovi;
     }
 
-    public void refresh() {
-        System.out.println("Refreshing " + presentation.getName());
-        revalidate();
-        repaint();
-    }
+
     public void showSlide(Slide slide) {
         SlideView toShow = null;
         for(SlideView sv: slajdovi){
@@ -70,5 +65,29 @@ public class PresentationView extends JPanel {
         add(toShow, BorderLayout.CENTER);
         revalidate();
         repaint();
+    }
+
+    @Override
+    public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
+    {
+        if(notification== Notification.SLIDE_SELECTED) {
+            GraffNode openProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
+            if (node.getGraffNode().getParent().getParent().equals(openProject))
+            {
+            for(SlideView slajd : slajdovi)
+            {
+                if(slajd.getSlideModel().equals(node.getGraffNode()))
+                {
+
+                    removeAll();
+
+                    add(slajd,BorderLayout.CENTER);
+                    revalidate();
+                    repaint();
+                }
+            }
+
+            }
+        }
     }
 }

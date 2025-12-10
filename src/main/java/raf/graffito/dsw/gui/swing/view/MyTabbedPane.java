@@ -62,8 +62,13 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             this.setForegroundAt(i, Color.BLACK);
             presentationViewList.add(presentationView);
 
+
         }
         decoratedProjects.add(decoratedProject);
+        for(PresentationView pv :presentationViewList)
+        {
+            ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).addSubscriber(pv);
+        }
     }
 
     public void recoverTabs(GraffTreeItem node) { //project
@@ -76,7 +81,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 color = dp.getColour();
             }
         }
-        for (int i = 0; i < node.getChildCount(); i++) {///pravi nove presentationview tabove koji imaju istu boju kao ranije
+        for (int i = 0; i < node.getChildCount(); i++) {///ponovo postavlja stare presentationview tabove koji imaju istu boju kao ranije
             GraffTreeItem child = (GraffTreeItem) node.getChildAt(i); /// prolazim kroz decu od projecta
             for(PresentationView pw :presentationViewList)
             {
@@ -89,7 +94,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             this.setForegroundAt(i, Color.BLACK);
         }
     }
-    public DefaultMutableTreeNode getLatestNode() {
+    public GraffTreeItem getLatestNode() {
         return latestNode;
     }
 
@@ -227,6 +232,12 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 }
                 fillTabs(node);
             }
+            else if(node.getGraffNode() instanceof  Slide)
+            {
+                System.out.println(node);
+                ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_SELECTED,node);
+            }
+
         }
         else if (notification == Notification.NODE_DELETED)
         {

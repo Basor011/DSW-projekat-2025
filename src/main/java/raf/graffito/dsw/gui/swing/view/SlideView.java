@@ -30,7 +30,10 @@ public class SlideView extends JPanel {
         this.slideModel = slideModel;
         this.elementViewMap = new HashMap<>();
         this.stateManager = stateManager;
-        setLayout(null);
+        JLabel mainLabel = new JLabel(slideModel.getName(), SwingConstants.CENTER);
+        mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        add(mainLabel, BorderLayout.CENTER);
+        //setLayout(null);
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(new Dimension(800, 600));
         initElementViews();

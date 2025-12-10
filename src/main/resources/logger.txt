@@ -127,3 +127,6 @@
 [GRESKA][07.12.2025. 14:32] Vec odabrana boja
 [OBAVESTENJE][07.12.2025. 15:29] Molim vas izaberite cvor
 [GRESKA][07.12.2025. 18:55] Ne moze se izbrisati workspace
+[GRESKA][10.12.2025. 10:33] Slide ne moze sadrzati novi tip cvora
+[OBAVESTENJE][10.12.2025. 10:39] Molim vas izaberite cvor
+[OBAVESTENJE][10.12.2025. 11:09] Molim vas izaberite cvor

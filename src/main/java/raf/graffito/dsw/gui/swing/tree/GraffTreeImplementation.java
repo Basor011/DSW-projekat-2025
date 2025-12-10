@@ -120,7 +120,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
 
     @Override
     public void sendingToAll(Notification notification, GraffTreeItem node) {
-        for(PSubscriber s : pSubscribers)
+        for(PSubscriber s : new ArrayList<>(pSubscribers))
         {
             s.update(notification, node);
         }
