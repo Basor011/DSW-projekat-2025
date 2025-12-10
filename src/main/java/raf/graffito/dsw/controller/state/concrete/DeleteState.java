@@ -23,9 +23,8 @@ public class DeleteState implements ElementState {
 
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-        System.out.println("testing 123");
         ElementView clicked = slideView.getElementAt(e.getPoint());
-        System.out.println(clicked + "1212231");
+        System.out.println(clicked + " element");
         if(clicked != null) {
             System.out.println("Deleting element: " + clicked.getElement());
             Element element = clicked.getElement();
