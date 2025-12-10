@@ -5,12 +5,12 @@ import com.sun.tools.javac.Main;
 import javax.swing.*;
 
 public class MyToolBar extends JToolBar {
-    public MyToolBar() {
+    public MyToolBar(MainFrame mainFrame) {
         super(HORIZONTAL);
         setFloatable(false);
 
-        add(MainFrame.getInstance().getActionManager().getExitAction());
-        add(MainFrame.getInstance().getActionManager().getNewChildAction());
-        add(MainFrame.getInstance().getActionManager().getRemoveChildAction());
+        add(mainFrame.getActionManager().getExitAction());
+        add(mainFrame.getActionManager().getNewChildAction());
+        add(mainFrame.getActionManager().getRemoveChildAction());
     }
 }

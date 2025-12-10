@@ -46,10 +46,10 @@ public class MainFrame extends JFrame implements Subscriber {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Zatvaranje aplikacije pri zatvaranju prozora
         setTitle("Graffito"); // Naslov prozora
 
-        MyMenuBar menu = new MyMenuBar(); // Kreiranje menija
+        MyMenuBar menu = new MyMenuBar(this); // Kreiranje menija
         setJMenuBar(menu); // Postavljanje menija na prozor
 
-        MyToolBar toolBar = new MyToolBar(); // Kreiranje toolbar-a
+        MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());

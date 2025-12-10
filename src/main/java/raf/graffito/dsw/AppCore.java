@@ -9,7 +9,7 @@ import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
 public class AppCore {
     public static void main(String[] args) {
         ApplicationFramework appCore = ApplicationFramework.getInstance();
-        GraffRepository gr = new GraffRepositoryImplementation();
+       GraffRepository gr = new GraffRepositoryImplementation();
         appCore.initialize(gr);
     }
 }
