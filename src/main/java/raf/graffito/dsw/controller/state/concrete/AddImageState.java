@@ -1,6 +1,7 @@
 package raf.graffito.dsw.controller.state.concrete;
 
 import raf.graffito.dsw.controller.state.ElementState;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.composite.leaves.ImageElement;
@@ -34,6 +35,7 @@ public class AddImageState implements ElementState {
 
         slideView.addElement(img);
         slideView.repaint();
+        MainFrame.getInstance().getRightPanel().startSelectState();
     }
 
     @Override

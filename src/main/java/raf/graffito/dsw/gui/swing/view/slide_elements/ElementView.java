@@ -7,6 +7,7 @@ import java.awt.*;
 public abstract class ElementView implements Painter {
     protected Element element;
 
+
     public ElementView(Element element) {
         this.element = element;
     }
@@ -33,6 +34,14 @@ public abstract class ElementView implements Painter {
         g.setStroke(new BasicStroke(2));
         g.drawRect(x, y, w, h);
 
+    }
+    public Rectangle getBounds()
+    {
+        int x = element.getLocation().x;
+        int y = element.getLocation().y;
+        int w = element.getDimension().width;
+        int h = element.getDimension().height;
+        return new Rectangle(x,y,w,h);
     }
 
     public Element getElement() {

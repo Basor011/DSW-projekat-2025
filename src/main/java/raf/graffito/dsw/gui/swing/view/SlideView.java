@@ -39,6 +39,7 @@ public class SlideView extends JPanel {
         initElementViews();
         initMouseListener();
     }
+
     private void initMouseListener() {
         addMouseListener(new MouseAdapter() {
             @Override
@@ -53,6 +54,7 @@ public class SlideView extends JPanel {
                 stateManager.getCurrentState().mouseDragged(e, SlideView.this);
             }
         });
+
     }
 
     private void initElementViews() {
@@ -78,12 +80,17 @@ public class SlideView extends JPanel {
     public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
         for (Element e : elementViewMap.keySet()) {
             ElementView view = elementViewMap.get(e);
-            if (view.contains(p)) {
+            if (view.getBounds().contains(p)) {
                 return view;
             }
         }
         return null;
     }
+
+    public Map<Element, ElementView> getElementViewMap() {
+        return elementViewMap;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

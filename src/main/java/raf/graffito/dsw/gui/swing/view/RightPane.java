@@ -17,6 +17,7 @@
         private JButton buttonAddLogo;
         private JButton buttonMoveElement;
         private JButton buttonSelectElement;
+        private JButton buttonDeleteElement;
 
         public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
             this.projectNameLabel = projectNameLabel;
@@ -37,11 +38,13 @@
             this.buttonAddLogo = createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
             this.buttonSelectElement = createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction());
             this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
+            this.buttonDeleteElement=createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
             buttonPanel.add(buttonSelectElement);
             buttonPanel.add(buttonMoveElement);
+            buttonPanel.add(buttonDeleteElement);
 
             add(buttonPanel, BorderLayout.CENTER);
         }
@@ -86,6 +89,7 @@
         }
         public void startAddLogoState() {stateManager.setAddLogoState();}
         public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
+        public void startDeleteElementState(){stateManager.setDeleteState();}
 
         @Override
         public void update(String presentationName, String projectName) {

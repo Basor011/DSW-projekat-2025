@@ -15,6 +15,7 @@ public class ActionManager {
     private AddLogoAction addLogoButton;
     private AddTextFieldAction addTextFieldButton;
     private SelectElementAction selectElementAction;
+    private DeleteElementAction deleteElementAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -27,6 +28,7 @@ public class ActionManager {
         addImageButton = new AddImageAction();
         addLogoButton = new AddLogoAction();
         addTextFieldButton = new AddTextFieldAction();
+        deleteElementAction=new DeleteElementAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -44,4 +46,7 @@ public class ActionManager {
     public AddImageAction getAddImageButton() {return addImageButton;}
     public AddLogoAction getAddLogoButton() {return addLogoButton;}
     public AddTextFieldAction getAddTextFieldButton() {return addTextFieldButton;}
+    public DeleteElementAction getDeleteElementAction() {
+        return deleteElementAction;
+    }
 }

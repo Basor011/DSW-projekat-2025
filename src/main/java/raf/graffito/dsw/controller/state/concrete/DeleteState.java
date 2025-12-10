@@ -2,6 +2,7 @@ package raf.graffito.dsw.controller.state.concrete;
 
 import raf.graffito.dsw.controller.state.ElementState;
 import raf.graffito.dsw.gui.swing.view.SlideView;
+import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
@@ -12,6 +13,8 @@ public class DeleteState implements ElementState {
 
     @Override
     public void mouseClicked(MouseEvent e, Element element) {
+        System.out.println("testing 123");
+
         GraffNodeComposite parent = (GraffNodeComposite) element.getParent();
         parent.removeChild(element);
     }
@@ -20,8 +23,21 @@ public class DeleteState implements ElementState {
 
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-
+        System.out.println("testing 123");
+        ElementView clicked = slideView.getElementAt(e.getPoint());
+        System.out.println(clicked + "1212231");
+        if(clicked != null) {
+            System.out.println("Deleting element: " + clicked.getElement());
+            Element element = clicked.getElement();
+            GraffNodeComposite parent = (GraffNodeComposite) element.getParent();
+            parent.removeChild(element);
+            slideView.getElementViewMap().remove(element);
+            slideView.repaint();
+        }
     }
+
+
+
 
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
