@@ -172,14 +172,12 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         else if (notification == Notification.PRESENTATION_DELETED){
             if(((GraffTreeItem) node).getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
             if(latestNode!=null && hasChild(node)) {
+                presentationViewList.removeIf(pv -> pv.getPresentation().equals(node.getGraffNode()));
                 MainFrame.getInstance().getGraffTree().removeNode(node);
                 recoverTabs(latestNode);
             }
             else{
-                for(PresentationView pv :presentationViewList)
-                {
-                    if(pv.getPresentation().equals(node.getGraffNode())) presentationViewList.remove(pv);
-                }
+                presentationViewList.removeIf(pv -> pv.getPresentation().equals(node.getGraffNode()));
                 MainFrame.getInstance().getGraffTree().removeNode(node);
             }
         }
