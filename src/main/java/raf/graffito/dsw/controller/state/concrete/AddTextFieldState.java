@@ -1,9 +1,14 @@
 package raf.graffito.dsw.controller.state.concrete;
 
 import raf.graffito.dsw.controller.state.ElementState;
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
+import raf.graffito.dsw.model.composite.leaves.TipElementa;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -18,35 +23,21 @@ public class AddTextFieldState implements ElementState {
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
         Point p = e.getPoint();
+        GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
-        Element txt = new TextFieldElement(
-                "Text",
-                slideView.getSlideModel(),
-                new Point(p.x, p.y),
-                new Dimension(150, 30),defaultText
-        );
+        Element txf = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.TEXT_FIELD, p, defaultText);
+        slideView.getSlideModel().addChild(txf);
+        slideView.addElement(txf);
+        MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(txf));
+        slideView.repaint();
+        MainFrame.getInstance().getRightPanel().startSelectState();
 
-        slideView.addElement(txt);
+        slideView.addElement(txf);
         slideView.repaint();
     }
 
-    @Override
-    public void mouseDragged(MouseEvent e, SlideView slideView) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e, Element element) {
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e, Element element) {
-
-    }
-
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e, Element element) {
-
-    }
+    @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
+    @Override public void mouseReleased(MouseEvent e, Element element) {}
+    @Override public void mouseClicked(MouseEvent e, Element element) {}
+    @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
 }

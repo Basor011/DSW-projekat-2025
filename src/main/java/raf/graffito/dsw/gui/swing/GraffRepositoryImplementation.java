@@ -13,9 +13,6 @@ import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Workspace;
 
 import java.awt.*;
-import java.lang.annotation.ElementType;
-
-import static raf.graffito.dsw.model.composite.leaves.TipElementa.*;
 
 public class GraffRepositoryImplementation implements GraffRepository {
     private Workspace workspace;
@@ -35,15 +32,19 @@ public class GraffRepositoryImplementation implements GraffRepository {
         else if(parent instanceof Presentation) return new PresentationFactory();
         else return null;
     }
-    public Element createElement(Slide slide, TipElementa et, Point location, String imagePath) {
+    public Element createElement(Slide slide, TipElementa tip, Point location, String text) {
         ElementNodeFactory factory = null;
 
-        switch(et) {
-            case IMAGE -> factory = new ImageElementNodeFactory(imagePath);
-            case LOGO -> factory = new LogoElementNodeFactory();
-            case TEXT_FIELD -> factory = new TextFieldElementNodeFactory();
+        switch(tip) {
+            case LOGO -> {return null;}
+            case TEXT_FIELD -> factory = new TextFieldElementNodeFactory(text);
+            case IMAGE -> factory = new ImageElementNodeFactory(text);
         }
         return factory != null ? factory.createElement(slide, location) : null;
+    }
+    public Element createLogoElement(Slide slide, TipElementa et, Point location) {
+        LogoElementNodeFactory f = new LogoElementNodeFactory();
+        return f.createElement(slide, location);
     }
 
     @Override
