@@ -27,6 +27,7 @@ public class SlideView extends JPanel {
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
     private StateManager stateManager;
+    private static final Dimension size=new Dimension(700,500);
 
 
     private double scaleFactor = 1.0;
@@ -37,12 +38,13 @@ public class SlideView extends JPanel {
         this.slideModel = slideModel;
         this.elementViewMap = new HashMap<>();
         this.stateManager = stateManager;
-        JLabel mainLabel = new JLabel(slideModel.getName(), SwingConstants.CENTER);
-        mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
-        add(mainLabel, BorderLayout.CENTER);
-        //setLayout(null);
+        //JLabel mainLabel = new JLabel(slideModel.getName(), SwingConstants.CENTER);
+        //mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        //add(mainLabel, BorderLayout.CENTER);
         setBackground(Color.LIGHT_GRAY);
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(size);
+        setMaximumSize(size);
+        setMinimumSize(size);
         initElementViews();
         initMouseListener();
     }
