@@ -54,7 +54,7 @@ public class AddImageState implements ElementState {
     }
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e, Element element) {
+    public void mouseWheelMoved(MouseWheelEvent e, SlideView slideView) {
 
     }
 }

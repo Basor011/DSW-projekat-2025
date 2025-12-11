@@ -17,6 +17,8 @@
         private JButton buttonAddLogo;
         private JButton buttonMoveElement;
         private JButton buttonSelectElement;
+        private JButton buttonZoomElement;
+        private JButton buttonRotateElement;
         private JButton buttonDeleteElement;
 
         public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
@@ -38,12 +40,16 @@
             this.buttonAddLogo = createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
             this.buttonSelectElement = createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction());
             this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
+            this.buttonRotateElement=createIconButton(MainFrame.getInstance().getActionManager().getRotateElementAction());
+            this.buttonZoomElement=createIconButton(MainFrame.getInstance().getActionManager().getZoomElementAction());
             this.buttonDeleteElement=createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
             buttonPanel.add(buttonSelectElement);
             buttonPanel.add(buttonMoveElement);
+            buttonPanel.add(buttonRotateElement);
+            buttonPanel.add(buttonZoomElement);
             buttonPanel.add(buttonDeleteElement);
 
             add(buttonPanel, BorderLayout.CENTER);
@@ -90,6 +96,9 @@
         public void startAddLogoState() {stateManager.setAddLogoState();}
         public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
         public void startDeleteElementState(){stateManager.setDeleteState();}
+        public void startRotateElementState(){stateManager.setRotationState();}
+        public void startZoomElementState(){stateManager.setZoomState();}
+
 
         @Override
         public void update(String presentationName, String projectName) {

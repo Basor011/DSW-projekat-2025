@@ -39,5 +39,5 @@ public class SelectState implements ElementState {
     @Override public void mouseDragged(MouseEvent e, SlideView slideView){}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}
-    @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
+    @Override public void mouseWheelMoved(MouseWheelEvent e, SlideView slideView) {}
 }

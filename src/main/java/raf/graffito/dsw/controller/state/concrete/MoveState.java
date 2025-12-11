@@ -43,5 +43,5 @@ public class MoveState implements ElementState {
         panel.repaint();
     }
     @Override public void mouseClicked(MouseEvent e, Element element) {}
-    @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
+    @Override public void mouseWheelMoved(MouseWheelEvent e, SlideView slideView) {}
 }

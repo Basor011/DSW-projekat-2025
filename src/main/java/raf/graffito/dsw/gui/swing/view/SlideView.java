@@ -17,6 +17,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseWheelEvent;
+import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +27,11 @@ public class SlideView extends JPanel {
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
     private StateManager stateManager;
+
+
+    private double scaleFactor = 1.0;
+    private AffineTransform currentTransform = new AffineTransform();
+
 
     public SlideView(Slide slideModel, StateManager stateManager) {
         this.slideModel = slideModel;
@@ -54,6 +61,12 @@ public class SlideView extends JPanel {
                 stateManager.getCurrentState().mouseDragged(e, SlideView.this);
             }
         });
+        addMouseWheelListener(new MouseAdapter() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                stateManager.getCurrentState().mouseWheelMoved(e,SlideView.this);
+            }
+        });
 
     }
 
@@ -73,10 +86,6 @@ public class SlideView extends JPanel {
         elementViewMap.put(element, elementFactory((Element) element));
         repaint();
     }
-    public void startMoveState(){
-        this.stateManager.setMoveState();
-    }
-
     public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
         for (Element e : elementViewMap.keySet()) {
             ElementView view = elementViewMap.get(e);
@@ -87,14 +96,11 @@ public class SlideView extends JPanel {
         return null;
     }
 
-    public Map<Element, ElementView> getElementViewMap() {
-        return elementViewMap;
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
+        g2d.transform(currentTransform);
         for(GraffNode e: slideModel.getChildren()){
             ElementView elementView = elementViewMap.get(e);
             if(elementView == null) {
@@ -105,9 +111,30 @@ public class SlideView extends JPanel {
         }
         g2d.dispose();
     }
-
+    public void startMoveState(){
+        this.stateManager.setMoveState();
+    }
     public Slide getSlideModel() {
         return slideModel;
+    }
+    public Map<Element, ElementView> getElementViewMap() {
+        return elementViewMap;
+    }
+    public StateManager getStateManager() {
+        return stateManager;
+    }
+    public double getScaleFactor() {
+        return scaleFactor;
+    }
+    public AffineTransform getCurrentTransform() {
+        return currentTransform;
+    }
+
+    public void setScaleFactor(double scaleFactor) {
+        this.scaleFactor = scaleFactor;
+    }
+    public void setCurrentTransform(AffineTransform currentTransform) {
+        this.currentTransform = currentTransform;
     }
 }
 /// dummy model slideview

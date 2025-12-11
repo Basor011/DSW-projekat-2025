@@ -11,5 +11,5 @@ public interface ElementState {
     void mouseDragged(MouseEvent e, SlideView slideView);
     void mouseReleased(MouseEvent e, Element element);
     void mouseClicked(MouseEvent e, Element element);
-    void mouseWheelMoved(MouseWheelEvent e, Element element);
+    void mouseWheelMoved(MouseWheelEvent e, SlideView slideView);
 }
