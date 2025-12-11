@@ -2,6 +2,7 @@ package raf.graffito.dsw.controller.state_actions;
 
 import raf.graffito.dsw.controller.AbstractGraffAction;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.gui.swing.view.PresentationView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,9 @@ public class RotateElementAction extends AbstractGraffAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().getRightPanel().startRotateElementState();
+       boolean toggle= ((PresentationView)(MainFrame.getInstance().getTabbedPane().getSelectedComponent())).getPanel().isVisible();
+        ((PresentationView)(MainFrame.getInstance().getTabbedPane().getSelectedComponent())).getPanel().setVisible(!toggle);
+       // MainFrame.getInstance().getRightPanel().startRotateElementState();
 
     }
 }

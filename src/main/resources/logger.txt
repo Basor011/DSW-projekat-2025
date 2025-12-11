@@ -133,3 +133,9 @@
 [OBAVESTENJE][10.12.2025. 11:37] Projekat mora imati barem jedno dete
 [OBAVESTENJE][10.12.2025. 12:36] Molim vas izaberite cvor
 [OBAVESTENJE][11.12.2025. 17:56] Molim vas izaberite cvor
+[OBAVESTENJE][11.12.2025. 18:34] Molim vas izaberite cvor
+[GRESKA][11.12.2025. 18:37] Slide ne moze sadrzati novi tip cvora
+[GRESKA][11.12.2025. 18:42] Slide ne moze sadrzati novi tip cvora
+[OBAVESTENJE][11.12.2025. 19:00] Molim vas izaberite cvor
+[OBAVESTENJE][11.12.2025. 19:35] Molim vas izaberite cvor
+[OBAVESTENJE][11.12.2025. 19:48] Molim vas izaberite cvor za brisanje

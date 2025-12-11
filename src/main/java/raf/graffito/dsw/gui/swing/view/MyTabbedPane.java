@@ -26,6 +26,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     private List<ColourDecorator> decoratedProjects;//vec otvoreni projekti
     private List<PresentationView> presentationViewList;
 
+
     public MyTabbedPane() {
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.decoratedProjects = new ArrayList<>();
@@ -202,15 +203,15 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 {
                     prez.getSlajdovi().add(newSlideView); // Dodajem  slideview presentationview-u
                     if(parent.getParent().equals(latestNode)) {
-                        // Update the display to show the new slide
                         prez.removeAll();
-                        if(!prez.getSlajdovi().isEmpty()) {
-                            prez.add(prez.getSlajdovi().getLast(), BorderLayout.CENTER);
+                        if(!prez.getSlajdovi().isEmpty()) { // ako imaju vec slajdovi
+                            prez.add(prez.getSlajdovi().getLast());
                         }
-                        prez.revalidate();
-                        prez.repaint();
+                       // prez.revalidate();
+                       // prez.repaint();
                         int idx = this.indexOfComponent(prez);
-                        this.setComponentAt(idx, prez); // forces JTabbedPane to redraw the selected tab
+                        this.setComponentAt(idx, prez);
+                        prez.update(Notification.SLIDE_SELECTED,node);
                     }
                 }
             }

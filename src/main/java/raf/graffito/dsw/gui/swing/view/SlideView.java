@@ -138,7 +138,9 @@ public class SlideView extends JPanel {
     public void setCurrentTransform(AffineTransform currentTransform) {
         this.currentTransform = currentTransform;
     }
+
 }
+
 /// dummy model slideview
 /* private void init(){
         setLayout(new BorderLayout());
