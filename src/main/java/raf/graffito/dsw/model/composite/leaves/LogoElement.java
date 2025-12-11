@@ -8,6 +8,11 @@ public class LogoElement extends Element{
     public LogoElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija) {
         super(name, parent, lokacija, dimenzija, "LOGO");
     }
+
+    public LogoElement(String name, GraffNode parent) {
+        super(name, parent);
+    }
+
     @Override
     public Element clone() {
         return new LogoElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension());

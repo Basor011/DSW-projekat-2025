@@ -132,3 +132,11 @@
 [OBAVESTENJE][10.12.2025. 11:09] Molim vas izaberite cvor
 [OBAVESTENJE][10.12.2025. 11:37] Projekat mora imati barem jedno dete
 [OBAVESTENJE][10.12.2025. 12:36] Molim vas izaberite cvor
+[GRESKA][11.12.2025. 18:30] Element se može dodati samo na Slide.
+[GRESKA][11.12.2025. 18:32] Element se može dodati samo na Slide.
+[GRESKA][11.12.2025. 22:33] Element se može dodati samo na Slide.
+[GRESKA][11.12.2025. 22:33] Element se može dodati samo na Slide.
+[GRESKA][11.12.2025. 22:33] Element se može dodati samo na Slide.
+[GRESKA][11.12.2025. 22:34] Element se može dodati samo na Slide.
+[GRESKA][11.12.2025. 22:37] Slajd ne može da sadrži decu
+[GRESKA][11.12.2025. 22:37] Slajd ne može da sadrži decu

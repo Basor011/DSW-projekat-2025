@@ -22,10 +22,10 @@ public class NewChildAction extends AbstractGraffAction {
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
         if(selected==null) {
-            ApplicationFramework.getInstance().getMg().generateInfo("Molim vas izaberite cvor");
+            ApplicationFramework.getInstance().getMg().generateInfo("Moras da odabereš čemu ćeš dodati novi čvor");
             return;
         }else if(selected.getGraffNode() instanceof Slide) {
-            ApplicationFramework.getInstance().getMg().generateError("Slide ne moze sadrzati novi tip cvora");
+            ApplicationFramework.getInstance().getMg().generateError("Slajd ne može da sadrži decu");
             return;
         }
         MainFrame.getInstance().getGraffTree().addChild(selected);

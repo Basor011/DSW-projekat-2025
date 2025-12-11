@@ -15,7 +15,7 @@ public abstract class AbstractGraffAction extends AbstractAction {
              Image newImg = img.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
              return new ImageIcon(newImg);
          } else {
-             ApplicationFramework.getInstance().getMg().generateError("File not found");
+             ApplicationFramework.getInstance().getMg().generateError("File ne postoji hej");
          }
          return null;
      }

@@ -9,6 +9,7 @@ import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements Subscriber {
@@ -54,6 +55,7 @@ public class MainFrame extends JFrame implements Subscriber {
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
+
         rightPanel = new RightPane(new JLabel("Kalina"),new JLabel("Jug"));
         ((GraffTreeImplementation)graffTree).addSubscriber(rightPanel);
         JScrollPane scrollPane = new JScrollPane(workspace);
@@ -81,7 +83,6 @@ public class MainFrame extends JFrame implements Subscriber {
     public RightPane getRightPanel() {
         return rightPanel;
     }
-
     public StateManager getStateManager() {
         return stateManager;
     }
@@ -94,10 +95,7 @@ public class MainFrame extends JFrame implements Subscriber {
         else return;
     }
 
-
     public GraffTree getGraffTree() {
         return graffTree;
     }
-
-
 }

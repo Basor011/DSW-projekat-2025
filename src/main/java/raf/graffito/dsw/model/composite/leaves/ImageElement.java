@@ -12,6 +12,10 @@ public class ImageElement extends Element{
         this.imagePath = imagePath;
     }
 
+    public ImageElement(String name, GraffNode parent) {
+        super(name, parent);
+    }
+
     @Override
     public Element clone() {
         return new ImageElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension(), imagePath);

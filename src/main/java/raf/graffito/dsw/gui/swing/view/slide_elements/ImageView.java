@@ -22,7 +22,6 @@ public class ImageView extends ElementView{
             ApplicationFramework.getInstance().getMg().generateError("Slika nije pronadjena");
         }
     }
-
     @Override
     public void paint(Graphics2D g) {
         ImageElement e = (ImageElement) element;

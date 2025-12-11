@@ -56,7 +56,6 @@ public class SlideView extends JPanel {
         });
 
     }
-
     private void initElementViews() {
         for(GraffNode e: slideModel.getChildren()){
             elementViewMap.put((Element) e, elementFactory((Element) e));
@@ -76,7 +75,6 @@ public class SlideView extends JPanel {
     public void startMoveState(){
         this.stateManager.setMoveState();
     }
-
     public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
         for (Element e : elementViewMap.keySet()) {
             ElementView view = elementViewMap.get(e);
@@ -86,11 +84,9 @@ public class SlideView extends JPanel {
         }
         return null;
     }
-
     public Map<Element, ElementView> getElementViewMap() {
         return elementViewMap;
     }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -105,42 +101,8 @@ public class SlideView extends JPanel {
         }
         g2d.dispose();
     }
-
     public Slide getSlideModel() {
         return slideModel;
     }
 }
-/// dummy model slideview
-/* private void init(){
-        setLayout(new BorderLayout());
-
-        this.setPreferredSize(new Dimension(800, 600));
-        JLabel mainLabel = new JLabel("Empty Slide", SwingConstants.CENTER);
-        mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
-        add(mainLabel, BorderLayout.CENTER);
-
-        JPanel thumbnailsPanel = new JPanel();
-        thumbnailsPanel.setLayout(new BoxLayout(thumbnailsPanel, BoxLayout.Y_AXIS));
-
-        String[] imagePaths = {
-                "/images/amogus.png",
-                "/images/amogus.png",
-                "/images/amogus.png",
-                "/images/amogus.png",
-                "/images/amogus.png"
-        };
-
-        for (String path : imagePaths) {
-            ImageIcon icon = new ImageIcon(getClass().getResource(path));
-
-            Image scaled = icon.getImage().getScaledInstance(100, 75, Image.SCALE_SMOOTH);
-            JLabel thumbLabel = new JLabel(new ImageIcon(scaled));
-            thumbLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-            thumbLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-
-            thumbnailsPanel.add(thumbLabel);
-        }
-        add(thumbnailsPanel, BorderLayout.EAST);
-    }
-*/
 

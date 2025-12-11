@@ -18,6 +18,11 @@ abstract public class Element extends GraffNodeLeaf {
         this.dimension = dimension;
         this.type = type;
     }
+
+    public Element(String name, GraffNode parent) {
+        super(name, parent);
+    }
+
     public abstract Element clone();
     public void setDimensions(int x, int y) {
         this.getDimension().width = Math.max(10, this.getDimension().width + x);

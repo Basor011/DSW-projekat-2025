@@ -33,28 +33,20 @@ public class StateManager {
     public ElementState getCurrentState() {
         return currentState;
     }
-
     public void setSelectState() {
         currentState = selectState;
     }
-
     public void setMoveState() {
         currentState = moveState;
     }
-
     public void setAddImageState(String imagePath) {
         addImageState = new AddImageState(imagePath);
         currentState = addImageState;
     }
-
-    public void setAddLogoState() {
-        currentState = addLogoState;
-    }
-
+    public void setAddLogoState() {currentState = addLogoState;}
     public void setAddTextFieldState() {
         currentState = addTextFieldState;
     }
-
     public void setDeleteState() {
         currentState = deleteState;
     }
