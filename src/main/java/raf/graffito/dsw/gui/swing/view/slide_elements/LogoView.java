@@ -13,11 +13,14 @@ public class LogoView extends ElementView {
     @Override
     public void paint(Graphics2D g) {
         LogoElement le = (LogoElement) element;
-        g.setColor(Color.pink);
+        g.setColor(Color.yellow);
         Polygon polygon = new Polygon();
+
         polygon.addPoint(le.getLocation().x, le.getLocation().y);
-        polygon.addPoint(le.getLocation().x+le.getDimension().width, le.getLocation().y);
-        polygon.addPoint(le.getLocation().x+le.getDimension().width/2,le.getLocation().y+le.getDimension().height);
+        polygon.addPoint(le.getLocation().x + le.getDimension().width, le.getLocation().y);
+        polygon.addPoint(le.getLocation().x, le.getLocation().y + le.getDimension().height);
+        polygon.addPoint(le.getLocation().x + le.getDimension().width, le.getLocation().y + le.getDimension().height);
+
         g.fillPolygon(polygon);
         paintSelection(g);
     }
