@@ -220,6 +220,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         {
             GraffTreeItem parent= (GraffTreeItem) node.getParent();
             if(node.getParent().getChildCount() == 1 && parent.getGraffNode() instanceof Project){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+
             MainFrame.getInstance().getGraffTree().removeNode(node);
 
         }
