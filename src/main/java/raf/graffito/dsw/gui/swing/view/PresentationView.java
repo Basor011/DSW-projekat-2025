@@ -45,9 +45,6 @@ public class PresentationView extends JPanel implements  PSubscriber {
             showSlide(lastSelectedSlide);
         }
 
-
-
-
     }
 
     private void initUI()
@@ -57,7 +54,6 @@ public class PresentationView extends JPanel implements  PSubscriber {
       buttonClockwise=new JButton("Rotate 90");buttonCClockwise=new JButton("Rotate -90");
       buttonContainer=new JPanel(); buttonContainer.add(buttonClockwise);buttonContainer.add(buttonCClockwise);
       titleLabel= new JLabel();titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
-     // titleContainer=new JPanel(new BorderLayout());titleContainer.add(titleLabel,BorderLayout.PAGE_START);
 
       slideContainer=new JPanel();
       slideContainer.setLayout(new BoxLayout(slideContainer, BoxLayout.Y_AXIS));
@@ -66,21 +62,49 @@ public class PresentationView extends JPanel implements  PSubscriber {
       leftContainer.add(titleLabel,BorderLayout.PAGE_START);
       leftContainer.add(slideContainer,BorderLayout.CENTER);
 
-
         add(leftContainer,BorderLayout.CENTER);
         add(buttonContainer, BorderLayout.EAST);
-
     }
-    private void showSlide(SlideView slideView){
+
+    public void showSlide(SlideView slideView){
         titleLabel.setText(slideView.getSlideModel().getName());
         slideContainer.removeAll();
         slideContainer.add(slideView);
         slideContainer.repaint();
         slideContainer.revalidate();
+        lastSelectedSlide=slideView;
         this.repaint();
         this.revalidate();
     }
 
+    @Override
+    public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
+    {
+        if (!(notification == Notification.SLIDE_SELECTED)) return;
+
+
+        GraffNode currentlyOpenProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
+        GraffNode slideParent=node.getGraffNode().getParent();
+
+        if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
+            for (SlideView slajd : slajdovi) {
+                if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
+
+                    ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
+                    showSlide(slajd);
+
+                    System.out.println("Selecting slide "+  slajd.getSlideModel().getName());
+
+                    revalidate();
+                    repaint();
+                }
+            }
+        }
+        else
+        {
+            ///  treba da se azurira rightpane i otvori projekat  sa odg prezentacijama ako je projekat otvoren
+        }
+    }
 
     public String getTitle() {
         return this.getName();
@@ -99,44 +123,5 @@ public class PresentationView extends JPanel implements  PSubscriber {
     }
     public JLabel getTitleLabel() {
         return titleLabel;
-    }
-
-
-    @Override
-    public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
-    {
-        if (!(notification == Notification.SLIDE_SELECTED)) return;
-
-
-        System.out.println(node.getGraffNode().getName()+ "TESTING PLS");
-        GraffNode openProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
-        if (node.getGraffNode().getParent().getParent().equals(openProject)) {
-            for (SlideView slajd : slajdovi) {
-                if (slajd.getSlideModel().equals(node.getGraffNode())) { // ako je neki slajd u ovom projektu jednak prosledjenom
-
-                    ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
-
-                   // removeAll();
-                   // JPanel wrapper = new JPanel(new GridBagLayout());
-                   // wrapper.add(slajd);
-                    if(slideContainer == null) {
-                        slideContainer = new JPanel();
-                        slideContainer.add(slajd);
-                    }
-                    slideContainer.removeAll();
-                    slideContainer.add(slajd);
-
-                    titleLabel.setText(slajd.getSlideModel().getName());
-                    //label.setFont(new Font("SansSerif", Font.BOLD, 24));
-                    //add(label,BorderLayout.PAGE_START);
-                    System.out.println("Selecting slide "+  slajd.getSlideModel().getName());
-                    //add(wrapper);
-                    revalidate();
-                    repaint();
-                }
-            }
-
-
-        }
     }
 }

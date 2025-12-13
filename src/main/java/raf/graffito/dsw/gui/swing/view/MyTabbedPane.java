@@ -25,6 +25,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     private GraffTreeItem latestNode;
     private List<ColourDecorator> decoratedProjects;//vec otvoreni projekti
     private List<PresentationView> presentationViewList;
+    private Color colour;
 
 
     public MyTabbedPane() {
@@ -38,7 +39,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     }
 
     public void fillTabs(GraffTreeItem node) {//node == project,za svaku prezentaciju otvara tab
-        Color colour = JColorChooser.showDialog(MainFrame.getInstance(), "Izaberite boju", Color.PINK);
+         colour = JColorChooser.showDialog(MainFrame.getInstance(), "Izaberite boju", Color.PINK);
         if (colour == null) return;
 
         for (ColourDecorator cd : decoratedProjects) {
@@ -70,6 +71,22 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         {
             ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).addSubscriber(pv);
         }
+    }
+    public void addTab(GraffTreeItem node)
+    {
+        Color color= Color.PINK;
+
+        for (ColourDecorator dp : decoratedProjects) {
+            if ((dp.getGraffTreeItem()).equals(node)) {
+                 color = dp.getColour();
+            }
+        }
+        PresentationView presentationView= new PresentationView(node.getGraffNode().getName(), (GraffNodeComposite) node.getGraffNode());
+        presentationViewList.add(presentationView);
+        addTab(presentationView.getTitle(),presentationView);
+        int index=this.indexOfComponent(presentationView);
+        setBackgroundAt(index,colour);
+        setForegroundAt(index,Color.BLACK);
     }
 
     public void recoverTabs(GraffTreeItem node) { //project
@@ -135,9 +152,9 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         {
             if( node.getParent().equals(latestNode))
             {
-                PresentationView presentationView= new PresentationView(node.getGraffNode().getName(), (GraffNodeComposite) node.getGraffNode());
-                presentationViewList.add(presentationView);
-                recoverTabs( (GraffTreeItem)node.getParent());
+                addTab(node);
+
+                //recoverTabs( (GraffTreeItem)node.getParent());
             }
         }
         else if (notification == Notification.PROJECT_RENAMED)
@@ -203,7 +220,8 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 {
                     pv.getSlajdovi().add(newSlideView); // Dodajem  slideview odgovarajucem presentationview-u
                     if(parent.getParent().equals(latestNode)) { // ako je trenutno otvoren taj projekat
-                        //pv.removeAll();
+                        pv.showSlide(newSlideView);
+                        /*
                         if(!pv.getSlajdovi().isEmpty()) { // ako prezentacija vec ima neke slajdove
                             pv.getSlideContainer().removeAll();
                             pv.getSlideContainer().add(pv.getSlajdovi().getLast()); /// da bi pamtio last selecte moram ovo da promenim
@@ -213,11 +231,13 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                         else{
                             pv.getSlideContainer().add(pv.getSlajdovi().getLast());
                         }
+                         */
                         ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
-                        pv.getSlideContainer().revalidate();
-                        pv.getSlideContainer().repaint();
+                       // pv.getSlideContainer().revalidate();
+                       // pv.getSlideContainer().repaint();
                         int idx = this.indexOfComponent(pv); // menjaje selektovane prezentacije unutar istog projekta
-                        this.setComponentAt(idx, pv);
+                        if(idx != -1)this.setComponentAt(idx, pv);
+
 
                     }
                 }
