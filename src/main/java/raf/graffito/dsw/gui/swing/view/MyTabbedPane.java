@@ -74,19 +74,14 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     }
     public void addTab(GraffTreeItem node)
     {
-        Color color= Color.PINK;
-
-        for (ColourDecorator dp : decoratedProjects) {
-            if ((dp.getGraffTreeItem()).equals(node)) {
-                 color = dp.getColour();
-            }
-        }
         PresentationView presentationView= new PresentationView(node.getGraffNode().getName(), (GraffNodeComposite) node.getGraffNode());
         presentationViewList.add(presentationView);
         addTab(presentationView.getTitle(),presentationView);
         int index=this.indexOfComponent(presentationView);
         setBackgroundAt(index,colour);
         setForegroundAt(index,Color.BLACK);
+        ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).addSubscriber(presentationView);;
+        this.revalidate();
     }
 
     public void recoverTabs(GraffTreeItem node) { //project
@@ -153,7 +148,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             if( node.getParent().equals(latestNode))
             {
                 addTab(node);
-
                 //recoverTabs( (GraffTreeItem)node.getParent());
             }
         }

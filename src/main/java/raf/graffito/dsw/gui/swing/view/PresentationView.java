@@ -44,6 +44,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
             lastSelectedSlide =slajdovi.getFirst();
             showSlide(lastSelectedSlide);
         }
+        buttonContainer.setVisible(false);
 
     }
 
@@ -60,7 +61,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
 
       leftContainer=new JPanel(new BorderLayout());
       leftContainer.add(titleLabel,BorderLayout.PAGE_START);
-      leftContainer.add(slideContainer,BorderLayout.CENTER);
+      leftContainer.add(slideContainer,BorderLayout.WEST);
 
         add(leftContainer,BorderLayout.CENTER);
         add(buttonContainer, BorderLayout.EAST);
@@ -100,10 +101,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
                 }
             }
         }
-        else
-        {
-            ///  treba da se azurira rightpane i otvori projekat  sa odg prezentacijama ako je projekat otvoren
-        }
+
     }
 
     public String getTitle() {

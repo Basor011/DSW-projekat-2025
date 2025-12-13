@@ -145,3 +145,5 @@
 [OBAVESTENJE][13.12.2025. 11:05] Molim vas izaberite cvor
 [OBAVESTENJE][13.12.2025. 11:17] Molim vas izaberite cvor
 [OBAVESTENJE][13.12.2025. 13:25] Molim vas izaberite cvor
+[GRESKA][13.12.2025. 15:33] Slide ne moze sadrzati novi tip cvora
+[OBAVESTENJE][13.12.2025. 15:42] Molim vas izaberite cvor
