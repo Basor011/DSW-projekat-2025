@@ -12,18 +12,17 @@ import java.awt.event.MouseWheelEvent;
 public class MoveState implements ElementState {
     private boolean dragging = false;
     private Point start;
-
-    private ElementView element;
-
-    private SlideView panel;
+    private ElementView activeView;
 
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-        if(element.contains(e.getPoint())) {
+        ElementView view = slideView.getElementAt(e.getPoint());
+
+        if (view != null && view.getElement().isSelected()) {
             dragging = true;
             start = e.getPoint();
+            activeView = view;
         }
-        panel.repaint();
     }
 
     @Override
@@ -33,14 +32,14 @@ public class MoveState implements ElementState {
         int dx = e.getX() - start.x;
         int dy = e.getY() - start.y;
 
-        element.getElement().move(dx, dy);
+        activeView.getElement().move(dx, dy);
 
         start = e.getPoint();
-        panel.repaint();
+        slideView.repaint();
     }
     @Override public void mouseReleased(MouseEvent e, Element element) {
         dragging = false;
-        panel.repaint();
+        activeView = null;
     }
     @Override public void mouseClicked(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}

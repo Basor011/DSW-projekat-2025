@@ -53,7 +53,7 @@ public class GraffRepositoryImplementation implements GraffRepository {
             ((GraffNodeComposite) parent).addChild(child);
         }
     }
-    public GraffNode createChild(GraffNode parent){ //parent = grafftreeitem.getGraffNode
+    public GraffNode createChild(GraffNode parent){
         if(parent instanceof Slide) return null;
         GraffNodeFactory factory = getGraffNodeFactory(parent);
         return factory.createNode(parent);
