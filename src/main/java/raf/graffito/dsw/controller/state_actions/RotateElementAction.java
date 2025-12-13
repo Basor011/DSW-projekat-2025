@@ -17,8 +17,8 @@ public class RotateElementAction extends AbstractGraffAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       boolean toggle= ((PresentationView)(MainFrame.getInstance().getTabbedPane().getSelectedComponent())).getPanel().isVisible() ;
-        ((PresentationView)(MainFrame.getInstance().getTabbedPane().getSelectedComponent())).getPanel().setVisible(!toggle);
+       boolean toggle= ((PresentationView)(MainFrame.getInstance().getTabbedPane().getSelectedComponent())).getButtonContainer().isVisible() ;
+        ((PresentationView)(MainFrame.getInstance().getTabbedPane().getSelectedComponent())).getButtonContainer().setVisible(!toggle);
        // MainFrame.getInstance().getRightPanel().startRotateElementState();
 
     }

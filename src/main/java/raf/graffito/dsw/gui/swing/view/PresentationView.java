@@ -20,61 +20,67 @@ public class PresentationView extends JPanel implements  PSubscriber {
     private List<SlideView> slajdovi;
     private JButton buttonCClockwise;
     private  JButton buttonClockwise;
-    private JPanel panel;
-    private JPanel panel2;
-    private int lastVisited;
+    private JPanel buttonContainer;
+    private JPanel leftContainer;
+    private SlideView lastSelectedSlide;
+    private JLabel titleLabel;
+    private JPanel titleContainer;
+    private JPanel slideContainer;
 
     public PresentationView(String title, GraffNodeComposite presentation)
     {
         this.setName(title);
         this.presentation = presentation;
-        panel= new JPanel();
-        lastVisited=0;
-        buttonClockwise=new JButton("Rotate 90");
-        buttonCClockwise= new JButton("Rotate -90");
-       panel.add(buttonCClockwise);
-       panel.add(buttonClockwise);
-        panel.setPreferredSize(new Dimension(200,100));
-        panel2= new JPanel();
-        panel2.setPreferredSize(panel.getPreferredSize());
-        panel2.setMinimumSize(panel.getPreferredSize());
-        panel2.setMaximumSize(panel.getPreferredSize());
-        panel2.add(panel, BorderLayout.CENTER);
-      // panel2.add(panel);
+
         slajdovi=new ArrayList<>();
-        setLayout(new BorderLayout());
         for(GraffNode child : presentation.getChildren()) {
             if(child instanceof Slide) {
                 SlideView toAdd = new SlideView((Slide) child, MainFrame.getInstance().getStateManager());
                 slajdovi.add(toAdd);
             }
         }
-        if(!slajdovi.isEmpty()) {
-            // Create label for top left
-            JLabel label = new JLabel(slajdovi.getFirst().getSlideModel().getName());
-            label.setFont(new Font("SansSerif", Font.BOLD, 24));
-
-            // Create a container for label (top left) and slideview (below it)
-            JPanel leftContainer = new JPanel(new BorderLayout());
-            leftContainer.add(label, BorderLayout.NORTH);
-
-            // SlideView that maintains its fixed size
-            SlideView slideView = slajdovi.get(lastVisited);
-            slideView.setPreferredSize(slideView.getPreferredSize());
-            slideView.setMinimumSize(slideView.getPreferredSize());
-            slideView.setMaximumSize(slideView.getPreferredSize());
-
-            JPanel slideContainer = new JPanel();
-            slideContainer.setLayout(new BoxLayout(slideContainer, BoxLayout.Y_AXIS));
-            slideContainer.add(slideView);
-            leftContainer.add(slideContainer, BorderLayout.CENTER);
-
-            // Add left container to center of main layout
-            add(leftContainer, BorderLayout.CENTER);
+        initUI();
+        if(!slajdovi.isEmpty()){
+            lastSelectedSlide =slajdovi.getFirst();
+            showSlide(lastSelectedSlide);
         }
-       add(panel2, BorderLayout.EAST);
-        panel.setVisible(false);
+
+
+
+
     }
+
+    private void initUI()
+    {
+        removeAll();
+        setLayout(new BorderLayout());
+      buttonClockwise=new JButton("Rotate 90");buttonCClockwise=new JButton("Rotate -90");
+      buttonContainer=new JPanel(); buttonContainer.add(buttonClockwise);buttonContainer.add(buttonCClockwise);
+      titleLabel= new JLabel();titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+     // titleContainer=new JPanel(new BorderLayout());titleContainer.add(titleLabel,BorderLayout.PAGE_START);
+
+      slideContainer=new JPanel();
+      slideContainer.setLayout(new BoxLayout(slideContainer, BoxLayout.Y_AXIS));
+
+      leftContainer=new JPanel(new BorderLayout());
+      leftContainer.add(titleLabel,BorderLayout.PAGE_START);
+      leftContainer.add(slideContainer,BorderLayout.CENTER);
+
+
+        add(leftContainer,BorderLayout.CENTER);
+        add(buttonContainer, BorderLayout.EAST);
+
+    }
+    private void showSlide(SlideView slideView){
+        titleLabel.setText(slideView.getSlideModel().getName());
+        slideContainer.removeAll();
+        slideContainer.add(slideView);
+        slideContainer.repaint();
+        slideContainer.revalidate();
+        this.repaint();
+        this.revalidate();
+    }
+
 
     public String getTitle() {
         return this.getName();
@@ -85,9 +91,16 @@ public class PresentationView extends JPanel implements  PSubscriber {
     public List<SlideView> getSlajdovi() {
         return slajdovi;
     }
-    public JPanel getPanel() {
-        return panel;
+    public JPanel getButtonContainer() {
+        return buttonContainer;
     }
+    public JPanel getSlideContainer() {
+        return slideContainer;
+    }
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+
 
     @Override
     public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
@@ -95,7 +108,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
         if (!(notification == Notification.SLIDE_SELECTED)) return;
 
 
-
+        System.out.println(node.getGraffNode().getName()+ "TESTING PLS");
         GraffNode openProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
         if (node.getGraffNode().getParent().getParent().equals(openProject)) {
             for (SlideView slajd : slajdovi) {
@@ -103,13 +116,21 @@ public class PresentationView extends JPanel implements  PSubscriber {
 
                     ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
 
-                    removeAll();
-                    JPanel wrapper = new JPanel(new GridBagLayout());
-                    wrapper.add(slajd);
-                    JLabel label=new JLabel(slajd.getSlideModel().getName());
-                    label.setFont(new Font("SansSerif", Font.BOLD, 24));
-                    add(label,BorderLayout.PAGE_START);
-                    add(wrapper);
+                   // removeAll();
+                   // JPanel wrapper = new JPanel(new GridBagLayout());
+                   // wrapper.add(slajd);
+                    if(slideContainer == null) {
+                        slideContainer = new JPanel();
+                        slideContainer.add(slajd);
+                    }
+                    slideContainer.removeAll();
+                    slideContainer.add(slajd);
+
+                    titleLabel.setText(slajd.getSlideModel().getName());
+                    //label.setFont(new Font("SansSerif", Font.BOLD, 24));
+                    //add(label,BorderLayout.PAGE_START);
+                    System.out.println("Selecting slide "+  slajd.getSlideModel().getName());
+                    //add(wrapper);
                     revalidate();
                     repaint();
                 }
