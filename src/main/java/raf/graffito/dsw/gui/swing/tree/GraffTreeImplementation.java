@@ -11,6 +11,7 @@ import raf.graffito.dsw.gui.swing.tree.view.    GraffTreeView;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,8 +103,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         GraffTreeItem slideNode = findTreeNode((GraffTreeItem) treeModel.getRoot(), slideView.getSlideModel());
 
         if (slideNode != null) {
-            // Create the tree path and select it
-            javax.swing.tree.TreePath path = new javax.swing.tree.TreePath(slideNode.getPath());
+            TreePath path = new TreePath(slideNode.getPath());
             graffTreeView.setSelectionPath(path);
             graffTreeView.scrollPathToVisible(path);
         }
