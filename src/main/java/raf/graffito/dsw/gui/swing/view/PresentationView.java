@@ -40,10 +40,13 @@ public class PresentationView extends JPanel implements  PSubscriber {
             }
         }
         initUI();
+
         if(!slajdovi.isEmpty()){
             lastSelectedSlide =slajdovi.getFirst();
             showSlide(lastSelectedSlide);
+            ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(lastSelectedSlide);
         }
+
         buttonContainer.setVisible(false);
 
     }
@@ -74,6 +77,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
         slideContainer.repaint();
         slideContainer.revalidate();
         lastSelectedSlide=slideView;
+
         this.repaint();
         this.revalidate();
     }
@@ -95,6 +99,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
                     showSlide(slajd);
 
                     System.out.println("Selecting slide "+  slajd.getSlideModel().getName());
+                    System.out.println(lastSelectedSlide.getSlideModel().getName());
 
                     revalidate();
                     repaint();

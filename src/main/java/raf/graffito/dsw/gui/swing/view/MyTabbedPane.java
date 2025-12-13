@@ -214,7 +214,13 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 {
                     pv.getSlajdovi().add(newSlideView); // Dodajem  slideview odgovarajucem presentationview-u
                     if(parent.getParent().equals(latestNode)) { // ako je trenutno otvoren taj projekat
-                        pv.showSlide(newSlideView);
+                       // pv.showSlide(newSlideView);
+                        System.out.println("Broj dece za "+ pv.getPresentation().getName()+" je  "+  pv.getPresentation().getChildren().size());
+
+                        if(pv.getPresentation().getChildren().size()==1)
+                        {
+                            ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(newSlideView);
+                        }
                         /*
                         if(!pv.getSlajdovi().isEmpty()) { // ako prezentacija vec ima neke slajdove
                             pv.getSlideContainer().removeAll();
