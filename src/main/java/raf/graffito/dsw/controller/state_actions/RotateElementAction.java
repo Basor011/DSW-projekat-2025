@@ -27,6 +27,8 @@ public class RotateElementAction extends AbstractGraffAction {
                 Element element = (Element) child;
                 if (element.isSelected()) {
                     element.rotate90(clockwise);
+
+
                 }
             }
         }

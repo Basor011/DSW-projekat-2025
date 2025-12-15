@@ -49,4 +49,10 @@ abstract public class Element extends GraffNodeLeaf {
     public double getRotationAngle() {return rotationAngle;}
     public boolean isSelected() {return isSelected;}
     public String getType() {return type;}
+    public Point getCenter() {
+        return new Point(
+                location.x + dimension.width / 2,
+                location.y + dimension.height / 2
+        );
+    }
 }

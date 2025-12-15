@@ -26,6 +26,7 @@ public class SlideView extends JPanel {
 
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
+
     private StateManager stateManager;
     private static final Dimension size=new Dimension(700,500);
 
@@ -75,6 +76,7 @@ public class SlideView extends JPanel {
     private void initElementViews() {
         for(GraffNode e: slideModel.getChildren()){
             elementViewMap.put((Element) e, elementFactory((Element) e));
+
         }
     }
     private ElementView elementFactory(Element element) {
@@ -86,6 +88,7 @@ public class SlideView extends JPanel {
     public void addElement(Element element) {
         slideModel.addChild(element);
         elementViewMap.put(element, elementFactory((Element) element));
+
         repaint();
     }
     public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
@@ -109,7 +112,10 @@ public class SlideView extends JPanel {
                 elementView = elementFactory((Element) e);
                 elementViewMap.put((Element) e, elementView);
             }
-            else elementView.paint(g2d);
+            else {
+                elementView.paintWithRotate(g2d);
+                System.out.println("rotate by " + elementView.getElement().getRotationAngle());
+            }
         }
         g2d.dispose();
     }
