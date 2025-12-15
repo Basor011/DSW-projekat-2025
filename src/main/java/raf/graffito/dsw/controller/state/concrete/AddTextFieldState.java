@@ -5,25 +5,34 @@ import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
 public class AddTextFieldState implements ElementState {
-    private String defaultText = "New Text";
 
-    public void setDefaultText(String text) {
-        this.defaultText = text;
-    }
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
         Point p = e.getPoint();
+
+        String text = JOptionPane.showInputDialog(
+                slideView,
+                "Enter text:",
+                "Text Input",
+                JOptionPane.PLAIN_MESSAGE
+        );
+
+        if (text == null || text.trim().isEmpty()) {
+            return;
+        }
 
         Element txt = new TextFieldElement(
                 "Text",
                 slideView.getSlideModel(),
                 new Point(p.x, p.y),
-                new Dimension(150, 30),defaultText
+                new Dimension(150, 30),
+                text
         );
 
         slideView.addElement(txt);
