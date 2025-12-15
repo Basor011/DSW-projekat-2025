@@ -3,6 +3,7 @@ package raf.graffito.dsw.gui.swing.tree;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
 import raf.graffito.dsw.gui.swing.tree.observer.*;
+import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.compositions.Slide;
@@ -102,6 +103,33 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         for(TBSubscriber s : tbSubscriberList) {
             s.update(presentationName, projectName);
         }
+    }
+    public void setSelectedNode(SlideView slideView)
+    {
+        if (slideView == null || slideView.getSlideModel() == null) return;
+
+        GraffTreeItem slideNode = findTreeNode((GraffTreeItem) treeModel.getRoot(), slideView.getSlideModel());
+
+        if (slideNode != null) {
+            TreePath path = new TreePath(slideNode.getPath());
+            graffTreeView.setSelectionPath(path);
+            graffTreeView.scrollPathToVisible(path);
+        }
+    }
+
+    private GraffTreeItem findTreeNode(GraffTreeItem current, GraffNode target) {
+        if (current.getGraffNode().equals(target)) {
+            return current;
+        }
+
+        for (int i = 0; i < current.getChildCount(); i++) {
+            GraffTreeItem child = (GraffTreeItem) current.getChildAt(i);
+            GraffTreeItem result = findTreeNode(child, target);
+            if (result != null) {
+                return result;
+            }
+        }
+        return null;
     }
 
     public List<TBSubscriber> getTbSubscriberList() { //publisher

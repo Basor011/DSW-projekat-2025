@@ -37,8 +37,10 @@ abstract public class Element extends GraffNodeLeaf {
         this.dimension.height += height;
     }
     public void rotate90(boolean clockwise){
-        rotationAngle += Math.toRadians(clockwise ? -90 : 90);
+        rotationAngle += Math.toRadians(clockwise ? 90 : -90);
+
     }
+
     public void setSelected(boolean selected){
         this.isSelected = selected;
     }
@@ -47,4 +49,10 @@ abstract public class Element extends GraffNodeLeaf {
     public double getRotationAngle() {return rotationAngle;}
     public boolean isSelected() {return isSelected;}
     public String getType() {return type;}
+    public Point getCenter() {
+        return new Point(
+                location.x + dimension.width / 2,
+                location.y + dimension.height / 2
+        );
+    }
 }

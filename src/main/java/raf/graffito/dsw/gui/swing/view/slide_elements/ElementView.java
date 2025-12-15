@@ -3,6 +3,7 @@ package raf.graffito.dsw.gui.swing.view.slide_elements;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public abstract class ElementView implements Painter {
     protected Element element;
@@ -11,7 +12,20 @@ public abstract class ElementView implements Painter {
     public ElementView(Element element) {
         this.element = element;
     }
+
+    public void paintWithRotate(Graphics2D g) {
+        AffineTransform oldTransform = g.getTransform();
+
+        if (element.getRotationAngle() != 0) {
+            Point center  =element.getCenter();
+            g.rotate(element.getRotationAngle(), center.x, center.y);
+        }
+        paint(g);
+
+        g.setTransform(oldTransform);
+    }
     public abstract void paint(Graphics2D g);
+
     public boolean contains(Point p) {
         Element el = getElement();
         int x = el.getLocation().x;

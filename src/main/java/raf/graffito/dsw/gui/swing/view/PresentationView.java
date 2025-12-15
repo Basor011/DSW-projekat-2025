@@ -1,16 +1,14 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import com.sun.tools.javac.Main;
+
+import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeModelListener;
-import raf.graffito.dsw.gui.swing.tree.controller.GraffTreeMouseClickListener;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.compositions.Slide;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,23 +19,99 @@ public class PresentationView extends JPanel implements  PSubscriber {
 
     private GraffNodeComposite presentation;
     private List<SlideView> slajdovi;
+    private JButton buttonCClockwise;
+    private  JButton buttonClockwise;
+    private JPanel buttonContainer;
+    private JPanel leftContainer;
+    private SlideView lastSelectedSlide;
+    private JLabel titleLabel;
+    private JPanel slideContainer;
+    private ActionManager actionManager;
 
     public PresentationView(String title, GraffNodeComposite presentation)
     {
         this.setName(title);
         this.presentation = presentation;
+        actionManager=new ActionManager();
+
         slajdovi=new ArrayList<>();
-        setLayout(new BorderLayout());
-        System.out.println(presentation.getChildren().size());
         for(GraffNode child : presentation.getChildren()) {
             if(child instanceof Slide) {
                 SlideView toAdd = new SlideView((Slide) child, MainFrame.getInstance().getStateManager());
                 slajdovi.add(toAdd);
             }
         }
-        if(!slajdovi.isEmpty()) {
-            add(slajdovi.getFirst(), BorderLayout.CENTER);
+        initUI();
+
+        if(!slajdovi.isEmpty()){
+            lastSelectedSlide =slajdovi.getFirst();
+            showSlide(lastSelectedSlide);
+            ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(lastSelectedSlide);
         }
+        buttonCClockwise.setActionCommand("counterclockwise");
+       buttonCClockwise.addActionListener(actionManager.getRotateElementAction());
+        buttonClockwise.setActionCommand("clockwise");
+        buttonClockwise.addActionListener(actionManager.getRotateElementAction());
+        buttonContainer.setVisible(false);
+
+    }
+
+    private void initUI()
+    {
+        removeAll();
+        setLayout(new BorderLayout());
+      buttonClockwise=new JButton("Rotate 90");buttonCClockwise=new JButton("Rotate -90");
+      buttonContainer=new JPanel(); buttonContainer.add(buttonClockwise);buttonContainer.add(buttonCClockwise);
+      titleLabel= new JLabel();titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+
+      slideContainer=new JPanel();
+      slideContainer.setLayout(new BoxLayout(slideContainer, BoxLayout.Y_AXIS));
+
+      leftContainer=new JPanel(new BorderLayout());
+      leftContainer.add(titleLabel,BorderLayout.PAGE_START);
+      leftContainer.add(slideContainer,BorderLayout.WEST);
+
+        add(leftContainer,BorderLayout.CENTER);
+        add(buttonContainer, BorderLayout.EAST);
+    }
+
+    public void showSlide(SlideView slideView){
+        titleLabel.setText(slideView.getSlideModel().getName());
+        slideContainer.removeAll();
+        slideContainer.add(slideView);
+        slideContainer.repaint();
+        slideContainer.revalidate();
+        lastSelectedSlide=slideView;
+
+        this.repaint();
+        this.revalidate();
+    }
+
+    @Override
+    public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
+    {
+        if (!(notification == Notification.SLIDE_SELECTED)) return;
+
+
+        GraffNode currentlyOpenProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
+        GraffNode slideParent=node.getGraffNode().getParent();
+
+        if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
+            for (SlideView slajd : slajdovi) {
+                if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
+
+                    ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
+                    showSlide(slajd);
+
+                    System.out.println("Selecting slide "+  slajd.getSlideModel().getName());
+                    System.out.println(lastSelectedSlide.getSlideModel().getName());
+
+                    revalidate();
+                    repaint();
+                }
+            }
+        }
+
     }
 
     public String getTitle() {
@@ -49,45 +123,16 @@ public class PresentationView extends JPanel implements  PSubscriber {
     public List<SlideView> getSlajdovi() {
         return slajdovi;
     }
-
-
-    public void showSlide(Slide slide) {
-        SlideView toShow = null;
-        for(SlideView sv: slajdovi){
-            if(sv.getSlideModel() == slide){
-                toShow = sv;
-                break;
-            }
-        }
-        if(toShow == null) {
-            return;
-        }
-        removeAll();
-        add(toShow, BorderLayout.CENTER);
-        revalidate();
-        repaint();
+    public JPanel getButtonContainer() {
+        return buttonContainer;
     }
-
-    @Override
-    public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
-    {
-        if (!(notification == Notification.SLIDE_SELECTED)) return;
-
-        GraffNode openProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
-        if (node.getGraffNode().getParent().getParent().equals(openProject)) {
-            for (SlideView slajd : slajdovi) {
-                if (slajd.getSlideModel().equals(node.getGraffNode())) {
-                    ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
-
-                    removeAll();
-
-                    add(slajd, BorderLayout.CENTER);
-                    revalidate();
-                    repaint();
-                }
-            }
-
-
-        }
+    public JPanel getSlideContainer() {
+        return slideContainer;
+    }
+    public JLabel getTitleLabel() {
+        return titleLabel;
+    }
+    public SlideView getLastSelectedSlide() {
+        return lastSelectedSlide;
     }
 }

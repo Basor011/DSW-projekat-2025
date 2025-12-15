@@ -17,6 +17,8 @@
         private JButton buttonAddLogo;
         private JButton buttonMoveElement;
         private JButton buttonSelectElement;
+        private JButton buttonZoomElement;
+        private JButton buttonRotateElement;
         private JButton buttonDeleteElement;
         private JButton buttonResizeElement;
 
@@ -39,6 +41,8 @@
             this.buttonAddLogo = createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton());
             this.buttonSelectElement = createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction());
             this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
+            this.buttonRotateElement=createIconButton(MainFrame.getInstance().getActionManager().getShowRotateButtonAction());
+            this.buttonZoomElement=createIconButton(MainFrame.getInstance().getActionManager().getZoomElementAction());
             this.buttonDeleteElement=createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
             this.buttonResizeElement = createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction());
             buttonPanel.add(buttonAddImage);
@@ -46,6 +50,8 @@
             buttonPanel.add(buttonAddLogo);
             buttonPanel.add(buttonSelectElement);
             buttonPanel.add(buttonMoveElement);
+            buttonPanel.add(buttonRotateElement);
+            buttonPanel.add(buttonZoomElement);
             buttonPanel.add(buttonDeleteElement);
             buttonPanel.add(buttonResizeElement);
 
@@ -94,6 +100,10 @@
         public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
         public void startDeleteElementState(){stateManager.setDeleteState();}
         public void startResizeElementState(){stateManager.setResizeElementState();}
+        public void startRotateElementState(){stateManager.setRotationState();}
+        public void startZoomElementState(){stateManager.setZoomState();}
+
+
         @Override
         public void update(String presentationName, String projectName) {
            if(presentationName == null) this.projectNameLabel.setText(projectName);

@@ -17,6 +17,9 @@ public class ActionManager {
     private SelectElementAction selectElementAction;
     private DeleteElementAction deleteElementAction;
     private ResizeElementAction resizeElementAction;
+    private ZoomElementAction zoomElementAction;
+    private ShowRotateButtonAction showRotateButtonAction;
+    private RotateElementAction rotateElementAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -31,6 +34,9 @@ public class ActionManager {
         addTextFieldButton = new AddTextFieldAction();
         deleteElementAction=new DeleteElementAction();
         resizeElementAction=new ResizeElementAction();
+        zoomElementAction=new ZoomElementAction();
+        showRotateButtonAction =new ShowRotateButtonAction();
+        rotateElementAction= new RotateElementAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -52,4 +58,13 @@ public class ActionManager {
         return deleteElementAction;
     }
     public ResizeElementAction getResizeElementAction() {return resizeElementAction;}
+    public ZoomElementAction getZoomElementAction() {
+        return zoomElementAction;
+    }
+    public RotateElementAction getRotateElementAction() {
+        return rotateElementAction;
+    }
+    public ShowRotateButtonAction getShowRotateButtonAction() {
+        return showRotateButtonAction;
+    }
 }
