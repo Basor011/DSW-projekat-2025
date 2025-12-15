@@ -32,15 +32,16 @@ public class AddTextFieldState implements ElementState {
             return;
         }
 
-        Element txt = new TextFieldElement(
-                "Text",
-                slideView.getSlideModel(),
-                new Point(p.x, p.y),
-                new Dimension(150, 30),
-                text
-        );
+        GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
-        slideView.addElement(txt);
+        Element txf = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.TEXT_FIELD, p, text);
+        slideView.getSlideModel().addChild(txf);
+        slideView.addElement(txf);
+        MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(txf));
+        slideView.repaint();
+        MainFrame.getInstance().getRightPanel().startSelectState();
+
+        slideView.addElement(txf);
         slideView.repaint();
     }
 
