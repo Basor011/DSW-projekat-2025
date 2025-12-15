@@ -114,7 +114,7 @@ public class SlideView extends JPanel {
             }
             else {
                 elementView.paintWithRotate(g2d);
-                System.out.println("rotate by " + elementView.getElement().getRotationAngle());
+               // System.out.println("rotate by " + elementView.getElement().getRotationAngle());
             }
         }
         g2d.dispose();
