@@ -29,7 +29,7 @@ public class ResizeElementState implements ElementState {
         int dx = e.getX() - start.x;
         int dy = e.getY() - start.y;
 
-        activeView.getElement().resize(dx, dy);
+        activeView.getElement().setDimensions(dx, dy);
 
         start = e.getPoint();
         slideView.repaint();
@@ -39,5 +39,5 @@ public class ResizeElementState implements ElementState {
         activeView = null;
     }
     @Override public void mouseClicked(MouseEvent e, Element element) {}
-    @Override public void mouseWheelMoved(MouseWheelEvent e, Element element) {}
+    @Override public void mouseWheelMoved(MouseWheelEvent e, SlideView slideView) {}
 }
