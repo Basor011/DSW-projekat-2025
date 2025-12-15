@@ -54,9 +54,7 @@ public class ActionManager {
     public AddImageAction getAddImageButton() {return addImageButton;}
     public AddLogoAction getAddLogoButton() {return addLogoButton;}
     public AddTextFieldAction getAddTextFieldButton() {return addTextFieldButton;}
-    public DeleteElementAction getDeleteElementAction() {
-        return deleteElementAction;
-    }
+    public DeleteElementAction getDeleteElementAction() {return deleteElementAction;}
     public ResizeElementAction getResizeElementAction() {return resizeElementAction;}
     public ZoomElementAction getZoomElementAction() {
         return zoomElementAction;

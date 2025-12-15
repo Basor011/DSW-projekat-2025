@@ -8,6 +8,7 @@ public interface GraffTree {
     public void addChild(GraffTreeItem root);
     public void removeNode(GraffTreeItem node);
     void addElement(GraffTreeItem element);
+    void removeElement(GraffTreeItem element);
     public GraffTreeItem getSelectedNode();
 }
 

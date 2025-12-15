@@ -1,8 +1,12 @@
 package raf.graffito.dsw.controller.state.concrete;
 
 import raf.graffito.dsw.controller.state.ElementState;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
+import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
@@ -18,26 +22,26 @@ public class DeleteState implements ElementState {
         GraffNodeComposite parent = (GraffNodeComposite) element.getParent();
         parent.removeChild(element);
     }
-    /// nebitni
-
-
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
         ElementView clicked = slideView.getElementAt(e.getPoint());
+        if(clicked == null)return;
+        Element element = clicked.getElement();
         System.out.println(clicked + " element");
-        if(clicked != null) {
-            System.out.println("Deleting element: " + clicked.getElement());
-            Element element = clicked.getElement();
-            GraffNodeComposite parent = (GraffNodeComposite) element.getParent();
-            parent.removeChild(element);
-            slideView.getElementViewMap().remove(element);
-            slideView.repaint();
-        }
+        System.out.println("Deleting element: " + clicked.getElement());
+
+        GraffNodeComposite parent = (GraffNodeComposite) element.getParent();
+        parent.removeChild(element);
+
+        GraffTreeImplementation tree = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
+        GraffTreeItem toDelete = tree.findItemForNode(element);
+        if(toDelete != null) tree.removeElement(toDelete);
+
+        slideView.getElementViewMap().remove(element);
+        slideView.repaint();
+
+        MainFrame.getInstance().getRightPanel().startSelectState();
     }
-
-
-
-
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, SlideView slideView) {}

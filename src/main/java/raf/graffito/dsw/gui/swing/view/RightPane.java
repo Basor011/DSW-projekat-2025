@@ -43,7 +43,7 @@
             this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
             this.buttonRotateElement=createIconButton(MainFrame.getInstance().getActionManager().getShowRotateButtonAction());
             this.buttonZoomElement=createIconButton(MainFrame.getInstance().getActionManager().getZoomElementAction());
-            this.buttonDeleteElement=createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
+            this.buttonDeleteElement = createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
             this.buttonResizeElement = createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
