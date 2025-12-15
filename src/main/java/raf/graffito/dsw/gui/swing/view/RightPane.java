@@ -123,7 +123,5 @@
         public JLabel getPresentationNameLabel() {
             return presentationNameLabel;
         }
-        public void setPresentationNameLabel(JLabel presentationNameLabel) {
-            this.presentationNameLabel = presentationNameLabel;
-        }
+        public void setPresentationNameLabel(JLabel presentationNameLabel) {this.presentationNameLabel = presentationNameLabel;}
     }
