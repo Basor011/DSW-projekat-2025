@@ -13,7 +13,6 @@ public class ApplicationFramework  {
     // Buduća polja za model celog projekta
     private static ApplicationFramework instance;
 
-
     List<Subscriber> subscribers;
 
     protected GraffRepository gr;
@@ -28,15 +27,13 @@ public class ApplicationFramework  {
     }
 
     public void initialize(GraffRepository gr){
-
-        this.gr=gr;
+        this.gr = gr;
         subscribers =  new ArrayList<Subscriber>();
         this.mg = new MessageGenerator(subscribers);
         LoggerFactory loggerFactory = new LoggerFactory();
 
-        MainFrame mainFrame = MainFrame.getInstance(); ///napravili mf
+        MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.setVisible(true);
-
 
         mg.addSubscriber(mainFrame);
         mg.addSubscriber(loggerFactory.createLogger("consoleLogger"));

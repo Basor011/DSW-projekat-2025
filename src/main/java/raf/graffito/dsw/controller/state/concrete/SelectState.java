@@ -27,15 +27,6 @@ public class SelectState implements ElementState {
         }
         slideView.repaint();
     }
-    private boolean isPointInsideElement(Point p, Element element) {
-        Rectangle bounds = new Rectangle(
-                element.getLocation().x,
-                element.getLocation().y,
-                element.getDimension().width,
-                element.getDimension().height
-        );
-        return bounds.contains(p);
-    }
     @Override public void mouseDragged(MouseEvent e, SlideView slideView){}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}

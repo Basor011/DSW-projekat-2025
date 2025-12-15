@@ -3,14 +3,16 @@ package raf.graffito.dsw.gui.swing;
 import raf.graffito.dsw.core.GraffRepository;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.leaves.Element;
+import raf.graffito.dsw.model.composite.leaves.TipElementa;
 import raf.graffito.dsw.model.factory.GraffNodeFactory;
-import raf.graffito.dsw.model.factory.factories.PresentationFactory;
-import raf.graffito.dsw.model.factory.factories.ProjectFactory;
-import raf.graffito.dsw.model.factory.factories.WorkspaceFactory;
+import raf.graffito.dsw.model.factory.factories.*;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.compositions.Presentation;
 import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Workspace;
+
+import java.awt.*;
 
 public class GraffRepositoryImplementation implements GraffRepository {
     private Workspace workspace;
@@ -30,6 +32,20 @@ public class GraffRepositoryImplementation implements GraffRepository {
         else if(parent instanceof Presentation) return new PresentationFactory();
         else return null;
     }
+    public Element createElement(Slide slide, TipElementa tip, Point location, String text) {
+        ElementNodeFactory factory = null;
+
+        switch(tip) {
+            case LOGO -> {return null;}
+            case TEXT_FIELD -> factory = new TextFieldElementNodeFactory(text);
+            case IMAGE -> factory = new ImageElementNodeFactory(text);
+        }
+        return factory != null ? factory.createElement(slide, location) : null;
+    }
+    public Element createLogoElement(Slide slide, TipElementa et, Point location) {
+        LogoElementNodeFactory f = new LogoElementNodeFactory();
+        return f.createElement(slide, location);
+    }
 
     @Override
     public void addChild(GraffNode parent, GraffNode child) {
@@ -37,7 +53,7 @@ public class GraffRepositoryImplementation implements GraffRepository {
             ((GraffNodeComposite) parent).addChild(child);
         }
     }
-    public GraffNode createChild(GraffNode parent){ //parent = grafftreeitem.getGraffNode
+    public GraffNode createChild(GraffNode parent){
         if(parent instanceof Slide) return null;
         GraffNodeFactory factory = getGraffNodeFactory(parent);
         return factory.createNode(parent);

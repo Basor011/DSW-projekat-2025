@@ -34,11 +34,11 @@ public class GraffTreeCellRenderer extends DefaultTreeCellRenderer{
         }else if(((GraffTreeItem)value).getGraffNode() instanceof Slide) {
             img_URL = getClass().getResource("/images/icons for JTree/slide.png");
         }else if(((GraffTreeItem)value).getGraffNode() instanceof LogoElement){
-
+            img_URL = getClass().getResource("/images/bananaleclerc.jpg");
         }else if(((GraffTreeItem)value).getGraffNode() instanceof ImageElement){
-            img_URL = getClass().getResource("images/icons for JTree/imageelement.png");
+            img_URL = getClass().getResource("/images/icons for JTree/imageelement.png");
         }else if(((GraffTreeItem)value).getGraffNode() instanceof TextFieldElement){
-            img_URL = getClass().getResource("images/icons for JTree/textfieldelement.png");
+            img_URL = getClass().getResource("/images/icons for JTree/textfieldelement.png");
         }
         if(img_URL != null){
             icon = new ImageIcon(img_URL);

@@ -6,6 +6,7 @@ import raf.graffito.dsw.gui.swing.tree.observer.*;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.compositions.Workspace;
 import raf.graffito.dsw.gui.swing.tree.view.    GraffTreeView;
 
@@ -32,7 +33,6 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         pSubscribers=new ArrayList<>();
         return graffTreeView;
     }
-
     @Override
     public void addChild(GraffTreeItem root) {
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr(); //repo pravi dete pomocu factory
@@ -63,7 +63,16 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
     }
     @Override
     public void addElement(GraffTreeItem element) {
+        GraffTreeItem parentItem = getSelectedNode();
 
+        if (!(parentItem.getGraffNode() instanceof Slide)) {
+            ApplicationFramework.getInstance().getMg().generateError("Element se može dodati samo na Slide.");
+            return;
+        }
+
+        DefaultTreeModel model = (DefaultTreeModel) treeModel;
+        model.insertNodeInto(element, parentItem, parentItem.getChildCount());
+        SwingUtilities.updateComponentTreeUI(graffTreeView);
     }
 
     @Override
@@ -91,8 +100,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
 
     @Override //publisher
     public void sendToAll(String presentationName, String projectName) {
-        for(TBSubscriber s : tbSubscriberList)
-        {
+        for(TBSubscriber s : tbSubscriberList) {
             s.update(presentationName, projectName);
         }
     }
@@ -144,16 +152,13 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
     @Override
     public void removeSubscriber(PSubscriber subscriber) {
         pSubscribers.remove(subscriber);
-
     }
 
     @Override
     public void sendingToAll(Notification notification, GraffTreeItem node) {
-        for(PSubscriber s : new ArrayList<>(pSubscribers))
-        {
+        for(PSubscriber s : new ArrayList<>(pSubscribers)) {
             s.update(notification, node);
         }
-
     }
 }
 

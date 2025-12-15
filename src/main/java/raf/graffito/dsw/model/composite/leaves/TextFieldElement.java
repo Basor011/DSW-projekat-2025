@@ -17,6 +17,10 @@ public class TextFieldElement extends Element {
         this.text = text;
     }
 
+    public TextFieldElement(String name, GraffNode parent) {
+        super(name, parent);
+    }
+
     @Override
     public Element clone() {
         return new TextFieldElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension());
