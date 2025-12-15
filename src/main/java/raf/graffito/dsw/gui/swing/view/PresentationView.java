@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 
+import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
@@ -24,13 +25,14 @@ public class PresentationView extends JPanel implements  PSubscriber {
     private JPanel leftContainer;
     private SlideView lastSelectedSlide;
     private JLabel titleLabel;
-    private JPanel titleContainer;
     private JPanel slideContainer;
+    private ActionManager actionManager;
 
     public PresentationView(String title, GraffNodeComposite presentation)
     {
         this.setName(title);
         this.presentation = presentation;
+        actionManager=new ActionManager();
 
         slajdovi=new ArrayList<>();
         for(GraffNode child : presentation.getChildren()) {
@@ -46,7 +48,10 @@ public class PresentationView extends JPanel implements  PSubscriber {
             showSlide(lastSelectedSlide);
             ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(lastSelectedSlide);
         }
-
+        buttonCClockwise.setActionCommand("counterclockwise");
+       buttonCClockwise.addActionListener(actionManager.getRotateElementAction());
+        buttonClockwise.setActionCommand("clockwise");
+        buttonClockwise.addActionListener(actionManager.getRotateElementAction());
         buttonContainer.setVisible(false);
 
     }
@@ -126,5 +131,8 @@ public class PresentationView extends JPanel implements  PSubscriber {
     }
     public JLabel getTitleLabel() {
         return titleLabel;
+    }
+    public SlideView getLastSelectedSlide() {
+        return lastSelectedSlide;
     }
 }

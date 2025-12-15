@@ -1,9 +1,6 @@
 package raf.graffito.dsw.controller;
 
-import raf.graffito.dsw.controller.state.concrete.RotationState;
 import raf.graffito.dsw.controller.state_actions.*;
-
-import java.awt.*;
 
 public class ActionManager {
     private ExitAction exitAction;
@@ -18,6 +15,7 @@ public class ActionManager {
     private SelectElementAction selectElementAction;
     private DeleteElementAction deleteElementAction;
     private ZoomElementAction zoomElementAction;
+    private ShowRotateButtonAction showRotateButtonAction;
     private RotateElementAction rotateElementAction;
 
     public ActionManager() {
@@ -33,7 +31,8 @@ public class ActionManager {
         addTextFieldButton = new AddTextFieldAction();
         deleteElementAction=new DeleteElementAction();
         zoomElementAction=new ZoomElementAction();
-        rotateElementAction=new RotateElementAction();
+        showRotateButtonAction =new ShowRotateButtonAction();
+        rotateElementAction= new RotateElementAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -59,5 +58,8 @@ public class ActionManager {
     }
     public RotateElementAction getRotateElementAction() {
         return rotateElementAction;
+    }
+    public ShowRotateButtonAction getShowRotateButtonAction() {
+        return showRotateButtonAction;
     }
 }
