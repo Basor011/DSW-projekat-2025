@@ -141,3 +141,5 @@
 [GRESKA][11.12.2025. 22:37] Slajd ne može da sadrži decu
 [GRESKA][11.12.2025. 22:37] Slajd ne može da sadrži decu
 [GRESKA][12.12.2025. 00:19] Element se može dodati samo na Slide.
+[GRESKA][15.12.2025. 18:39] Element se može dodati samo na Slide.
+[GRESKA][15.12.2025. 18:40] Element se može dodati samo na Slide.

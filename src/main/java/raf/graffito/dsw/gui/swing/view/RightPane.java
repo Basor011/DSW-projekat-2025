@@ -18,6 +18,7 @@
         private JButton buttonMoveElement;
         private JButton buttonSelectElement;
         private JButton buttonDeleteElement;
+        private JButton buttonResizeElement;
 
         public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
             this.projectNameLabel = projectNameLabel;
@@ -39,12 +40,14 @@
             this.buttonSelectElement = createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction());
             this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
             this.buttonDeleteElement=createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
+            this.buttonResizeElement = createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
             buttonPanel.add(buttonSelectElement);
             buttonPanel.add(buttonMoveElement);
             buttonPanel.add(buttonDeleteElement);
+            buttonPanel.add(buttonResizeElement);
 
             add(buttonPanel, BorderLayout.CENTER);
         }
@@ -90,7 +93,7 @@
         public void startAddLogoState() {stateManager.setAddLogoState();}
         public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
         public void startDeleteElementState(){stateManager.setDeleteState();}
-
+        public void startResizeElementState(){stateManager.setResizeElementState();}
         @Override
         public void update(String presentationName, String projectName) {
            if(presentationName == null) this.projectNameLabel.setText(projectName);

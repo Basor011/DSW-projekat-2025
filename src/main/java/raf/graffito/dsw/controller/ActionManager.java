@@ -16,6 +16,7 @@ public class ActionManager {
     private AddTextFieldAction addTextFieldButton;
     private SelectElementAction selectElementAction;
     private DeleteElementAction deleteElementAction;
+    private ResizeElementAction resizeElementAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -29,6 +30,7 @@ public class ActionManager {
         addLogoButton = new AddLogoAction();
         addTextFieldButton = new AddTextFieldAction();
         deleteElementAction=new DeleteElementAction();
+        resizeElementAction=new ResizeElementAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -49,4 +51,5 @@ public class ActionManager {
     public DeleteElementAction getDeleteElementAction() {
         return deleteElementAction;
     }
+    public ResizeElementAction getResizeElementAction() {return resizeElementAction;}
 }

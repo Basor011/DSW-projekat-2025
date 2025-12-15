@@ -15,6 +15,7 @@ public class StateManager {
     private AddTextFieldState addTextFieldState;
     private SelectState selectState;
     private DeleteState deleteState;
+    private ResizeElementState resizeElementState;
 
     public StateManager() {
         initstates();
@@ -27,6 +28,7 @@ public class StateManager {
         addImageState = new AddImageState(null);
         selectState = new SelectState();
         deleteState= new DeleteState();
+        resizeElementState = new ResizeElementState();
         currentState = selectState;
     }
 
@@ -50,4 +52,5 @@ public class StateManager {
     public void setDeleteState() {
         currentState = deleteState;
     }
+    public void setResizeElementState() {currentState = resizeElementState;}
 }
