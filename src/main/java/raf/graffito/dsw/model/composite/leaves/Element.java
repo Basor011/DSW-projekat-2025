@@ -24,6 +24,7 @@ abstract public class Element extends GraffNodeLeaf {
     }
 
     public abstract Element clone();
+
     public void setDimensions(int x, int y) {
         int min = 10;
         if(dimension.width+x >= min)dimension.width = dimension.width+x;
