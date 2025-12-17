@@ -69,9 +69,19 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
             ApplicationFramework.getInstance().getMg().generateError("Element se može dodati samo na Slide.");
             return;
         }
-
         DefaultTreeModel model = (DefaultTreeModel) treeModel;
         model.insertNodeInto(element, parentItem, parentItem.getChildCount());
+        SwingUtilities.updateComponentTreeUI(graffTreeView);
+    }
+
+    @Override
+    public void removeElement(GraffTreeItem element) {
+        GraffTreeItem parentItem = getSelectedNode();
+        if(!(parentItem.getGraffNode() instanceof Slide)){
+            ApplicationFramework.getInstance().getMg().generateError("Element se može obrisati samo sa Slide.");
+            return;
+        }
+        treeModel.removeNodeFromParent(element);
         SwingUtilities.updateComponentTreeUI(graffTreeView);
     }
 
@@ -130,6 +140,9 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
             }
         }
         return null;
+    }
+    public GraffTreeItem findItemForNode(GraffNode node){
+        return findTreeNode((GraffTreeItem) treeModel.getRoot(), node);
     }
 
     public List<TBSubscriber> getTbSubscriberList() { //publisher

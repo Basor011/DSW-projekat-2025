@@ -16,10 +16,13 @@ public class SelectState implements ElementState {
     @Override public void mousePressed(MouseEvent e, SlideView slideView) {
         List<GraffNode> elements = slideView.getSlideModel().getChildren();
 
-        for (GraffNode el : elements) {
-            Element element = (Element) el;
-            element.setSelected(false);
+        if(!e.isShiftDown()){
+            for (GraffNode el : elements) {
+                Element element = (Element) el;
+                element.setSelected(false);
+            }
         }
+
         ElementView clickedView = slideView.getElementAt(e.getPoint());
         if (clickedView != null) {
             Element clickedModel = clickedView.getElement();

@@ -8,7 +8,6 @@ import java.awt.geom.AffineTransform;
 public abstract class ElementView implements Painter {
     protected Element element;
 
-
     public ElementView(Element element) {
         this.element = element;
     }

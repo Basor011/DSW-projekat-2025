@@ -24,23 +24,19 @@ abstract public class Element extends GraffNodeLeaf {
     }
 
     public abstract Element clone();
+
     public void setDimensions(int x, int y) {
-        this.getDimension().width = Math.max(10, this.getDimension().width + x);
-        this.getDimension().height = Math.max(10, this.getDimension().height + y);
+        int min = 10;
+        if(dimension.width+x >= min)dimension.width = dimension.width+x;
+        if(dimension.height+y >= min)dimension.height = dimension.height+y;
     }
     public void move(int dx, int dy){
         this.location.x += dx;
         this.location.y += dy;
     }
-    public void resize(int width, int height){
-        this.dimension.width += width;
-        this.dimension.height += height;
-    }
     public void rotate90(boolean clockwise){
         rotationAngle += Math.toRadians(clockwise ? 90 : -90);
-
     }
-
     public void setSelected(boolean selected){
         this.isSelected = selected;
     }

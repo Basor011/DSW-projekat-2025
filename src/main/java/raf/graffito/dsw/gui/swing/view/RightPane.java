@@ -20,6 +20,7 @@
         private JButton buttonZoomElement;
         private JButton buttonRotateElement;
         private JButton buttonDeleteElement;
+        private JButton buttonResizeElement;
 
         public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
             this.projectNameLabel = projectNameLabel;
@@ -42,7 +43,8 @@
             this.buttonMoveElement = createIconButton(MainFrame.getInstance().getActionManager().getMoveAction());
             this.buttonRotateElement=createIconButton(MainFrame.getInstance().getActionManager().getShowRotateButtonAction());
             this.buttonZoomElement=createIconButton(MainFrame.getInstance().getActionManager().getZoomElementAction());
-            this.buttonDeleteElement=createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
+            this.buttonDeleteElement = createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
+            this.buttonResizeElement = createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
@@ -51,6 +53,7 @@
             buttonPanel.add(buttonRotateElement);
             buttonPanel.add(buttonZoomElement);
             buttonPanel.add(buttonDeleteElement);
+            buttonPanel.add(buttonResizeElement);
 
             add(buttonPanel, BorderLayout.CENTER);
         }
@@ -96,6 +99,7 @@
         public void startAddLogoState() {stateManager.setAddLogoState();}
         public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
         public void startDeleteElementState(){stateManager.setDeleteState();}
+        public void startResizeElementState(){stateManager.setResizeElementState();}
         public void startRotateElementState(){stateManager.setRotationState();}
         public void startZoomElementState(){stateManager.setZoomState();}
 
@@ -119,7 +123,5 @@
         public JLabel getPresentationNameLabel() {
             return presentationNameLabel;
         }
-        public void setPresentationNameLabel(JLabel presentationNameLabel) {
-            this.presentationNameLabel = presentationNameLabel;
-        }
+        public void setPresentationNameLabel(JLabel presentationNameLabel) {this.presentationNameLabel = presentationNameLabel;}
     }

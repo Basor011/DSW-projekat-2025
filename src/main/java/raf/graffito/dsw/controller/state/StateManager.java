@@ -15,6 +15,7 @@ public class StateManager {
     private AddTextFieldState addTextFieldState;
     private SelectState selectState;
     private DeleteState deleteState;
+    private ResizeElementState resizeElementState;
     private RotationState rotationState;
     private ZoomState zoomState;
 
@@ -31,6 +32,7 @@ public class StateManager {
         rotationState=new RotationState();
         zoomState=new ZoomState();
         deleteState= new DeleteState();
+        resizeElementState = new ResizeElementState();
         currentState = selectState;
     }
 
@@ -54,6 +56,7 @@ public class StateManager {
     public void setDeleteState() {
         currentState = deleteState;
     }
+    public void setResizeElementState() {currentState = resizeElementState;}
 
     public void setZoomState(){ currentState= zoomState;}
 
