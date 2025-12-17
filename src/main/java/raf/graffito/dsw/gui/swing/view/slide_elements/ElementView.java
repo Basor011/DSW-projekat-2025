@@ -16,7 +16,7 @@ public abstract class ElementView implements Painter {
         AffineTransform oldTransform = g.getTransform();
 
         if (element.getRotationAngle() != 0) {
-            Point center  =element.getCenter();
+            Point center = element.getCenter();
             g.rotate(element.getRotationAngle(), center.x, center.y);
         }
         paint(g);

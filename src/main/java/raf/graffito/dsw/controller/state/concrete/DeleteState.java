@@ -12,6 +12,8 @@ import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteState implements ElementState {
 
@@ -24,22 +26,29 @@ public class DeleteState implements ElementState {
     }
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-        ElementView clicked = slideView.getElementAt(e.getPoint());
-        if(clicked == null)return;
-        Element element = clicked.getElement();
-        System.out.println(clicked + " element");
-        System.out.println("Deleting element: " + clicked.getElement());
+        List<Element> selected = new ArrayList<Element>();
 
-        GraffNodeComposite parent = (GraffNodeComposite) element.getParent();
-        parent.removeChild(element);
+        for(GraffNode gf : slideView.getSlideModel().getChildren()){
+            Element el = (Element) gf;
+            if(el.isSelected()){
+                selected.add(el);
+            }
+        }
+        if(selected.size() == 0) return;
 
         GraffTreeImplementation tree = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
-        GraffTreeItem toDelete = tree.findItemForNode(element);
-        if(toDelete != null) tree.removeElement(toDelete);
+        for(Element el : selected){
+            GraffNodeComposite parent = (GraffNodeComposite) el.getParent();
+            parent.removeChild(el);
 
-        slideView.getElementViewMap().remove(element);
+            GraffTreeItem toDelete = tree.findItemForNode(el);
+            if(toDelete != null) tree.removeElement(toDelete);
+
+            slideView.getElementViewMap().remove(el);
+        }
+
+        slideView.revalidate();
         slideView.repaint();
-
         MainFrame.getInstance().getRightPanel().startSelectState();
     }
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
