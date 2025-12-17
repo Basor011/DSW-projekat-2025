@@ -63,8 +63,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             this.setBackgroundAt(i, colour);
             this.setForegroundAt(i, Color.BLACK);
             presentationViewList.add(presentationView);
-
-
         }
         decoratedProjects.add(decoratedProject);
         for(PresentationView pv :presentationViewList)
@@ -148,7 +146,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             if( node.getParent().equals(latestNode))
             {
                 addTab(node);
-                //recoverTabs( (GraffTreeItem)node.getParent());
             }
         }
         else if (notification == Notification.PROJECT_RENAMED)
@@ -201,12 +198,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
 
             Slide newSlide = (Slide) node.getGraffNode();
             SlideView newSlideView= new SlideView(newSlide, MainFrame.getInstance().getStateManager());
-             /*
-                SlideController sc = new SlideController();
-                slideView.addMouseListener...
-                ---npr klikom na dugme--provera za buttons ce morati ovde
-                sc.setState(new AddImageState(slideView,newSlide, "image.path"));
-            * */
 
             for(PresentationView pv : presentationViewList)
             {
@@ -221,24 +212,10 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                         {
                             ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(newSlideView);
                         }
-                        /*
-                        if(!pv.getSlajdovi().isEmpty()) { // ako prezentacija vec ima neke slajdove
-                            pv.getSlideContainer().removeAll();
-                            pv.getSlideContainer().add(pv.getSlajdovi().getLast()); /// da bi pamtio last selecte moram ovo da promenim
-                            pv.getTitleLabel().setText(newSlide.getName());
-                          //  pv.add(pv.getSlajdovi().getLast());
-                        }
-                        else{
-                            pv.getSlideContainer().add(pv.getSlajdovi().getLast());
-                        }
-                         */
                         ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
-                       // pv.getSlideContainer().revalidate();
-                       // pv.getSlideContainer().repaint();
+
                         int idx = this.indexOfComponent(pv); // menjaje selektovane prezentacije unutar istog projekta
                         if(idx != -1)this.setComponentAt(idx, pv);
-
-
                     }
                 }
             }

@@ -13,10 +13,11 @@ import java.util.List;
 
 public class SelectState implements ElementState {
 
-    @Override public void mousePressed(MouseEvent e, SlideView slideView) {
+    @Override
+    public void mousePressed(MouseEvent e, SlideView slideView) {
         List<GraffNode> elements = slideView.getSlideModel().getChildren();
 
-        if(!e.isShiftDown()){
+        if (!e.isShiftDown()) {
             for (GraffNode el : elements) {
                 Element element = (Element) el;
                 element.setSelected(false);
@@ -26,11 +27,14 @@ public class SelectState implements ElementState {
         ElementView clickedView = slideView.getElementAt(e.getPoint());
         if (clickedView != null) {
             Element clickedModel = clickedView.getElement();
-            clickedModel.setSelected(true);
+            if(e.isShiftDown()){
+                clickedModel.setSelected(!clickedModel.isSelected());
+            }
+            else clickedModel.setSelected(true);
         }
         slideView.repaint();
     }
-    @Override public void mouseDragged(MouseEvent e, SlideView slideView){}
+    @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, SlideView slideView) {}

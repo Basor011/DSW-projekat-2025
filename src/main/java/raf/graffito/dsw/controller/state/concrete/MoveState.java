@@ -12,7 +12,7 @@ import java.awt.event.MouseWheelEvent;
 public class MoveState implements ElementState {
     private boolean dragging = false;
     private Point start;
-    private ElementView activeView;
+    //private ElementView activeView;
 
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
@@ -21,7 +21,7 @@ public class MoveState implements ElementState {
         if (view != null && view.getElement().isSelected()) {
             dragging = true;
             start = e.getPoint();
-            activeView = view;
+            //activeView = view;
         }
     }
 

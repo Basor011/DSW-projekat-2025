@@ -20,6 +20,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SlideView extends JPanel {
@@ -100,7 +101,6 @@ public class SlideView extends JPanel {
         }
         return null;
     }
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
