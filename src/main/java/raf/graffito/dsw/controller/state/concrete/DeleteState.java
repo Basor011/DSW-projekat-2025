@@ -27,15 +27,21 @@ public class DeleteState implements ElementState {
         ElementView clicked = slideView.getElementAt(e.getPoint());
         if(clicked == null)return;
         Element element = clicked.getElement();
+
         System.out.println(clicked + " element");
         System.out.println("Deleting element: " + clicked.getElement());
 
         GraffNodeComposite parent = (GraffNodeComposite) element.getParent();
-        parent.removeChild(element);
 
-        GraffTreeImplementation tree = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
-        GraffTreeItem toDelete = tree.findItemForNode(element);
-        if(toDelete != null) tree.removeElement(toDelete);
+        for(GraffNode gf : slideView.getSlideModel().getChildren()) {
+            Element el = (Element) gf;
+            if(el.isSelected()){
+                parent.removeChild(element);
+                GraffTreeImplementation tree = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
+                GraffTreeItem toDelete = tree.findItemForNode(element);
+                if(toDelete != null) tree.removeElement(toDelete);
+            }
+        }
 
         slideView.getElementViewMap().remove(element);
         slideView.repaint();
