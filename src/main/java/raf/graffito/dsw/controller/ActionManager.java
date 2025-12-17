@@ -1,5 +1,8 @@
 package raf.graffito.dsw.controller;
 
+import raf.graffito.dsw.controller.serializer_actions.LoadAction;
+import raf.graffito.dsw.controller.serializer_actions.SaveAction;
+import raf.graffito.dsw.controller.serializer_actions.SaveAsAction;
 import raf.graffito.dsw.controller.state_actions.*;
 
 import java.awt.*;
@@ -9,6 +12,7 @@ public class ActionManager {
     private AboutUsAction aboutUsAction;
     private NewChildAction newChildAction;
     private RemoveChildAction removeChildAction;
+    private SaveOrLoadAction saveOrLoadAction;
 
     private MoveElementAction moveAction;
     private AddImageAction addImageButton;
@@ -21,11 +25,16 @@ public class ActionManager {
     private ShowRotateButtonAction showRotateButtonAction;
     private RotateElementAction rotateElementAction;
 
+    private LoadAction loadAction;
+    private SaveAction saveAction;
+    private SaveAsAction saveAsAction;
+
     public ActionManager() {
         exitAction = new ExitAction();
         aboutUsAction = new AboutUsAction();
         newChildAction = new NewChildAction();
         removeChildAction = new RemoveChildAction();
+        saveOrLoadAction= new SaveOrLoadAction();
 
         selectElementAction = new SelectElementAction();
         moveAction = new MoveElementAction();
@@ -37,6 +46,10 @@ public class ActionManager {
         zoomElementAction=new ZoomElementAction();
         showRotateButtonAction =new ShowRotateButtonAction();
         rotateElementAction= new RotateElementAction();
+
+        loadAction=new LoadAction();
+        saveAction= new SaveAction();
+        saveAsAction= new SaveAsAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -47,6 +60,9 @@ public class ActionManager {
     }
     public RemoveChildAction getRemoveChildAction() {
         return removeChildAction;
+    }
+    public SaveOrLoadAction getSaveOrLoadAction() {
+        return saveOrLoadAction;
     }
 
     public SelectElementAction getSelectElementAction() {return selectElementAction;}
@@ -64,5 +80,17 @@ public class ActionManager {
     }
     public ShowRotateButtonAction getShowRotateButtonAction() {
         return showRotateButtonAction;
+    }
+
+    public LoadAction getLoadAction() {
+        return loadAction;
+    }
+
+    public SaveAction getSaveAction() {
+        return saveAction;
+    }
+
+    public SaveAsAction getSaveAsAction() {
+        return saveAsAction;
     }
 }

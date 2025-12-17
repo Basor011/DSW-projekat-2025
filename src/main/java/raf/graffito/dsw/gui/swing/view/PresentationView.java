@@ -124,13 +124,13 @@ public class PresentationView extends JPanel implements  PSubscriber {
 
                         revalidate();
                         repaint();
+                        return;
                     }
                 }
             }
+            return;
 
         }
-        else
-        {
             GraffNode parent= node.getGraffNode().getParent();
             if (parent instanceof Project && node.getParent().getChildCount() == 1 ) {
                 ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete");
@@ -148,10 +148,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
                     }
                 }
             }
-            else if(node.getParent()!= null){  MainFrame.getInstance().getGraffTree().removeNode(node); return;}
-
-
-        }
+            else if(node.getParent()!= null){  MainFrame.getInstance().getGraffTree().removeNode(node);}
     }
 
     public String getTitle() {

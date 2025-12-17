@@ -180,3 +180,5 @@
 [GRESKA][17.12.2025. 21:28] Slajd ne može da sadrži decu
 [OBAVESTENJE][17.12.2025. 21:28] Molim vas izaberite cvor za brisanje
 [GRESKA][17.12.2025. 21:32] Slajd ne može da sadrži decu
+[GRESKA][17.12.2025. 21:35] Slajd ne može da sadrži decu
+[GRESKA][17.12.2025. 21:35] Slajd ne može da sadrži decu

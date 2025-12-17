@@ -9,7 +9,6 @@ import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
-import javax.swing.tree.TreePath;
 import java.awt.*;
 
 public class MainFrame extends JFrame implements Subscriber {
@@ -35,7 +34,8 @@ public class MainFrame extends JFrame implements Subscriber {
         actionManager = new ActionManager();
         stateManager = new StateManager();
         graffTree = new GraffTreeImplementation();
-        instance = this;
+        instance=this;
+
         initialize();
     }
     private void initialize() {
@@ -55,6 +55,8 @@ public class MainFrame extends JFrame implements Subscriber {
 
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
+
+
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
 
