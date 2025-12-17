@@ -160,3 +160,8 @@
 [GRESKA][15.12.2025. 10:33] Slide ne moze sadrzati novi tip cvora
 [OBAVESTENJE][15.12.2025. 12:15] Moras da odabereš čemu ćeš dodati novi čvor
 [OBAVESTENJE][15.12.2025. 12:15] Moras da odabereš čemu ćeš dodati novi čvor
+[OBAVESTENJE][17.12.2025. 11:06] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][17.12.2025. 11:10] Ne moze se izbrisati workspace
+[GRESKA][17.12.2025. 11:10] Slajd ne može da sadrži decu
+[OBAVESTENJE][17.12.2025. 11:45] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][17.12.2025. 11:54] Element se može dodati samo na Slide.

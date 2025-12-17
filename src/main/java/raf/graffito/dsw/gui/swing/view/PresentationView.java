@@ -8,6 +8,7 @@ import raf.graffito.dsw.gui.swing.tree.observer.Notification;
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.compositions.Presentation;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import javax.swing.*;
@@ -33,8 +34,12 @@ public class PresentationView extends JPanel implements  PSubscriber {
         this.setName(title);
         this.presentation = presentation;
         actionManager=new ActionManager();
-
         slajdovi=new ArrayList<>();
+         if(presentation instanceof Slide slide)
+         {
+             SlideView toAdd= new SlideView(slide,MainFrame.getInstance().getStateManager());
+             slajdovi.add(toAdd);
+         }
         for(GraffNode child : presentation.getChildren()) {
             if(child instanceof Slide) {
                 SlideView toAdd = new SlideView((Slide) child, MainFrame.getInstance().getStateManager());

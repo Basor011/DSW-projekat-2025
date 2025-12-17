@@ -59,6 +59,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             System.out.println(node.getGraffNode().getName()+" ja sam veliki carobnjak feniks");
 
             PresentationView presentationView = new PresentationView(title, (GraffNodeComposite) childNode);
+
             this.addTab(presentationView.getTitle(), presentationView);
             this.setBackgroundAt(i, colour);
             this.setForegroundAt(i, Color.BLACK);
