@@ -1,6 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.gui.swing.tree.controller.SlideViewMouseController;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.LogoView;
@@ -48,25 +49,10 @@ public class SlideView extends JPanel {
     }
 
     private void initMouseListener() {
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                stateManager.getCurrentState().mousePressed(e, SlideView.this);
-            }
-        });
-
-        addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                stateManager.getCurrentState().mouseDragged(e, SlideView.this);
-            }
-        });
-        addMouseWheelListener(new MouseAdapter() {
-            @Override
-            public void mouseWheelMoved(MouseWheelEvent e) {
-                stateManager.getCurrentState().mouseWheelMoved(e,SlideView.this);
-            }
-        });
+        SlideViewMouseController controller = new SlideViewMouseController(this, stateManager);
+        addMouseMotionListener(controller);
+        addMouseListener(controller);
+        addMouseWheelListener(controller);
     }
 
     private void initElementViews() {
