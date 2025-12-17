@@ -41,9 +41,11 @@ public class MainFrame extends JFrame implements Subscriber {
     private void initialize() {
         Toolkit kit = Toolkit.getDefaultToolkit(); // Toolkit omogućava interakciju sa platformom
         Dimension screenSize = kit.getScreenSize(); // Veličina ekrana
-        int screenHeight = screenSize.height;
-        int screenWidth = screenSize.width;
-        setSize(screenWidth, screenHeight);
+       // int screenHeight = screenSize.height;
+        //int screenWidth = screenSize.width;
+       // setSize(screenWidth, screenHeight);
+        setSize(1500,800);
+
         setLocationRelativeTo(null); // Centriranje prozora na ekranu
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Zatvaranje aplikacije pri zatvaranju prozora
         setTitle("Graffito"); // Naslov prozora
@@ -62,8 +64,10 @@ public class MainFrame extends JFrame implements Subscriber {
         scrollPane.setMinimumSize(new Dimension(200,150));
         split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
         split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
-        split.setDividerLocation(screenWidth/5);
-        split2.setDividerLocation(screenWidth - 200);
+       // split.setDividerLocation(screenWidth/5);
+        split.setDividerLocation(200);
+        //split2.setDividerLocation(screenWidth - 200);
+        split2.setDividerLocation(1100);
         split.setOneTouchExpandable(true);
         tabbedPane= new MyTabbedPane();
         ((GraffTreeImplementation)graffTree).addSubscriber(tabbedPane);

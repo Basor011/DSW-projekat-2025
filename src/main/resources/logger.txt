@@ -165,3 +165,18 @@
 [GRESKA][17.12.2025. 11:10] Slajd ne može da sadrži decu
 [OBAVESTENJE][17.12.2025. 11:45] Moras da odabereš čemu ćeš dodati novi čvor
 [GRESKA][17.12.2025. 11:54] Element se može dodati samo na Slide.
+[OBAVESTENJE][17.12.2025. 20:28] Projekat mora imati barem jedno dete
+[OBAVESTENJE][17.12.2025. 20:43] Moras da odabereš čemu ćeš dodati novi čvor
+[OBAVESTENJE][17.12.2025. 20:43] Moras da odabereš čemu ćeš dodati novi čvor
+[OBAVESTENJE][17.12.2025. 21:04] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][17.12.2025. 21:05] Slajd ne može da sadrži decu
+[GRESKA][17.12.2025. 21:08] Ne moze se izbrisati workspace
+[GRESKA][17.12.2025. 21:20] Slajd ne može da sadrži decu
+[OBAVESTENJE][17.12.2025. 21:20] Projekat mora imati barem jedno dete
+[OBAVESTENJE][17.12.2025. 21:21] Projekat mora imati barem jedno dete
+[OBAVESTENJE][17.12.2025. 21:21] Projekat mora imati barem jedno dete
+[GRESKA][17.12.2025. 21:22] Slajd ne može da sadrži decu
+[GRESKA][17.12.2025. 21:27] Slajd ne može da sadrži decu
+[GRESKA][17.12.2025. 21:28] Slajd ne može da sadrži decu
+[OBAVESTENJE][17.12.2025. 21:28] Molim vas izaberite cvor za brisanje
+[GRESKA][17.12.2025. 21:32] Slajd ne može da sadrži decu

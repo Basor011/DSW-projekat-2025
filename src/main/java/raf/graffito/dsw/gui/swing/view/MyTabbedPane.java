@@ -221,14 +221,21 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 }
             }
         }
+        /*
         else if (notification == Notification.SLIDE_DELETED)
         {
             GraffTreeItem parent= (GraffTreeItem) node.getParent();
-            if(node.getParent().getChildCount() == 1 && parent.getGraffNode() instanceof Project){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+            if (node.getParent().getChildCount() == 1 && parent.getGraffNode() instanceof Project) {
+                ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete");
+                return;
+            }
 
             MainFrame.getInstance().getGraffTree().removeNode(node);
 
+
         }
+
+         */
         else if (notification== Notification.OPENING_TABS)
         {
             if(node.getGraffNode() instanceof Project) {
@@ -244,6 +251,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             else if(node.getGraffNode() instanceof  Slide)
             {
                // System.out.println(node);
+                System.out.println(node.getGraffNode().getParent()+ " OTAC");
                 ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_SELECTED,node);
             }
 
@@ -267,7 +275,8 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             }
             else if (node.getGraffNode() instanceof Slide)
             {
-                update(Notification.SLIDE_DELETED,node);
+               // update(Notification.SLIDE_DELETED,node);
+                ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_DELETED,node);
             }
             else if (node.getGraffNode() instanceof Workspace)
             {

@@ -13,6 +13,7 @@ public class Project extends GraffNodeComposite  {
 
     private String autor;
     private int number; /// br slajdova
+
     public Project(String name, GraffNode parent, String autor) {
         super(name, parent);
         this.autor = autor;

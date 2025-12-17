@@ -2,6 +2,7 @@ package raf.graffito.dsw.gui.swing.view;
 
 
 import raf.graffito.dsw.controller.ActionManager;
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
@@ -9,6 +10,7 @@ import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.compositions.Presentation;
+import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import javax.swing.*;
@@ -81,6 +83,15 @@ public class PresentationView extends JPanel implements  PSubscriber {
     }
 
     public void showSlide(SlideView slideView){
+        if(slideView==null)
+        {
+            slideContainer.removeAll();
+            titleLabel.setText("");
+            slideContainer.repaint();
+            slideContainer.revalidate();
+            lastSelectedSlide=slajdovi.getFirst();
+            return;
+        }
         titleLabel.setText(slideView.getSlideModel().getName());
         slideContainer.removeAll();
         slideContainer.add(slideView);
@@ -95,28 +106,52 @@ public class PresentationView extends JPanel implements  PSubscriber {
     @Override
     public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
     {
-        if (!(notification == Notification.SLIDE_SELECTED)) return;
+        if (!(notification == Notification.SLIDE_SELECTED || notification == Notification.SLIDE_DELETED)) return;
 
 
         GraffNode currentlyOpenProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
-        GraffNode slideParent=node.getGraffNode().getParent();
+        GraffNode slideParent = node.getGraffNode().getParent();
+        if (notification == Notification.SLIDE_SELECTED) {
+            if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
+                for (SlideView slajd : slajdovi) {
+                    if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
 
-        if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
-            for (SlideView slajd : slajdovi) {
-                if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
+                        ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS, node);
+                        showSlide(slajd);
 
-                    ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
-                    showSlide(slajd);
+                        System.out.println("Selecting slide " + slajd.getSlideModel().getName());
+                        System.out.println(lastSelectedSlide.getSlideModel().getName());
 
-                    System.out.println("Selecting slide "+  slajd.getSlideModel().getName());
-                    System.out.println(lastSelectedSlide.getSlideModel().getName());
-
-                    revalidate();
-                    repaint();
+                        revalidate();
+                        repaint();
+                    }
                 }
             }
-        }
 
+        }
+        else
+        {
+            GraffNode parent= node.getGraffNode().getParent();
+            if (parent instanceof Project && node.getParent().getChildCount() == 1 ) {
+                ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete");
+                return;
+            }
+            if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
+                for (SlideView slajd : slajdovi) {
+                    if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
+                        if(node.getParent()!=null) {
+
+                            MainFrame.getInstance().getGraffTree().removeNode(node);
+                            showSlide(null);
+                            return;
+                        }
+                    }
+                }
+            }
+            else if(node.getParent()!= null){  MainFrame.getInstance().getGraffTree().removeNode(node); return;}
+
+
+        }
     }
 
     public String getTitle() {
