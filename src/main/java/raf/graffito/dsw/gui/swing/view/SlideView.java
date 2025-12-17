@@ -20,6 +20,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -31,18 +32,13 @@ public class SlideView extends JPanel {
     private StateManager stateManager;
     private static final Dimension size=new Dimension(700,500);
 
-
     private double scaleFactor = 1.0;
     private AffineTransform currentTransform = new AffineTransform();
-
 
     public SlideView(Slide slideModel, StateManager stateManager) {
         this.slideModel = slideModel;
         this.elementViewMap = new HashMap<>();
         this.stateManager = stateManager;
-        //JLabel mainLabel = new JLabel(slideModel.getName(), SwingConstants.CENTER);
-        //mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
-        //add(mainLabel, BorderLayout.CENTER);
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(size);
         setMaximumSize(size);
@@ -71,7 +67,6 @@ public class SlideView extends JPanel {
                 stateManager.getCurrentState().mouseWheelMoved(e,SlideView.this);
             }
         });
-
     }
 
     private void initElementViews() {
@@ -106,78 +101,29 @@ public class SlideView extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.transform(currentTransform);
+
+        Iterator<Element> it = elementViewMap.keySet().iterator();
+        while(it.hasNext()){
+            Element e = it.next();
+            if(!slideModel.getChildren().contains(e)) it.remove();
+        }
+
         for(GraffNode e: slideModel.getChildren()){
+            Element el = (Element) e;
             ElementView elementView = elementViewMap.get(e);
             if(elementView == null) {
-                elementView = elementFactory((Element) e);
-                elementViewMap.put((Element) e, elementView);
+                elementView = elementFactory(el);
+                elementViewMap.put(el, elementView);
             }
-            else {
-                elementView.paintWithRotate(g2d);
-               // System.out.println("rotate by " + elementView.getElement().getRotationAngle());
-            }
+            elementView.paintWithRotate(g2d);
         }
         g2d.dispose();
     }
-    public void startMoveState(){
-        this.stateManager.setMoveState();
-    }
-    public Slide getSlideModel() {
-        return slideModel;
-    }
-    public Map<Element, ElementView> getElementViewMap() {
-        return elementViewMap;
-    }
-    public StateManager getStateManager() {
-        return stateManager;
-    }
-    public double getScaleFactor() {
-        return scaleFactor;
-    }
-    public AffineTransform getCurrentTransform() {
-        return currentTransform;
-    }
-
-    public void setScaleFactor(double scaleFactor) {
-        this.scaleFactor = scaleFactor;
-    }
-    public void setCurrentTransform(AffineTransform currentTransform) {
-        this.currentTransform = currentTransform;
-    }
-
+    public Slide getSlideModel() {return slideModel;}
+    public Map<Element, ElementView> getElementViewMap() {return elementViewMap;}
+    public StateManager getStateManager() {return stateManager;}
+    public double getScaleFactor() {return scaleFactor;}
+    public AffineTransform getCurrentTransform() {return currentTransform;}
+    public void setScaleFactor(double scaleFactor) {this.scaleFactor = scaleFactor;}
+    public void setCurrentTransform(AffineTransform currentTransform) {this.currentTransform = currentTransform;}
 }
-
-/// dummy model slideview
-/* private void init(){
-        setLayout(new BorderLayout());
-
-        this.setPreferredSize(new Dimension(800, 600));
-        JLabel mainLabel = new JLabel("Empty Slide", SwingConstants.CENTER);
-        mainLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
-        add(mainLabel, BorderLayout.CENTER);
-
-        JPanel thumbnailsPanel = new JPanel();
-        thumbnailsPanel.setLayout(new BoxLayout(thumbnailsPanel, BoxLayout.Y_AXIS));
-
-        String[] imagePaths = {
-                "/images/amogus.png",
-                "/images/amogus.png",
-                "/images/amogus.png",
-                "/images/amogus.png",
-                "/images/amogus.png"
-        };
-
-        for (String path : imagePaths) {
-            ImageIcon icon = new ImageIcon(getClass().getResource(path));
-
-            Image scaled = icon.getImage().getScaledInstance(100, 75, Image.SCALE_SMOOTH);
-            JLabel thumbLabel = new JLabel(new ImageIcon(scaled));
-            thumbLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-            thumbLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-
-            thumbnailsPanel.add(thumbLabel);
-        }
-        add(thumbnailsPanel, BorderLayout.EAST);
-    }
-*/
-
