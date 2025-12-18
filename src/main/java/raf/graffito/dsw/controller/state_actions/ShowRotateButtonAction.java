@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 
 public class ShowRotateButtonAction extends AbstractGraffAction {
     public ShowRotateButtonAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK)); // Ovo je prečica za izlaz
         putValue(SMALL_ICON, loadIcon("/images/amogusrotatus.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Rotate?");
     }
@@ -22,8 +21,5 @@ public class ShowRotateButtonAction extends AbstractGraffAction {
 
             ((PresentationView) (MainFrame.getInstance().getTabbedPane().getSelectedComponent())).getButtonContainer().setVisible(!toggle);
         }
-
-       // MainFrame.getInstance().getRightPanel().startRotateElementState();
-
     }
 }

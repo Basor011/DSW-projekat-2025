@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class SelectElementAction extends AbstractGraffAction {
     public SelectElementAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK)); // Ovo je prečica za izlaz
         putValue(SMALL_ICON, loadIcon("/images/selectelement.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Select an element?");
     }

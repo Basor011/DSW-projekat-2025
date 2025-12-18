@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class ZoomElementAction extends AbstractGraffAction {
     public ZoomElementAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK)); // Ovo je prečica za izlaz
         putValue(SMALL_ICON, loadIcon("/images/amoguszoomus.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Zoom?");
     }
@@ -17,6 +16,5 @@ public class ZoomElementAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getRightPanel().startZoomElementState();
-
     }
 }

@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class ResizeElementAction extends AbstractGraffAction {
     public ResizeElementAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK)); // Ovo je prečica za izlaz
         putValue(SMALL_ICON, loadIcon("/images/icons for buttons/resize.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Resize an element?");
     }

@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class AddLogoAction extends AbstractGraffAction {
     public AddLogoAction() {
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.ALT_MASK)); // Ovo je prečica za izlaz
         putValue(SMALL_ICON, loadIcon("/images/bananaleclerc.jpg")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Insert the logo?");
     }
