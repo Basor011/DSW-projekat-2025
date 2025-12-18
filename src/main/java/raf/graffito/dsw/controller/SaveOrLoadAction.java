@@ -19,7 +19,7 @@ public class SaveOrLoadAction extends AbstractGraffAction{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        UploadSaveView uploadSaveView = new UploadSaveView(MainFrame.getInstance());
+        UploadSaveView uploadSaveView = new UploadSaveView();
         uploadSaveView.setLocationRelativeTo(MainFrame.getInstance());
         uploadSaveView.setVisible(true);
 
