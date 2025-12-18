@@ -8,4 +8,13 @@ import java.util.List;
 
 public class DeleteElementCommand implements Command {
 
+    @Override
+    public void execute() {
+
+    }
+
+    @Override
+    public void undo() {
+
+    }
 }

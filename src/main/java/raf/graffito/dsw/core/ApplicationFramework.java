@@ -29,7 +29,7 @@ public class ApplicationFramework  {
     }
 
     public void initialize(GraffRepository gr){
-        gr = gr;
+        this.gr = gr;
         subscribers =  new ArrayList<Subscriber>();
         mg = new MessageGenerator(subscribers);
         LoggerFactory loggerFactory = new LoggerFactory();

@@ -1,6 +1,8 @@
 package raf.graffito.dsw.controller.state_actions;
 
 import raf.graffito.dsw.controller.AbstractGraffAction;
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.commands.AddElementCommand;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import javax.swing.*;
@@ -16,5 +18,6 @@ public class AddImageAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getRightPanel().startAddImageState();
+        ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand());
     }
 }

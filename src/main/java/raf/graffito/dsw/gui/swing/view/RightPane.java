@@ -21,6 +21,7 @@
         private JButton buttonRotateElement;
         private JButton buttonDeleteElement;
         private JButton buttonResizeElement;
+        private JButton buttonCopyElement;
 
         public RightPane(JLabel projectNameLabel, JLabel presentationNameLabel) {
             this.projectNameLabel = projectNameLabel;
@@ -45,6 +46,7 @@
             this.buttonZoomElement=createIconButton(MainFrame.getInstance().getActionManager().getZoomElementAction());
             this.buttonDeleteElement = createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction());
             this.buttonResizeElement = createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction());
+            this.buttonCopyElement = createIconButton(MainFrame.getInstance().getActionManager().getCopyElementAction());
             buttonPanel.add(buttonAddImage);
             buttonPanel.add(buttonAddTextField);
             buttonPanel.add(buttonAddLogo);
@@ -54,6 +56,7 @@
             buttonPanel.add(buttonZoomElement);
             buttonPanel.add(buttonDeleteElement);
             buttonPanel.add(buttonResizeElement);
+            buttonPanel.add(buttonCopyElement);
 
             add(buttonPanel, BorderLayout.CENTER);
         }
@@ -102,7 +105,7 @@
         public void startResizeElementState(){stateManager.setResizeElementState();}
         public void startRotateElementState(){stateManager.setRotationState();}
         public void startZoomElementState(){stateManager.setZoomState();}
-
+        public void startCopyElementState(){stateManager.setCopyElementState();}
 
         @Override
         public void update(String presentationName, String projectName) {

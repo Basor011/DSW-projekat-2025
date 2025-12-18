@@ -20,6 +20,10 @@ public class ActionManager {
     private ZoomElementAction zoomElementAction;
     private ShowRotateButtonAction showRotateButtonAction;
     private RotateElementAction rotateElementAction;
+    private CopyElementAction copyElementAction;
+
+    private UndoAction undoAction;
+    private RedoAction redoAction;
 
     public ActionManager() {
         exitAction = new ExitAction();
@@ -37,6 +41,10 @@ public class ActionManager {
         zoomElementAction=new ZoomElementAction();
         showRotateButtonAction =new ShowRotateButtonAction();
         rotateElementAction= new RotateElementAction();
+        copyElementAction=new CopyElementAction();
+
+        undoAction=new UndoAction();
+        redoAction=new RedoAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -65,4 +73,8 @@ public class ActionManager {
     public ShowRotateButtonAction getShowRotateButtonAction() {
         return showRotateButtonAction;
     }
+    public CopyElementAction getCopyElementAction() {return copyElementAction;}
+
+    public UndoAction getUndoAction() {return undoAction;}
+    public RedoAction getRedoAction() {return redoAction;}
 }
