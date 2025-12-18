@@ -1,6 +1,10 @@
 package raf.graffito.dsw.controller.serializer_actions;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import raf.graffito.dsw.controller.AbstractGraffAction;
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.serializer.Jackson;
@@ -30,14 +34,23 @@ public class LoadAction extends AbstractGraffAction {
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToLoad = fileChooser.getSelectedFile();
-            Project loadedProject = serializer.loadProject(fileToLoad);
+           serializer.loadProject(fileToLoad);
 
-            if (loadedProject != null) {
-                //MainFrame.getInstance().getGraffTree(). // ne znam kako da dodam u jtree
-            }
 
 
         }
-
     }
+
+        /*
+         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
+
+        Element img = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.IMAGE, p, imagePath);
+        slideView.getSlideModel().addChild(img);
+        slideView.addElement(img);
+        MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(img));
+        slideView.repaint();
+        MainFrame.getInstance().getRightPanel().startSelectState();
+         */
+
+
 }

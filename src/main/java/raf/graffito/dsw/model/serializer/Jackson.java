@@ -1,16 +1,18 @@
 package raf.graffito.dsw.model.serializer;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
+import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.compositions.Project;
+import raf.graffito.dsw.model.composite.compositions.Workspace;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Jackson implements  Serializer{
-private final ObjectMapper objectMapper;
+public class Jackson implements  Serializer {
+    private final ObjectMapper objectMapper;
 
     public Jackson() {
         this.objectMapper = new ObjectMapper();
@@ -18,17 +20,27 @@ private final ObjectMapper objectMapper;
     }
 
     @Override
-    public Project loadProject(File file) {
-        try {
-            return objectMapper.readValue(file, Project.class);
+    public void loadProject(File file) {
+        try
+        {
+
+            Workspace root= ApplicationFramework.getInstance().getGr().getWorkspace();
+            JsonNode projectNode=objectMapper.readTree(file);
+            GraffNode node;
+
+
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+
         }
     }
 
     @Override
-    public void saveProject(Project project, File file) {
+    public void saveProject(Project project, File file)
+    {
 
         try {
             objectMapper.writeValue(file, project);
@@ -36,19 +48,7 @@ private final ObjectMapper objectMapper;
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
-
-    @Override
-    public void saveAsProject(Project project, File file)
-    {
-
-    }
-
-
-    }
-
+}
 
 

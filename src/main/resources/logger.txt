@@ -189,3 +189,4 @@
 [OBAVESTENJE][18.12.2025. 17:38] Moras da odabereš čemu ćeš dodati novi čvor
 [GRESKA][18.12.2025. 17:38] Nemate otvoren projekat
 [OBAVESTENJE][18.12.2025. 17:43] Moras da odabereš čemu ćeš dodati novi čvor
+[OBAVESTENJE][18.12.2025. 18:22] Moras da odabereš čemu ćeš dodati novi čvor
