@@ -182,3 +182,10 @@
 [GRESKA][17.12.2025. 21:32] Slajd ne može da sadrži decu
 [GRESKA][17.12.2025. 21:35] Slajd ne može da sadrži decu
 [GRESKA][17.12.2025. 21:35] Slajd ne može da sadrži decu
+[GRESKA][18.12.2025. 16:30] Slajd ne može da sadrži decu
+[GRESKA][18.12.2025. 16:50] Nemate otvoren projekat
+[GRESKA][18.12.2025. 16:50] Nemate otvoren projekat
+[OBAVESTENJE][18.12.2025. 17:34] Moras da odabereš čemu ćeš dodati novi čvor
+[OBAVESTENJE][18.12.2025. 17:38] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][18.12.2025. 17:38] Nemate otvoren projekat
+[OBAVESTENJE][18.12.2025. 17:43] Moras da odabereš čemu ćeš dodati novi čvor

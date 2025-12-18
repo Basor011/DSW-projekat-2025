@@ -1,7 +1,10 @@
 package raf.graffito.dsw.model.composite;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class GraffNode{
     private String name;
+    @JsonIgnore
     private GraffNode parent;
 
     public GraffNode(String name, GraffNode parent) {
@@ -15,7 +18,7 @@ public abstract class GraffNode{
     }
 
     public void setName(String name) {this.name = name;}
-
+    @JsonIgnore
     public GraffNode getParent() {return parent;}
 
     public void setParent(GraffNode parent) {this.parent = parent;}

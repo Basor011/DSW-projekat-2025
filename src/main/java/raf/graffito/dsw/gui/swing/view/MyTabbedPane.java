@@ -176,6 +176,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             {
                 ((GraffTreeImplementation)MainFrame.getInstance().getGraffTree()).sendToAll("","");
                 removeAll();
+                latestNode=null;
             }
             MainFrame.getInstance().getGraffTree().removeNode(node);
         }
@@ -208,11 +209,13 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                     if(parent.getParent().equals(latestNode)) { // ako je trenutno otvoren taj projekat
                        // pv.showSlide(newSlideView);
                         System.out.println("Broj dece za "+ pv.getPresentation().getName()+" je  "+  pv.getPresentation().getChildren().size());
-
+/*
                         if(pv.getPresentation().getChildren().size()==1)
                         {
                             ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(newSlideView);
                         }
+
+ */
                         ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
 
                         int idx = this.indexOfComponent(pv); // menjaje selektovane prezentacije unutar istog projekta

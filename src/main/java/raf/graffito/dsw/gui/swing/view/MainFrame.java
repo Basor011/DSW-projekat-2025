@@ -10,6 +10,7 @@ import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class MainFrame extends JFrame implements Subscriber {
 
@@ -20,6 +21,8 @@ public class MainFrame extends JFrame implements Subscriber {
     private MyTabbedPane tabbedPane;
     private JSplitPane split;
     private JSplitPane split2;
+    private File defaultFilePath;
+    private File templatePath;
 
     private RightPane rightPanel;
     private StateManager stateManager;
@@ -55,8 +58,8 @@ public class MainFrame extends JFrame implements Subscriber {
 
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
         add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
-
-
+        defaultFilePath=null;
+        templatePath=new File("src/main/resources/templates");
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
 
@@ -91,6 +94,12 @@ public class MainFrame extends JFrame implements Subscriber {
     }
     public StateManager getStateManager() {
         return stateManager;
+    }
+    public File getDefaultFilePath() {
+        return defaultFilePath;
+    }
+    public void setDefaultFilePath(File defaultFilePath) {
+        this.defaultFilePath = defaultFilePath;
     }
 
     @Override

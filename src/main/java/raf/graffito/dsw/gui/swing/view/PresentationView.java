@@ -49,12 +49,13 @@ public class PresentationView extends JPanel implements  PSubscriber {
             }
         }
         initUI();
-
+/*
         if(!slajdovi.isEmpty()){
             lastSelectedSlide =slajdovi.getFirst();
             showSlide(lastSelectedSlide);
             ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(lastSelectedSlide);
         }
+        */
         buttonCClockwise.setActionCommand("counterclockwise");
        buttonCClockwise.addActionListener(actionManager.getRotateElementAction());
         buttonClockwise.setActionCommand("clockwise");
