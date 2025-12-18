@@ -148,3 +148,18 @@
 [GRESKA][18.12.2025. 01:22] Nema vise undo
 [GRESKA][18.12.2025. 01:23] Nema vise redo
 [GRESKA][18.12.2025. 01:23] Nema vise undo
+[GRESKA][18.12.2025. 17:55] Nema vise undo
+[GRESKA][18.12.2025. 17:55] Nema vise undo
+[GRESKA][18.12.2025. 17:55] Nema vise undo
+[GRESKA][18.12.2025. 22:55] Nema vise undo
+[GRESKA][18.12.2025. 22:55] Nema vise undo
+[GRESKA][18.12.2025. 22:56] Nema vise undo
+[GRESKA][18.12.2025. 23:34] Nema vise redo
+[GRESKA][18.12.2025. 23:42] Nema vise redo
+[GRESKA][18.12.2025. 23:42] Element se može dodati samo na Slide.
+[GRESKA][18.12.2025. 23:42] Element se može dodati samo na Slide.
+[GRESKA][18.12.2025. 23:45] Nema vise redo
+[GRESKA][18.12.2025. 23:45] Nema vise redo
+[GRESKA][18.12.2025. 23:46] Nema vise redo
+[OBAVESTENJE][18.12.2025. 23:47] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][18.12.2025. 23:56] Nema vise undo

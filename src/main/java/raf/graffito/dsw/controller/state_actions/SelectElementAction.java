@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class SelectElementAction extends AbstractGraffAction {
     public SelectElementAction() {
-        putValue(SMALL_ICON, loadIcon("/images/selectelement.png")); // Postavljanje ikonice
+        putValue(SMALL_ICON, loadIcon("/images/selectelement-removebg-preview.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Select an element?");
     }
     @Override

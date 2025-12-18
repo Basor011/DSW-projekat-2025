@@ -58,7 +58,6 @@ public class SlideView extends JPanel {
     private void initElementViews() {
         for(GraffNode e: slideModel.getChildren()){
             elementViewMap.put((Element) e, elementFactory((Element) e));
-
         }
     }
     private ElementView elementFactory(Element element) {

@@ -51,4 +51,5 @@ abstract public class Element extends GraffNodeLeaf {
                 location.y + dimension.height / 2
         );
     }
+    public void setRotationAngle(double rotationAngle) {this.rotationAngle = rotationAngle;}
 }

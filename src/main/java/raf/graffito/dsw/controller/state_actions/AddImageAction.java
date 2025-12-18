@@ -18,6 +18,5 @@ public class AddImageAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getRightPanel().startAddImageState();
-        ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand());
     }
 }

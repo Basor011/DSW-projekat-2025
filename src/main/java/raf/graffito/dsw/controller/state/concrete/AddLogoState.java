@@ -3,6 +3,7 @@ package raf.graffito.dsw.controller.state.concrete;
 import raf.graffito.dsw.controller.state.ElementState;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
+import raf.graffito.dsw.gui.swing.commands.AddElementCommand;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
@@ -13,6 +14,7 @@ import raf.graffito.dsw.model.composite.leaves.TipElementa;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.List;
 
 public class AddLogoState implements ElementState {
     @Override
@@ -21,14 +23,10 @@ public class AddLogoState implements ElementState {
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
         Element logo = (Element) repo.createLogoElement(slideView.getSlideModel(), TipElementa.LOGO, p);
-        slideView.getSlideModel().addChild(logo);
-        slideView.addElement(logo);
-        MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(logo));
-        slideView.repaint();
-        MainFrame.getInstance().getRightPanel().startSelectState();
 
-        slideView.addElement(logo);
-        slideView.repaint();
+        ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(logo)));
+
+        MainFrame.getInstance().getRightPanel().startSelectState();
     }
 
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}

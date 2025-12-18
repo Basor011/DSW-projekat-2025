@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class MoveElementAction extends AbstractGraffAction {
     public MoveElementAction() {
-        putValue(SMALL_ICON, loadIcon("/images/ttuturumaxverstappen.png")); // Postavljanje ikonice
+        putValue(SMALL_ICON, loadIcon("/images/ttuturumaxverstappen-removebg-preview.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Move element?");
     }
     @Override

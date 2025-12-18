@@ -11,7 +11,6 @@ public class UndoAction extends AbstractGraffAction {
         putValue(SMALL_ICON, loadIcon("/images/icons for buttons/undo.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Undo?");
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         ApplicationFramework.getInstance().getCommandManager().undo();

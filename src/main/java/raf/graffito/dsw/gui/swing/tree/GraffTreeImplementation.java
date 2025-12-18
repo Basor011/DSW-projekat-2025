@@ -76,11 +76,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
 
     @Override
     public void removeElement(GraffTreeItem element) {
-        GraffTreeItem parentItem = getSelectedNode();
-        if(!(parentItem.getGraffNode() instanceof Slide)){
-            ApplicationFramework.getInstance().getMg().generateError("Element se može obrisati samo sa Slide.");
-            return;
-        }
+        if(element == null) return;
         treeModel.removeNodeFromParent(element);
         SwingUtilities.updateComponentTreeUI(graffTreeView);
     }
