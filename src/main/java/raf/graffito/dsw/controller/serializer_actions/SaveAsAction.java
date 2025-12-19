@@ -39,6 +39,7 @@ public class SaveAsAction extends AbstractGraffAction {
             File fileToSave = new File(chosenDir, project.getName().replaceAll("\\s+", "_") + ".json");
 
             serializer.saveProject(project, fileToSave);
+            MainFrame.getInstance().setDefaultFilePath(chosenDir);
 
 
         }

@@ -90,7 +90,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         return (GraffTreeItem) graffTreeView.getLastSelectedPathComponent();
     }
 
-    private void expantNodes(JTree tree){
+    public void expantNodes(JTree tree){
         int row = 0;
         while(row < tree.getRowCount()){
             tree.expandRow(row);

@@ -58,7 +58,7 @@ public class Jackson implements  Serializer {
         GraffTreeItem rootItem = (GraffTreeItem) treeModel.getRoot();
         GraffTreeItem projectItem = createTreeItemRecursive(loadedProject);
         treeModel.insertNodeInto(projectItem, rootItem, rootItem.getChildCount());
-        expandAllNodes(graffTree.getGraffTreeView());
+        graffTree.expantNodes(graffTree.getGraffTreeView());
         SwingUtilities.updateComponentTreeUI(graffTree.getGraffTreeView());
     }
 
@@ -83,13 +83,6 @@ public class Jackson implements  Serializer {
         }
     }
 
-    private void expandAllNodes(JTree tree) {
-        int row = 0;
-        while (row < tree.getRowCount()) {
-            tree.expandRow(row);
-            row++;
-        }
-    }
 }
 
 
