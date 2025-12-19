@@ -1,7 +1,9 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.core.observer.Subscriber;
 import raf.graffito.dsw.gui.swing.tree.controller.SlideViewMouseController;
+import raf.graffito.dsw.gui.swing.tree.observer.SSubscriber;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.LogoView;
@@ -25,13 +27,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class SlideView extends JPanel {
+public class SlideView extends JPanel implements SSubscriber {
 
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
 
     private StateManager stateManager;
-    private static final Dimension size=new Dimension(700,500);
+    private static final Dimension size = new Dimension(700,500);
 
     private double scaleFactor = 1.0;
     private AffineTransform currentTransform = new AffineTransform();
@@ -40,6 +42,9 @@ public class SlideView extends JPanel {
         this.slideModel = slideModel;
         this.elementViewMap = new HashMap<>();
         this.stateManager = stateManager;
+
+        slideModel.addSubscriber((SSubscriber) this);
+
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(size);
         setMaximumSize(size);
@@ -66,12 +71,7 @@ public class SlideView extends JPanel {
         if (element instanceof ImageElement) return new ImageView((ImageElement) element);
         return null;
     }
-    public void addElement(Element element) {
-        slideModel.addChild(element);
-        elementViewMap.put(element, elementFactory((Element) element));
 
-        repaint();
-    }
     public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
         for (Element e : elementViewMap.keySet()) {
             ElementView view = elementViewMap.get(e);
@@ -111,4 +111,6 @@ public class SlideView extends JPanel {
     public AffineTransform getCurrentTransform() {return currentTransform;}
     public void setScaleFactor(double scaleFactor) {this.scaleFactor = scaleFactor;}
     public void setCurrentTransform(AffineTransform currentTransform) {this.currentTransform = currentTransform;}
+
+    @Override public void update() {repaint();}
 }

@@ -3,6 +3,7 @@ package raf.graffito.dsw.controller.commands;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
@@ -12,19 +13,17 @@ public class AddElementCommand implements Command {
     private GraffNodeComposite parent;
     private List<Element> elements;
 
-    public AddElementCommand(GraffNodeComposite parent, List<Element> elements) {
-        this.parent = parent;
+    public AddElementCommand(GraffNodeComposite slide, List<Element> elements) {
+        this.parent = slide;
         this.elements = elements;
     }
 
     @Override
     public void execute() {
         for(Element element : elements) {
-            parent.addChild(element);
+            parent.addChild(element); //bice slide->update->repaint
             MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(element));
         }
-        MainFrame.getInstance().revalidate();
-        MainFrame.getInstance().repaint();
     }
 
     @Override
@@ -35,7 +34,5 @@ public class AddElementCommand implements Command {
             GraffTreeItem gti = gft.findItemForNode(element);
             gft.removeElement(gti);
         }
-        MainFrame.getInstance().revalidate();
-        MainFrame.getInstance().repaint();
     }
 }

@@ -33,6 +33,7 @@ public class AddTextFieldState implements ElementState {
 
         ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(txf)));
 
+
         MainFrame.getInstance().getRightPanel().startSelectState();
     }
 

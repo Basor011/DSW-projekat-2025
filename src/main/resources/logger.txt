@@ -167,3 +167,4 @@
 [GRESKA][17.12.2025. 11:54] Element se može dodati samo na Slide.
 [GRESKA][19.12.2025. 13:05] Nema vise undo
 [OBAVESTENJE][19.12.2025. 14:36] Projekat mora imati barem jedno dete
+[GRESKA][19.12.2025. 15:50] Slajd ne može da sadrži decu

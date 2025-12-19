@@ -21,7 +21,7 @@ public class CopyElementState implements ElementState {
 
         Element copy = original.clone();
 
-        slideView.addElement(copy);
+        //slideView.addElement(copy);
         MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(copy));
 
         slideView.repaint();
