@@ -64,7 +64,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
     @Override
     public void addElement(GraffTreeItem element) {
         GraffTreeItem parentItem = getSelectedNode();
-
+        if(parentItem == null) return;
         if (!(parentItem.getGraffNode() instanceof Slide)) {
             ApplicationFramework.getInstance().getMg().generateError("Element se može dodati samo na Slide.");
             return;
