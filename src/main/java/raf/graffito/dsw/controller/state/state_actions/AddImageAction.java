@@ -1,13 +1,9 @@
-package raf.graffito.dsw.controller.state_actions;
+package raf.graffito.dsw.controller.state.state_actions;
 
 import raf.graffito.dsw.controller.AbstractGraffAction;
-import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.gui.swing.commands.AddElementCommand;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 public class AddImageAction extends AbstractGraffAction {
     public AddImageAction() {

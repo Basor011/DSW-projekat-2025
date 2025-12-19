@@ -1,8 +1,6 @@
 package raf.graffito.dsw.controller;
 
-import raf.graffito.dsw.controller.state_actions.*;
-
-import java.awt.*;
+import raf.graffito.dsw.controller.state.state_actions.*;
 
 public class ActionManager {
     private ExitAction exitAction;

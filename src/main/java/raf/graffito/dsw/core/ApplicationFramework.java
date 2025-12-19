@@ -2,9 +2,7 @@ package raf.graffito.dsw.core;
 import raf.graffito.dsw.core.logger.LoggerFactory;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.core.observer.Subscriber;
-import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
-import raf.graffito.dsw.gui.swing.commands.CommandManager;
-import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.controller.commands.CommandManager;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import java.util.ArrayList;

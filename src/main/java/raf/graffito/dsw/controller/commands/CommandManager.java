@@ -1,4 +1,4 @@
-    package raf.graffito.dsw.gui.swing.commands;
+    package raf.graffito.dsw.controller.commands;
 
     import raf.graffito.dsw.core.ApplicationFramework;
 

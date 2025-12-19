@@ -1,17 +1,14 @@
 package raf.graffito.dsw.controller.state.concrete;
 
 import raf.graffito.dsw.controller.state.ElementState;
-import raf.graffito.dsw.gui.swing.commands.AddElementCommand;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.model.composite.leaves.Element;
-import raf.graffito.dsw.model.composite.leaves.ImageElement;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.util.List;
 
 public class CopyElementState implements ElementState {
     @Override

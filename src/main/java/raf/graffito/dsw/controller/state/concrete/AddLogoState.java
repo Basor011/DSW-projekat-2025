@@ -3,12 +3,10 @@ package raf.graffito.dsw.controller.state.concrete;
 import raf.graffito.dsw.controller.state.ElementState;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
-import raf.graffito.dsw.gui.swing.commands.AddElementCommand;
-import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
+import raf.graffito.dsw.controller.commands.AddElementCommand;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.leaves.Element;
-import raf.graffito.dsw.model.composite.leaves.LogoElement;
 import raf.graffito.dsw.model.composite.leaves.TipElementa;
 
 import java.awt.*;

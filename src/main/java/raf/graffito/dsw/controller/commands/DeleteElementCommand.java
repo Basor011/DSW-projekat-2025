@@ -1,6 +1,5 @@
-package raf.graffito.dsw.gui.swing.commands;
+package raf.graffito.dsw.controller.commands;
 
-import raf.graffito.dsw.gui.swing.tree.GraffTree;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
@@ -9,20 +8,22 @@ import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.util.List;
 
-public class AddElementCommand implements Command {
+public class DeleteElementCommand implements Command {
     private GraffNodeComposite parent;
     private List<Element> elements;
 
-    public AddElementCommand(GraffNodeComposite parent, List<Element> elements) {
-        this.parent = parent;
+    public DeleteElementCommand(GraffNodeComposite graffNodeComposite, List<Element> elements) {
+        this.parent = graffNodeComposite;
         this.elements = elements;
     }
 
     @Override
     public void execute() {
+        GraffTreeImplementation gft = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
         for(Element element : elements) {
-            parent.addChild(element);
-            MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(element));
+            parent.removeChild(element);
+            GraffTreeItem gti = gft.findItemForNode(element);
+            gft.removeElement(gti);
         }
         MainFrame.getInstance().revalidate();
         MainFrame.getInstance().repaint();
@@ -30,11 +31,9 @@ public class AddElementCommand implements Command {
 
     @Override
     public void undo() {
-        GraffTreeImplementation gft = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
         for(Element element : elements) {
-            parent.removeChild(element);
-            GraffTreeItem gti = gft.findItemForNode(element);
-            gft.removeElement(gti);
+            parent.addChild(element);
+            MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(element));
         }
         MainFrame.getInstance().revalidate();
         MainFrame.getInstance().repaint();

@@ -1,4 +1,4 @@
-package raf.graffito.dsw.controller.state_actions;
+package raf.graffito.dsw.controller.state.state_actions;
 
 import raf.graffito.dsw.controller.AbstractGraffAction;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
@@ -8,8 +8,6 @@ import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class RotateElementAction extends AbstractGraffAction {
