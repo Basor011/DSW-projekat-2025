@@ -24,6 +24,7 @@ public class MoveElementCommand implements Command {
         }
     }
     public void captureAfterPositions() {
+        afterPositions.clear();
         for (Element element : elements) {
             afterPositions.add(new Point(element.getLocation()));
         }

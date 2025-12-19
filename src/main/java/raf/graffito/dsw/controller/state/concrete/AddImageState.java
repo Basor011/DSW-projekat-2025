@@ -36,7 +36,6 @@ public class AddImageState implements ElementState {
 
         MainFrame.getInstance().getRightPanel().startSelectState();
     }
-
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
     @Override public void mouseClicked(MouseEvent e, Element element) {}
