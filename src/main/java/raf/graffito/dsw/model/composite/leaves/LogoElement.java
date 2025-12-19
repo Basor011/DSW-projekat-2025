@@ -1,6 +1,7 @@
 package raf.graffito.dsw.model.composite.leaves;
 
 import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import java.awt.*;
 
@@ -15,6 +16,10 @@ public class LogoElement extends Element{
 
     @Override
     public Element clone() {
-        return new LogoElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension());
+        LogoElement logo = new LogoElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension());
+        if (getParent() instanceof Slide slide){
+            slide.notifySubscribers();
+        }
+        return logo;
     }
 }

@@ -23,12 +23,8 @@ public class CopyElementState implements ElementState {
         Element original = view.getElement();
         if (!original.isSelected()) return;
 
-        //Element copy = original.clone();
-        //slideView.addElement(copy);
         ApplicationFramework.getInstance().getCommandManager().executeCommand(new CopyElementCommand(slideView.getSlideModel(), List.of(original)));
-        //MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(copy));
 
-        //slideView.repaint();
         MainFrame.getInstance().getRightPanel().startSelectState();
     }
 
