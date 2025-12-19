@@ -181,3 +181,5 @@
 [GRESKA][19.12.2025. 17:44] Nema vise undo
 [GRESKA][19.12.2025. 17:47] Nema vise undo
 [GRESKA][19.12.2025. 17:47] Nema vise redo
+[GRESKA][19.12.2025. 23:38] Nema vise redo
+[GRESKA][19.12.2025. 23:45] Nema vise redo

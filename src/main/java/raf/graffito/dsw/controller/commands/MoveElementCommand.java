@@ -1,6 +1,7 @@
 package raf.graffito.dsw.controller.commands;
 
 import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.*;
@@ -32,16 +33,14 @@ public class MoveElementCommand implements Command {
     @Override
     public void execute() {
         for(int i = 0; i < elements.size(); i++){
-            elements.get(i).getLocation().setLocation(afterPositions.get(i));
+            elements.get(i).setLocationa(afterPositions.get(i));
         }
-        MainFrame.getInstance().repaint();
     }
 
     @Override
     public void undo() {
         for(int i = 0; i < elements.size(); i++){
-            elements.get(i).getLocation().setLocation(beforePositions.get(i));
+            elements.get(i).setLocationa(beforePositions.get(i));
         }
-        MainFrame.getInstance().repaint();
     }
 }

@@ -36,7 +36,7 @@ public class Slide extends GraffNodeComposite {
 
     public void addSubscriber(SSubscriber s) {subs.add(s);}
     public void removeSubscriber(SSubscriber s) {subs.remove(s);}
-    private void notifySubscribers() {
+    public void notifySubscribers() {
         for (SSubscriber s : subs) {
             s.update();
         }

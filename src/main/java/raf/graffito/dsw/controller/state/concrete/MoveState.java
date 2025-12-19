@@ -49,7 +49,6 @@ public class MoveState implements ElementState {
             }
         }
         start = e.getPoint();
-        slideView.repaint();
     }
     @Override public void mouseReleased(MouseEvent e, Element element) {
         if(dragging && command != null){
