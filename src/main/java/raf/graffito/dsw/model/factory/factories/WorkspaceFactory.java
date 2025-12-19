@@ -15,7 +15,7 @@ public class WorkspaceFactory implements GraffNodeFactory {
     public GraffNode createNode(GraffNode parent) {
         PresentationOrSlidePopUp dialog = new PresentationOrSlidePopUp(MainFrame.getInstance());
         dialog.setVisible(true);
-        Project project = new Project("Project" + new Random().nextInt(100), parent, "autor");
+        Project project = new Project("Project" + new Random().nextInt(100), parent);
         GraffNode child = null;
 
         if (dialog.isPresentation()) {

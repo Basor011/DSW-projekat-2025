@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Slide extends GraffNodeComposite {
     private List<Subscriber>subs; ///mozda bi observer za slide bio pametan
+    protected Slide(){}
     public Slide(String name, GraffNode parent) {
         super(name, parent);
         this.subs = new ArrayList<Subscriber>();

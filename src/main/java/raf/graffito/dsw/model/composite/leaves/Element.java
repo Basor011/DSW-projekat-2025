@@ -1,17 +1,18 @@
 package raf.graffito.dsw.model.composite.leaves;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 
 import java.awt.*;
-
+@JsonIgnoreProperties({"center"})
 abstract public class Element extends GraffNodeLeaf {
     private Point location;
     private Dimension dimension;
     private double rotationAngle = 0;
     private boolean isSelected = false;
     private String type;
-
+    protected Element(){}
     public Element(String name, GraffNode parent, Point location, Dimension dimension, String type) {
         super(name, parent);
         this.location = location;

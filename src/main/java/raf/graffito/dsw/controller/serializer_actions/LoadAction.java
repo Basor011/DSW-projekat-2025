@@ -1,12 +1,8 @@
 package raf.graffito.dsw.controller.serializer_actions;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import raf.graffito.dsw.controller.AbstractGraffAction;
-import raf.graffito.dsw.core.ApplicationFramework;
-import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.composite.compositions.Project;
+import raf.graffito.dsw.gui.swing.view.UploadSaveView;
 import raf.graffito.dsw.model.serializer.Jackson;
 import raf.graffito.dsw.model.serializer.Serializer;
 
@@ -18,6 +14,7 @@ import java.io.File;
 public class LoadAction extends AbstractGraffAction {
     private Serializer serializer;
 
+
     public LoadAction() {
         putValue(NAME, "Load Project");
         putValue(SHORT_DESCRIPTION, "Load a project");
@@ -28,6 +25,7 @@ public class LoadAction extends AbstractGraffAction {
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Otvori JSON projekat");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setFileFilter(new FileNameExtensionFilter("JSON Files", "json"));
 
         int userSelection = fileChooser.showOpenDialog(MainFrame.getInstance());
@@ -37,20 +35,9 @@ public class LoadAction extends AbstractGraffAction {
            serializer.loadProject(fileToLoad);
 
 
-
         }
     }
 
-        /*
-         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
-
-        Element img = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.IMAGE, p, imagePath);
-        slideView.getSlideModel().addChild(img);
-        slideView.addElement(img);
-        MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(img));
-        slideView.repaint();
-        MainFrame.getInstance().getRightPanel().startSelectState();
-         */
 
 
 }

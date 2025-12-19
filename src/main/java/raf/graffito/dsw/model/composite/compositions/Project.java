@@ -11,8 +11,8 @@ public class Project extends GraffNodeComposite  {
 
     private List<PSubscriber> psubs;
     private int number; /// br slajdova
-
-    public Project(String name, GraffNode parent, String autor) {
+    protected Project(){}
+    public Project(String name, GraffNode parent) {
         super(name, parent);
         this.number = 0;
         psubs = new ArrayList<PSubscriber>();

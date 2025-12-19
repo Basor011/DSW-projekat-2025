@@ -5,6 +5,7 @@ import raf.graffito.dsw.model.composite.GraffNode;
 import java.awt.*;
 
 public class LogoElement extends Element{
+    protected LogoElement(){}
     public LogoElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija) {
         super(name, parent, lokacija, dimenzija, "LOGO");
     }

@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class ImageElement extends Element{
     private String imagePath;
-
+protected ImageElement(){}
     public ImageElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, String imagePath) {
         super(name, parent,lokacija, dimenzija, "IMAGE");
         this.imagePath = imagePath;

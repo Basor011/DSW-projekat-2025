@@ -11,6 +11,7 @@ public class Presentation extends GraffNodeComposite  {
 
     private List<PSubscriber> psubs = new ArrayList<>();
 
+protected Presentation(){}
     public Presentation(String name, GraffNode parent) {
         super(name, parent);
     }
