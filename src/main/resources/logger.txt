@@ -184,3 +184,6 @@
 [GRESKA][19.12.2025. 23:38] Nema vise redo
 [GRESKA][19.12.2025. 23:45] Nema vise redo
 [GRESKA][19.12.2025. 23:51] Nema vise redo
+[OBAVESTENJE][20.12.2025. 00:23] Projekat mora imati barem jedno dete
+[OBAVESTENJE][20.12.2025. 00:57] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][20.12.2025. 00:57] Nema vise undo

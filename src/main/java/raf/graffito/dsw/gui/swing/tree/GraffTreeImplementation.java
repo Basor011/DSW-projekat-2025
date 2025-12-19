@@ -72,6 +72,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         DefaultTreeModel model = (DefaultTreeModel) treeModel;
         model.insertNodeInto(element, parentItem, parentItem.getChildCount());
         SwingUtilities.updateComponentTreeUI(graffTreeView);
+        expantNodes(graffTreeView);
     }
 
     @Override

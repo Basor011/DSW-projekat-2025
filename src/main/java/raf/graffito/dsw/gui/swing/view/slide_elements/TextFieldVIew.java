@@ -12,9 +12,36 @@ public class TextFieldVIew extends ElementView{
     @Override
     public void paint(Graphics2D g) {
         TextFieldElement e = (TextFieldElement) element;
+
+        Font font = new Font("Arial", Font.PLAIN, 12);
+        g.setFont(font);
+        FontMetrics metrics = g.getFontMetrics(font);
+
+        int x = e.getLocation().x;
+        int y = e.getLocation().y;
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.PLAIN, 12));
-        g.drawString(e.getText(),e.getLocation().x,e.getLocation().y + e.getFontSize());
+        g.drawString(e.getText(), x, y + metrics.getAscent());
+
         paintSelection(g);
+    }
+
+    @Override
+    public void paintSelection(Graphics2D g) {
+        if (!element.isSelected()) return;
+
+        TextFieldElement e = (TextFieldElement) element;
+
+        Font font = new Font("Arial", Font.PLAIN, 12);
+        g.setFont(font);
+        FontMetrics metrics = g.getFontMetrics(font);
+        int w = metrics.stringWidth(e.getText());
+        int h = metrics.getHeight();
+
+        int x = e.getLocation().x;
+        int y = e.getLocation().y;
+
+        g.setColor(Color.BLUE);
+        g.setStroke(new BasicStroke(2));
+        g.drawRect(x, y, w, h);
     }
 }

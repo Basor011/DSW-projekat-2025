@@ -16,10 +16,6 @@ public class LogoElement extends Element{
 
     @Override
     public Element clone() {
-        LogoElement logo = new LogoElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension());
-        if (getParent() instanceof Slide slide){
-            slide.notifySubscribers();
-        }
-        return logo;
+        return new LogoElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension());
     }
 }
