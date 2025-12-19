@@ -141,25 +141,27 @@
 [GRESKA][11.12.2025. 22:37] Slajd ne može da sadrži decu
 [GRESKA][11.12.2025. 22:37] Slajd ne može da sadrži decu
 [GRESKA][12.12.2025. 00:19] Element se može dodati samo na Slide.
-[GRESKA][15.12.2025. 18:39] Element se može dodati samo na Slide.
-[GRESKA][15.12.2025. 18:40] Element se može dodati samo na Slide.
-[GRESKA][15.12.2025. 20:47] Vec odabrana boja
-[GRESKA][16.12.2025. 00:01] Slajd ne može da sadrži decu
-[GRESKA][18.12.2025. 01:22] Nema vise undo
-[GRESKA][18.12.2025. 01:23] Nema vise redo
-[GRESKA][18.12.2025. 01:23] Nema vise undo
-[GRESKA][18.12.2025. 17:55] Nema vise undo
-[GRESKA][18.12.2025. 17:55] Nema vise undo
-[GRESKA][18.12.2025. 17:55] Nema vise undo
-[GRESKA][18.12.2025. 22:55] Nema vise undo
-[GRESKA][18.12.2025. 22:55] Nema vise undo
-[GRESKA][18.12.2025. 22:56] Nema vise undo
-[GRESKA][18.12.2025. 23:34] Nema vise redo
-[GRESKA][18.12.2025. 23:42] Nema vise redo
-[GRESKA][18.12.2025. 23:42] Element se može dodati samo na Slide.
-[GRESKA][18.12.2025. 23:42] Element se može dodati samo na Slide.
-[GRESKA][18.12.2025. 23:45] Nema vise redo
-[GRESKA][18.12.2025. 23:45] Nema vise redo
-[GRESKA][18.12.2025. 23:46] Nema vise redo
-[OBAVESTENJE][18.12.2025. 23:47] Moras da odabereš čemu ćeš dodati novi čvor
-[GRESKA][18.12.2025. 23:56] Nema vise undo
+[GRESKA][13.12.2025. 16:22] Element se može dodati samo na Slide.
+[GRESKA][13.12.2025. 16:22] Element se može dodati samo na Slide.
+[GRESKA][13.12.2025. 16:23] Element se može dodati samo na Slide.
+[GRESKA][13.12.2025. 16:23] Element se može dodati samo na Slide.
+[OBAVESTENJE][13.12.2025. 11:05] Molim vas izaberite cvor
+[OBAVESTENJE][13.12.2025. 11:05] Molim vas izaberite cvor
+[OBAVESTENJE][13.12.2025. 11:17] Molim vas izaberite cvor
+[OBAVESTENJE][13.12.2025. 13:25] Molim vas izaberite cvor
+[GRESKA][13.12.2025. 15:33] Slide ne moze sadrzati novi tip cvora
+[OBAVESTENJE][13.12.2025. 15:42] Molim vas izaberite cvor
+[OBAVESTENJE][13.12.2025. 15:45] Molim vas izaberite cvor
+[GRESKA][13.12.2025. 16:45] Slide ne moze sadrzati novi tip cvora
+[OBAVESTENJE][13.12.2025. 16:52] Molim vas izaberite cvor
+[GRESKA][13.12.2025. 16:56] Slide ne moze sadrzati novi tip cvora
+[GRESKA][13.12.2025. 16:56] Slide ne moze sadrzati novi tip cvora
+[GRESKA][13.12.2025. 16:58] Slide ne moze sadrzati novi tip cvora
+[GRESKA][15.12.2025. 10:33] Slide ne moze sadrzati novi tip cvora
+[OBAVESTENJE][15.12.2025. 12:15] Moras da odabereš čemu ćeš dodati novi čvor
+[OBAVESTENJE][15.12.2025. 12:15] Moras da odabereš čemu ćeš dodati novi čvor
+[OBAVESTENJE][17.12.2025. 11:06] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][17.12.2025. 11:10] Ne moze se izbrisati workspace
+[GRESKA][17.12.2025. 11:10] Slajd ne može da sadrži decu
+[OBAVESTENJE][17.12.2025. 11:45] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][17.12.2025. 11:54] Element se može dodati samo na Slide.
