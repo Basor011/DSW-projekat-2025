@@ -168,3 +168,9 @@
 [GRESKA][19.12.2025. 13:05] Nema vise undo
 [OBAVESTENJE][19.12.2025. 14:36] Projekat mora imati barem jedno dete
 [GRESKA][19.12.2025. 15:50] Slajd ne može da sadrži decu
+[GRESKA][19.12.2025. 17:30] Nema vise redo
+[GRESKA][19.12.2025. 17:33] Nema vise undo
+[GRESKA][19.12.2025. 17:33] Nema vise redo
+[GRESKA][19.12.2025. 17:40] Nema vise redo
+[GRESKA][19.12.2025. 17:40] Nema vise redo
+[GRESKA][19.12.2025. 17:40] Nema vise undo

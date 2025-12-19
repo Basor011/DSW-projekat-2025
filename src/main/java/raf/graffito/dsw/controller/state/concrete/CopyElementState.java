@@ -1,6 +1,9 @@
 package raf.graffito.dsw.controller.state.concrete;
 
+import raf.graffito.dsw.controller.commands.AddElementCommand;
+import raf.graffito.dsw.controller.commands.CopyElementCommand;
 import raf.graffito.dsw.controller.state.ElementState;
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
@@ -9,6 +12,7 @@ import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.List;
 
 public class CopyElementState implements ElementState {
     @Override
@@ -19,12 +23,12 @@ public class CopyElementState implements ElementState {
         Element original = view.getElement();
         if (!original.isSelected()) return;
 
-        Element copy = original.clone();
-
+        //Element copy = original.clone();
         //slideView.addElement(copy);
-        MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(copy));
+        ApplicationFramework.getInstance().getCommandManager().executeCommand(new CopyElementCommand(slideView.getSlideModel(), List.of(original)));
+        //MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(copy));
 
-        slideView.repaint();
+        //slideView.repaint();
         MainFrame.getInstance().getRightPanel().startSelectState();
     }
 

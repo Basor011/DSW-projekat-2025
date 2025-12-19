@@ -21,7 +21,7 @@ public class AddElementCommand implements Command {
     @Override
     public void execute() {
         for(Element element : elements) {
-            parent.addChild(element); //bice slide->update->repaint
+            parent.addChild(element);
             MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(element));
         }
     }
