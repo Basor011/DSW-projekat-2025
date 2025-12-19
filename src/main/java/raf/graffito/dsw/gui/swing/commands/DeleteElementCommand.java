@@ -1,5 +1,7 @@
 package raf.graffito.dsw.gui.swing.commands;
 
+import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.leaves.Element;
@@ -18,9 +20,13 @@ public class DeleteElementCommand implements Command {
 
     @Override
     public void execute() {
+        GraffTreeImplementation gft = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
         for(Element element : elements) {
             parent.removeChild(element);
+            GraffTreeItem gti = gft.findItemForNode(element);
+            gft.removeElement(gti);
         }
+        MainFrame.getInstance().revalidate();
         MainFrame.getInstance().repaint();
     }
 
@@ -28,7 +34,9 @@ public class DeleteElementCommand implements Command {
     public void undo() {
         for(Element element : elements) {
             parent.addChild(element);
+            MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(element));
         }
+        MainFrame.getInstance().revalidate();
         MainFrame.getInstance().repaint();
     }
 }

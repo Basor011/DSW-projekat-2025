@@ -24,6 +24,7 @@ public class AddElementCommand implements Command {
             parent.addChild(element);
             MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(element));
         }
+        MainFrame.getInstance().revalidate();
         MainFrame.getInstance().repaint();
     }
 
@@ -35,6 +36,7 @@ public class AddElementCommand implements Command {
             GraffTreeItem gti = gft.findItemForNode(element);
             gft.removeElement(gti);
         }
+        MainFrame.getInstance().revalidate();
         MainFrame.getInstance().repaint();
     }
 }

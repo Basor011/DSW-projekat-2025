@@ -35,9 +35,7 @@ public class AddImageState implements ElementState {
 
         ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(img)));
 
-
         MainFrame.getInstance().getRightPanel().startSelectState();
-
     }
 
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}

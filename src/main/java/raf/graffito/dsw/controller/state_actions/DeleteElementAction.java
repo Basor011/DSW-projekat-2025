@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class DeleteElementAction extends AbstractGraffAction {
     public DeleteElementAction() {
-        putValue(SMALL_ICON, loadIcon("/images/amogus.png")); // Postavljanje ikonice
+        putValue(SMALL_ICON, loadIcon("/images/icons for buttons/sus2.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Delete element?");
     }
 
