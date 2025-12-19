@@ -33,7 +33,7 @@ private JPanel centerWrapper;
         saveAsButton= new JButton("Save as");saveAsButton.setAction(MainFrame.getInstance().getActionManager().getSaveAsAction());
         loadButton= new JButton("Load Project");loadButton.setAction(MainFrame.getInstance().getActionManager().getLoadAction());
         saveAsTemplateButton=new JButton();saveAsTemplateButton.setAction(MainFrame.getInstance().getActionManager().getSaveAction());saveAsTemplateButton.setActionCommand("template");saveAsTemplateButton.setText("Save as template");
-        loadTemplateButton= new JButton();loadButton.setAction(MainFrame.getInstance().getActionManager().getLoadAction());loadTemplateButton.setActionCommand("template");loadTemplateButton.setText("Load a template");
+        loadTemplateButton= new JButton();loadTemplateButton.setAction(MainFrame.getInstance().getActionManager().getLoadAction());loadTemplateButton.setActionCommand("template");loadTemplateButton.setText("Load a template");
 
 
         buttonPanel= new JPanel();

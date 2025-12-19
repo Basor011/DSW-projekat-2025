@@ -34,10 +34,10 @@ public class SaveAction extends AbstractGraffAction {
         init();
         if (project == null) { ApplicationFramework.getInstance().getMg().generateError("Nemate otvoren projekat"); return;}
 
-
         if (e.getActionCommand().equals("template"))
         {
-
+            File fileToSave = new File(MainFrame.getInstance().getTemplatePath(), project.getName().replaceAll("\\s+", "_") + ".json");
+            serializer.saveProject(project, fileToSave);
 
         }
         else

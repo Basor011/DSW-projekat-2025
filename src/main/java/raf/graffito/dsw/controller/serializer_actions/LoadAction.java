@@ -22,22 +22,23 @@ public class LoadAction extends AbstractGraffAction {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Otvori JSON projekat");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setFileFilter(new FileNameExtensionFilter("JSON Files", "json"));
-
+        if(e.getActionCommand().equals("template"))
+        {
+            File templatePath = MainFrame.getInstance().getTemplatePath();
+            fileChooser.setCurrentDirectory(templatePath);
+        }
         int userSelection = fileChooser.showOpenDialog(MainFrame.getInstance());
-
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
+         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToLoad = fileChooser.getSelectedFile();
            serializer.loadProject(fileToLoad);
 
-
         }
     }
-
-
 
 }

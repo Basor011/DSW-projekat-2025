@@ -101,6 +101,9 @@ public class MainFrame extends JFrame implements Subscriber {
     public void setDefaultFilePath(File defaultFilePath) {
         this.defaultFilePath = defaultFilePath;
     }
+    public File getTemplatePath() {
+        return templatePath;
+    }
 
     @Override
     public void ispisiPoruku(Message message) {

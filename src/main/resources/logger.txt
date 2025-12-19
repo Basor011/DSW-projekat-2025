@@ -192,3 +192,5 @@
 [OBAVESTENJE][18.12.2025. 18:22] Moras da odabereš čemu ćeš dodati novi čvor
 [GRESKA][19.12.2025. 11:18] Ne moze se izbrisati workspace
 [GRESKA][19.12.2025. 12:02] Slajd ne može da sadrži decu
+[GRESKA][19.12.2025. 13:14] Nemate otvoren projekat
+[GRESKA][19.12.2025. 13:15] Nemate otvoren projekat
