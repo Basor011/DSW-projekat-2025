@@ -32,9 +32,12 @@ abstract public class Element extends GraffNodeLeaf {
     }
     public void setDimensions(int x, int y) {
         int min = 10;
-        if(dimension.width+x >= min)dimension.width = dimension.width+x;
-        if(dimension.height+y >= min)dimension.height = dimension.height+y;
+        dimension.width = Math.max(min, x);
+        dimension.height = Math.max(min, y);
         notifyParent();
+    }
+    public void resize(int width, int height) {
+        setDimensions(dimension.width + width, dimension.height + height);
     }
     public void move(int dx, int dy){
         this.location.x += dx;

@@ -9,13 +9,8 @@ import java.awt.*;
 public class TextFieldElement extends Element {
     private String text;
 
-    public TextFieldElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, String text, int font) {
+    public TextFieldElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, String text) {
         super(name, parent, lokacija, dimenzija, "TEXTFIELD");
-        this.text = text;
-    }
-
-    public TextFieldElement(String name, GraffNode parent, Point location, Dimension dimension, String text) {
-        super(name, parent, location, dimension, "TEXTFIELD");
         this.text = text;
     }
 

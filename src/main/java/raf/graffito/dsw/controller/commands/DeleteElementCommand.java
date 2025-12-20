@@ -29,9 +29,11 @@ public class DeleteElementCommand implements Command {
 
     @Override
     public void undo() {
+        GraffTreeImplementation gft = (GraffTreeImplementation) MainFrame.getInstance().getGraffTree();
         for(Element element : elements) {
             parent.addChild(element);
-            MainFrame.getInstance().getGraffTree().addElement(new GraffTreeItem(element));
+            GraffTreeItem gti = gft.findItemForNode(element);
+            gft.addElement(gti);
         }
     }
 }
