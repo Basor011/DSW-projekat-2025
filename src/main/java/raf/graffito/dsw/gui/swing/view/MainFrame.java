@@ -74,7 +74,7 @@ public class MainFrame extends JFrame implements Subscriber {
         //split2.setDividerLocation(screenWidth - 200);
         split2.setDividerLocation(1100);
         split.setOneTouchExpandable(true);
-        tabbedPane= new MyTabbedPane();
+        tabbedPane = new MyTabbedPane();
         ((GraffTreeImplementation)graffTree).addSubscriber(tabbedPane);
 
         split.setRightComponent(tabbedPane);

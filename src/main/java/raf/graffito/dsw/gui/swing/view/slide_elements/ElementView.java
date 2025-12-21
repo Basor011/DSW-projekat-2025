@@ -25,16 +25,6 @@ public abstract class ElementView implements Painter {
     }
     public abstract void paint(Graphics2D g);
 
-    public boolean contains(Point p) {
-        Element el = getElement();
-        int x = el.getLocation().x;
-        int y = el.getLocation().y;
-        int w = el.getDimension().width;
-        int h = el.getDimension().height;
-
-        return (p.x >= x && p.x <= x + w &&
-                p.y >= y && p.y <= y + h);
-    }
     public void paintSelection(Graphics2D g) {
         if (!element.isSelected()) return;
 
@@ -46,7 +36,6 @@ public abstract class ElementView implements Painter {
         g.setColor(Color.BLUE);
         g.setStroke(new BasicStroke(2));
         g.drawRect(x, y, w, h);
-
     }
     public Rectangle getBounds()
     {

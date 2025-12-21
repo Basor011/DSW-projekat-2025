@@ -18,6 +18,7 @@ public class StateManager {
     private ResizeElementState resizeElementState;
     private RotationState rotationState;
     private ZoomState zoomState;
+    private CopyElementState copyElementState;
 
     public StateManager() {
         initstates();
@@ -33,6 +34,7 @@ public class StateManager {
         zoomState=new ZoomState();
         deleteState= new DeleteState();
         resizeElementState = new ResizeElementState();
+        copyElementState = new CopyElementState();
         currentState = selectState;
     }
 
@@ -57,8 +59,7 @@ public class StateManager {
         currentState = deleteState;
     }
     public void setResizeElementState() {currentState = resizeElementState;}
-
     public void setZoomState(){ currentState= zoomState;}
-
     public void setRotationState(){currentState=rotationState;}
+    public void setCopyElementState(){currentState=copyElementState;}
 }

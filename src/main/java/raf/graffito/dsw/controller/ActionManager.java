@@ -7,6 +7,7 @@ import raf.graffito.dsw.controller.state_actions.*;
 import raf.graffito.dsw.gui.swing.view.UploadSaveView;
 
 import java.awt.*;
+import raf.graffito.dsw.controller.state.state_actions.*;
 
 public class ActionManager {
     private ExitAction exitAction;
@@ -25,6 +26,10 @@ public class ActionManager {
     private ZoomElementAction zoomElementAction;
     private ShowRotateButtonAction showRotateButtonAction;
     private RotateElementAction rotateElementAction;
+    private CopyElementAction copyElementAction;
+
+    private UndoAction undoAction;
+    private RedoAction redoAction;
 
     private LoadAction loadAction;
     private SaveAction saveAction;
@@ -47,6 +52,10 @@ public class ActionManager {
         zoomElementAction=new ZoomElementAction();
         showRotateButtonAction =new ShowRotateButtonAction();
         rotateElementAction= new RotateElementAction();
+        copyElementAction=new CopyElementAction();
+
+        undoAction=new UndoAction();
+        redoAction=new RedoAction();
 
         loadAction=new LoadAction();
         saveAction= new SaveAction();
@@ -94,4 +103,8 @@ public class ActionManager {
     public SaveAsAction getSaveAsAction() {
         return saveAsAction;
     }
+    public CopyElementAction getCopyElementAction() {return copyElementAction;}
+
+    public UndoAction getUndoAction() {return undoAction;}
+    public RedoAction getRedoAction() {return redoAction;}
 }

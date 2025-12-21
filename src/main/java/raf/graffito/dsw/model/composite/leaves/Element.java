@@ -3,6 +3,7 @@ package raf.graffito.dsw.model.composite.leaves;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.GraffNodeLeaf;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import java.awt.*;
 @JsonIgnoreProperties({"center"})
@@ -25,31 +26,45 @@ abstract public class Element extends GraffNodeLeaf {
     }
 
     public abstract Element clone();
-
+    private void notifyParent() {
+        if (getParent() instanceof Slide slide) {
+            slide.notifySubscribers();
+        }
+    }
     public void setDimensions(int x, int y) {
         int min = 10;
-        if(dimension.width+x >= min)dimension.width = dimension.width+x;
-        if(dimension.height+y >= min)dimension.height = dimension.height+y;
+        dimension.width = Math.max(min, x);
+        dimension.height = Math.max(min, y);
+        notifyParent();
+    }
+    public void resize(int width, int height) {
+        setDimensions(dimension.width + width, dimension.height + height);
     }
     public void move(int dx, int dy){
         this.location.x += dx;
         this.location.y += dy;
+        notifyParent();
     }
     public void rotate90(boolean clockwise){
         rotationAngle += Math.toRadians(clockwise ? 90 : -90);
+        notifyParent();
     }
     public void setSelected(boolean selected){
         this.isSelected = selected;
+        notifyParent();
+    }
+    public void setRotationAngle(double rotationAngle) {
+        this.rotationAngle = rotationAngle;
+        notifyParent();
+    }
+    public void setLocationa(Point p) {
+        this.location.setLocation(p);
+        notifyParent();
     }
     public Point getLocation() {return location;}
     public Dimension getDimension() {return dimension;}
     public double getRotationAngle() {return rotationAngle;}
     public boolean isSelected() {return isSelected;}
     public String getType() {return type;}
-    public Point getCenter() {
-        return new Point(
-                location.x + dimension.width / 2,
-                location.y + dimension.height / 2
-        );
-    }
+    public Point getCenter() {return new Point(location.x + dimension.width / 2, location.y + dimension.height / 2);}
 }

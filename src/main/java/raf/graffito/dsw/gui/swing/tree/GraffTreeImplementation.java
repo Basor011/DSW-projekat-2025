@@ -64,7 +64,7 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
     @Override
     public void addElement(GraffTreeItem element) {
         GraffTreeItem parentItem = getSelectedNode();
-
+        if(parentItem == null) return;
         if (!(parentItem.getGraffNode() instanceof Slide)) {
             ApplicationFramework.getInstance().getMg().generateError("Element se može dodati samo na Slide.");
             return;
@@ -72,15 +72,12 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
         DefaultTreeModel model = (DefaultTreeModel) treeModel;
         model.insertNodeInto(element, parentItem, parentItem.getChildCount());
         SwingUtilities.updateComponentTreeUI(graffTreeView);
+        expantNodes(graffTreeView);
     }
 
     @Override
     public void removeElement(GraffTreeItem element) {
-        GraffTreeItem parentItem = getSelectedNode();
-        if(!(parentItem.getGraffNode() instanceof Slide)){
-            ApplicationFramework.getInstance().getMg().generateError("Element se može obrisati samo sa Slide.");
-            return;
-        }
+        if(element == null) return;
         treeModel.removeNodeFromParent(element);
         SwingUtilities.updateComponentTreeUI(graffTreeView);
     }

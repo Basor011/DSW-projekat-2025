@@ -41,6 +41,4 @@ public class Project extends GraffNodeComposite  {
         children.remove(child);
         child.setParent(null);
     }
-
-
 }

@@ -2,8 +2,7 @@ package raf.graffito.dsw.core;
 import raf.graffito.dsw.core.logger.LoggerFactory;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.core.observer.Subscriber;
-import raf.graffito.dsw.gui.swing.GraffRepositoryImplementation;
-import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
+import raf.graffito.dsw.controller.commands.CommandManager;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.List;
 public class ApplicationFramework  {
     // Buduća polja za model celog projekta
     private static ApplicationFramework instance;
+    private CommandManager commandManager;
 
     List<Subscriber> subscribers;
 
@@ -29,8 +29,9 @@ public class ApplicationFramework  {
     public void initialize(GraffRepository gr){
         this.gr = gr;
         subscribers =  new ArrayList<Subscriber>();
-        this.mg = new MessageGenerator(subscribers);
+        mg = new MessageGenerator(subscribers);
         LoggerFactory loggerFactory = new LoggerFactory();
+        commandManager = new CommandManager();
 
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.setVisible(true);
@@ -40,16 +41,14 @@ public class ApplicationFramework  {
         mg.addSubscriber(loggerFactory.createLogger("fileLogger"));
     }
 
-
     public List<Subscriber> getSubscribers() {
         return subscribers;
     }
-
     public GraffRepository getGr() {
         return gr;
     }
-
     public MessageGenerator getMg() {
         return mg;
     }
+    public CommandManager getCommandManager() {return commandManager;}
 }
