@@ -194,3 +194,7 @@
 [GRESKA][19.12.2025. 12:02] Slajd ne može da sadrži decu
 [GRESKA][19.12.2025. 13:14] Nemate otvoren projekat
 [GRESKA][19.12.2025. 13:15] Nemate otvoren projekat
+[OBAVESTENJE][19.12.2025. 17:43] Projekat mora imati barem jedno dete
+[OBAVESTENJE][19.12.2025. 17:43] Projekat mora imati barem jedno dete
+[OBAVESTENJE][21.12.2025. 11:33] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][21.12.2025. 11:35] Nema vise undo

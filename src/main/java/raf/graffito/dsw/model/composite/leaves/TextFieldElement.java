@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class TextFieldElement extends Element {
     private String text;
-
+    protected TextFieldElement(){}
     public TextFieldElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, String text) {
         super(name, parent, lokacija, dimenzija, "TEXTFIELD");
         this.text = text;
