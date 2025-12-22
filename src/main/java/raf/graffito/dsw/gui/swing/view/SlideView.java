@@ -32,6 +32,7 @@ public class SlideView extends JPanel implements SSubscriber {
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
 
+
     private StateManager stateManager;
     private static final Dimension size = new Dimension(700,500);
 

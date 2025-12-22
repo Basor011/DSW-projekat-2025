@@ -198,3 +198,5 @@
 [OBAVESTENJE][19.12.2025. 17:43] Projekat mora imati barem jedno dete
 [OBAVESTENJE][21.12.2025. 11:33] Moras da odabereš čemu ćeš dodati novi čvor
 [GRESKA][21.12.2025. 11:35] Nema vise undo
+[GRESKA][22.12.2025. 17:57] Vec odabrana boja
+[OBAVESTENJE][22.12.2025. 18:49] Moras da odabereš čemu ćeš dodati novi čvor

@@ -22,13 +22,12 @@ public class PresentationView extends JPanel implements  PSubscriber {
 
     private GraffNodeComposite presentation;
     private List<SlideView> slajdovi;
-    private JButton buttonCClockwise;
-    private  JButton buttonClockwise;
-    private JPanel buttonContainer;
-    private JPanel leftContainer;
     private SlideView lastSelectedSlide;
+    private JButton buttonCClockwise,buttonClockwise;
+    private JRadioButton matrica,sabiranje;
+    private ButtonGroup buttonGroup;
+    private JPanel buttonContainer,radioButtonContainer,leftContainer,slideContainer;
     private JLabel titleLabel;
-    private JPanel slideContainer;
     private ActionManager actionManager;
 
     public PresentationView(String title, GraffNodeComposite presentation)
@@ -68,9 +67,24 @@ public class PresentationView extends JPanel implements  PSubscriber {
     {
         removeAll();
         setLayout(new BorderLayout());
-      buttonClockwise=new JButton("Rotate 90");buttonCClockwise=new JButton("Rotate -90");
-      buttonContainer=new JPanel(); buttonContainer.add(buttonClockwise);buttonContainer.add(buttonCClockwise);
-      titleLabel= new JLabel();titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        buttonClockwise = new JButton("Rotate 90");
+        buttonCClockwise = new JButton("Rotate -90");
+        buttonContainer = new JPanel();
+        buttonContainer.setLayout(new BoxLayout(buttonContainer,BoxLayout.Y_AXIS));
+        buttonContainer.add(buttonClockwise);
+        buttonContainer.add(buttonCClockwise);
+        titleLabel = new JLabel();
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        matrica = new JRadioButton();
+        sabiranje = new JRadioButton();
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(matrica);
+        buttonGroup.add(sabiranje);
+        radioButtonContainer=new JPanel();
+        radioButtonContainer.add(matrica);
+        radioButtonContainer.add(sabiranje);
+        matrica.setSelected(true);
+
 
       slideContainer=new JPanel();
       slideContainer.setLayout(new BoxLayout(slideContainer, BoxLayout.Y_AXIS));
@@ -98,6 +112,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
         slideContainer.add(slideView);
         slideContainer.repaint();
         slideContainer.revalidate();
+        slideContainer.add(radioButtonContainer,BorderLayout.SOUTH);
         lastSelectedSlide=slideView;
 
         this.repaint();
