@@ -197,3 +197,7 @@
 [GRESKA][21.12.2025. 00:41] Nema vise redo
 [GRESKA][21.12.2025. 00:45] Nema vise undo
 [GRESKA][21.12.2025. 00:47] Nema vise undo
+[GRESKA][21.12.2025. 00:57] Nema vise undo
+[GRESKA][21.12.2025. 00:57] Nema vise redo
+[OBAVESTENJE][21.12.2025. 00:57] Projekat mora imati barem jedno dete
+[GRESKA][22.12.2025. 22:57] Nema vise redo

@@ -24,15 +24,13 @@ public class SelectState implements ElementState {
             }
         }
 
-        ElementView clickedView = slideView.getElementAt(e.getPoint());
-        if (clickedView != null) {
-            Element clickedModel = clickedView.getElement();
+        Element clickedElement = slideView.getElementModel(e.getPoint());
+        if (clickedElement != null) {
             if(e.isShiftDown()){
-                clickedModel.setSelected(!clickedModel.isSelected());
+                clickedElement.setSelected(!clickedElement.isSelected());
             }
-            else clickedModel.setSelected(true);
+            else clickedElement.setSelected(true);
         }
-        slideView.repaint();
     }
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}
