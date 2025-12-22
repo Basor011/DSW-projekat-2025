@@ -34,7 +34,11 @@ public class SlideView extends JPanel implements SSubscriber {
 
 
     private StateManager stateManager;
-    private static final Dimension size = new Dimension(700,500);
+   // private static final Dimension size = new Dimension(700,500);
+    private static int width=MainFrame.getInstance().getScreenWidth();
+    private static int height=MainFrame.getInstance().getScreenHeight();
+    //private static  Dimension size = new Dimension(700,500);
+    private static  Dimension size = new Dimension(width/2,height/2);
 
     private double scaleFactor = 1.0;
     private AffineTransform currentTransform = new AffineTransform();
