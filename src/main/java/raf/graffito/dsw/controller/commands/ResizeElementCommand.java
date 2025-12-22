@@ -15,25 +15,33 @@ public class ResizeElementCommand implements Command {
         this.elements = new ArrayList<>(elements);
         this.before = new ArrayList<>();
         this.after = new ArrayList<>();
+
         for (Element e : elements) {
             before.add(new Dimension(e.getDimension()));
         }
     }
-    public void captureAfter() {
-        after.clear();
+    public void apply(int dx, int dy) {
         for (Element e : elements) {
-            after.add(new Dimension(e.getDimension()));
+            e.resize(dx, dy);
         }
     }
-
+    @Override
     public void execute() {
+        if(after.isEmpty()) {
+            for (Element e : elements) {
+                after.add(new Dimension(e.getDimension()));
+            }
+        }
         for (int i = 0; i < elements.size(); i++) {
-            elements.get(i).setDimensions(after.get(i).width, after.get(i).height);
+            Dimension d = after.get(i);
+            elements.get(i).setDimensions(d.width, d.height);
         }
     }
+    @Override
     public void undo() {
         for (int i = 0; i < elements.size(); i++) {
-            elements.get(i).setDimensions(before.get(i).width, before.get(i).height);
+            Dimension d = before.get(i);
+            elements.get(i).setDimensions(d.width, d.height);
         }
     }
 }
