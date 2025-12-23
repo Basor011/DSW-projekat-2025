@@ -38,6 +38,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
         slajdovi=new ArrayList<>();
          if(presentation instanceof Slide slide)
          {
+             System.out.println("dodat");
              SlideView toAdd= new SlideView(slide,MainFrame.getInstance().getStateManager());
              slajdovi.add(toAdd);
          }

@@ -42,6 +42,7 @@ public class SlideView extends JPanel implements SSubscriber {
 
     private double scaleFactor = 1.0;
     private AffineTransform currentTransform = new AffineTransform();
+    private boolean[][] spaceMatrix;
 
     public SlideView(Slide slideModel, StateManager stateManager) {
         this.slideModel = slideModel;
