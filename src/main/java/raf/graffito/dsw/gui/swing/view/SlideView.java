@@ -81,6 +81,11 @@ public class SlideView extends JPanel implements SSubscriber {
         }
         return null;
     }
+    public Element getElementModel(Point p) {
+        ElementView view = getElementAt(p);
+        if(view == null) return null;
+        return view.getElement();
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
