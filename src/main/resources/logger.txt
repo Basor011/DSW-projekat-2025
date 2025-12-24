@@ -200,3 +200,5 @@
 [GRESKA][21.12.2025. 11:35] Nema vise undo
 [GRESKA][22.12.2025. 17:57] Vec odabrana boja
 [OBAVESTENJE][22.12.2025. 18:49] Moras da odabereš čemu ćeš dodati novi čvor
+[GRESKA][23.12.2025. 16:40] Element se može dodati samo na Slide.
+[OBAVESTENJE][24.12.2025. 09:22] Moras da odabereš čemu ćeš dodati novi čvor

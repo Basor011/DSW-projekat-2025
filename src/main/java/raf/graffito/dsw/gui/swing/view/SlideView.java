@@ -15,16 +15,12 @@ import raf.graffito.dsw.model.composite.leaves.ImageElement;
 import raf.graffito.dsw.model.composite.leaves.LogoElement;
 import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class SlideView extends JPanel implements SSubscriber {
@@ -32,17 +28,14 @@ public class SlideView extends JPanel implements SSubscriber {
     private Slide slideModel;
     private Map<Element, ElementView> elementViewMap;
 
-
     private StateManager stateManager;
    // private static final Dimension size = new Dimension(700,500);
     private static int width=MainFrame.getInstance().getScreenWidth();
     private static int height=MainFrame.getInstance().getScreenHeight();
-    //private static  Dimension size = new Dimension(700,500);
     private static  Dimension size = new Dimension(width/2,height/2);
-
     private double scaleFactor = 1.0;
     private AffineTransform currentTransform = new AffineTransform();
-    private boolean[][] spaceMatrix;
+
 
     public SlideView(Slide slideModel, StateManager stateManager) {
         this.slideModel = slideModel;
@@ -50,6 +43,7 @@ public class SlideView extends JPanel implements SSubscriber {
         this.stateManager = stateManager;
 
         slideModel.addSubscriber((SSubscriber) this);
+        slideModel.setFreeSpace(new int[height][width]);
 
         setBackground(Color.LIGHT_GRAY);
         setPreferredSize(size);

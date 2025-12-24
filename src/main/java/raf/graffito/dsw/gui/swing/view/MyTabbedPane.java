@@ -27,7 +27,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     private List<PresentationView> presentationViewList;
     private Color colour;
 
-
     public MyTabbedPane() {
         this.addChangeListener(new JTabbedPaneChangeListener());
         this.decoratedProjects = new ArrayList<>();
@@ -109,10 +108,10 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     public GraffTreeItem getLatestNode() {
         return latestNode;
     }
-
     public List<PresentationView> getPresentationViewList() {
         return presentationViewList;
     }
+    public PresentationView getSelectedPresentation(){return (PresentationView) getSelectedComponent();}
 
     public boolean hasChild(GraffTreeItem child) {
         for (int i = 0; i < latestNode.getChildCount(); i++) {
@@ -181,7 +180,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             MainFrame.getInstance().getGraffTree().removeNode(node);
         }
         else if (notification == Notification.PRESENTATION_DELETED){
-            if(((GraffTreeItem) node).getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+            if(node.getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
             if(latestNode!=null && hasChild(node)) {
                 presentationViewList.removeIf(pv -> pv.getPresentation().equals(node.getGraffNode()));
                 MainFrame.getInstance().getGraffTree().removeNode(node);
@@ -288,7 +287,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if( notification == Notification.SWITCH_TABS)
         {
-            Presentation presentation = (Presentation) node.getGraffNode().getParent();
+            GraffNodeComposite presentation = (GraffNodeComposite) node.getGraffNode().getParent();
             for(PresentationView prv : presentationViewList)
             {
                 if(presentation.equals(prv.getPresentation()))

@@ -19,7 +19,6 @@ public class AddImageState implements ElementState {
     public AddImageState(String imagePath) {
         this.imagePath = imagePath;
     }
-
     public void setImagePath(String path) {
         this.imagePath = path;
     }

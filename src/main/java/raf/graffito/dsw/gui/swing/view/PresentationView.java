@@ -2,6 +2,8 @@ package raf.graffito.dsw.gui.swing.view;
 
 
 import raf.graffito.dsw.controller.ActionManager;
+import raf.graffito.dsw.controller.radio_buttons.MatrixNacin;
+import raf.graffito.dsw.controller.radio_buttons.SumNacin;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
@@ -36,12 +38,13 @@ public class PresentationView extends JPanel implements  PSubscriber {
         this.presentation = presentation;
         actionManager=new ActionManager();
         slajdovi=new ArrayList<>();
-         if(presentation instanceof Slide slide)
-         {
-             System.out.println("dodat");
-             SlideView toAdd= new SlideView(slide,MainFrame.getInstance().getStateManager());
-             slajdovi.add(toAdd);
-         }
+
+        if(presentation instanceof Slide slide)
+        {
+            System.out.println("dodat");
+            SlideView toAdd= new SlideView(slide,MainFrame.getInstance().getStateManager());
+            slajdovi.add(toAdd);
+        }
         for(GraffNode child : presentation.getChildren()) {
             if(child instanceof Slide) {
                 SlideView toAdd = new SlideView((Slide) child, MainFrame.getInstance().getStateManager());
@@ -76,8 +79,8 @@ public class PresentationView extends JPanel implements  PSubscriber {
         buttonContainer.add(buttonCClockwise);
         titleLabel = new JLabel();
         titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
-        matrica = new JRadioButton();
-        sabiranje = new JRadioButton();
+        matrica = new JRadioButton();matrica.setAction(new MatrixNacin());;matrica.setText("Nacin matrice");
+        sabiranje = new JRadioButton();sabiranje.setAction(new SumNacin());sabiranje.setText("Nacin sabiranja");
         buttonGroup = new ButtonGroup();
         buttonGroup.add(matrica);
         buttonGroup.add(sabiranje);
@@ -124,12 +127,12 @@ public class PresentationView extends JPanel implements  PSubscriber {
     public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
     {
         if (!(notification == Notification.SLIDE_SELECTED || notification == Notification.SLIDE_DELETED)) return;
-
+       // System.out.println("usao");
 
         GraffNode currentlyOpenProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
         GraffNode slideParent = node.getGraffNode().getParent();
         if (notification == Notification.SLIDE_SELECTED) {
-            if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
+            if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject) || slideParent.equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
                 for (SlideView slajd : slajdovi) {
                     if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
 

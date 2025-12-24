@@ -6,7 +6,7 @@ import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import java.awt.*;
-@JsonIgnoreProperties({"center"})
+@JsonIgnoreProperties({"center","bounds"})
 abstract public class Element extends GraffNodeLeaf {
     private Point location;
     private Dimension dimension;
@@ -67,4 +67,10 @@ abstract public class Element extends GraffNodeLeaf {
     public boolean isSelected() {return isSelected;}
     public String getType() {return type;}
     public Point getCenter() {return new Point(location.x + dimension.width / 2, location.y + dimension.height / 2);}
+    public Rectangle getBounds(){ return new Rectangle(
+            location.x,
+            location.y,
+            dimension.width,
+            dimension.height
+    );}
 }

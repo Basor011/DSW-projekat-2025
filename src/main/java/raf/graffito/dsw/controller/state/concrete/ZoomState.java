@@ -8,8 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
 
-
-
 public class ZoomState implements ElementState
 {
     private static final double MAX_ZOOM = 3.0;
