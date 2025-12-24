@@ -1,11 +1,13 @@
 package raf.graffito.dsw.model.composite.compositions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.observer.Subscriber;
 import raf.graffito.dsw.gui.swing.tree.observer.SSubscriber;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.GraffNodeLeaf;
 import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.strategy.MatrixStrategy;
 import raf.graffito.dsw.model.strategy.SpaceStrategy;
 
@@ -27,11 +29,13 @@ public class Slide extends GraffNodeComposite {
     @Override
     public void addChild(GraffNode child) {
         if(child instanceof GraffNodeLeaf) {
-            if(!children.contains(child)) {
-                child.setParent(this);
-                children.add(child);
-                notifySubscribers();
-            }
+            if(strategy.hasEnoughSpace((Element) child,freeSpace)) {
+                if (!children.contains(child)) {
+                    child.setParent(this);
+                    children.add(child);
+                    notifySubscribers();
+                }
+            } else ApplicationFramework.getInstance().getMg().generateInfo("Nema mesta");
         }
     }
     @Override
