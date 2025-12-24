@@ -2,6 +2,7 @@ package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.InsertImagesAction;
 import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.gui.swing.controller.RightPaneButtonMouseListener;
 import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +33,7 @@ public class RightPane extends JPanel implements TBSubscriber {
         //buttons
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-
+        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getInsertImagesAction()));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton()));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton()));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction()));
@@ -42,7 +43,6 @@ public class RightPane extends JPanel implements TBSubscriber {
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction()));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction()));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getCopyElementAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getInsertImagesAction()));
         add(buttonPanel, BorderLayout.CENTER);
 
         this.imageListView = new ImageListView(stateManager);
@@ -58,35 +58,13 @@ public class RightPane extends JPanel implements TBSubscriber {
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.setVerticalAlignment(SwingConstants.CENTER);
 
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
-                button.setBackground(new Color(220, 220, 220)); // tamnije
-            }
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
-                if (!button.getModel().isPressed() && !button.getModel().isSelected()) button.setBackground(new Color(240, 240, 240));
-            }
-        });
+        button.addMouseListener(new RightPaneButtonMouseListener(button));
         Icon icon = button.getIcon();
-        if (icon != null) {
-            button.setPreferredSize(new Dimension(icon.getIconWidth() + 10, icon.getIconHeight() + 10));
-        }
+        if (icon != null) button.setPreferredSize(new Dimension(icon.getIconWidth() + 10, icon.getIconHeight() + 10));
         return button;
     }
     public void startSelectState() {stateManager.setSelectState();}
     public void startMoveState() {stateManager.setMoveState();}
-    public void startAddImageState() {
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("Choose an image");
-
-        int result = chooser.showOpenDialog(this);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = chooser.getSelectedFile();
-            stateManager.setAddImageState(selectedFile.getAbsolutePath());
-        }
-    }
     public void startAddLogoState() {stateManager.setAddLogoState();}
     public void startAddTextFieldState(){stateManager.setAddTextFieldState();}
     public void startDeleteElementState(){stateManager.setDeleteState();}
