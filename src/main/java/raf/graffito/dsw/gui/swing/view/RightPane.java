@@ -45,6 +45,7 @@ public class RightPane extends JPanel implements TBSubscriber {
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getCopyElementAction()));
         add(buttonPanel, BorderLayout.CENTER);
 
+        //bottom
         this.imageListView = new ImageListView(stateManager);
         add(imageListView, BorderLayout.SOUTH);
     }

@@ -21,7 +21,6 @@ public class StateManager {
     private ZoomState zoomState;
     private CopyElementState copyElementState;
 
-
     public StateManager() {
         initstates();
     }
