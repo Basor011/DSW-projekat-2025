@@ -13,7 +13,7 @@ public class TextFieldVIew extends ElementView{
     public void paint(Graphics2D g) {
         TextFieldElement e = (TextFieldElement) element;
 
-        Font font = new Font("Arial", Font.PLAIN, 16);
+        Font font = new Font("Arial", Font.PLAIN, e.getFontSize());
         g.setFont(font);
         FontMetrics metrics = g.getFontMetrics(font);
 
@@ -31,7 +31,7 @@ public class TextFieldVIew extends ElementView{
 
         TextFieldElement e = (TextFieldElement) element;
 
-        Font font = new Font("Arial", Font.PLAIN, 16);
+        Font font = new Font("Arial", Font.PLAIN, e.getFontSize());
         g.setFont(font);
         FontMetrics metrics = g.getFontMetrics(font);
         int w = metrics.stringWidth(e.getText());
