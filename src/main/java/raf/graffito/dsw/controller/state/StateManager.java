@@ -1,5 +1,6 @@
 package raf.graffito.dsw.controller.state;
 
+import raf.graffito.dsw.controller.InsertImagesAction;
 import raf.graffito.dsw.controller.state.concrete.*;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.model.composite.GraffNodeComposite;
@@ -19,6 +20,7 @@ public class StateManager {
     private RotationState rotationState;
     private ZoomState zoomState;
     private CopyElementState copyElementState;
+
 
     public StateManager() {
         initstates();

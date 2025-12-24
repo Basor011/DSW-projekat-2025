@@ -1,9 +1,7 @@
-package raf.graffito.dsw.gui.swing.tree.controller;
+package raf.graffito.dsw.gui.swing.controller;
 
 import raf.graffito.dsw.controller.state.StateManager;
-import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.view.SlideView;
-import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.event.*;
 

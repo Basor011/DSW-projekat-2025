@@ -35,6 +35,8 @@ public class ActionManager {
     private SaveAction saveAction;
     private SaveAsAction saveAsAction;
 
+    private InsertImagesAction insertImagesAction;
+
     public ActionManager() {
         exitAction = new ExitAction();
         aboutUsAction = new AboutUsAction();
@@ -60,6 +62,8 @@ public class ActionManager {
         loadAction=new LoadAction();
         saveAction= new SaveAction();
         saveAsAction= new SaveAsAction();
+
+        insertImagesAction = new InsertImagesAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -107,4 +111,6 @@ public class ActionManager {
 
     public UndoAction getUndoAction() {return undoAction;}
     public RedoAction getRedoAction() {return redoAction;}
+
+    public InsertImagesAction getInsertImagesAction() {return insertImagesAction;}
 }

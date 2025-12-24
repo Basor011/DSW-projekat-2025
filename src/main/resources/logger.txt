@@ -201,3 +201,5 @@
 [GRESKA][23.12.2025. 16:17] Element se može dodati samo na Slide.
 [GRESKA][23.12.2025. 16:17] Nema vise redo
 [GRESKA][23.12.2025. 16:17] Element se može dodati samo na Slide.
+[GRESKA][24.12.2025. 13:32] Vec odabrana boja
+[GRESKA][24.12.2025. 18:43] Slajd ne može da sadrži decu

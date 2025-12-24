@@ -1,8 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
-import raf.graffito.dsw.core.observer.Subscriber;
-import raf.graffito.dsw.gui.swing.tree.controller.SlideViewMouseController;
+import raf.graffito.dsw.gui.swing.controller.SlideViewMouseController;
 import raf.graffito.dsw.gui.swing.tree.observer.SSubscriber;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
@@ -17,14 +16,9 @@ import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class SlideView extends JPanel implements SSubscriber {
