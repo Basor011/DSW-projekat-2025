@@ -45,7 +45,17 @@ public abstract class ElementView implements Painter {
         int h = element.getDimension().height;
         return new Rectangle(x,y,w,h);
     }
+    public boolean contains(Point p) { //selection
+        return getBounds().contains(p);
+    }
 
+    public boolean isOnBorder(Point p) {//za resize bounds
+        Rectangle r = getBounds();
+        int margin = 6;
+
+        Rectangle inner = new Rectangle(r.x + margin, r.y + margin, r.width - 2 * margin, r.height - 2 * margin);
+        return r.contains(p) && !inner.contains(p);
+    }
     public Element getElement() {
         return element;
     }

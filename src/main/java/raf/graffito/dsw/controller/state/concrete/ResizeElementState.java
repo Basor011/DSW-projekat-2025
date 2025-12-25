@@ -26,8 +26,10 @@ public class ResizeElementState implements ElementState {
 
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-        Element clicked = slideView.getElementModel(e.getPoint());
+        ElementView view = slideView.getElementAt(e.getPoint());
+        Element clicked = view.getElement();
         if(clicked == null || !clicked.isSelected()) return;
+        if (!view.isOnBorder(e.getPoint())) return;
 
         dragging = true;
         start = e.getPoint();

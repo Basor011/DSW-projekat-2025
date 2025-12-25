@@ -44,4 +44,20 @@ public class TextFieldVIew extends ElementView{
         g.setStroke(new BasicStroke(2));
         g.drawRect(x, y, w, h);
     }
+
+    @Override
+    public Rectangle getBounds() {
+        TextFieldElement e = (TextFieldElement) element;
+
+        Font font = new Font("Arial", Font.PLAIN, e.getFontSize());
+        FontMetrics fm = Toolkit.getDefaultToolkit().getFontMetrics(font);
+
+        int w = fm.stringWidth(e.getText());
+        int h = fm.getHeight();
+
+        int x = e.getLocation().x;
+        int y = e.getLocation().y;
+
+        return new Rectangle(x, y, w, h);
+    }
 }
