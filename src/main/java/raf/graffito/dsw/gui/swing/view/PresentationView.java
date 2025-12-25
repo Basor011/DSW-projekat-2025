@@ -144,6 +144,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
             }
             return;
         }
+
         if(slideParent instanceof Project project)
         {
             if(project.getChildren().size()==1)
@@ -152,7 +153,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
                 return;
             }
             project.setIzmenjen(true);
-            MainFrame.getInstance().getGraffTree().removeNode(node);
+           if(node.getParent()!=null) MainFrame.getInstance().getGraffTree().removeNode(node);
         }
         else if (slideParent instanceof Presentation p)
         {
@@ -161,7 +162,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
          {
              showSlide(null);
          }
-            MainFrame.getInstance().getGraffTree().removeNode(node);
+         if(node.getParent()!=null) MainFrame.getInstance().getGraffTree().removeNode(node);
         }
 
     }

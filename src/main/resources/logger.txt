@@ -222,3 +222,8 @@
 [OBAVESTENJE][25.12.2025. 22:24] Projekat mora imati barem jedno dete
 [OBAVESTENJE][25.12.2025. 22:36] Projekat mora imati barem jedno dete
 [OBAVESTENJE][25.12.2025. 22:56] Projekat mora imati barem jedno dete
+[GRESKA][25.12.2025. 23:34] Slajd ne može da sadrži decu
+[GRESKA][25.12.2025. 23:35] Slajd ne može da sadrži decu
+[OBAVESTENJE][25.12.2025. 23:39] Projekat mora imati barem jedno dete
+[OBAVESTENJE][25.12.2025. 23:39] Projekat mora imati barem jedno dete
+[OBAVESTENJE][25.12.2025. 23:39] Projekat mora imati barem jedno dete
