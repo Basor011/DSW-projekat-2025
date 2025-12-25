@@ -33,4 +33,12 @@ public class CommandManager {
             ApplicationFramework.getInstance().getMg().generateError("Nema vise redo");
         }
     }
+
+    public Stack<Command> getHistory() {
+        return history;
+    }
+    public Stack<Command> getRedoStack() {
+        return redoStack;
+    }
 }
+

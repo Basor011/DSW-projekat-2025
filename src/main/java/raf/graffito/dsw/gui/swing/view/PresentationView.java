@@ -127,7 +127,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
     public void update(Notification notification, GraffTreeItem node)  ///  node=selektovan slajd
     {
         if (!(notification == Notification.SLIDE_SELECTED || notification == Notification.SLIDE_DELETED)) return;
-       // System.out.println("usao");
+       //System.out.println("usao");
 
         GraffNode currentlyOpenProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
         GraffNode slideParent = node.getGraffNode().getParent();
@@ -152,23 +152,22 @@ public class PresentationView extends JPanel implements  PSubscriber {
 
         }
             GraffNode parent= node.getGraffNode().getParent();
-            if (parent instanceof Project && node.getParent().getChildCount() == 1 ) {
-                ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete");
-                return;
-            }
-            if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
+            if (parent instanceof Project project ) {
+                if(node.getParent().getChildCount() == 1 ) {ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+               project.setIzmenjen(true);
+            } //// TREBA DA SE IZMENI PROJECT.IZMENJEN AKO JE PREZENTACIJA
+            else if (parent.getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
                 for (SlideView slajd : slajdovi) {
                     if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
                         if(node.getParent()!=null) {
-
-                            MainFrame.getInstance().getGraffTree().removeNode(node);
                             showSlide(null);
-                            return;
                         }
                     }
                 }
             }
-            else if(node.getParent()!= null){  MainFrame.getInstance().getGraffTree().removeNode(node);}
+            if(node.getParent()!= null){
+                MainFrame.getInstance().getGraffTree().removeNode(node);
+            }
     }
 
     public String getTitle() {

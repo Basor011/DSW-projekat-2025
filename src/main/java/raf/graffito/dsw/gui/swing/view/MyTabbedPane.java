@@ -123,8 +123,10 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
     @Override
     public void update(Notification notification, GraffTreeItem node)
     {
-        if(notification==Notification.PRESENTATION_RENAMED)
+
+        if(notification==Notification.PRESENTATION_RENAMED) // node=presentation
         {
+            ( (Project) node.getGraffNode().getParent()).setIzmenjen(true);
             if(getSelectedComponent()==null) return;
             GraffNodeComposite test=((PresentationView) this.getSelectedComponent()).getPresentation();
 
@@ -142,6 +144,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if (notification == Notification.PRESENTATION_INSERTED)
         {
+            ( (Project) node.getGraffNode().getParent()).setIzmenjen(true);
             if( node.getParent().equals(latestNode))
             {
                 addTab(node);
@@ -149,6 +152,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if (notification == Notification.PROJECT_RENAMED)
         {
+            ( (Project) node.getGraffNode()).setIzmenjen(true);
             if(latestNode==null) return;
             if(latestNode.equals(node))
             {
@@ -180,6 +184,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if (notification == Notification.PRESENTATION_DELETED){
             if(node.getParent().getChildCount() == 1){ ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
+            ( (Project) node.getGraffNode().getParent()).setIzmenjen(true);
             if(latestNode!=null && hasChild(node)) {
                 presentationViewList.removeIf(pv -> pv.getPresentation().equals(node.getGraffNode()));
                 MainFrame.getInstance().getGraffTree().removeNode(node);
@@ -192,10 +197,11 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
         }
         else if(notification == Notification.SLIDE_INSERTED) // prosledjen node je slajd
         {
+
             GraffTreeItem parent=(GraffTreeItem)node.getParent(); // presentation grafftreeitem
             GraffNodeComposite parentNode=(GraffNodeComposite) parent.getGraffNode(); // presentation graffnode
-            if(!(parent.getGraffNode() instanceof Presentation)) return; //treba da se doda u listu slajdova, parent.getgraffnode= Presentation
-
+            if(!(parentNode instanceof Presentation)) return; //treba da se doda u listu slajdova, parentnode= Presentation
+            ((Project) parentNode.getParent()).setIzmenjen(true);
             Slide newSlide = (Slide) node.getGraffNode();
             SlideView newSlideView= new SlideView(newSlide, MainFrame.getInstance().getStateManager());
 
@@ -205,15 +211,9 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 {
                     pv.getSlajdovi().add(newSlideView); // Dodajem  slideview odgovarajucem presentationview-u
                     if(parent.getParent().equals(latestNode)) { // ako je trenutno otvoren taj projekat
-                       // pv.showSlide(newSlideView);
-                        System.out.println("Broj dece za "+ pv.getPresentation().getName()+" je  "+  pv.getPresentation().getChildren().size());
-/*
-                        if(pv.getPresentation().getChildren().size()==1)
-                        {
-                            ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(newSlideView);
-                        }
 
- */
+                        System.out.println("Broj dece za "+ pv.getPresentation().getName()+" je  "+  pv.getPresentation().getChildren().size());
+
                         ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SWITCH_TABS,node);
 
                         int idx = this.indexOfComponent(pv); // menjaje selektovane prezentacije unutar istog projekta
@@ -222,21 +222,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 }
             }
         }
-        /*
-        else if (notification == Notification.SLIDE_DELETED)
-        {
-            GraffTreeItem parent= (GraffTreeItem) node.getParent();
-            if (node.getParent().getChildCount() == 1 && parent.getGraffNode() instanceof Project) {
-                ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete");
-                return;
-            }
-
-            MainFrame.getInstance().getGraffTree().removeNode(node);
-
-
-        }
-
-         */
         else if (notification== Notification.OPENING_TABS)
         {
             if(node.getGraffNode() instanceof Project) {

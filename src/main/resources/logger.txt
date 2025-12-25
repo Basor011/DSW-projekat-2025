@@ -205,3 +205,15 @@
 [GRESKA][24.12.2025. 18:43] Slajd ne može da sadrži decu
 [GRESKA][24.12.2025. 19:00] Nema vise undo
 [GRESKA][25.12.2025. 18:04] Nema vise redo
+[OBAVESTENJE][25.12.2025. 18:13] Nema mesta
+[GRESKA][25.12.2025. 18:19] Niste izmenili projekat
+[GRESKA][25.12.2025. 18:50] Nema vise undo
+[GRESKA][25.12.2025. 18:50] Nema vise redo
+[OBAVESTENJE][25.12.2025. 18:50] Nema mesta
+[GRESKA][25.12.2025. 18:56] Niste izmenili projekat
+[GRESKA][25.12.2025. 18:57] Niste izmenili projekat
+[GRESKA][25.12.2025. 18:58] Niste izmenili projekat
+[OBAVESTENJE][25.12.2025. 19:07] Molim vas izaberite cvor za brisanje
+[OBAVESTENJE][25.12.2025. 19:11] Projekat mora imati barem jedno dete
+[OBAVESTENJE][25.12.2025. 19:12] Projekat mora imati barem jedno dete
+[OBAVESTENJE][25.12.2025. 19:24] Projekat mora imati barem jedno dete

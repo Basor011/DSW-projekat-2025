@@ -11,10 +11,12 @@ public class Project extends GraffNodeComposite  {
 
     private List<PSubscriber> psubs;
     private int number; /// br slajdova
+    private boolean izmenjen;
     protected Project(){}
     public Project(String name, GraffNode parent) {
         super(name, parent);
         this.number = 0;
+        izmenjen=true;
         psubs = new ArrayList<PSubscriber>();
     }
 
@@ -40,5 +42,12 @@ public class Project extends GraffNodeComposite  {
         }
         children.remove(child);
         child.setParent(null);
+    }
+
+    public boolean isIzmenjen() {
+        return izmenjen;
+    }
+    public void setIzmenjen(boolean izmenjen) {
+        this.izmenjen = izmenjen;
     }
 }
