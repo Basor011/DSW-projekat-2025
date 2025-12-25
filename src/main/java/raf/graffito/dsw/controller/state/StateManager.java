@@ -1,12 +1,5 @@
 package raf.graffito.dsw.controller.state;
-
-import raf.graffito.dsw.controller.InsertImagesAction;
 import raf.graffito.dsw.controller.state.concrete.*;
-import raf.graffito.dsw.gui.swing.view.SlideView;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
-
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
 public class StateManager {
     private ElementState currentState;
@@ -17,7 +10,6 @@ public class StateManager {
     private SelectState selectState;
     private DeleteState deleteState;
     private ResizeElementState resizeElementState;
-    private RotationState rotationState;
     private ZoomState zoomState;
     private CopyElementState copyElementState;
 
@@ -31,7 +23,6 @@ public class StateManager {
         addTextFieldState = new AddTextFieldState();
         addImageState = new AddImageState(null);
         selectState = new SelectState();
-        rotationState=new RotationState();
         zoomState=new ZoomState();
         deleteState= new DeleteState();
         resizeElementState = new ResizeElementState();
@@ -61,6 +52,5 @@ public class StateManager {
     }
     public void setResizeElementState() {currentState = resizeElementState;}
     public void setZoomState(){ currentState= zoomState;}
-    public void setRotationState(){currentState=rotationState;}
     public void setCopyElementState(){currentState=copyElementState;}
 }

@@ -204,3 +204,4 @@
 [GRESKA][24.12.2025. 13:32] Vec odabrana boja
 [GRESKA][24.12.2025. 18:43] Slajd ne može da sadrži decu
 [GRESKA][24.12.2025. 19:00] Nema vise undo
+[GRESKA][25.12.2025. 18:04] Nema vise redo
