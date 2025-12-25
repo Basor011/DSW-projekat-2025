@@ -104,12 +104,9 @@ public class SlideView extends JPanel implements SSubscriber {
         g2d.dispose();
     }
     public Slide getSlideModel() {return slideModel;}
-    public Map<Element, ElementView> getElementViewMap() {return elementViewMap;}
-    public StateManager getStateManager() {return stateManager;}
     public double getScaleFactor() {return scaleFactor;}
     public AffineTransform getCurrentTransform() {return currentTransform;}
     public void setScaleFactor(double scaleFactor) {this.scaleFactor = scaleFactor;}
-    public void setCurrentTransform(AffineTransform currentTransform) {this.currentTransform = currentTransform;}
 
     @Override public void update() {repaint();}
 }
