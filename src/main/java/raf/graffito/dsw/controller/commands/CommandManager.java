@@ -19,9 +19,7 @@ public class CommandManager {
             Command command = history.pop();
             command.undo();
             redoStack.push(command);
-        } else {
-            ApplicationFramework.getInstance().getMg().generateError("Nema vise undo");
-        }
+        } else ApplicationFramework.getInstance().getMg().generateError("Nema vise undo");
     }
 
     public void redo() {
@@ -29,8 +27,6 @@ public class CommandManager {
             Command command = redoStack.pop();
             command.execute();
             history.push(command);
-        } else {
-            ApplicationFramework.getInstance().getMg().generateError("Nema vise redo");
-        }
+        } else ApplicationFramework.getInstance().getMg().generateError("Nema vise redo");
     }
 }

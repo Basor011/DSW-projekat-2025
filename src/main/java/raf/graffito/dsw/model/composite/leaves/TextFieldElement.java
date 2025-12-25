@@ -8,21 +8,27 @@ import java.awt.*;
 
 public class TextFieldElement extends Element {
     private String text;
+    private int fontSize = 16;
     protected TextFieldElement(){}
     public TextFieldElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, String text) {
         super(name, parent, lokacija, dimenzija, "TEXTFIELD");
         this.text = text;
     }
 
-    public TextFieldElement(String name, GraffNode parent) {
-        super(name, parent);
-        this.text = "";
-    }
-
     @Override
     public Element clone() {
-        return new TextFieldElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension(), text);
+        TextFieldElement copy = new TextFieldElement(getName() + "_COPIED", getParent(), new Point(getLocation().x + 10, getLocation().y + 10), getDimension(), text);
+        copy.fontSize = fontSize;
+        return copy;
+    }
+    public void changeFontSize(int delta) {
+        this.fontSize = Math.max(8, fontSize + delta);
+        notifyParent();
+    }
+    public void setFontSize(int fontSize) {
+        this.fontSize = Math.max(8, fontSize);
+        notifyParent();
     }
     public String getText() {return text;}
-    public void setText(String text) {this.text = text;}
+    public int getFontSize() {return fontSize;}
 }

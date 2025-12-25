@@ -1,12 +1,14 @@
 package raf.graffito.dsw.controller.state.concrete;
 
 import raf.graffito.dsw.controller.commands.ResizeElementCommand;
+import raf.graffito.dsw.controller.commands.ResizeTextFieldElementCommand;
 import raf.graffito.dsw.controller.state.ElementState;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.view.SlideView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.model.composite.GraffNode;
 import raf.graffito.dsw.model.composite.leaves.Element;
+import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -17,24 +19,32 @@ import java.util.List;
 public class ResizeElementState implements ElementState {
     private boolean dragging = false;
     private Point start;
+
     private ResizeElementCommand command;
-    private List<Element> selected;
+    private ResizeTextFieldElementCommand txfCommand;
+
 
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-        Element clicked = slideView.getElementModel(e.getPoint());
+        ElementView view = slideView.getElementAt(e.getPoint());
+        Element clicked = view.getElement();
         if(clicked == null || !clicked.isSelected()) return;
-        selected = new ArrayList<>();
+        if (!view.isOnBorder(e.getPoint())) return;
+
         dragging = true;
         start = e.getPoint();
 
+        List<TextFieldElement> txfs = new ArrayList<>();
+        List<Element> others = new ArrayList<>();
+
         for(GraffNode gf : slideView.getSlideModel().getChildren()){
             Element element = (Element) gf;
-            if(element.isSelected()){
-                selected.add(element);
-            }
+            if(!element.isSelected()) continue;
+            if(element instanceof TextFieldElement tf) txfs.add(tf);
+            else others.add(element);
         }
-        command = new ResizeElementCommand(selected);
+        if(!txfs.isEmpty()) txfCommand = new ResizeTextFieldElementCommand(txfs);
+        if(!others.isEmpty()) command = new ResizeElementCommand(others);
     }
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {
         if (!dragging) return;
@@ -42,15 +52,20 @@ public class ResizeElementState implements ElementState {
         int dx = e.getX() - start.x;
         int dy = e.getY() - start.y;
 
-        command.apply(dx, dy);
+        if(txfCommand != null) txfCommand.apply(dy);
+        if(command != null) command.apply(dx, dy);
+
         start = e.getPoint();
     }
     @Override public void mouseReleased(MouseEvent e, Element element) {
         if(!dragging) return;
         dragging = false;
-        ApplicationFramework.getInstance().getCommandManager().executeCommand(command);
-        command= null;
-        selected = null;
+
+        if(txfCommand != null) ApplicationFramework.getInstance().getCommandManager().executeCommand(txfCommand);
+        if(command != null) ApplicationFramework.getInstance().getCommandManager().executeCommand(command);
+
+        command = null;
+        txfCommand = null;
     }
     @Override public void mouseClicked(MouseEvent e, Element element) {}
     @Override public void mouseWheelMoved(MouseWheelEvent e, SlideView slideView) {}
