@@ -1,12 +1,5 @@
 package raf.graffito.dsw.controller.state;
-
-import raf.graffito.dsw.controller.InsertImagesAction;
 import raf.graffito.dsw.controller.state.concrete.*;
-import raf.graffito.dsw.gui.swing.view.SlideView;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
-
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
 public class StateManager {
     private ElementState currentState;
