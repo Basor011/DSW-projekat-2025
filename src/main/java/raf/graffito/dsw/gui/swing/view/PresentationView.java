@@ -52,13 +52,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
             }
         }
         initUI();
-/*
-        if(!slajdovi.isEmpty()){
-            lastSelectedSlide =slajdovi.getFirst();
-            showSlide(lastSelectedSlide);
-            ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).setSelectedNode(lastSelectedSlide);
-        }
-        */
+
         buttonCClockwise.setActionCommand("counterclockwise");
        buttonCClockwise.addActionListener(actionManager.getRotateElementAction());
         buttonClockwise.setActionCommand("clockwise");
@@ -129,10 +123,10 @@ public class PresentationView extends JPanel implements  PSubscriber {
         if (!(notification == Notification.SLIDE_SELECTED || notification == Notification.SLIDE_DELETED)) return;
        //System.out.println("usao");
 
-        GraffNode currentlyOpenProject = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
+        GraffNode latestNode = MainFrame.getInstance().getTabbedPane().getLatestNode().getGraffNode();
         GraffNode slideParent = node.getGraffNode().getParent();
         if (notification == Notification.SLIDE_SELECTED) {
-            if (node.getGraffNode().getParent().getParent().equals(currentlyOpenProject) || slideParent.equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
+            if (node.getGraffNode().getParent().getParent().equals(latestNode) || slideParent.equals(latestNode)) { // slajd pripada trenutno otvorenom projektu
                 for (SlideView slajd : slajdovi) {
                     if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
 
@@ -149,25 +143,27 @@ public class PresentationView extends JPanel implements  PSubscriber {
                 }
             }
             return;
-
         }
-            GraffNode parent= node.getGraffNode().getParent();
-            if (parent instanceof Project project ) {
-                if(node.getParent().getChildCount() == 1 ) {ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete"); return;}
-               project.setIzmenjen(true);
-            } //// TREBA DA SE IZMENI PROJECT.IZMENJEN AKO JE PREZENTACIJA
-            else if (parent.getParent().equals(currentlyOpenProject)) { // slajd pripada trenutno otvorenom projektu
-                for (SlideView slajd : slajdovi) {
-                    if (slajd.getSlideModel().equals(node.getGraffNode())) { // trenutna prezentacija ima ovaj slajd
-                        if(node.getParent()!=null) {
-                            showSlide(null);
-                        }
-                    }
-                }
+        if(slideParent instanceof Project project)
+        {
+            if(project.getChildren().size()==1)
+            {
+                ApplicationFramework.getInstance().getMg().generateInfo("Projekat mora imati barem jedno dete");
+                return;
             }
-            if(node.getParent()!= null){
-                MainFrame.getInstance().getGraffTree().removeNode(node);
-            }
+            project.setIzmenjen(true);
+            MainFrame.getInstance().getGraffTree().removeNode(node);
+        }
+        else if (slideParent instanceof Presentation p)
+        {
+            ((Project)  p.getParent()).setIzmenjen(true);
+         if(lastSelectedSlide!=null && lastSelectedSlide.getSlideModel().equals(node.getGraffNode()))
+         {
+             showSlide(null);
+         }
+            MainFrame.getInstance().getGraffTree().removeNode(node);
+        }
+
     }
 
     public String getTitle() {

@@ -20,7 +20,7 @@ public class NewChildAction extends AbstractGraffAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getGraffTree().getSelectedNode();
+        GraffTreeItem selected = MainFrame.getInstance().getGraffTree().getSelectedNode();
         if(selected==null) {
             ApplicationFramework.getInstance().getMg().generateInfo("Moras da odabereš čemu ćeš dodati novi čvor");
             return;

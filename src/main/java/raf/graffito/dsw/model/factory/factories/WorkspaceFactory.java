@@ -20,10 +20,12 @@ public class WorkspaceFactory implements GraffNodeFactory {
 
         if (dialog.isPresentation()) {
             child = new Presentation("Presentation" + new Random().nextInt(100), project);
+            project.addChild(child);
         } else if (dialog.isSlide()) {
             child = new Slide("Slide" + new Random().nextInt(100), project);
+            project.addChild(child);
         }
-        project.addChild(child);
+      //  project.addChild(child);
 
         if (child == null) return null;
 

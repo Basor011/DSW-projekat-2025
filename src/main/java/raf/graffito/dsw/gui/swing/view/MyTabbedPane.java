@@ -261,7 +261,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
             }
             else if (node.getGraffNode() instanceof Slide)
             {
-               // update(Notification.SLIDE_DELETED,node);
+                for(PresentationView pv : presentationViewList)
                 ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_DELETED,node);
             }
             else if (node.getGraffNode() instanceof Workspace)

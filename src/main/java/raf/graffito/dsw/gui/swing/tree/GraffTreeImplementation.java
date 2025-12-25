@@ -55,8 +55,8 @@ public class GraffTreeImplementation implements GraffTree, TBPublisher, PPublish
     public void removeNode(GraffTreeItem node) {
         if (node.getGraffNode() instanceof Workspace) {
             ApplicationFramework.getInstance().getMg().generateError("Ne moze se obrisati workspace");
-            return;
         } else {
+            System.out.println("Deleting: "+ node.getGraffNode().getName()+" Parent is: "+ node.getGraffNode().getParent().getName());
             treeModel.removeNodeFromParent(node);
             SwingUtilities.updateComponentTreeUI(graffTreeView);
         }
