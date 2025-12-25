@@ -19,10 +19,11 @@ public class ResizeElementState implements ElementState {
     private Point start;
     private ResizeElementCommand command;
     private List<Element> selected;
+
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
-        ElementView view = slideView.getElementAt(e.getPoint());
-        if(view == null || !view.getElement().isSelected()) return;
+        Element clicked = slideView.getElementModel(e.getPoint());
+        if(clicked == null || !clicked.isSelected()) return;
         selected = new ArrayList<>();
         dragging = true;
         start = e.getPoint();
@@ -41,18 +42,12 @@ public class ResizeElementState implements ElementState {
         int dx = e.getX() - start.x;
         int dy = e.getY() - start.y;
 
-        for(Element el : selected){
-            Dimension d = el.getDimension();
-            el.resize(dx, dy);
-        }
-
+        command.apply(dx, dy);
         start = e.getPoint();
-        slideView.repaint();
     }
     @Override public void mouseReleased(MouseEvent e, Element element) {
         if(!dragging) return;
         dragging = false;
-        command.captureAfter();
         ApplicationFramework.getInstance().getCommandManager().executeCommand(command);
         command= null;
         selected = null;

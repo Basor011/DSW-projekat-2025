@@ -198,8 +198,10 @@
 [OBAVESTENJE][19.12.2025. 17:43] Projekat mora imati barem jedno dete
 [OBAVESTENJE][21.12.2025. 11:33] Moras da odabereš čemu ćeš dodati novi čvor
 [GRESKA][21.12.2025. 11:35] Nema vise undo
-[GRESKA][22.12.2025. 17:57] Vec odabrana boja
-[OBAVESTENJE][22.12.2025. 18:49] Moras da odabereš čemu ćeš dodati novi čvor
-[GRESKA][23.12.2025. 16:40] Element se može dodati samo na Slide.
-[OBAVESTENJE][24.12.2025. 09:22] Moras da odabereš čemu ćeš dodati novi čvor
-[OBAVESTENJE][24.12.2025. 14:55] Nema mesta
+[GRESKA][23.12.2025. 16:17] Element se može dodati samo na Slide.
+[GRESKA][23.12.2025. 16:17] Nema vise redo
+[GRESKA][23.12.2025. 16:17] Element se može dodati samo na Slide.
+[GRESKA][24.12.2025. 13:32] Vec odabrana boja
+[GRESKA][24.12.2025. 18:43] Slajd ne može da sadrži decu
+[GRESKA][24.12.2025. 19:00] Nema vise undo
+[GRESKA][25.12.2025. 18:04] Nema vise redo

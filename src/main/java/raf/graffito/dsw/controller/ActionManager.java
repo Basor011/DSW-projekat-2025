@@ -17,7 +17,6 @@ public class ActionManager {
     private SaveOrLoadAction saveOrLoadAction;
 
     private MoveElementAction moveAction;
-    private AddImageAction addImageButton;
     private AddLogoAction addLogoButton;
     private AddTextFieldAction addTextFieldButton;
     private SelectElementAction selectElementAction;
@@ -35,6 +34,8 @@ public class ActionManager {
     private SaveAction saveAction;
     private SaveAsAction saveAsAction;
 
+    private InsertImagesAction insertImagesAction;
+
     public ActionManager() {
         exitAction = new ExitAction();
         aboutUsAction = new AboutUsAction();
@@ -44,7 +45,6 @@ public class ActionManager {
 
         selectElementAction = new SelectElementAction();
         moveAction = new MoveElementAction();
-        addImageButton = new AddImageAction();
         addLogoButton = new AddLogoAction();
         addTextFieldButton = new AddTextFieldAction();
         deleteElementAction=new DeleteElementAction();
@@ -60,6 +60,8 @@ public class ActionManager {
         loadAction=new LoadAction();
         saveAction= new SaveAction();
         saveAsAction= new SaveAsAction();
+
+        insertImagesAction = new InsertImagesAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -77,7 +79,6 @@ public class ActionManager {
 
     public SelectElementAction getSelectElementAction() {return selectElementAction;}
     public MoveElementAction getMoveAction() {return moveAction;}
-    public AddImageAction getAddImageButton() {return addImageButton;}
     public AddLogoAction getAddLogoButton() {return addLogoButton;}
     public AddTextFieldAction getAddTextFieldButton() {return addTextFieldButton;}
     public DeleteElementAction getDeleteElementAction() {return deleteElementAction;}
@@ -107,4 +108,6 @@ public class ActionManager {
 
     public UndoAction getUndoAction() {return undoAction;}
     public RedoAction getRedoAction() {return redoAction;}
+
+    public InsertImagesAction getInsertImagesAction() {return insertImagesAction;}
 }

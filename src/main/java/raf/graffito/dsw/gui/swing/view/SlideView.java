@@ -1,8 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.controller.state.StateManager;
-import raf.graffito.dsw.core.observer.Subscriber;
-import raf.graffito.dsw.gui.swing.tree.controller.SlideViewMouseController;
+import raf.graffito.dsw.gui.swing.controller.SlideViewMouseController;
 import raf.graffito.dsw.gui.swing.tree.observer.SSubscriber;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
@@ -80,6 +79,11 @@ public class SlideView extends JPanel implements SSubscriber {
             }
         }
         return null;
+    }
+    public Element getElementModel(Point p) {
+        ElementView view = getElementAt(p);
+        if(view == null) return null;
+        return view.getElement();
     }
     @Override
     protected void paintComponent(Graphics g) {

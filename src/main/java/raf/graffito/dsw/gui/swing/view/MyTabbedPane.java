@@ -2,7 +2,7 @@ package raf.graffito.dsw.gui.swing.view;
 
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
-import raf.graffito.dsw.gui.swing.tree.controller.JTabbedPaneChangeListener;
+import raf.graffito.dsw.gui.swing.controller.JTabbedPaneChangeListener;
 import raf.graffito.dsw.gui.swing.tree.decorator.ColourDecorator;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.tree.observer.Notification;
@@ -15,7 +15,6 @@ import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Workspace;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
