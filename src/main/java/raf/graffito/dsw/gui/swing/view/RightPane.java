@@ -1,12 +1,10 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.controller.InsertImagesAction;
-import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.state.StateManager;
 import raf.graffito.dsw.gui.swing.controller.RightPaneButtonMouseListener;
 import raf.graffito.dsw.gui.swing.tree.observer.TBSubscriber;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 
 public class RightPane extends JPanel implements TBSubscriber {

@@ -1,7 +1,8 @@
 package raf.graffito.dsw.gui.swing.view;
 
+import raf.graffito.dsw.brigde.concrete.ScalableRootPanel;
 import raf.graffito.dsw.controller.ActionManager;
-import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.state.StateManager;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
@@ -26,8 +27,10 @@ public class MainFrame extends JFrame implements Subscriber {
 
     private RightPane rightPanel;
     private StateManager stateManager;
-    int screenHeight;
-    int screenWidth;
+    private int screenHeight;
+    private int screenWidth;
+
+    private double globalScale = 1.0;
 
     public static MainFrame getInstance() {
         if(instance == null) {
@@ -48,8 +51,7 @@ public class MainFrame extends JFrame implements Subscriber {
         Dimension screenSize = kit.getScreenSize(); // Veličina ekrana
         screenHeight = screenSize.height/2;
         screenWidth = screenSize.width/2;
-       setSize(screenWidth, screenHeight);
-      //  setSize(1500,800);
+        setSize(screenWidth, screenHeight);
 
         setLocationRelativeTo(null); // Centriranje prozora na ekranu
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Zatvaranje aplikacije pri zatvaranju prozora
@@ -58,8 +60,14 @@ public class MainFrame extends JFrame implements Subscriber {
         MyMenuBar menu = new MyMenuBar(this); // Kreiranje menija
         setJMenuBar(menu); // Postavljanje menija na prozor
 
+        ScalableRootPanel rootPanel = new ScalableRootPanel(this);
+        rootPanel.setLayout(new BorderLayout());
+
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
-        add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
+        //add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
+
+        rootPanel.add(toolBar, BorderLayout.NORTH);
+
         defaultFilePath=null;
         templatePath=new File("src/main/resources/templates");
 
@@ -67,21 +75,26 @@ public class MainFrame extends JFrame implements Subscriber {
 
         rightPanel = new RightPane(new JLabel("Kalina"),new JLabel("Jug"));
         ((GraffTreeImplementation)graffTree).addSubscriber(rightPanel);
+
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
         split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
         split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
-       split.setDividerLocation(screenWidth/6);
-       // split.setDividerLocation(200);
-        //split2.setDividerLocation(screenWidth - 200);
+        split.setDividerLocation(screenWidth/6);
+
         split2.setDividerLocation(screenWidth-200);
         split.setOneTouchExpandable(true);
+
         tabbedPane = new MyTabbedPane();
         ((GraffTreeImplementation)graffTree).addSubscriber(tabbedPane);
 
         split.setRightComponent(tabbedPane);
 
-        getContentPane().add(split2,BorderLayout.CENTER);
+        //getContentPane().add(split2,BorderLayout.CENTER);
+
+
+        rootPanel.add(split2, BorderLayout.CENTER);
+        setContentPane(rootPanel);
     }
 
     public ActionManager getActionManager() {
@@ -116,6 +129,8 @@ public class MainFrame extends JFrame implements Subscriber {
         return screenWidth;
     }
 
+    public double getGlobalScale() {return globalScale;}
+
     @Override
     public void ispisiPoruku(Message message) {
         if (message.getType().equals("GRESKA") || message.getType().equals("OBAVESTENJE")){
@@ -124,5 +139,9 @@ public class MainFrame extends JFrame implements Subscriber {
         else return;
     }
 
-
+    public void setGlobalScale(double scale) {
+        this.globalScale = scale;
+        revalidate();
+        repaint();
+    }
 }

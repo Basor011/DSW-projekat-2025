@@ -205,3 +205,10 @@
 [GRESKA][24.12.2025. 18:43] Slajd ne može da sadrži decu
 [GRESKA][24.12.2025. 19:00] Nema vise undo
 [GRESKA][25.12.2025. 18:04] Nema vise redo
+[OBAVESTENJE][25.12.2025. 19:43] Nema mesta
+[OBAVESTENJE][25.12.2025. 19:43] Nema mesta
+[OBAVESTENJE][25.12.2025. 19:44] Nema mesta
+[OBAVESTENJE][26.12.2025. 21:46] Nema mesta
+[OBAVESTENJE][26.12.2025. 21:46] Nema mesta
+[OBAVESTENJE][26.12.2025. 21:48] Nema mesta
+[OBAVESTENJE][26.12.2025. 21:48] Nema mesta

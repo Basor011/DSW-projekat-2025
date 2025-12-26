@@ -1,6 +1,6 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.state.StateManager;
 import raf.graffito.dsw.gui.swing.controller.SlideViewMouseController;
 import raf.graffito.dsw.gui.swing.tree.observer.SSubscriber;
 import raf.graffito.dsw.gui.swing.view.slide_elements.ElementView;

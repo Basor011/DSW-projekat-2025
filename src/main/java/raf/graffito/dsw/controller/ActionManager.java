@@ -1,13 +1,25 @@
 package raf.graffito.dsw.controller;
 
+import raf.graffito.dsw.brigde.DefaultScaler;
+import raf.graffito.dsw.brigde.ScaleImplement;
+import raf.graffito.dsw.brigde.WindowMode;
+import raf.graffito.dsw.brigde.controller.FullModeAction;
+import raf.graffito.dsw.brigde.controller.NormalModeAction;
+import raf.graffito.dsw.brigde.controller.SmallModeAction;
+import raf.graffito.dsw.brigde.controller.WindowModeController;
+import raf.graffito.dsw.controller.command_actions.RedoAction;
+import raf.graffito.dsw.controller.command_actions.UndoAction;
+import raf.graffito.dsw.controller.program_actions.AboutUsAction;
+import raf.graffito.dsw.controller.program_actions.ExitAction;
+import raf.graffito.dsw.controller.state_actions.InsertImagesAction;
+import raf.graffito.dsw.controller.jtree_actions.NewChildAction;
+import raf.graffito.dsw.controller.jtree_actions.RemoveChildAction;
 import raf.graffito.dsw.controller.serializer_actions.LoadAction;
 import raf.graffito.dsw.controller.serializer_actions.SaveAction;
 import raf.graffito.dsw.controller.serializer_actions.SaveAsAction;
 
-import raf.graffito.dsw.gui.swing.view.UploadSaveView;
-
-import java.awt.*;
-import raf.graffito.dsw.controller.state.state_actions.*;
+import raf.graffito.dsw.controller.state_actions.*;
+import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 public class ActionManager {
     private ExitAction exitAction;
@@ -36,6 +48,10 @@ public class ActionManager {
 
     private InsertImagesAction insertImagesAction;
 
+    private FullModeAction fullModeAction;
+    private SmallModeAction smallModeAction;
+    private NormalModeAction normalModeAction;
+
     public ActionManager() {
         exitAction = new ExitAction();
         aboutUsAction = new AboutUsAction();
@@ -62,6 +78,10 @@ public class ActionManager {
         saveAsAction= new SaveAsAction();
 
         insertImagesAction = new InsertImagesAction();
+
+        fullModeAction = new FullModeAction();
+        normalModeAction = new NormalModeAction();
+        smallModeAction = new SmallModeAction();
     }
     public ExitAction getExitAction() {return exitAction;}
     public AboutUsAction getAboutUsAction() {
@@ -110,4 +130,8 @@ public class ActionManager {
     public RedoAction getRedoAction() {return redoAction;}
 
     public InsertImagesAction getInsertImagesAction() {return insertImagesAction;}
+
+    public FullModeAction getFullModeAction() {return fullModeAction;}
+    public SmallModeAction getSmallModeAction() {return smallModeAction;}
+    public NormalModeAction getNormalModeAction() {return normalModeAction;}
 }
