@@ -1,5 +1,6 @@
 package raf.graffito.dsw.gui.swing.view;
 
+import raf.graffito.dsw.brigde.DefaultScaler;
 import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.state.StateManager;
 import raf.graffito.dsw.core.ApplicationFramework;
@@ -65,10 +66,15 @@ public class MainFrame extends JFrame implements Subscriber {
         setJMenuBar(menu); // Postavljanje menija na prozor
 
         JPanel rootPanel = new JPanel(new BorderLayout());
+        JPanel toolbarPanel = new JPanel();
+        toolbarPanel.setLayout(new BoxLayout(toolbarPanel, BoxLayout.X_AXIS));
+        WindowModeRadioButtons modeRadioButtons = new WindowModeRadioButtons(ApplicationFramework.getInstance().getWindowModeController(), new DefaultScaler(this));
 
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
 
-        rootPanel.add(toolBar, BorderLayout.NORTH);
+        toolbarPanel.add(toolBar);
+        toolbarPanel.add(modeRadioButtons);
+        rootPanel.add(toolbarPanel, BorderLayout.NORTH);
 
         defaultFilePath = null;
         templatePath = new File("src/main/resources/templates");

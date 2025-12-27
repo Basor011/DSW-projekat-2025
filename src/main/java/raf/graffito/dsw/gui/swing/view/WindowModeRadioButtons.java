@@ -35,5 +35,7 @@ public class WindowModeRadioButtons extends JToolBar {
         defaultMode.setText("default");
         fullMode.setText("full");
         smallMode.setText("small");
+
+        defaultMode.setSelected(true);
     }
 }
