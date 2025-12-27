@@ -26,7 +26,7 @@ abstract public class Element extends GraffNodeLeaf {
     }
 
     public abstract Element clone();
-    private void notifyParent() {
+    protected void notifyParent() {
         if (getParent() instanceof Slide slide) {
             slide.notifySubscribers();
         }
