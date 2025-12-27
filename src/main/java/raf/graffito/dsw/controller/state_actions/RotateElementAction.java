@@ -1,7 +1,7 @@
 package raf.graffito.dsw.controller.state_actions;
 
 import raf.graffito.dsw.controller.AbstractGraffAction;
-import raf.graffito.dsw.command.RotateElementCommand;
+import raf.graffito.dsw.model.command.RotateElementCommand;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.PresentationView;

@@ -1,6 +1,6 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.state.StateManager;
+import raf.graffito.dsw.model.state.StateManager;
 import raf.graffito.dsw.model.proxy.ImageProxy;
 
 import javax.swing.*;

@@ -1,12 +1,11 @@
 package raf.graffito.dsw.core;
-import raf.graffito.dsw.brigde.DefaultScaler;
-import raf.graffito.dsw.brigde.WindowMode;
-import raf.graffito.dsw.brigde.concrete.NormalMode;
-import raf.graffito.dsw.brigde.controller.WindowModeController;
+import raf.graffito.dsw.model.brigde.DefaultScaler;
+import raf.graffito.dsw.model.brigde.concrete.NormalMode;
+import raf.graffito.dsw.model.brigde.controller.WindowModeController;
 import raf.graffito.dsw.core.logger.LoggerFactory;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.core.observer.Subscriber;
-import raf.graffito.dsw.command.CommandManager;
+import raf.graffito.dsw.model.command.CommandManager;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import java.util.ArrayList;

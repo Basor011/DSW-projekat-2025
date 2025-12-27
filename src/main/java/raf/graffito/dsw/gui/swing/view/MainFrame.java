@@ -1,8 +1,8 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.brigde.DefaultScaler;
+import raf.graffito.dsw.model.brigde.DefaultScaler;
 import raf.graffito.dsw.controller.ActionManager;
-import raf.graffito.dsw.state.StateManager;
+import raf.graffito.dsw.model.state.StateManager;
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.core.messageGenerator.Message;
 import raf.graffito.dsw.core.observer.Subscriber;
@@ -25,6 +25,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private JSplitPane split2;
     private File defaultFilePath;
     private File templatePath;
+    private Label uputstvo;
 
     private RightPane rightPanel;
     private StateManager stateManager;
@@ -69,11 +70,13 @@ public class MainFrame extends JFrame implements Subscriber {
         JPanel toolbarPanel = new JPanel();
         toolbarPanel.setLayout(new BoxLayout(toolbarPanel, BoxLayout.X_AXIS));
         WindowModeRadioButtons modeRadioButtons = new WindowModeRadioButtons(ApplicationFramework.getInstance().getWindowModeController(), new DefaultScaler(this));
+        uputstvo=new Label("Triple DESNI klik za otvaranje projekta");
 
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
 
         toolbarPanel.add(toolBar);
         toolbarPanel.add(modeRadioButtons);
+        toolbarPanel.add(uputstvo);
         rootPanel.add(toolbarPanel, BorderLayout.NORTH);
 
         defaultFilePath = null;

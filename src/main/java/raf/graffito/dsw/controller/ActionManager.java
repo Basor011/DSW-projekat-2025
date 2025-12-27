@@ -1,12 +1,8 @@
 package raf.graffito.dsw.controller;
 
-import raf.graffito.dsw.brigde.DefaultScaler;
-import raf.graffito.dsw.brigde.ScaleImplement;
-import raf.graffito.dsw.brigde.WindowMode;
-import raf.graffito.dsw.brigde.controller.FullModeAction;
-import raf.graffito.dsw.brigde.controller.NormalModeAction;
-import raf.graffito.dsw.brigde.controller.SmallModeAction;
-import raf.graffito.dsw.brigde.controller.WindowModeController;
+import raf.graffito.dsw.model.brigde.controller.FullModeAction;
+import raf.graffito.dsw.model.brigde.controller.NormalModeAction;
+import raf.graffito.dsw.model.brigde.controller.SmallModeAction;
 import raf.graffito.dsw.controller.command_actions.RedoAction;
 import raf.graffito.dsw.controller.command_actions.UndoAction;
 import raf.graffito.dsw.controller.program_actions.AboutUsAction;
@@ -19,7 +15,6 @@ import raf.graffito.dsw.controller.serializer_actions.SaveAction;
 import raf.graffito.dsw.controller.serializer_actions.SaveAsAction;
 
 import raf.graffito.dsw.controller.state_actions.*;
-import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 public class ActionManager {
     private ExitAction exitAction;

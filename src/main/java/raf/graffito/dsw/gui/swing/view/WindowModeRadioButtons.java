@@ -1,8 +1,7 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.brigde.ScaleImplement;
-import raf.graffito.dsw.brigde.controller.WindowModeController;
-import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.model.brigde.ScaleImplement;
+import raf.graffito.dsw.model.brigde.controller.WindowModeController;
 
 import javax.swing.*;
 
