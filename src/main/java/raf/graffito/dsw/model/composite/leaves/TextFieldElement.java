@@ -9,10 +9,13 @@ import java.awt.*;
 public class TextFieldElement extends Element {
     private String text;
     private int fontSize = 16;
+    private int ogFontSize;
+
     protected TextFieldElement(){}
     public TextFieldElement(String name, GraffNode parent, Point lokacija, Dimension dimenzija, String text) {
         super(name, parent, lokacija, dimenzija, "TEXTFIELD");
         this.text = text;
+        this.ogFontSize = fontSize;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class TextFieldElement extends Element {
         this.fontSize = Math.max(8, fontSize);
         notifyParent();
     }
+
     public String getText() {return text;}
     public int getFontSize() {return fontSize;}
 }

@@ -240,7 +240,6 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 System.out.println(node.getGraffNode().getParent()+ " OTAC");
                 ((GraffTreeImplementation) MainFrame.getInstance().getGraffTree()).sendingToAll(Notification.SLIDE_SELECTED,node);
             }
-
         }
         else if (notification == Notification.NODE_DELETED)
         {
@@ -280,7 +279,7 @@ public class MyTabbedPane extends JTabbedPane implements PSubscriber {
                 }
             }
         }
-
     }
+
 }
 

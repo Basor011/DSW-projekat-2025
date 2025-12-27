@@ -1,8 +1,12 @@
 package raf.graffito.dsw.core;
+import raf.graffito.dsw.brigde.DefaultScaler;
+import raf.graffito.dsw.brigde.WindowMode;
+import raf.graffito.dsw.brigde.concrete.NormalMode;
+import raf.graffito.dsw.brigde.controller.WindowModeController;
 import raf.graffito.dsw.core.logger.LoggerFactory;
 import raf.graffito.dsw.core.messageGenerator.MessageGenerator;
 import raf.graffito.dsw.core.observer.Subscriber;
-import raf.graffito.dsw.controller.commands.CommandManager;
+import raf.graffito.dsw.command.CommandManager;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 
 import java.util.ArrayList;
@@ -17,6 +21,8 @@ public class ApplicationFramework  {
 
     protected GraffRepository gr;
     private MessageGenerator mg;
+
+    private WindowModeController windowModeController;
 
     private ApplicationFramework(){};
     public static ApplicationFramework getInstance(){
@@ -39,6 +45,9 @@ public class ApplicationFramework  {
         mg.addSubscriber(mainFrame);
         mg.addSubscriber(loggerFactory.createLogger("consoleLogger"));
         mg.addSubscriber(loggerFactory.createLogger("fileLogger"));
+
+        windowModeController = new WindowModeController();
+        windowModeController.setMode(new NormalMode(new DefaultScaler(mainFrame)));
     }
 
     public List<Subscriber> getSubscribers() {
@@ -51,4 +60,5 @@ public class ApplicationFramework  {
         return mg;
     }
     public CommandManager getCommandManager() {return commandManager;}
+    public WindowModeController getWindowModeController() {return windowModeController;}
 }

@@ -13,6 +13,7 @@ abstract public class Element extends GraffNodeLeaf {
     private double rotationAngle = 0;
     private boolean isSelected = false;
     private String type;
+
     protected Element(){}
     public Element(String name, GraffNode parent, Point location, Dimension dimension, String type) {
         super(name, parent);
@@ -21,9 +22,7 @@ abstract public class Element extends GraffNodeLeaf {
         this.type = type;
     }
 
-    public Element(String name, GraffNode parent) {
-        super(name, parent);
-    }
+    public Element(String name, GraffNode parent) {super(name, parent);}
 
     public abstract Element clone();
     protected void notifyParent() {
@@ -39,6 +38,7 @@ abstract public class Element extends GraffNodeLeaf {
     }
     public void resize(int width, int height) {
         setDimensions(dimension.width + width, dimension.height + height);
+        notifyParent();
     }
     public void move(int dx, int dy){
         this.location.x += dx;
@@ -61,16 +61,12 @@ abstract public class Element extends GraffNodeLeaf {
         this.location.setLocation(p);
         notifyParent();
     }
+
     public Point getLocation() {return location;}
     public Dimension getDimension() {return dimension;}
     public double getRotationAngle() {return rotationAngle;}
     public boolean isSelected() {return isSelected;}
     public String getType() {return type;}
     public Point getCenter() {return new Point(location.x + dimension.width / 2, location.y + dimension.height / 2);}
-    public Rectangle getBounds(){ return new Rectangle(
-            location.x,
-            location.y,
-            dimension.width,
-            dimension.height
-    );}
+    public Rectangle getBounds(){ return new Rectangle(location.x, location.y, dimension.width, dimension.height);}
 }

@@ -1,14 +1,11 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.controller.state.StateManager;
+import raf.graffito.dsw.state.StateManager;
 import raf.graffito.dsw.gui.swing.controller.ImageThumbnailMouseListener;
 import raf.graffito.dsw.model.proxy.ImageProxy;
-import raf.graffito.dsw.model.proxy.ImageSubject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class ImageThumbnail extends JPanel{
