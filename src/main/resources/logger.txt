@@ -212,3 +212,9 @@
 [OBAVESTENJE][26.12.2025. 21:46] Nema mesta
 [OBAVESTENJE][26.12.2025. 21:48] Nema mesta
 [OBAVESTENJE][26.12.2025. 21:48] Nema mesta
+[GRESKA][27.12.2025. 00:08] Nema vise redo
+[OBAVESTENJE][27.12.2025. 14:28] Nema mesta
+[OBAVESTENJE][27.12.2025. 14:29] Nema mesta
+[OBAVESTENJE][27.12.2025. 16:27] Nema mesta
+[OBAVESTENJE][27.12.2025. 17:13] Nema mesta
+[GRESKA][27.12.2025. 17:20] Ne moze se izbrisati workspace

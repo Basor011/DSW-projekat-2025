@@ -14,13 +14,15 @@ import java.awt.geom.AffineTransform;
 
 public class DefaultScaler implements ScaleImplement{
     private MainFrame frame;
-
+    //samo ovde smemo da menjamo mf
     public DefaultScaler(MainFrame mf) {
         this.frame = mf;
     }
 
     @Override
-    public void applyScale(double factor) {
+    public void applyScale(Dimension windowsize, double factor) {
+        frame.setSize(windowsize);
+        frame.setLocationRelativeTo(null);
         frame.setGlobalScale(factor);
     }
 }

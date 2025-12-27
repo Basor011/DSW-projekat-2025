@@ -1,6 +1,5 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.brigde.concrete.ScalableRootPanel;
 import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.state.StateManager;
 import raf.graffito.dsw.core.ApplicationFramework;
@@ -12,6 +11,7 @@ import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.util.List;
 
 public class MainFrame extends JFrame implements Subscriber {
 
@@ -32,6 +32,8 @@ public class MainFrame extends JFrame implements Subscriber {
 
     private double globalScale = 1.0;
 
+    private Dimension normalSize;
+
     public static MainFrame getInstance() {
         if(instance == null) {
             instance = new MainFrame();
@@ -42,6 +44,7 @@ public class MainFrame extends JFrame implements Subscriber {
         actionManager = new ActionManager();
         stateManager = new StateManager();
         graffTree = new GraffTreeImplementation();
+
         instance=this;
 
         initialize();
@@ -49,9 +52,10 @@ public class MainFrame extends JFrame implements Subscriber {
     private void initialize() {
         Toolkit kit = Toolkit.getDefaultToolkit(); // Toolkit omogućava interakciju sa platformom
         Dimension screenSize = kit.getScreenSize(); // Veličina ekrana
-        screenHeight = screenSize.height/2;
-        screenWidth = screenSize.width/2;
-        setSize(screenWidth, screenHeight);
+        screenHeight = (int) (screenSize.height / 1.3);
+        screenWidth = (int) (screenSize.width / 1.3);
+        normalSize = new Dimension(screenWidth, screenHeight);
+        setSize(normalSize);
 
         setLocationRelativeTo(null); // Centriranje prozora na ekranu
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Zatvaranje aplikacije pri zatvaranju prozora
@@ -60,16 +64,14 @@ public class MainFrame extends JFrame implements Subscriber {
         MyMenuBar menu = new MyMenuBar(this); // Kreiranje menija
         setJMenuBar(menu); // Postavljanje menija na prozor
 
-        ScalableRootPanel rootPanel = new ScalableRootPanel(this);
-        rootPanel.setLayout(new BorderLayout());
+        JPanel rootPanel = new JPanel(new BorderLayout());
 
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
-        //add(toolBar, BorderLayout.NORTH); // Postavljanje toolbar-a na vrh prozora
 
         rootPanel.add(toolBar, BorderLayout.NORTH);
 
-        defaultFilePath=null;
-        templatePath=new File("src/main/resources/templates");
+        defaultFilePath = null;
+        templatePath = new File("src/main/resources/templates");
 
         JTree workspace = graffTree.generateTree(ApplicationFramework.getInstance().getGr().getWorkspace());
 
@@ -78,20 +80,17 @@ public class MainFrame extends JFrame implements Subscriber {
 
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
-        split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
-        split2=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
+        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
+        split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
         split.setDividerLocation(screenWidth/6);
 
-        split2.setDividerLocation(screenWidth-200);
+        split2.setDividerLocation(screenWidth- (screenWidth/6));
         split.setOneTouchExpandable(true);
 
         tabbedPane = new MyTabbedPane();
         ((GraffTreeImplementation)graffTree).addSubscriber(tabbedPane);
 
         split.setRightComponent(tabbedPane);
-
-        //getContentPane().add(split2,BorderLayout.CENTER);
-
 
         rootPanel.add(split2, BorderLayout.CENTER);
         setContentPane(rootPanel);
@@ -139,9 +138,19 @@ public class MainFrame extends JFrame implements Subscriber {
         else return;
     }
 
-    public void setGlobalScale(double scale) {
+    public void setGlobalScale(double scale) {//skaliramo view
         this.globalScale = scale;
+
+        List<PresentationView> pvl = getTabbedPane().getPresentationViewList();
+        for(PresentationView pv : pvl){
+            List<SlideView> svl = pv.getSlajdovi();
+            for(SlideView sv : svl){
+                sv.updateScale(scale);
+            }
+        }
         revalidate();
         repaint();
     }
+
+    public Dimension getNormalSize() {return normalSize;}
 }

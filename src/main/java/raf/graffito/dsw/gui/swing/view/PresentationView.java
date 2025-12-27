@@ -32,6 +32,8 @@ public class PresentationView extends JPanel implements  PSubscriber {
     private JLabel titleLabel;
     private ActionManager actionManager;
 
+    private JScrollPane scrollPaneSlide;
+
     public PresentationView(String title, GraffNodeComposite presentation)
     {
         this.setName(title);
@@ -60,7 +62,7 @@ public class PresentationView extends JPanel implements  PSubscriber {
         }
         */
         buttonCClockwise.setActionCommand("counterclockwise");
-       buttonCClockwise.addActionListener(actionManager.getRotateElementAction());
+        buttonCClockwise.addActionListener(actionManager.getRotateElementAction());
         buttonClockwise.setActionCommand("clockwise");
         buttonClockwise.addActionListener(actionManager.getRotateElementAction());
         buttonContainer.setVisible(false);
@@ -89,14 +91,13 @@ public class PresentationView extends JPanel implements  PSubscriber {
         radioButtonContainer.add(sabiranje);
         matrica.setSelected(true);
 
-
-      slideContainer=new JPanel();
-      slideContainer.setLayout(new BoxLayout(slideContainer, BoxLayout.Y_AXIS));
-
-      leftContainer=new JPanel(new BorderLayout());
-      leftContainer.add(titleLabel,BorderLayout.PAGE_START);
-      leftContainer.add(slideContainer,BorderLayout.WEST);
-
+        slideContainer = new JPanel();
+        slideContainer.setLayout(new BoxLayout(slideContainer, BoxLayout.Y_AXIS));
+        scrollPaneSlide=new JScrollPane(slideContainer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPaneSlide.getViewport().setBackground(Color.DARK_GRAY);
+        leftContainer=new JPanel(new BorderLayout());
+        leftContainer.add(titleLabel,BorderLayout.PAGE_START);
+        leftContainer.add(slideContainer,BorderLayout.WEST);
         add(leftContainer,BorderLayout.CENTER);
         add(buttonContainer, BorderLayout.EAST);
     }
@@ -116,7 +117,8 @@ public class PresentationView extends JPanel implements  PSubscriber {
         slideContainer.add(slideView);
         slideContainer.repaint();
         slideContainer.revalidate();
-        slideContainer.add(radioButtonContainer,BorderLayout.SOUTH);
+        slideContainer.add(slideView);
+        slideContainer.add(radioButtonContainer);
         lastSelectedSlide=slideView;
 
         this.repaint();

@@ -1,5 +1,7 @@
 package raf.graffito.dsw.brigde;
 
+import java.awt.*;
+
 public interface ScaleImplement {
-    void applyScale(double factor);
+    void applyScale(Dimension windowsize, double factor);
 }

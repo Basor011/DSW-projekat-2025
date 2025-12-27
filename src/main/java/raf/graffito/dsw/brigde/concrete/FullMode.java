@@ -3,8 +3,11 @@ package raf.graffito.dsw.brigde.concrete;
 import raf.graffito.dsw.brigde.ScaleImplement;
 import raf.graffito.dsw.brigde.WindowMode;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.gui.swing.view.PresentationView;
+import raf.graffito.dsw.gui.swing.view.SlideView;
 
 import java.awt.*;
+import java.util.List;
 
 public class FullMode extends WindowMode {
     public FullMode(ScaleImplement scaleImplement) {
@@ -16,15 +19,6 @@ public class FullMode extends WindowMode {
         return 1.5;
     }
 
-    @Override
-    public void apply() {
-        MainFrame mf = MainFrame.getInstance();
-        Toolkit tk = mf.getToolkit();
-        Dimension screenSize = tk.getScreenSize();
-        mf.setSize(screenSize);
-        mf.setLocationRelativeTo(null);
-        scaleWindow(1.5);
-    }
 
     @Override
     public Dimension getWindowSize() {

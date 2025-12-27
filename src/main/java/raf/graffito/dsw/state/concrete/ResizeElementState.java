@@ -49,8 +49,9 @@ public class ResizeElementState implements ElementState {
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {
         if (!dragging) return;
 
-        int dx = e.getX() - start.x;
-        int dy = e.getY() - start.y;
+        double scale = slideView.getScaleFactor();
+        int dx = (int) ((e.getX()-start.x)/scale);
+        int dy = (int) ((e.getY()-start.y)/scale);
 
         if(txfCommand != null) txfCommand.apply(dy);
         if(command != null) command.apply(dx, dy);

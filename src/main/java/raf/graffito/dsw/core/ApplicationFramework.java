@@ -1,4 +1,5 @@
 package raf.graffito.dsw.core;
+import raf.graffito.dsw.brigde.DefaultScaler;
 import raf.graffito.dsw.brigde.WindowMode;
 import raf.graffito.dsw.brigde.concrete.NormalMode;
 import raf.graffito.dsw.brigde.controller.WindowModeController;
@@ -46,6 +47,7 @@ public class ApplicationFramework  {
         mg.addSubscriber(loggerFactory.createLogger("fileLogger"));
 
         windowModeController = new WindowModeController();
+        windowModeController.setMode(new NormalMode(new DefaultScaler(mainFrame)));
     }
 
     public List<Subscriber> getSubscribers() {

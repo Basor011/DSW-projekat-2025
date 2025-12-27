@@ -1,5 +1,7 @@
 package raf.graffito.dsw.brigde;
 
+import raf.graffito.dsw.gui.swing.view.SlideView;
+
 import java.awt.*;
 
 public abstract class WindowMode {
@@ -8,12 +10,9 @@ public abstract class WindowMode {
     public WindowMode(ScaleImplement scale) {
         this.scale = scale;
     }
-    public void apply(){
-        scale.applyScale(getScaleFactor());
+    public final void apply(){
+        scale.applyScale(getWindowSize(),getScaleFactor());
     }
     public abstract double getScaleFactor();
     public abstract Dimension getWindowSize();
-    protected void scaleWindow(double factor) {
-        scale.applyScale(factor);
-    }
 }
