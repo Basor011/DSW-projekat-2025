@@ -14,14 +14,12 @@ abstract public class Element extends GraffNodeLeaf {
     private boolean isSelected = false;
     private String type;
 
-
     protected Element(){}
     public Element(String name, GraffNode parent, Point location, Dimension dimension, String type) {
         super(name, parent);
         this.location = location;
         this.dimension = dimension;
         this.type = type;
-
     }
 
     public Element(String name, GraffNode parent) {super(name, parent);}
@@ -40,6 +38,7 @@ abstract public class Element extends GraffNodeLeaf {
     }
     public void resize(int width, int height) {
         setDimensions(dimension.width + width, dimension.height + height);
+        notifyParent();
     }
     public void move(int dx, int dy){
         this.location.x += dx;
