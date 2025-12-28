@@ -32,7 +32,6 @@ public class SumStrategy implements SpaceStrategy {
 
     }
 
-
     public void clearOccupied(Slide slide, Element element) {
         int[][]dimensions=slide.getFreeSpace();
         Rectangle rect = element.getBounds();
