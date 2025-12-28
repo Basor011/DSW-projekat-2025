@@ -32,18 +32,19 @@ public class SaveAction extends AbstractGraffAction {
     public void actionPerformed(ActionEvent e) {
         init();
         if (project == null) { ApplicationFramework.getInstance().getMg().generateError("Nemate otvoren projekat"); return;}
-        if(ApplicationFramework.getInstance().getCommandManager().getHistory().isEmpty() && !project.isIzmenjen()) {
-            ApplicationFramework.getInstance().getMg().generateError("Niste izmenili projekat");
-            return;
-        }
 
         if (e.getActionCommand().equals("template"))
         {
             File fileToSave = new File(MainFrame.getInstance().getTemplatePath(), project.getName().replaceAll("\\s+", "_") + ".json");
             serializer.saveProject(project, fileToSave);
             project.setIzmenjen(false);
+            return;
 
         }
+        if(ApplicationFramework.getInstance().getCommandManager().getHistory().isEmpty() && !project.isIzmenjen()) {
+            ApplicationFramework.getInstance().getMg().generateError("Niste izmenili projekat");
+        }
+
         else
         {
             File defaultDir = MainFrame.getInstance().getDefaultFilePath();
@@ -69,6 +70,11 @@ public class SaveAction extends AbstractGraffAction {
             }
             else
             {
+                if(!project.isIzmenjen()) {
+
+                    ApplicationFramework.getInstance().getMg().generateError("Nije izmenjen");
+                    return;
+                }
                 File fileToSave = new File(defaultDir, project.getName().replaceAll("\\s+", "_") + ".json");
                 serializer.saveProject(project, fileToSave);
                 project.setIzmenjen(false);

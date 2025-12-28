@@ -44,6 +44,7 @@ public class Jackson implements  Serializer {
     public void saveProject(Project project, File file) {
 
         try {
+           // System.out.println(project.isIzmenjen());
             objectMapper.writeValue(file, project);
             System.out.println("Projekat je sačuvan u: " + file.getAbsolutePath());
         } catch (IOException e) {

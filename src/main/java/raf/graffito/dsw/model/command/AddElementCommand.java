@@ -4,6 +4,7 @@ import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.model.composite.abs.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.strategy.SpaceStrategy;
