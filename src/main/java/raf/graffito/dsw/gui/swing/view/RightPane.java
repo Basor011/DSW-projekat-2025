@@ -29,19 +29,22 @@ public class RightPane extends JPanel implements TBSubscriber {
         add(topPanel, BorderLayout.NORTH);
 
         //buttons
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(5, 2));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getInsertImagesAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getMoveAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getShowRotateButtonAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getZoomElementAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction()));
-        buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getCopyElementAction()));
-        add(buttonPanel, BorderLayout.CENTER);
+        JToolBar buttonToolBar = new JToolBar();
+        buttonToolBar.setFloatable(false);
+        buttonToolBar.setBorder(BorderFactory.createEtchedBorder());
+
+        buttonToolBar.setLayout(new GridLayout(5, 2));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getInsertImagesAction()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getSelectElementAction()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getMoveAction()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getShowRotateButtonAction()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getZoomElementAction()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getDeleteElementAction()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getResizeElementAction()));
+        buttonToolBar.add(createIconButton(MainFrame.getInstance().getActionManager().getCopyElementAction()));
+        add(buttonToolBar, BorderLayout.CENTER);
 
         //bottom
         this.imageListView = new ImageListView(stateManager);
@@ -58,8 +61,6 @@ public class RightPane extends JPanel implements TBSubscriber {
         button.setVerticalAlignment(SwingConstants.CENTER);
 
         button.addMouseListener(new RightPaneButtonMouseListener(button));
-        Icon icon = button.getIcon();
-        if (icon != null) button.setPreferredSize(new Dimension(icon.getIconWidth() + 10, icon.getIconHeight() + 10));
         return button;
     }
     public void startSelectState() {stateManager.setSelectState();}

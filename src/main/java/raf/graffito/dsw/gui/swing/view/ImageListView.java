@@ -14,7 +14,7 @@ public class ImageListView extends JPanel {
         this.stateManager = stateManager;
 
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(50, 200));
+        setPreferredSize(new Dimension(50,100));
 
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
