@@ -8,4 +8,5 @@ public Colleague(iMediator mediator) {
         this.mediator = mediator;
     }
 
+
 }

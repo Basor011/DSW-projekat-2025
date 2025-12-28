@@ -26,10 +26,9 @@ public class DeleteState implements ElementState {
         }
         if(selected.isEmpty()) return;
         for(Element el : selected) {
-            int[][] freeSpace=slideView.getSlideModel().getFreeSpace();
-            slideView.getSlideModel().getStrategy().clearOccupied(slideView.getSlideModel(),el);
-        }
+
         ApplicationFramework.getInstance().getCommandManager().executeCommand(new DeleteElementCommand(slideView.getSlideModel(), selected));
+        }
 
 
         MainFrame.getInstance().getRightPanel().startSelectState();

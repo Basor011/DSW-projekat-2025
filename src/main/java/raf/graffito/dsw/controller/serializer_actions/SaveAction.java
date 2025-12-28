@@ -14,8 +14,6 @@ import java.io.File;
 public class SaveAction extends AbstractGraffAction {
     private Serializer serializer;
     private Project project;
-    private File filepath;
-
 
     public SaveAction() {
         serializer = new Jackson();
@@ -34,7 +32,10 @@ public class SaveAction extends AbstractGraffAction {
     public void actionPerformed(ActionEvent e) {
         init();
         if (project == null) { ApplicationFramework.getInstance().getMg().generateError("Nemate otvoren projekat"); return;}
-        if(ApplicationFramework.getInstance().getCommandManager().getHistory().isEmpty() && !project.isIzmenjen()) ApplicationFramework.getInstance().getMg().generateError("Niste izmenili projekat");
+        if(ApplicationFramework.getInstance().getCommandManager().getHistory().isEmpty() && !project.isIzmenjen()) {
+            ApplicationFramework.getInstance().getMg().generateError("Niste izmenili projekat");
+            return;
+        }
 
         if (e.getActionCommand().equals("template"))
         {

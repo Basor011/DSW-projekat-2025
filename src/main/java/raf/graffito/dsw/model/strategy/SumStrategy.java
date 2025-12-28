@@ -21,7 +21,7 @@ public class SumStrategy implements SpaceStrategy {
         }
 
 
-        return totalSum>=maxSurface;
+        return totalSum<=maxSurface;
     }
     private double calculateSurfaceArea(Element e)
     {
@@ -31,7 +31,6 @@ public class SumStrategy implements SpaceStrategy {
         return sum;
 
     }
-
 
     public void clearOccupied(Slide slide, Element element) {
         int[][]dimensions=slide.getFreeSpace();

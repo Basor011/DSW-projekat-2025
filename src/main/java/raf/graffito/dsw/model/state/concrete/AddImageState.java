@@ -27,9 +27,10 @@ public class AddImageState implements ElementState {
         if (imagePath == null) return;
 
         Point p = e.getPoint();
+        Point modelPoint=slideView.toModelDelta(p);
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
-        Element img = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.IMAGE, p, imagePath);
+        Element img = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.IMAGE, modelPoint, imagePath);
         int[][] freeSpace=slideView.getSlideModel().getFreeSpace();
         if(slideView.getSlideModel().getStrategy().hasEnoughSpace(slideView.getSlideModel(),List.of(img))) {
             ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(img)));

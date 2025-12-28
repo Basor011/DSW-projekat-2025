@@ -25,7 +25,7 @@ public class MatrixStrategy implements  SpaceStrategy
         if (over80(slide, data.getFirst())) {
             return false;
         }
-        MainFrame.getInstance().getTabbedPane().getSelectedPresentation().getLastSelectedSlide().getSlideModel().setFreeSpace(copy);
+        slide.setFreeSpace(copy);
 
         return true;
     }
