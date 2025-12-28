@@ -30,10 +30,14 @@ public class AddTextFieldState implements ElementState {
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
         Element txf = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.TEXT_FIELD, p, text);
+        int[][] freeSpace=slideView.getSlideModel().getFreeSpace();
+        if(slideView.getSlideModel().getStrategy().hasEnoughSpace(slideView.getSlideModel(),List.of(txf))) {
 
-        ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(txf)));
+            ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(txf)));
 
-        MainFrame.getInstance().getRightPanel().startSelectState();
+            MainFrame.getInstance().getRightPanel().startSelectState();
+        }
+        else ApplicationFramework.getInstance().getMg().generateError("Nema mesta");
     }
 
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}

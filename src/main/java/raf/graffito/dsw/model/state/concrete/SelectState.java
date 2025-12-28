@@ -2,7 +2,7 @@ package raf.graffito.dsw.model.state.concrete;
 
 import raf.graffito.dsw.model.state.ElementState;
 import raf.graffito.dsw.gui.swing.view.SlideView;
-import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.event.MouseEvent;

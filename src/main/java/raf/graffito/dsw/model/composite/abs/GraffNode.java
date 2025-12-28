@@ -1,4 +1,4 @@
-package raf.graffito.dsw.model.composite;
+package raf.graffito.dsw.model.composite.abs;
 
 import com.fasterxml.jackson.annotation.*;
 import raf.graffito.dsw.model.composite.compositions.Presentation;
@@ -8,8 +8,6 @@ import raf.graffito.dsw.model.composite.compositions.Workspace;
 import raf.graffito.dsw.model.composite.leaves.ImageElement;
 import raf.graffito.dsw.model.composite.leaves.LogoElement;
 import raf.graffito.dsw.model.composite.leaves.TextFieldElement;
-
-import java.awt.*;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({

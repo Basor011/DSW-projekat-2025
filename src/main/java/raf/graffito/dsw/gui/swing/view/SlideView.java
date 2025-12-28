@@ -7,7 +7,7 @@
     import raf.graffito.dsw.gui.swing.view.slide_elements.ImageView;
     import raf.graffito.dsw.gui.swing.view.slide_elements.LogoView;
     import raf.graffito.dsw.gui.swing.view.slide_elements.TextFieldVIew;
-    import raf.graffito.dsw.model.composite.GraffNode;
+    import raf.graffito.dsw.model.composite.abs.GraffNode;
     import raf.graffito.dsw.model.composite.compositions.Slide;
     import raf.graffito.dsw.model.composite.leaves.Element;
     import raf.graffito.dsw.model.composite.leaves.ImageElement;
@@ -21,11 +21,13 @@
     import java.util.HashMap;
     import java.util.Iterator;
     import java.util.Map;
+    import java.util.List;
 
     public class SlideView extends JPanel implements SSubscriber {
 
         private Slide slideModel;
         private Map<Element, ElementView> elementViewMap;
+
 
         private StateManager stateManager;
 
@@ -80,7 +82,7 @@
             Point modelPoint =  toModelPoint(p);
             for (Element e : elementViewMap.keySet()) {
                 ElementView view = elementViewMap.get(e);
-                if (view.getBounds().contains(modelPoint)) {
+                if (view.getElement().getBounds().contains(modelPoint)) {
                     return view;
                 }
             }

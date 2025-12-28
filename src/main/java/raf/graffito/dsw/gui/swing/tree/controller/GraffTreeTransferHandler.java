@@ -2,7 +2,7 @@ package raf.graffito.dsw.gui.swing.tree.controller;
 
 import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
-import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.compositions.Presentation;
 

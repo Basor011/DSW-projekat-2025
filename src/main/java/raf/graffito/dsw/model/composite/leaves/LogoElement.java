@@ -1,7 +1,6 @@
 package raf.graffito.dsw.model.composite.leaves;
 
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.compositions.Slide;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
 
 import java.awt.*;
 

@@ -30,10 +30,12 @@ public class AddImageState implements ElementState {
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
         Element img = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.IMAGE, p, imagePath);
+        int[][] freeSpace=slideView.getSlideModel().getFreeSpace();
+        if(slideView.getSlideModel().getStrategy().hasEnoughSpace(slideView.getSlideModel(),List.of(img))) {
+            ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(img)));
 
-        ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(img)));
-
-        MainFrame.getInstance().getRightPanel().startSelectState();
+            MainFrame.getInstance().getRightPanel().startSelectState();
+        } else ApplicationFramework.getInstance().getMg().generateError("Nema mesta");
     }
     @Override public void mouseDragged(MouseEvent e, SlideView slideView) {}
     @Override public void mouseReleased(MouseEvent e, Element element) {}

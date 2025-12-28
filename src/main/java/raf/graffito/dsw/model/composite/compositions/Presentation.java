@@ -1,8 +1,8 @@
 package raf.graffito.dsw.model.composite.compositions;
 
 import raf.graffito.dsw.gui.swing.tree.observer.PSubscriber;
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNodeComposite;
 
 import java.util.ArrayList;
 import java.util.List;

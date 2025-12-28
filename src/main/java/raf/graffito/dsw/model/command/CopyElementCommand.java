@@ -3,7 +3,7 @@ package raf.graffito.dsw.model.command;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.abs.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.util.ArrayList;

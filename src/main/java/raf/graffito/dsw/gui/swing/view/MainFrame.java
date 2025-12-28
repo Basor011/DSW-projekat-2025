@@ -91,15 +91,17 @@ public class MainFrame extends JFrame implements Subscriber {
         scrollPane.setMinimumSize(new Dimension(200,150));
         split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,null);
         split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,rightPanel);
-        split.setDividerLocation(screenWidth/6);
+        split.setDividerLocation(screenWidth/6); // levi
 
-        split2.setDividerLocation(screenWidth- (screenWidth/6));
+        split2.setDividerLocation(screenWidth- (screenWidth/6)); // desni
         split.setOneTouchExpandable(true);
 
         tabbedPane = new MyTabbedPane();
         ((GraffTreeImplementation)graffTree).addSubscriber(tabbedPane);
 
         split.setRightComponent(tabbedPane);
+        split.setResizeWeight(0.0);   // levi panel fiksan, desni raste
+        split2.setResizeWeight(1.0);  // tabbedPane dobija sav visak prostora
 
         rootPanel.add(split2, BorderLayout.CENTER);
         setContentPane(rootPanel);

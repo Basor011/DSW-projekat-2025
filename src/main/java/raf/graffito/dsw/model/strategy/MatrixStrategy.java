@@ -1,34 +1,70 @@
 package raf.graffito.dsw.model.strategy;
 
 import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.gui.swing.view.SlideView;
+import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.*;
+import java.util.List;
 
 public class MatrixStrategy implements  SpaceStrategy
 {
-    int[][] setMatrix;
-    private SpaceStrategy strategy=new SumStrategy();
+    private Rectangle rect;
     @Override
-    public boolean hasEnoughSpace(Element data, int[][] dimensions)
+    public boolean hasEnoughSpace(Slide slide, List<Element> data)
     {
-        int[][] copy= deepCopy(dimensions);
+        int[][] copy= deepCopy(slide.getFreeSpace());
 
-        if (!markOccupied(data, copy)) {
+        if (!canMark(slide, data.getFirst())) {
             return false;
         }
 
-        if (!strategy.hasEnoughSpace(data, copy)) {
+        markOccupied(slide, data.getFirst());
+
+        if (over80(slide, data.getFirst())) {
             return false;
         }
-
         MainFrame.getInstance().getTabbedPane().getSelectedPresentation().getLastSelectedSlide().getSlideModel().setFreeSpace(copy);
 
         return true;
     }
-    private boolean markOccupied(Element element, int[][] dimensions)
+    public void markOccupied(Slide slide, Element element)
     {
-        Rectangle rect=element.getBounds();
+        int[][]spaceMatrix=slide.getFreeSpace();
+        rect=element.getBounds();
+        int startX = Math.max(0, rect.x);
+        int startY = Math.max(0, rect.y);
+        int endX = Math.min(spaceMatrix[0].length, rect.x + rect.width);
+        int endY = Math.min(spaceMatrix.length, rect.y + rect.height);
+
+        for (int row = startY; row < endY; row++) {
+            for (int col = startX; col < endX; col++) {
+                spaceMatrix[row][col] = 1;
+            }
+        }
+    }
+
+    @Override
+    public boolean canMark(Slide slide, Element element) {
+        int[][]dimensions=slide.getFreeSpace();
+        rect=element.getBounds();
+        int startX = Math.max(0, rect.x);
+        int startY = Math.max(0, rect.y);
+        int endX = Math.min(dimensions[0].length, rect.x + rect.width);
+        int endY = Math.min(dimensions.length, rect.y + rect.height);
+        for (int row = startY; row < endY; row++) {
+            for (int col = startX; col < endX; col++) {
+                if(dimensions[row][col]==1) return false;
+
+            }
+        }
+        return true;
+    }
+
+    public void clearOccupied(Slide slide, Element element) {
+        int[][]dimensions=slide.getFreeSpace();
+        rect = element.getBounds();
         int startX = Math.max(0, rect.x);
         int startY = Math.max(0, rect.y);
         int endX = Math.min(dimensions[0].length, rect.x + rect.width);
@@ -36,15 +72,10 @@ public class MatrixStrategy implements  SpaceStrategy
 
         for (int row = startY; row < endY; row++) {
             for (int col = startX; col < endX; col++) {
-                if(dimensions[row][col]==1) return false;
-                dimensions[row][col] = 1;
+                dimensions[row][col] = 0;
             }
         }
-        setMatrix=dimensions;
-        return true;
-
     }
-
     private int[][] deepCopy(int[][] original) {
         int[][] copy = new int[original.length][original[0].length];
 
@@ -54,5 +85,21 @@ public class MatrixStrategy implements  SpaceStrategy
         return copy;
     }
 
+    @Override
+    public boolean over80(Slide slide, Element element) {
+        int[][] spaceMatrix= slide.getFreeSpace();
+        int cnt = 0;
+        int rows = spaceMatrix.length;
+        int cols = spaceMatrix[0].length;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (spaceMatrix[i][j] == 1) cnt++;
+            }
+        }
+        double totalArea = rows * cols;
+        double occupiedPercentage = (cnt / totalArea) * 100;
 
+
+        return occupiedPercentage >= 80.0;
+    }
 }

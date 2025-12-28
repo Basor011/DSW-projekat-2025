@@ -1,8 +1,8 @@
 package raf.graffito.dsw.model.composite.leaves;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeLeaf;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNodeLeaf;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 
 import java.awt.*;

@@ -1,8 +1,8 @@
 package raf.graffito.dsw.gui.swing;
 
 import raf.graffito.dsw.core.GraffRepository;
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.leaves.Element;
 import raf.graffito.dsw.model.composite.leaves.TipElementa;
 import raf.graffito.dsw.model.factory.GraffNodeFactory;

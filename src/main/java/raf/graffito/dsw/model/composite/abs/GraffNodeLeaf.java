@@ -1,4 +1,4 @@
-package raf.graffito.dsw.model.composite;
+package raf.graffito.dsw.model.composite.abs;
 
 public abstract class GraffNodeLeaf extends GraffNode {
 

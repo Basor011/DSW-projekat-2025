@@ -1,7 +1,7 @@
 package raf.graffito.dsw.model.composite.compositions;
 
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNodeComposite;
 
 public class Workspace extends GraffNodeComposite {
     public Workspace(String name) {

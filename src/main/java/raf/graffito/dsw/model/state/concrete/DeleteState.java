@@ -5,7 +5,7 @@ import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.model.command.DeleteElementCommand;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
 import raf.graffito.dsw.gui.swing.view.SlideView;
-import raf.graffito.dsw.model.composite.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
 import java.awt.event.MouseEvent;
@@ -25,8 +25,12 @@ public class DeleteState implements ElementState {
             if(el.isSelected()) selected.add(el);
         }
         if(selected.isEmpty()) return;
-
+        for(Element el : selected) {
+            int[][] freeSpace=slideView.getSlideModel().getFreeSpace();
+            slideView.getSlideModel().getStrategy().clearOccupied(slideView.getSlideModel(),el);
+        }
         ApplicationFramework.getInstance().getCommandManager().executeCommand(new DeleteElementCommand(slideView.getSlideModel(), selected));
+
 
         MainFrame.getInstance().getRightPanel().startSelectState();
     }

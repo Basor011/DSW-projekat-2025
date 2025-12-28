@@ -5,8 +5,8 @@ import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeImplementation;
 import raf.graffito.dsw.gui.swing.tree.GraffTreeItem;
 import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.model.composite.GraffNode;
-import raf.graffito.dsw.model.composite.GraffNodeComposite;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
+import raf.graffito.dsw.model.composite.abs.GraffNodeComposite;
 import raf.graffito.dsw.model.composite.compositions.Project;
 import raf.graffito.dsw.model.composite.compositions.Workspace;
 

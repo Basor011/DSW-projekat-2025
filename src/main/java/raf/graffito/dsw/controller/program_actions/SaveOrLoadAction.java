@@ -1,13 +1,13 @@
-package raf.graffito.dsw.controller;
+package raf.graffito.dsw.controller.program_actions;
 
-import raf.graffito.dsw.gui.swing.view.MainFrame;
+import raf.graffito.dsw.controller.AbstractGraffAction;
 import raf.graffito.dsw.gui.swing.view.UploadSaveView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-public class SaveOrLoadAction extends AbstractGraffAction{
+public class SaveOrLoadAction extends AbstractGraffAction {
     public SaveOrLoadAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N,
                 ActionEvent.CTRL_MASK));
