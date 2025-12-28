@@ -36,6 +36,7 @@ public class ResizeElementCommand implements Command {
             Dimension d = after.get(i);
             elements.get(i).setDimensions(d.width, d.height);
         }
+        System.out.println("EXECUTE resize");
     }
     @Override
     public void undo() {

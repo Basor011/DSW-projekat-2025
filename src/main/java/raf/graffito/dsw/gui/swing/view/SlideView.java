@@ -41,17 +41,21 @@
             this.elementViewMap = new HashMap<>();
             this.stateManager = stateManager;
 
-            Dimension frameSize = MainFrame.getInstance().getSize();
+            Dimension frameSize = MainFrame.getInstance().getNormalSize();
             this.base = new Dimension(frameSize.width/2, frameSize.height/2);
+
+            this.scaleFactor = MainFrame.getInstance().getGlobalScale();
 
             slideModel.addSubscriber((SSubscriber) this);
             slideModel.setFreeSpace(new int[base.height][base.width]);
 
             setBackground(Color.LIGHT_GRAY);
-            setPreferredSize(base);
+            setPreferredSize(new Dimension((int)(base.width * scaleFactor), (int)(base.height * scaleFactor)));
 
             initElementViews();
             initMouseListener();
+
+            System.out.println("base: " + base + "size: " + MainFrame.getInstance().getSize() + "global scaleFactor: " + MainFrame.getInstance().getGlobalScale());
         }
 
         private void initMouseListener() {
@@ -74,9 +78,6 @@
         }
         private Point toModelPoint(Point p){
             return new Point((int)(p.getX()/scaleFactor), (int)(p.getY()/scaleFactor));
-        }
-        public int toModelDelta(int delta){
-            return (int) (delta/scaleFactor);
         }
         public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
             Point modelPoint =  toModelPoint(p);
@@ -123,6 +124,9 @@
 
             revalidate();
             repaint();
+
+            System.out.println("base: " + base + "new scale: " + newScale);
+            System.out.println("[updateScale] " + slideModel.getName() + " scale=" + newScale + " thread=" + Thread.currentThread().getName());
         }
         public Slide getSlideModel() {return slideModel;}
         public double getScaleFactor() {return scaleFactor;}

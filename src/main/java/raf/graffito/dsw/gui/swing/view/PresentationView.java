@@ -111,7 +111,6 @@ public class PresentationView extends JPanel implements  PSubscriber {
         slideContainer.add(slideView);
         slideContainer.repaint();
         slideContainer.revalidate();
-        slideContainer.add(slideView);
         slideContainer.add(radioButtonContainer);
         lastSelectedSlide=slideView;
 
