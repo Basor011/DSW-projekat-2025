@@ -30,7 +30,7 @@ public class RightPane extends JPanel implements TBSubscriber {
 
         //buttons
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.setLayout(new GridLayout(5, 2));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getInsertImagesAction()));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getAddTextFieldButton()));
         buttonPanel.add(createIconButton(MainFrame.getInstance().getActionManager().getAddLogoButton()));
