@@ -86,6 +86,7 @@ public class MainFrame extends JFrame implements Subscriber {
 
         rightPanel = new RightPane(new JLabel("Kalina"),new JLabel("Jug"));
         ((GraffTreeImplementation)graffTree).addSubscriber(rightPanel);
+        JScrollPane verticalScrollBar = new JScrollPane(rightPanel);
 
         JScrollPane scrollPane = new JScrollPane(workspace);
         scrollPane.setMinimumSize(new Dimension(200,150));
