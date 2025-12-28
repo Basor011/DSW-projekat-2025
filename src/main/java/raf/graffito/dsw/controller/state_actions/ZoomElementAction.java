@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class ZoomElementAction extends AbstractGraffAction {
     public ZoomElementAction() {
-        putValue(SMALL_ICON, loadIcon("/images/amoguszoomus.png")); // Postavljanje ikonice
+        putValue(SMALL_ICON, loadIcon("/images/icons for buttons/zoomin.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Zoom?");
     }
 

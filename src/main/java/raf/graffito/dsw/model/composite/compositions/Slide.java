@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Slide extends GraffNodeComposite {
-    private List<SSubscriber>subs= new ArrayList<>(); ///mozda bi observer za slide bio pametan
+    private List<SSubscriber>subs= new ArrayList<>();
     private int[][] freeSpace;
     @JsonIgnore
     private SpaceStrategy strategy;

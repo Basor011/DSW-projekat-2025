@@ -12,11 +12,13 @@ public class Project extends GraffNodeComposite  {
     private List<PSubscriber> psubs;
     private int number; /// br slajdova
     private boolean izmenjen;
+    private String naziv;
+    private String autor;
     protected Project(){}
     public Project(String name, GraffNode parent) {
         super(name, parent);
         this.number = 0;
-        izmenjen=true;
+        izmenjen = true;
         psubs = new ArrayList<PSubscriber>();
     }
 

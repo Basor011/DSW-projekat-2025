@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class DeleteElementAction extends AbstractGraffAction {
     public DeleteElementAction() {
-        putValue(SMALL_ICON, loadIcon("/images/icons for buttons/sus2.png")); // Postavljanje ikonice
+        putValue(SMALL_ICON, loadIcon("/images/icons for buttons/delete.png")); // Postavljanje ikonice
         putValue(SHORT_DESCRIPTION, "Delete element?");
     }
 

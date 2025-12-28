@@ -60,4 +60,21 @@ public class TextFieldVIew extends ElementView{
 
         return new Rectangle(x, y, w, h);
     }
+
+    @Override
+    public Rectangle getScaledBounds(double scaleFactor) {
+        TextFieldElement e = (TextFieldElement) element;
+
+        Font font = new Font("Arial", Font.PLAIN, e.getFontSize());
+        FontMetrics fm = Toolkit.getDefaultToolkit().getFontMetrics(font);
+
+        int w = fm.stringWidth(e.getText());
+        int h = fm.getHeight();
+
+        int x = e.getLocation().x;
+        int y = e.getLocation().y;
+
+        return new Rectangle((int)(x * scaleFactor), (int)(y * scaleFactor), (int)(w * scaleFactor), (int)(h * scaleFactor));
+
+    }
 }

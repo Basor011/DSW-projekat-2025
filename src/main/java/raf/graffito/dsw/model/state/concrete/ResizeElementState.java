@@ -53,17 +53,19 @@ public class ResizeElementState implements ElementState {
         double scale = slideView.getScaleFactor();
         int rawDx = e.getPoint().x - start.x;
         int rawDy = e.getPoint().y - start.y;
-        int dx = (int) (rawDx/scale);
-        int dy = (int) (rawDy/scale);
 
-        if(txfCommand != null) txfCommand.apply(dy);
-        if(command != null) command.apply(dx, dy);
+        if(txfCommand != null) {
+            int deltaDy = slideView.toModelDelta(rawDy);
+            txfCommand.apply(deltaDy);
+        }
+        if(command != null) {
+            int dx = slideView.toModelDelta(rawDx);
+            int dy = slideView.toModelDelta(rawDy);
+            command.apply(dx, dy);
+        }
 
         start = e.getPoint();
 
-        System.out.println("RAW dx=" + rawDx + " dy=" + rawDy +
-                " | scale=" + scale +
-                " | model dx=" + dx + " dy=" + dy);
     }
     @Override public void mouseReleased(MouseEvent e, Element element) {
         if(!dragging) return;
