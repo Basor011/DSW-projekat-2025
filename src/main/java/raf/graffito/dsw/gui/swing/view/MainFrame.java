@@ -70,7 +70,7 @@ public class MainFrame extends JFrame implements Subscriber {
         JPanel toolbarPanel = new JPanel();
         toolbarPanel.setLayout(new BoxLayout(toolbarPanel, BoxLayout.X_AXIS));
         modeRadioButtons = new WindowModeRadioButtons();
-        uputstvo=new Label("Triple DESNI klik za otvaranje projekta");
+        uputstvo=new Label("Triple DESNI klik za otvaranje projekta, dupli klik za selektovanje slike iz galerije, delete brise selektovane kad se klikne na njih, multi select sa shift");
 
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
 
