@@ -79,10 +79,12 @@
         private Point toModelPoint(Point p){
             return new Point((int)(p.getX()/scaleFactor), (int)(p.getY()/scaleFactor));
         }
-        public Point toModelDelta(Point delta){
-            return new Point(
-                    (int)(delta.getX() / scaleFactor),
-                    (int)(delta.getY() / scaleFactor));
+        public int toModelDelta(int delta){
+            if (scaleFactor == 0) return delta;
+            return (int)(delta / scaleFactor);
+        }
+        public Point toModelDelta(Point viewDelta) {
+            return new Point(toModelDelta(viewDelta.x), toModelDelta(viewDelta.y));
         }
         public ElementView getElementAt(Point p) { //omogucava da znamo koji element je kliknut
             Point modelPoint =  toModelPoint(p);
