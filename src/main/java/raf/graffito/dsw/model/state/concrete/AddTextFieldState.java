@@ -20,7 +20,7 @@ public class AddTextFieldState implements ElementState {
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
         Point p = e.getPoint();
-
+        Point modelPoint=slideView.toModelDelta(p);
         String text = JOptionPane.showInputDialog(slideView, "Enter text:", "Text Input", JOptionPane.PLAIN_MESSAGE);
 
         if (text == null || text.trim().isEmpty()) {
@@ -29,7 +29,7 @@ public class AddTextFieldState implements ElementState {
 
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
-        Element txf = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.TEXT_FIELD, p, text);
+        Element txf = (Element) repo.createElement(slideView.getSlideModel(), TipElementa.TEXT_FIELD, modelPoint, text);
         int[][] freeSpace=slideView.getSlideModel().getFreeSpace();
         if(slideView.getSlideModel().getStrategy().hasEnoughSpace(slideView.getSlideModel(),List.of(txf))) {
 

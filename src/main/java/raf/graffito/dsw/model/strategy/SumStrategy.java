@@ -21,7 +21,7 @@ public class SumStrategy implements SpaceStrategy {
         }
 
 
-        return totalSum>=maxSurface;
+        return totalSum<=maxSurface;
     }
     private double calculateSurfaceArea(Element e)
     {

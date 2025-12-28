@@ -18,9 +18,10 @@ public class AddLogoState implements ElementState {
     @Override
     public void mousePressed(MouseEvent e, SlideView slideView) {
         Point p = e.getPoint();
+        Point modelPoint=slideView.toModelDelta(p);
         GraffRepositoryImplementation repo = (GraffRepositoryImplementation) ApplicationFramework.getInstance().getGr();
 
-        Element logo = (Element) repo.createLogoElement(slideView.getSlideModel(), TipElementa.LOGO, p);
+        Element logo = (Element) repo.createLogoElement(slideView.getSlideModel(), TipElementa.LOGO, modelPoint);
         int[][] freeSpace=slideView.getSlideModel().getFreeSpace();
         if(slideView.getSlideModel().getStrategy().hasEnoughSpace(slideView.getSlideModel(),List.of(logo))) {
             ApplicationFramework.getInstance().getCommandManager().executeCommand(new AddElementCommand(slideView.getSlideModel(), List.of(logo)));

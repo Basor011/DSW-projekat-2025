@@ -14,7 +14,6 @@ public class WindowModeRadioButtons extends JPanel {
     private ConcreteMediator mediator;
 
     public WindowModeRadioButtons() {
-        //setFloatable(false);
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         mediator=new ConcreteMediator(ApplicationFramework.getInstance().getWindowModeController());
 
@@ -34,8 +33,6 @@ public class WindowModeRadioButtons extends JPanel {
                 mediator.notify("NORMAL")
         );
 
-
-
         group = new ButtonGroup();
         group.add(defaultMode);
         group.add(fullMode);
@@ -44,10 +41,6 @@ public class WindowModeRadioButtons extends JPanel {
         add(defaultMode);
         add(fullMode);
         add(smallMode);
-
-       // defaultMode.setAction(MainFrame.getInstance().getActionManager().getNormalModeAction());
-       // fullMode.setAction(MainFrame.getInstance().getActionManager().getFullModeAction());
-       // smallMode.setAction(MainFrame.getInstance().getActionManager().getSmallModeAction());
 
         defaultMode.setText("default");
         fullMode.setText("full");

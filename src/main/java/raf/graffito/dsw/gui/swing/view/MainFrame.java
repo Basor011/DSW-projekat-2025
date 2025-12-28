@@ -150,9 +150,8 @@ public class MainFrame extends JFrame implements Subscriber {
     @Override
     public void ispisiPoruku(Message message) {
         if (message.getType().equals("GRESKA") || message.getType().equals("OBAVESTENJE")){
-            JOptionPane.showMessageDialog(null, message.toString() + " " + message.getType());
+            JOptionPane.showMessageDialog(null, message + " " + message.getType());
         }
-        else return;
     }
 
     public void setGlobalScale(double scale) {//skaliramo view
