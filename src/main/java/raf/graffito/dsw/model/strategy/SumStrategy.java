@@ -1,8 +1,6 @@
 package raf.graffito.dsw.model.strategy;
 
-
-import raf.graffito.dsw.gui.swing.view.MainFrame;
-import raf.graffito.dsw.gui.swing.view.SlideView;
+import raf.graffito.dsw.model.composite.abs.GraffNode;
 import raf.graffito.dsw.model.composite.compositions.Slide;
 import raf.graffito.dsw.model.composite.leaves.Element;
 
@@ -13,7 +11,25 @@ import java.util.List;
 public class SumStrategy implements SpaceStrategy {
     @Override
     public boolean hasEnoughSpace(Slide slide, List<Element> data) {
-        return false;
+        double totalSum = calculateSurfaceArea(data.getFirst());
+        int[][] matrix=slide.getFreeSpace();
+        double maxSurface=(matrix.length*matrix[0].length)*0.8;
+        for (GraffNode node : slide.getChildren()) {
+            if (node instanceof Element e) {
+                totalSum+= calculateSurfaceArea(e);
+            }
+        }
+
+
+        return totalSum>=maxSurface;
+    }
+    private double calculateSurfaceArea(Element e)
+    {
+        Rectangle rect=e.getBounds();
+        double sum=rect.getWidth()*rect.getHeight();
+
+        return sum;
+
     }
 
 
