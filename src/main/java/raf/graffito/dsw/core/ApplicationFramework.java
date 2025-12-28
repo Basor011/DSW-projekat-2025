@@ -12,16 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ApplicationFramework  {
-    // Buduća polja za model celog projekta
+
     private static ApplicationFramework instance;
+
     private CommandManager commandManager;
-
-    List<Subscriber> subscribers;
-
     protected GraffRepository gr;
     private MessageGenerator mg;
-
     private WindowModeController windowModeController;
+
+    List<Subscriber> subscribers;
 
     private ApplicationFramework(){};
     public static ApplicationFramework getInstance(){
@@ -38,15 +37,16 @@ public class ApplicationFramework  {
         LoggerFactory loggerFactory = new LoggerFactory();
         commandManager = new CommandManager();
 
+        windowModeController = new WindowModeController();
         MainFrame mainFrame = MainFrame.getInstance();
+        mainFrame.load();
+        windowModeController.setMode(new NormalMode(new DefaultScaler(mainFrame)));
         mainFrame.setVisible(true);
 
         mg.addSubscriber(mainFrame);
         mg.addSubscriber(loggerFactory.createLogger("consoleLogger"));
         mg.addSubscriber(loggerFactory.createLogger("fileLogger"));
 
-        windowModeController = new WindowModeController();
-        windowModeController.setMode(new NormalMode(new DefaultScaler(mainFrame)));
     }
 
     public List<Subscriber> getSubscribers() {

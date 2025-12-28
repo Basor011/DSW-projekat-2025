@@ -1,24 +1,42 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.model.brigde.ScaleImplement;
-import raf.graffito.dsw.model.brigde.controller.WindowModeController;
+import raf.graffito.dsw.core.ApplicationFramework;
+import raf.graffito.dsw.model.mediator.ConcreteMediator;
 
 import javax.swing.*;
 
-public class WindowModeRadioButtons extends JToolBar {
+public class WindowModeRadioButtons extends JPanel {
     private JRadioButton defaultMode;
     private JRadioButton fullMode;
     private JRadioButton smallMode;
+    private ButtonGroup group;
 
-    public WindowModeRadioButtons(WindowModeController controller, ScaleImplement scale) {
-        setFloatable(false);
+    private ConcreteMediator mediator;
+
+    public WindowModeRadioButtons() {
+        //setFloatable(false);
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        mediator=new ConcreteMediator(ApplicationFramework.getInstance().getWindowModeController());
 
         defaultMode = new JRadioButton("Default Mode");
         fullMode = new JRadioButton("Full Mode");
         smallMode = new JRadioButton("Small Mode");
 
-        ButtonGroup group = new ButtonGroup();
+        fullMode.addActionListener(e ->
+                mediator.notify("FULL")
+        );
+
+        smallMode.addActionListener(e ->
+                mediator.notify("SMALL")
+        );
+
+        defaultMode.addActionListener(e ->
+                mediator.notify("NORMAL")
+        );
+
+
+
+        group = new ButtonGroup();
         group.add(defaultMode);
         group.add(fullMode);
         group.add(smallMode);
@@ -27,14 +45,17 @@ public class WindowModeRadioButtons extends JToolBar {
         add(fullMode);
         add(smallMode);
 
-        defaultMode.setAction(MainFrame.getInstance().getActionManager().getNormalModeAction());
-        fullMode.setAction(MainFrame.getInstance().getActionManager().getFullModeAction());
-        smallMode.setAction(MainFrame.getInstance().getActionManager().getSmallModeAction());
+       // defaultMode.setAction(MainFrame.getInstance().getActionManager().getNormalModeAction());
+       // fullMode.setAction(MainFrame.getInstance().getActionManager().getFullModeAction());
+       // smallMode.setAction(MainFrame.getInstance().getActionManager().getSmallModeAction());
 
         defaultMode.setText("default");
         fullMode.setText("full");
         smallMode.setText("small");
 
         defaultMode.setSelected(true);
+    }
+    public ButtonGroup getGroup() {
+        return group;
     }
 }

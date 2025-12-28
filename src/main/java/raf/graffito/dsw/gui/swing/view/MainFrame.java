@@ -1,6 +1,5 @@
 package raf.graffito.dsw.gui.swing.view;
 
-import raf.graffito.dsw.model.brigde.DefaultScaler;
 import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.model.state.StateManager;
 import raf.graffito.dsw.core.ApplicationFramework;
@@ -16,24 +15,24 @@ import java.util.List;
 
 public class MainFrame extends JFrame implements Subscriber {
 
-    // Buduća polja za sve komponente view-a na glavnom prozoru
-    private ActionManager actionManager;
     private static MainFrame instance = null;
-    private GraffTree graffTree;
+
     private MyTabbedPane tabbedPane;
+    private RightPane rightPanel;
     private JSplitPane split;
     private JSplitPane split2;
+    private WindowModeRadioButtons modeRadioButtons;
     private File defaultFilePath;
     private File templatePath;
     private Label uputstvo;
 
-    private RightPane rightPanel;
+    private GraffTree graffTree;
+    private ActionManager actionManager;
     private StateManager stateManager;
+
     private int screenHeight;
     private int screenWidth;
-
     private double globalScale = 1.0;
-
     private Dimension normalSize;
 
     public static MainFrame getInstance() {
@@ -43,12 +42,13 @@ public class MainFrame extends JFrame implements Subscriber {
         return instance;
     }
     private MainFrame() {
+
+    }
+    public void load()
+    {
         actionManager = new ActionManager();
         stateManager = new StateManager();
         graffTree = new GraffTreeImplementation();
-
-        instance=this;
-
         initialize();
     }
     private void initialize() {
@@ -69,7 +69,7 @@ public class MainFrame extends JFrame implements Subscriber {
         JPanel rootPanel = new JPanel(new BorderLayout());
         JPanel toolbarPanel = new JPanel();
         toolbarPanel.setLayout(new BoxLayout(toolbarPanel, BoxLayout.X_AXIS));
-        WindowModeRadioButtons modeRadioButtons = new WindowModeRadioButtons(ApplicationFramework.getInstance().getWindowModeController(), new DefaultScaler(this));
+        modeRadioButtons = new WindowModeRadioButtons();
         uputstvo=new Label("Triple DESNI klik za otvaranje projekta");
 
         MyToolBar toolBar = new MyToolBar(this); // Kreiranje toolbar-a
@@ -118,6 +118,12 @@ public class MainFrame extends JFrame implements Subscriber {
     public StateManager getStateManager() {
         return stateManager;
     }
+    public JSplitPane getSplit() {
+        return split;
+    }
+    public JSplitPane getSplit2() {
+        return split2;
+    }
     public File getDefaultFilePath() {
         return defaultFilePath;
     }
@@ -136,7 +142,6 @@ public class MainFrame extends JFrame implements Subscriber {
     public int getScreenWidth() {
         return screenWidth;
     }
-
     public double getGlobalScale() {return globalScale;}
 
     @Override
